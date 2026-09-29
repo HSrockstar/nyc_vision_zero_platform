@@ -1,0 +1,11 @@
+[
+  {
+    "url": "https://registry.hub.docker.com/v2/",
+    "status": 401,
+    "authenticate": "Bearer realm=\"https://auth.docker.io/token\",service=\"registry.docker.io\""
+  },
+  {
+    "url": "https://index.docker.io/v2/",
+    "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)>"
+  }
+]

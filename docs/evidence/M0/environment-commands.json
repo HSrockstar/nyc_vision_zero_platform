@@ -1,0 +1,69 @@
+[
+  {
+    "command": [
+      "git",
+      "status",
+      "--short",
+      "--branch"
+    ],
+    "exit_code": 128,
+    "stdout": "",
+    "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+  },
+  {
+    "command": [
+      "python",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "Python 3.12.4\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "py",
+      "-3.12",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "Python 3.12.4\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "v24.14.1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "npm.cmd",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "11.11.0\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "docker",
+      "version"
+    ],
+    "exit_code": 1,
+    "stdout": "Client:\n Version:           29.7.2\n API version:       1.55\n Go version:        go1.26.5\n Git commit:        a7dcaa6\n Built:             Wed Aug  5 18:31:33 2026\n OS/Arch:           windows/amd64\n Context:           desktop-linux\n",
+    "stderr": "failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n"
+  },
+  {
+    "command": [
+      "docker",
+      "compose",
+      "version"
+    ],
+    "exit_code": 0,
+    "stdout": "Docker Compose version v5.5.1\n",
+    "stderr": ""
+  }
+]

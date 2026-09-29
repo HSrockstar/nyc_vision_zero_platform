@@ -1,0 +1,15 @@
+[
+  {
+    "url": "https://registry-1.docker.io/v2/",
+    "error": "HTTPError: HTTP Error 401: Unauthorized"
+  },
+  {
+    "url": "https://auth.docker.io/token?service=registry.docker.io&scope=repository:postgis/postgis:pull",
+    "status": 200,
+    "bytes": 5493
+  },
+  {
+    "url": "https://auth.docker.io/token?service=registry.docker.io&scope=repository:postgis/postgis:pull",
+    "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)>"
+  }
+]

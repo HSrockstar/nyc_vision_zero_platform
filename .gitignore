@@ -1,0 +1,20 @@
+# M0 及后续开发的本地环境和生成文件
+.m0-work/
+.m1-work/
+.pytest_cache/
+__pycache__/
+*.pyc
+node_modules/
+dist/
+.venv/
+.env
+.env.*
+!.env.example
+data/raw/
+data/exports/
+*.dump
+*.backup
+# 个人课程参考资料保留本地，不默认公开
+/*.pdf
+/*.docx
+/报告大纲设计.txt

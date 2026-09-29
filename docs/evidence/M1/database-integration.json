@@ -1,0 +1,33 @@
+{
+  "database": "vision_zero_m1_test_891a9286d176",
+  "checked_at": "2026-09-29T07:20:21.957618+00:00",
+  "steps": {
+    "initial_non_extension_tables": [],
+    "ready_before_migration": {
+      "status": "not_ready",
+      "reason": "database_version_mismatch"
+    },
+    "ready_after_upgrade": {
+      "status": "ready",
+      "checks": {
+        "database": "ok",
+        "migration": "current",
+        "postgis": "ok"
+      }
+    },
+    "autogenerate_external_schema_preserved": true,
+    "repeat_upgrade_revision": "0001_environment",
+    "ready_after_downgrade": {
+      "status": "not_ready",
+      "reason": "migration_pending"
+    },
+    "spatial_srid": 4326,
+    "postgresql": "17.11",
+    "postgis": "3.6.4",
+    "final_non_extension_tables": [
+      "alembic_version"
+    ]
+  },
+  "status": "passed",
+  "retained_for_review": true
+}

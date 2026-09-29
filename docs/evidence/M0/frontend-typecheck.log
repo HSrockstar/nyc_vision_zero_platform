@@ -1,0 +1,4 @@
+
+> vision-zero-m0-dependency-check@0.0.0 check
+> tsc --noEmit --lib ES2022,DOM --module esnext --moduleResolution bundler --skipLibCheck smoke.ts
+

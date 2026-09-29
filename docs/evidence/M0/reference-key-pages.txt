@@ -1,0 +1,66 @@
+GUIDE PAGES 18
+PAGE15 16
+数据库应用系统开发
+• 应用系统开发应独立完成，报告和程序功能完整，设计方法合理，用户界面友好，
+系统运行正常
+• 要求提交：
+– 系统设计与开发报告
+•  设计报告按照软件工程的要求与格式书写 ， 不少于 1.0 万字，不超过 1.5 万字
+• 需求分析、数据库概念设计、逻辑设计、物理设计部分清晰明确
+– 系统源代码文件
+– 系统操作、运行的完整功能录像演示文件
+REPORT PAGES 20
+PAGE12 9
+在 Crashes 数据导入过程中，系统先根据 borough 生成或匹配 Borough 记录，再根据邮政编码、
+经 纬 度 和 街 道 名 称 生 成 或 匹 配 Location 记 录 ， 随 后 将 collision_id 、 crash_date 、 crash_time 和
+location_id 写 入 Collision 表 。 伤 亡 统 计 字 段 写 入 CasualtyStat 表 ， 事 故 原 因 字 段 则 通 过
+ContributingFactor 和 CollisionFactor 进行拆分保存。
+Person 数 据 直 接 写 入 Person 表 ， Vehicles 数 据 写 入 Vehicle 表 ， 并 将 vehicle_type 映 射 到
+VehicleType 表。RiskProfile 表由系统统计生成，其中事故次数、伤亡人数和弱势交通参与者伤亡人
+数来自 Collision、CasualtyStat 或 Person 等表的聚合结果，risk_score 和 risk_level 由统一规则计算得
+到。
+4.5 3NF 分析
+第三范式用于减少数据冗余以及更新、插入和删除异常。本系统原始数据中存在大量重复文本
+字段，例如行政区名称、车辆类型名称和事故原因名称。如果直接保存到事故表或车辆表中，会造
+成重复存储和维护困难。因此，本系统通过实体拆分、字典表和中间表设计，使各关系模式满足
+3NF 要求。课程设计要求说明 3NF，本报告以 3NF 为主要规范化目标。BCNF 更严格，但在本系统
+业务场景中，3NF 已能有效降低冗余，并保持关系结构清晰。
+Borough 、 VehicleType 和 ContributingFactor 都 是 字 典 表 ， 非 主 属 性 分 别 为 borough_name 、
+vehicle_type_name 和 factor_name，均只依赖各自主键，不存在部分依赖和传递依赖。Location 的邮
+政编码、经纬度和街道字段直接依赖 location_id，borough_name 没有直接保存在 Location 表中，因
+此 避 免 了 由 borough_id 到 borough_name 的 传 递 依 赖 。 Collision 中 crash_date 、 crash_time 和
+location_id 均直接依赖 collision_id，地点详细信息通过 Location 引用，避免在事故表中重复保存地
+点字段。
+Person 的 person_type、person_injury、person_age 和 person_sex 均直接依赖 person_id，不依赖
+其他非主属性。Vehicle 的车辆年份、行驶方向、事故前状态、碰撞部位和损坏情况均直接依赖
+vehicle_id，vehicle_type_name 通过 VehicleType 保存，避免车辆类型名称重复。CollisionFactor 使用
+collision_id 和 factor_order 作为联合主键，factor_id 依赖整个联合主键，且不直接保存 factor_name，
+因此不存在传递依赖。
+CasualtyStat 使用 collision_id 作为主键，各类伤亡人数字段都描述同一场事故的伤亡统计结果，
+直接依赖 collision_id。RiskProfile 使用 profile_id 作为主键，统计周期、事故次数、伤亡人数、风险
+分数和风险等级都描述同一条画像记录。risk_level 应由 risk_score 和统一分级规则生成，系统实现
+时应通过生成字段、视图或业务规则统一维护，避免人工修改导致不一致。综上，本系统各主要关
+系均满足 3NF 设计要求。各关系表的主键或候选键及其 3NF 判断依据见表4.4。
+PAGE17 14
+第 6 章 系统实现方案
+6.1 系统总体架构
+本系统本学期主要完成数据库设计，暂不进行完整系统开发。后续实现可采用数据层、业务层
+和展示层三层结构。数据层负责保存事故事件、地点、行政区、涉事人员、涉事车辆、车辆类型、
+事故原因、伤亡统计和风险画像等数据，并可设置原始数据暂存表用于导入和追溯。业务层负责实
+现事故查询、统计分析、数据清洗和风险画像生成。展示层负责提供事故查询页面、统计分析页面
+和高危交叉口地图页面。
+6.2 核心功能模块
+数据导入模块负责读取 Crashes、Person 和 Vehicles 数据，按照字段映射规则完成清洗和写入。
+事故查询模块支持按事故编号、日期、行政区、街道、车辆类型和事故原因查询。统计分析模块支
+持行政区事故统计、事故原因统计、车辆类型统计和人员伤亡统计。风险画像模块根据统计周期生
+成 RiskProfile 记 录 。数 据 维 护 模块 负 责 处理 缺 失 值 、重 复 值 和 异常 记 录 。地 图 展 示 模块 根 据
+Location 表中的经纬度展示事故地点，并根据 risk_level 区分风险等级。
+6.3 风险画像生成方案
+风险画像的生成对象为 Location 表中的地点记录。系统首先确定统计周期，例如月度、季度或
+年 度 ； 随 后 从 Collision 表 中 筛 选 周 期 内 事 故 记 录 ， 并 按 location_id 聚 合 事 故 次 数 ； 再 连 接
+CasualtyStat 表统计受伤人数、死亡人数和弱势交通参与者伤亡人数；最后根据评分规则计算风险分
+数，生成风险等级，并写入 RiskProfile 表。
+课程设计阶段可以采用简化评分规则：risk_score = 事故次数 × 1 + 受伤人数 × 3 + 死亡人数
+× 10 + 弱势交通参与者伤亡人数 × 5。风险等级可设为三档：risk_score 小于 10 为低风险，10 到
+30 之间为中风险，30 及以上为高风险。该规则主要用于说明 RiskProfile 表的设计思路，后续系统
+实现时可以结合真实数据分布、交通管理经验和业务需求调整权重和阈值。

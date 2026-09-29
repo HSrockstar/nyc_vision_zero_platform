@@ -1,0 +1,12 @@
+PASS inherited-VISION_ZERO_DB_IMAGE
+PASS inherited-VISION_ZERO_DB_PORT
+PASS inherited-POSTGRES_PASSWORD
+PASS matching-resources
+PASS wrong-volume
+PASS bind-mount
+PASS missing-mount
+PASS wrong-database
+PASS remote-engine
+PASS migration-on-stopped-container
+PASS inherited-DOCKER_HOST
+Windows guard checks: 11 passed; Docker calls were mocked.

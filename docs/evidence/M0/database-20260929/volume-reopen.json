@@ -1,0 +1,31 @@
+{
+  "database": "vision_zero_m0",
+  "extensions": {
+    "postgis": "3.6.4",
+    "postgis_topology": "3.6.4",
+    "postgis_tiger_geocoder": "3.6.4"
+  },
+  "server_version_num": "170011",
+  "postgis_lib_version": "3.6.4",
+  "persistent_m0_tables": 0,
+  "reopen_existing_volume_passed": true,
+  "container_id": "f998f9553413a4074051fc4e317d2d2f1b5055d685dad9e2c29e084f8570132a",
+  "health": "healthy",
+  "mounts": [
+    {
+      "Type": "volume",
+      "Name": "vision-zero-m0-postgis-data",
+      "Destination": "/var/lib/postgresql/data",
+      "RW": true
+    }
+  ],
+  "port_bindings": {
+    "5432/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "55432"
+      }
+    ]
+  },
+  "initialization_skipped_on_reopen": true
+}

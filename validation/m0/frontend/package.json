@@ -1,0 +1,30 @@
+{
+  "name": "vision-zero-m0-dependency-check",
+  "private": true,
+  "version": "0.0.0",
+  "description": "仅用于 M0 依赖兼容性验证，不是业务前端",
+  "engines": { "node": "24.14.1", "npm": "11.11.0" },
+  "packageManager": "npm@11.11.0",
+  "scripts": {
+    "check": "tsc --noEmit --lib ES2022,DOM --module esnext --moduleResolution bundler --skipLibCheck smoke.ts",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "3.5.43",
+    "vue-router": "4.6.4",
+    "pinia": "3.0.4",
+    "element-plus": "2.14.6",
+    "echarts": "5.6.0",
+    "leaflet": "1.9.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.9",
+    "vite": "7.3.6",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11",
+    "@vue/test-utils": "2.4.6",
+    "vue-tsc": "3.3.11",
+    "@playwright/test": "1.63.0",
+    "@types/leaflet": "1.9.20"
+  }
+}

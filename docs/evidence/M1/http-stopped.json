@@ -1,0 +1,25 @@
+[
+  {
+    "url": "http://127.0.0.1:8000/health/live",
+    "status": 200,
+    "body": {
+      "status": "alive"
+    }
+  },
+  {
+    "url": "http://127.0.0.1:8000/health/ready",
+    "status": 503,
+    "body": {
+      "status": "not_ready",
+      "reason": "database_unavailable"
+    }
+  },
+  {
+    "url": "http://127.0.0.1:5173/health/ready",
+    "status": 503,
+    "body": {
+      "status": "not_ready",
+      "reason": "database_unavailable"
+    }
+  }
+]

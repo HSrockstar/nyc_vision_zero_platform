@@ -1,0 +1,18 @@
+{
+  "original_files_unchanged": 5,
+  "json_files_parsed": 43,
+  "markdown_links_valid": true,
+  "python_syntax_valid": true,
+  "windows_db_checks": 11,
+  "linux_db_checks": 11,
+  "linux_lock_matches_actual_distribution_report": true,
+  "official_oci_archives_sha256_valid": true,
+  "credentials_not_in_deliverables": true,
+  "existing_other_containers_unchanged": 14,
+  "m0_final_state": "both stopped; images/volume/archive preserved",
+  "git_status": {
+    "exit_code": 128,
+    "stderr": "fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "git_diff_check": "not applicable: no .git"
+}

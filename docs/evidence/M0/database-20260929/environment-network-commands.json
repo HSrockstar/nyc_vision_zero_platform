@@ -1,0 +1,33 @@
+[
+  {
+    "command": [
+      "docker",
+      "version"
+    ],
+    "exit_code": 0,
+    "stdout": "Client:\n Version:           29.7.2\n API version:       1.55\n Go version:        go1.26.5\n Git commit:        a7dcaa6\n Built:             Wed Aug  5 18:31:33 2026\n OS/Arch:           windows/amd64\n Context:           desktop-linux\n\nServer: Docker Desktop 4.90.0 (238679)\n Engine:\n  Version:          29.7.2\n  API version:      1.55 (minimum version 1.40)\n  Go version:       go1.26.5\n  Git commit:       6a43e3d\n  Built:            Wed Aug  5 18:28:36 2026\n  OS/Arch:          linux/amd64\n  Experimental:     false\n containerd:\n  Version:          v2.3.3\n  GitCommit:        aad11006b869517fcd3009450b6f82da282e1a9b\n runc:\n  Version:          1.4.3\n  GitCommit:        v1.4.3-0-gbb14dabe\n docker-init:\n  Version:          0.19.0\n  GitCommit:        de40ad0\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "docker",
+      "compose",
+      "version"
+    ],
+    "exit_code": 0,
+    "stdout": "Docker Compose version v5.5.1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "curl.exe",
+      "-I",
+      "--max-time",
+      "20",
+      "https://registry-1.docker.io/v2/"
+    ],
+    "exit_code": 35,
+    "stdout": "",
+    "stderr": "curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed\n"
+  }
+]

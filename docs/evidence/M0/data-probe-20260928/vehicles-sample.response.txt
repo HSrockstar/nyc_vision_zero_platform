@@ -1,0 +1,10 @@
+[{"unique_id":"20806589","vehicle_id":"479efe03-6efb-4df3-b6bc-b30c357dfa58","collision_id":"4783006","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Sedan"}
+,{"unique_id":"20806590","vehicle_id":"6c306c9a-bd64-4d6e-9ef5-953648b1bc64","collision_id":"4783006","crash_date":"2025-01-01T00:00:00.000"}
+,{"unique_id":"20806595","vehicle_id":"b64de494-69e5-4690-b0f5-6987b885116b","collision_id":"4783027","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Sedan"}
+,{"unique_id":"20806596","vehicle_id":"0caa381c-f6f1-4b86-b79b-5b7366cd3097","collision_id":"4783040","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Station Wagon/Sport Utility Vehicle"}
+,{"unique_id":"20806597","vehicle_id":"7dba5b37-c6fe-421e-be68-db4ac9e5dcd4","collision_id":"4783040","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Station Wagon/Sport Utility Vehicle"}
+,{"unique_id":"20806598","vehicle_id":"fea7a9ef-42b0-4c9c-99c7-6603aa1b91e7","collision_id":"4783040","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Sedan"}
+,{"unique_id":"20806599","vehicle_id":"b86c1ab3-d622-452c-9465-35acf49e0a1b","collision_id":"4783040","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Sedan"}
+,{"unique_id":"20806603","vehicle_id":"61e02c3d-a98c-4413-9327-8abb0278e745","collision_id":"4783024","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Station Wagon/Sport Utility Vehicle"}
+,{"unique_id":"20806604","vehicle_id":"8fcc3b8a-f34a-40d2-8456-63f9f9dd1d76","collision_id":"4783024","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Station Wagon/Sport Utility Vehicle"}
+,{"unique_id":"20806605","vehicle_id":"cbe9b766-838a-4446-8179-f1e3b292ff77","collision_id":"4783041","crash_date":"2025-01-01T00:00:00.000","vehicle_type":"Station Wagon/Sport Utility Vehicle"}]

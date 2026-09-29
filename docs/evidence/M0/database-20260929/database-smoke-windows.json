@@ -1,0 +1,63 @@
+{
+  "postgresql": "PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+  "server_version_num": "170011",
+  "postgis_full_version": "POSTGIS=\"3.6.4 0\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.14.1-CAPI-1.20.5\" PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.8.1) LIBXML=\"2.13.9\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.2\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "postgis_lib_version": "3.6.4",
+  "extensions": {
+    "postgis": "3.6.4",
+    "postgis_tiger_geocoder": "3.6.4",
+    "postgis_topology": "3.6.4"
+  },
+  "checks": {
+    "primary_key": {
+      "passed": true,
+      "sqlstate": "23505"
+    },
+    "unique": {
+      "passed": true,
+      "sqlstate": "23505"
+    },
+    "foreign_key": {
+      "passed": true,
+      "sqlstate": "23503"
+    },
+    "check_nonnegative": {
+      "passed": true,
+      "sqlstate": "23514"
+    },
+    "not_null": {
+      "passed": true,
+      "sqlstate": "23502"
+    },
+    "geometry_srid": {
+      "passed": true,
+      "sqlstate": "22023"
+    },
+    "srid_and_coordinate_order": {
+      "passed": true,
+      "srid": 4326,
+      "coordinates": [
+        -73.9857,
+        40.7484
+      ]
+    },
+    "geography_distance_m": {
+      "passed": true,
+      "distance_m": 84.45430624,
+      "within_100m": true,
+      "within_50m": false
+    },
+    "transaction_rollback": {
+      "passed": true,
+      "rows_after_failed_transaction": 0
+    },
+    "sqlalchemy_geoalchemy_roundtrip": {
+      "passed": true
+    },
+    "sqlalchemy_rollback": {
+      "passed": true
+    }
+  },
+  "business_tables_created": false,
+  "scope": "session temporary tables only"
+}

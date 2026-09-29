@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-09-29T06:08:51.044125+00:00",
+  "scope": "user-authorized three-source consolidation/deletion and project plan update; no M1 implementation",
+  "retired_files": {
+    "2452273-胡懿晨.pdf": {
+      "bytes": 504861,
+      "sha256": "7b0d46cb26344b9cbe995e052544e2cf10af04c21629736d84af7934fed98d82",
+      "deleted_from_root": true
+    },
+    "2452273-胡懿晨-选题-面向 Vision Zero 的纽约交通碰撞风险画像与高危交叉口管理系统设计.docx": {
+      "bytes": 11855,
+      "sha256": "925f0901f653b2a171bc299adb0d19d2eb3631c318728793bcff4ac6a1fa324e",
+      "deleted_from_root": true
+    },
+    "报告大纲设计.txt": {
+      "bytes": 23689,
+      "sha256": "d91be72f077ccb6b8ffc7d2ad8b010ada062626c1ef2607fa178686f3153e692",
+      "deleted_from_root": true
+    }
+  },
+  "backup": {
+    "path": ".m0-work\\materials-consolidation-20260929\\originals-before-consolidation.zip",
+    "sha256": "cb8a8a301635e3b2e8a5f4ddbd2f1545ee67a0e4500842d7edc53cfa511ba2df",
+    "all_four_entries_verified": true,
+    "includes": "three source materials and PROJECT_PLAN 1.0"
+  },
+  "summary": {
+    "path": "docs\\references\\prior_work_summary.md",
+    "lines": 104,
+    "characters": 5668,
+    "sha256": "0391b4997f0ab7acc97f58a1f58afd19410e9b1c62fe68f3ba908b7e248926c4",
+    "coverage": "PDF20pages including visual ER check; DOCX5paragraphs; TXT946lines"
+  },
+  "plan": {
+    "version": "1.1",
+    "before_sha256": "130e295c58468bc1059461c4bc80b94e4a6751b69ce3a1ebc03d9cb84387d28c",
+    "after_sha256": "5ef9af82895f405e0e7cadad0e68c7bcb3efcc02f42aff9aec6cc67207ccab5d",
+    "sections_7_through_18_business_text_preserved_except_source_citations": true
+  },
+  "course_guide": {
+    "path": "数据库系统原理课程设计指南-2026年秋_删除1_20_21_22页 (1).pdf",
+    "sha256": "f29d02dc1536cca7b11bb071c4f5eebb78830a83e3643cfcc3c454b137410f30",
+    "unchanged": true
+  },
+  "changed_documents": {
+    "PROJECT_PLAN.md": "5ef9af82895f405e0e7cadad0e68c7bcb3efcc02f42aff9aec6cc67207ccab5d",
+    "README.md": "ec11732021ff060c26b37b06d158c25669b86a0508a02d12ab226b8a2805f1ea",
+    "docs/references/prior_work_summary.md": "0391b4997f0ab7acc97f58a1f58afd19410e9b1c62fe68f3ba908b7e248926c4",
+    "docs/decisions/0001-implementation-baseline.md": "5ef459df33604cc1159ea3d2b47e381aaefc76dc7d44c9ef4f6d30bd368b08c3",
+    "docs/milestones/tasks.md": "2e0ed29252465eff2340fb3704caea25ad172759184ee8b08804fa85bab4733b",
+    "docs/milestones/M0.md": "3dbf8d1d735a69f49db36390ff968822fed5bf4b9eabeddd6fd8b2f5497da333",
+    "docs/milestones/M0-database.md": "0846a2e3a226fe3a25cbaadb5caa3194cd8c096dbff8f23350af002ef88ba19f"
+  },
+  "checks": {
+    "document_links_valid": true,
+    "code_fences_balanced": true,
+    "trailing_whitespace_absent": true,
+    "S2_section_references_updated": true,
+    "independent_read_only_review_passed": true,
+    "independent_review_deletion_tense_issue_resolved_by_actual_deletion": true,
+    "docker_or_business_code_mutations": false,
+    "git_status_exit_code": 128,
+    "git_diff_check": "not applicable; no .git; source archive used for plan diff",
+    "remote_push": false
+  }
+}

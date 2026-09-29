@@ -1,0 +1,1 @@
+[{"rows":"6482","latitude_present":"6403","longitude_present":"6403"}]

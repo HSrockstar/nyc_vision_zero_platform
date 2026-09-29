@@ -1,0 +1,34 @@
+{
+  "backend_live": {
+    "status": 200,
+    "body": {
+      "status": "alive"
+    }
+  },
+  "backend_ready": {
+    "status": 200,
+    "body": {
+      "status": "ready",
+      "checks": {
+        "database": "ok",
+        "migration": "current",
+        "postgis": "ok"
+      }
+    }
+  },
+  "frontend_page": {
+    "status": 200,
+    "vue_entry_present": true
+  },
+  "frontend_proxy_ready": {
+    "status": 200,
+    "body": {
+      "status": "ready",
+      "checks": {
+        "database": "ok",
+        "migration": "current",
+        "postgis": "ok"
+      }
+    }
+  }
+}

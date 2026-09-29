@@ -1,0 +1,3 @@
+"collision_id","crash_date","crash_time","borough","latitude","longitude","on_street_name","cross_street_name","number_of_persons_injured","number_of_persons_killed"
+"4783006","2025-01-01T00:00:00.000","0:44","BRONX","40.810886","-73.88166","OAK POINT AVE",,"0","0"
+"4783024","2025-01-01T00:00:00.000","2:55","BROOKLYN","40.658577","-73.890625","LINDEN BLVD",,"0","0"

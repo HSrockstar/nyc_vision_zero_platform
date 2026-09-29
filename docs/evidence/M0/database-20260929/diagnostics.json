@@ -1,0 +1,32 @@
+[
+  {
+    "command": "docker pull postgis/postgis:17-3.6-alpine",
+    "exit_code": 1,
+    "error": "Head https://registry-1.docker.io/v2/postgis/postgis/manifests/17-3.6-alpine: EOF",
+    "evidence": "postgis-pull.log"
+  },
+  {
+    "command": "curl.exe --proxy http://127.0.0.1:7890 -I --max-time 20 https://registry-1.docker.io/v2/",
+    "exit_code": 35,
+    "tunnel_response": "HTTP/1.1 200 Connection established",
+    "error": "schannel: failed to receive handshake, SSL/TLS connection failed"
+  },
+  {
+    "command": "Python urllib anonymous library/python auth request (first attempt)",
+    "exit_code": 1,
+    "error": "URLError: <urlopen error _ssl.c:983: The handshake operation timed out>",
+    "resolution": "One limited retry succeeded; see python-image-probe.json"
+  },
+  {
+    "command": "docker image inspect sha256:4a4879b11890effb1e19fd924b96b174ada07dbf69ad0ad4fd003845148a425a",
+    "exit_code": 1,
+    "error": "No such image",
+    "resolution": "containerd image store uses platform manifest digest as local image ID; verified by inspect and SQL"
+  },
+  {
+    "command": "docker image inspect postgis/postgis:17-3.6-alpine",
+    "exit_code": 1,
+    "error": "No such image",
+    "resolution": "OCI annotation with unqualified name did not normalize to docker.io; startup uses verified immutable manifest ID. Downloader now emits fully qualified annotation."
+  }
+]

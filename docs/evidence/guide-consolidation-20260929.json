@@ -1,0 +1,131 @@
+{
+  "checked_at": "2026-09-29T06:23:07.296293+00:00",
+  "source": {
+    "path": "数据库系统原理课程设计指南-2026年秋_删除1_20_21_22页 (1).pdf",
+    "bytes": 2296362,
+    "sha256": "f29d02dc1536cca7b11bb071c4f5eebb78830a83e3643cfcc3c454b137410f30"
+  },
+  "backup": {
+    "path": ".m0-work/guide-consolidation-20260929/originals-before-consolidation.zip",
+    "sha256": "92594ca6eb789d1ab721247790b1d1457d815439211495d85963ed1f8932bb16",
+    "entries": [
+      {
+        "path": "数据库系统原理课程设计指南-2026年秋_删除1_20_21_22页 (1).pdf",
+        "bytes": 2296362,
+        "sha256": "f29d02dc1536cca7b11bb071c4f5eebb78830a83e3643cfcc3c454b137410f30"
+      },
+      {
+        "path": "PROJECT_PLAN.md",
+        "bytes": 109553,
+        "sha256": "5ef9af82895f405e0e7cadad0e68c7bcb3efcc02f42aff9aec6cc67207ccab5d"
+      },
+      {
+        "path": "README.md",
+        "bytes": 5315,
+        "sha256": "ec11732021ff060c26b37b06d158c25669b86a0508a02d12ab226b8a2805f1ea"
+      },
+      {
+        "path": "docs/decisions/0001-implementation-baseline.md",
+        "bytes": 10632,
+        "sha256": "5ef459df33604cc1159ea3d2b47e381aaefc76dc7d44c9ef4f6d30bd368b08c3"
+      },
+      {
+        "path": "docs/references/prior_work_summary.md",
+        "bytes": 11384,
+        "sha256": "0391b4997f0ab7acc97f58a1f58afd19410e9b1c62fe68f3ba908b7e248926c4"
+      },
+      {
+        "path": "docs/milestones/tasks.md",
+        "bytes": 5779,
+        "sha256": "2e0ed29252465eff2340fb3704caea25ad172759184ee8b08804fa85bab4733b"
+      },
+      {
+        "path": "docs/milestones/M0.md",
+        "bytes": 7820,
+        "sha256": "3dbf8d1d735a69f49db36390ff968822fed5bf4b9eabeddd6fd8b2f5497da333"
+      },
+      {
+        "path": "docs/milestones/M0-database.md",
+        "bytes": 11378,
+        "sha256": "0846a2e3a226fe3a25cbaadb5caa3194cd8c096dbff8f23350af002ef88ba19f"
+      }
+    ],
+    "verified": true
+  },
+  "summary": {
+    "path": "docs/references/course_requirements.md",
+    "sha256": "3ff8e32af0152fc6b3096abc438c3c39248628fa78411a4d73b863b3acf95483"
+  },
+  "plan": {
+    "before_sha256": "5ef9af82895f405e0e7cadad0e68c7bcb3efcc02f42aff9aec6cc67207ccab5d",
+    "after_sha256": "623282f76a714ea3dc1269cc5f4312e6794ae589b036743cb6f35884c04b435c"
+  },
+  "changed_documents": [
+    {
+      "path": "PROJECT_PLAN.md",
+      "sha256": "623282f76a714ea3dc1269cc5f4312e6794ae589b036743cb6f35884c04b435c"
+    },
+    {
+      "path": "README.md",
+      "sha256": "20c6313fe95e207a0b9cfbf5ef19f4bc75e814e23b970bfaeb60cbf630ba825b"
+    },
+    {
+      "path": "docs/decisions/0001-implementation-baseline.md",
+      "sha256": "45b4f0c47141e65391c5e6f37dc7363452138a99636f81412c2c6ca29196e35a"
+    },
+    {
+      "path": "docs/references/prior_work_summary.md",
+      "sha256": "7f425f600e4e0355ed3c6f06f21fb9ab5e94e59bbb1379b23326472032306227"
+    },
+    {
+      "path": "docs/milestones/tasks.md",
+      "sha256": "d58090dcfd6a854ca41a89baf743e875d3bd393333de086d8eb5e77eda947dcf"
+    },
+    {
+      "path": "docs/milestones/M0.md",
+      "sha256": "11168888262b768717dd5f24ffbbf1ed751ac3308775cc9519dd9c66e8d72e3e"
+    },
+    {
+      "path": "docs/milestones/M0-database.md",
+      "sha256": "1b0b682e0d6725b51cc9f70d4e3c42f17db72ccd4b7a6d55ee9969abe576e08d"
+    },
+    {
+      "path": "docs/references/course_requirements.md",
+      "sha256": "3ff8e32af0152fc6b3096abc438c3c39248628fa78411a4d73b863b3acf95483"
+    }
+  ],
+  "checks": {
+    "backup_zip_crc_and_all_eight_entries_sha256": true,
+    "source_matches_backup_before_deletion": true,
+    "pdf_pages_read_and_rendered": 18,
+    "summary_sections": 6,
+    "summary_lines": 70,
+    "course_grade_weights_sum": 100,
+    "relative_links_passed": 71,
+    "whitespace_and_fences_passed": true,
+    "plan_version": "1.2",
+    "business_sections_7_through_18_preserved_except_source_citations": true,
+    "git_status_exit_code": 128,
+    "original_pdf_deleted": true
+  },
+  "git_error": "fatal: not a git repository (or any of the parent directories): .git",
+  "independent_review": {
+    "agent": "/root/legacy_material_review",
+    "source_content_checked": true,
+    "plan_references_and_stage_status_checked": true,
+    "findings_resolved": [
+      "Original PDF deletion completed and verified; current material status is now accurate",
+      "Old 20-page arrangement now attributed to S2; current 10000-15000-word requirement attributed to S1 section 3"
+    ]
+  },
+  "commands_performed": [
+    "git status --short; rg --files; read applicable instructions and source references",
+    "Python pypdf: extract all 18 physical pages; hashlib/zipfile: source and eight-entry backup verification",
+    "Poppler pdftoppm -png -scale-to 1400: render all 18 pages; PIL: contact sheets; view_image: visual review",
+    "apply_patch: create course_requirements.md and update seven related Markdown documents",
+    "Python verify_guide.py: provenance, references, whitespace, code fences, score weights and protected plan sections",
+    "PowerShell Remove-Item -LiteralPath: exactly the named original PDF after full path/hash checks",
+    "Python verify_guide.py --after-deletion: verify absent original and write this evidence"
+  ],
+  "scope": "Document consolidation only; no database, business code, runtime, Git initialization or remote push changes"
+}

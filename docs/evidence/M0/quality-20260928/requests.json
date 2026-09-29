@@ -1,0 +1,131 @@
+[
+  {
+    "label": "crashes-year-keys",
+    "url": "https://data.cityofnewyork.us/resource/h9gi-nx95.json?%24select=count%28%2A%29+as+rows%2Ccount%28collision_id%29+as+key_present%2Ccount%28distinct+collision_id%29+as+key_distinct%2Ccount%28collision_id%29+as+parent_present&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27",
+    "started_at": "2026-09-28T09:52:56.782945+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "ETag": "W/\"Zm94dHJvdC4xNTY3NV80MzNfODA5MTFSdFdBVHN5Z2NMeUdSc3NpQkxfTzB4U0F3SjQ---gziqBP_DEsDxmZlWDmBkohiJtdYhFPw--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"rows\",\"key_present\",\"key_distinct\",\"parent_present\"]",
+      "X-SODA2-Types": "[\"number\",\"number\",\"number\",\"number\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:05:52 GMT"
+    },
+    "finished_at": "2026-09-28T09:53:00.572761+00:00",
+    "body_sha256": "104f9e4befe731010431742794baa0f4998264484bb179b369a9da870edea28a",
+    "body_file": "crashes-year-keys.response.txt",
+    "body_bytes": 89
+  },
+  {
+    "label": "crashes-missing-coordinates",
+    "url": "https://data.cityofnewyork.us/resource/h9gi-nx95.json?%24select=count%28%2A%29+as+rows&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27+AND+%28latitude+IS+NULL+OR+longitude+IS+NULL%29",
+    "started_at": "2026-09-28T09:53:00.574949+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "ETag": "W/\"Zm94dHJvdC4xNTY3NV80MzNfODA5MTF1aGhRU0FOSkktb3R2NTJrX3J2UTFiWi1XRTg-ovTv812GCAh4BynLj_BHY12z4s--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"rows\"]",
+      "X-SODA2-Types": "[\"number\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:05:52 GMT"
+    },
+    "finished_at": "2026-09-28T09:53:01.875040+00:00",
+    "body_sha256": "1e8cd5c1c5850a5fdb99e24c0666c41e9b36c4daa85a35043c7f50976540f7ae",
+    "body_file": "crashes-missing-coordinates.response.txt",
+    "body_bytes": 17
+  },
+  {
+    "label": "crashes-streets",
+    "url": "https://data.cityofnewyork.us/resource/h9gi-nx95.json?%24select=collision_id%2Con_street_name%2Coff_street_name%2Ccross_street_name&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27+AND+off_street_name+IS+NOT+NULL&%24order=collision_id&%24limit=5",
+    "started_at": "2026-09-28T09:53:01.877430+00:00",
+    "error": "TimeoutError: The read operation timed out",
+    "finished_at": "2026-09-28T09:53:22.730860+00:00",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body_file": "crashes-streets.response.txt",
+    "body_bytes": 0
+  },
+  {
+    "label": "crashes-csv-sample",
+    "url": "https://data.cityofnewyork.us/resource/h9gi-nx95.csv?%24select=collision_id%2Ccrash_date%2Ccrash_time%2Cborough%2Clatitude%2Clongitude%2Con_street_name%2Ccross_street_name%2Cnumber_of_persons_injured%2Cnumber_of_persons_killed&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27&%24order=crash_date%2Ccollision_id&%24limit=2",
+    "started_at": "2026-09-28T09:53:22.731908+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/csv; charset=UTF-8",
+      "ETag": "W/\"Zm94dHJvdC4xNTY3NV80MzNfODA5MTFSbXdMUEtIWUduSFlQMDlmQWQtbDJIZFhWclU---gziqiAhgJ0eNG6EBvhFZR8pMcEEmrSA--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"collision_id\",\"crash_date\",\"crash_time\",\"borough\",\"latitude\",\"longitude\",\"on_street_name\",\"cross_street_name\",\"number_of_persons_injured\",\"number_of_persons_killed\"]",
+      "X-SODA2-Types": "[\"number\",\"floating_timestamp\",\"text\",\"text\",\"number\",\"number\",\"text\",\"text\",\"number\",\"number\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:05:52 GMT"
+    },
+    "finished_at": "2026-09-28T09:53:23.973984+00:00",
+    "body_sha256": "3a3af0ac320d0a6a1b1126ea8e7408ed8c2fc3a66be42dabf5ebcac08433d23f",
+    "body_file": "crashes-csv-sample.response.txt",
+    "body_bytes": 368
+  },
+  {
+    "label": "person-year-keys",
+    "url": "https://data.cityofnewyork.us/resource/f55k-p6yu.json?%24select=count%28%2A%29+as+rows%2Ccount%28unique_id%29+as+key_present%2Ccount%28distinct+unique_id%29+as+key_distinct%2Ccount%28collision_id%29+as+parent_present&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27",
+    "started_at": "2026-09-28T09:53:23.976094+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "ETag": "W/\"Zm94dHJvdC43MTE1N184XzE5MDZDQzZSeWtYU0FjRzNWbzJaQzRKOGVjUUExUTQ---gziqSIVCrVhIbNwf9_aHEqRMEfZrxtg--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"rows\",\"key_present\",\"key_distinct\",\"parent_present\"]",
+      "X-SODA2-Types": "[\"number\",\"number\",\"number\",\"number\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:35:37 GMT"
+    },
+    "finished_at": "2026-09-28T09:53:32.833613+00:00",
+    "body_sha256": "ee93dcf91617d4205cf9319f61abb0a508a64f5f94663b86be3db343d9356e80",
+    "body_file": "person-year-keys.response.txt",
+    "body_bytes": 93
+  },
+  {
+    "label": "person-csv-sample",
+    "url": "https://data.cityofnewyork.us/resource/f55k-p6yu.csv?%24select=unique_id%2Cperson_id%2Cvehicle_id%2Ccollision_id%2Ccrash_date%2Cperson_type%2Cperson_injury&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27&%24order=crash_date%2Cunique_id&%24limit=2",
+    "started_at": "2026-09-28T09:53:32.836164+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/csv; charset=UTF-8",
+      "ETag": "W/\"Zm94dHJvdC43MTE1N184XzE5MDZjY1RLNVM2cUpGWGpFZXczSGIzNEZOZXNibjQ---gzirn8E3-jI2c4LCB8Ff8u6E4t9vt5g--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"unique_id\",\"person_id\",\"vehicle_id\",\"collision_id\",\"crash_date\",\"person_type\",\"person_injury\"]",
+      "X-SODA2-Types": "[\"number\",\"text\",\"text\",\"number\",\"floating_timestamp\",\"text\",\"text\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:35:37 GMT"
+    },
+    "finished_at": "2026-09-28T09:53:34.066652+00:00",
+    "body_sha256": "7a521ec8787f38e666289d1b59e62ee4811968876225d235d3adaaa3df988414",
+    "body_file": "person-csv-sample.response.txt",
+    "body_bytes": 339
+  },
+  {
+    "label": "vehicles-year-keys",
+    "url": "https://data.cityofnewyork.us/resource/bm4k-52h4.json?%24select=count%28%2A%29+as+rows%2Ccount%28unique_id%29+as+key_present%2Ccount%28distinct+unique_id%29+as+key_distinct%2Ccount%28collision_id%29+as+parent_present&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27",
+    "started_at": "2026-09-28T09:53:34.068394+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "ETag": "W/\"Zm94dHJvdC43MTE1MV82XzEyNzdUdnZGblBsNHF2T3F4a0hJZzk5QVpjZTh5bVU---gziqSIVCrVhIbNwf9_aHEqRMEfZrxtg--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"rows\",\"key_present\",\"key_distinct\",\"parent_present\"]",
+      "X-SODA2-Types": "[\"number\",\"number\",\"number\",\"number\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:22:27 GMT"
+    },
+    "finished_at": "2026-09-28T09:53:38.450680+00:00",
+    "body_sha256": "9daf2b36fe23dd4ca223bdba51c5b5cfd9dd914f4fbcda4a664a68dc06c2b1f9",
+    "body_file": "vehicles-year-keys.response.txt",
+    "body_bytes": 93
+  },
+  {
+    "label": "vehicles-csv-sample",
+    "url": "https://data.cityofnewyork.us/resource/bm4k-52h4.csv?%24select=unique_id%2Cvehicle_id%2Ccollision_id%2Ccrash_date%2Cvehicle_type&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27&%24order=crash_date%2Cunique_id&%24limit=2",
+    "started_at": "2026-09-28T09:53:38.452771+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/csv; charset=UTF-8",
+      "ETag": "W/\"Zm94dHJvdC43MTE1MV82XzEyNzd6b0dDSnZyWE4zTTdTX1VEMUpjdDZKVlB2WUU---gziobT4oyOJGP6Fw2CW3x7E_5E05Bkw--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"unique_id\",\"vehicle_id\",\"collision_id\",\"crash_date\",\"vehicle_type\"]",
+      "X-SODA2-Types": "[\"number\",\"text\",\"number\",\"floating_timestamp\",\"text\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:22:27 GMT"
+    },
+    "finished_at": "2026-09-28T09:53:39.640308+00:00",
+    "body_sha256": "64c4bca74606f9a42abb7dbb7b3fe31d4ed561d9929402ffddeea112f020c559",
+    "body_file": "vehicles-csv-sample.response.txt",
+    "body_bytes": 249
+  }
+]

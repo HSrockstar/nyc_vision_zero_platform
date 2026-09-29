@@ -1,0 +1,14 @@
+{
+  "source": "docker.io/library/python:3.12.4-slim-bookworm",
+  "index_digest": "sha256:a3e58f9399353be051735f09be0316bfdeab571a5c6a24fd78b92df85bcb2d85",
+  "manifest_digest": "sha256:a074fac67aa01841fee592d00bae14d25dcaf98ef6e12a683ecceb7e0147e2d1",
+  "config_digest": "sha256:c127439b2798d6872c53642bd6577046a30e818576250c329e55b124948dadf2",
+  "platform": {
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  "versions_from_config": [],
+  "archive_sha256": "37ba9ae2403e9f95c145d1065c6ce0a47fac9165a57346190d8b6c5f7f11ee7c",
+  "archive_bytes": 48916480,
+  "tls_verification": true
+}

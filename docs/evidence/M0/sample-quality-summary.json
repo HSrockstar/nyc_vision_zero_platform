@@ -1,0 +1,29 @@
+{
+  "crashes": {
+    "rows": 10,
+    "missing_key": 0,
+    "distinct_keys": 10,
+    "missing_collision_id": 0
+  },
+  "person": {
+    "rows": 10,
+    "missing_key": 0,
+    "distinct_keys": 10,
+    "missing_collision_id": 0,
+    "linked_rows_source_code_missing": 0,
+    "unique_id_equals_source_code": 0
+  },
+  "vehicles": {
+    "rows": 10,
+    "missing_key": 0,
+    "distinct_keys": 10,
+    "missing_collision_id": 0,
+    "linked_rows_source_code_missing": 0,
+    "unique_id_equals_source_code": 0
+  },
+  "person_vehicle_optional": {
+    "person_source_vehicle_id_present": 39,
+    "same_collision_source_vehicle_code_match": 0,
+    "same_collision_unique_id_match": 39
+  }
+}

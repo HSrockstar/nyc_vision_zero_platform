@@ -1,0 +1,10 @@
+[
+  {
+    "tag": "17-3.5-alpine",
+    "error": "URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))"
+  },
+  {
+    "tag": "17-3.6-alpine",
+    "error": "URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))"
+  }
+]

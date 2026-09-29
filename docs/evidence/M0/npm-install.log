@@ -1,0 +1,12 @@
+npm error code EBADENGINE
+npm error engine Unsupported engine
+npm error engine Not compatible with your version of node/npm: nopt@10.0.1
+npm error notsup Not compatible with your version of node/npm: nopt@10.0.1
+npm error notsup Required: {"node":"^22.22.2 || ^24.15.0 || >=26.0.0"}
+npm error notsup Actual:   {"node":"v24.14.1","npm":"11.11.0"}
+npm notice
+npm notice New minor version of npm available! 11.11.0 -> 11.20.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.20.0
+npm notice To update run: npm install -g npm@11.20.0
+npm notice
+npm error A complete log of this run can be found in: C:\Users\Lenovo\AppData\Local\npm-cache\_logs\2026-09-28T09_53_50_400Z-debug-0.log

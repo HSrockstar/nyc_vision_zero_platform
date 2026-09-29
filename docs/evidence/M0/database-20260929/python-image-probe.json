@@ -1,0 +1,7 @@
+[
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/manifests/3.12.4-slim-bookworm",
+    "digest": "sha256:a3e58f9399353be051735f09be0316bfdeab571a5c6a24fd78b92df85bcb2d85",
+    "status": 200
+  }
+]

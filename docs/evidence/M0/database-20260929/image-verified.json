@@ -1,0 +1,17 @@
+{
+  "source": "docker.io/postgis/postgis:17-3.6-alpine",
+  "index_digest": "sha256:a8ffa9afeea4ad6eada171fa2afdb57cd3eb90f92ce20156aa2cb8411d70e0cd",
+  "manifest_digest": "sha256:7ce143dbc804dc08a8f1dcf9067724f9b6e4ded48711e9d884487967acb442b3",
+  "config_digest": "sha256:4a4879b11890effb1e19fd924b96b174ada07dbf69ad0ad4fd003845148a425a",
+  "platform": {
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  "versions_from_config": [
+    "PG_VERSION=17.11",
+    "POSTGIS_VERSION=3.6.4"
+  ],
+  "archive_sha256": "ddb2f132c46a0bae101eb918777173eb82815e66a45547bc1fedb51b8dc41019",
+  "archive_bytes": 189388800,
+  "tls_verification": true
+}

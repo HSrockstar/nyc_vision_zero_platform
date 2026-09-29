@@ -1,0 +1,1 @@
+{"passed_checks": 11, "postgresql_version_num": "170011", "postgis": "3.6.4", "output": "/evidence/database-smoke-linux.json"}

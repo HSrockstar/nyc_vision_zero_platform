@@ -1,0 +1,7 @@
+{
+  "python": "3.12.4",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36",
+  "packages": 38,
+  "linux_hash_replay": "actual clean installation passed",
+  "database_connection": "passed"
+}

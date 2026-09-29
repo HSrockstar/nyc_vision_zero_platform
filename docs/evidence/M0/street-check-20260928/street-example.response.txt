@@ -1,0 +1,5 @@
+[{"collision_id":"4455765","on_street_name":"WHITESTONE EXPRESSWAY","off_street_name":"20 AVENUE"}
+,{"collision_id":"4675373","on_street_name":"OCEAN PARKWAY","off_street_name":"AVENUE K"}
+,{"collision_id":"4675769","on_street_name":"WEST 35 STREET","off_street_name":"HENRY HUDSON RIVER"}
+,{"collision_id":"4486609","on_street_name":"SARATOGA AVENUE","off_street_name":"DECATUR STREET"}
+,{"collision_id":"4486519","on_street_name":"3 AVENUE","off_street_name":"EAST 43 STREET"}]

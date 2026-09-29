@@ -1,0 +1,11 @@
+{
+  "image": "postgis/postgis:17-3.6-alpine@sha256:a8ffa9afeea4ad6eada171fa2afdb57cd3eb90f92ce20156aa2cb8411d70e0cd",
+  "platform": "linux/amd64",
+  "manifest_digest": "sha256:7ce143dbc804dc08a8f1dcf9067724f9b6e4ded48711e9d884487967acb442b3",
+  "config_digest": "sha256:4a4879b11890effb1e19fd924b96b174ada07dbf69ad0ad4fd003845148a425a",
+  "local_image_id": "sha256:7ce143dbc804dc08a8f1dcf9067724f9b6e4ded48711e9d884487967acb442b3",
+  "expected_postgresql": "17.11",
+  "expected_postgis": "3.6.4",
+  "verified_on": "2026-09-29",
+  "local_load_method": "SHA-256 verified official OCI archive; containerd local image ID is platform manifest digest"
+}

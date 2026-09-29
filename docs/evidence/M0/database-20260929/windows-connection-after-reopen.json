@@ -1,0 +1,8 @@
+{
+  "host": "127.0.0.1",
+  "port": 55432,
+  "postgresql": "17.11",
+  "postgis": "3.6.4",
+  "read_only_query": "SELECT current_setting('server_version'),postgis_lib_version()",
+  "connected_after_reopen": true
+}

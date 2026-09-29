@@ -1,0 +1,114 @@
+[
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/manifests/17-3.6-alpine",
+    "status": 200,
+    "digest": "sha256:a8ffa9afeea4ad6eada171fa2afdb57cd3eb90f92ce20156aa2cb8411d70e0cd",
+    "bytes": 856,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/manifests/sha256:7ce143dbc804dc08a8f1dcf9067724f9b6e4ded48711e9d884487967acb442b3",
+    "status": 200,
+    "digest": "sha256:7ce143dbc804dc08a8f1dcf9067724f9b6e4ded48711e9d884487967acb442b3",
+    "bytes": 2754,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:4a4879b11890effb1e19fd924b96b174ada07dbf69ad0ad4fd003845148a425a",
+    "status": 200,
+    "digest": "sha256:4a4879b11890effb1e19fd924b96b174ada07dbf69ad0ad4fd003845148a425a",
+    "bytes": 14126,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439af26a4",
+    "status": 200,
+    "digest": "sha256:55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439af26a4",
+    "bytes": 3846391,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:4d80c046a9c75283330c9ea2f7f3e5b3fbfe521c980e19d4164116dd95dfc730",
+    "status": 200,
+    "digest": "sha256:4d80c046a9c75283330c9ea2f7f3e5b3fbfe521c980e19d4164116dd95dfc730",
+    "bytes": 970,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:59234992055286eabeae83e92fd49c182136fabecaab40e96e44201d0b7acab6",
+    "status": 200,
+    "digest": "sha256:59234992055286eabeae83e92fd49c182136fabecaab40e96e44201d0b7acab6",
+    "bytes": 900254,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:a12187db4b1792bf47380df49cfd84fd703811abd04c5d84568001a484afbf2d",
+    "status": 200,
+    "digest": "sha256:a12187db4b1792bf47380df49cfd84fd703811abd04c5d84568001a484afbf2d",
+    "bytes": 116,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:5858a3f690eab3dfde37f933ab035d3453f4a56f38fb963ce98186b9d7d15e80",
+    "status": 200,
+    "digest": "sha256:5858a3f690eab3dfde37f933ab035d3453f4a56f38fb963ce98186b9d7d15e80",
+    "bytes": 112417792,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:75de48f507ff913f69fa75a49da59f83db0ece385f649eefa7bcde930a9b573e",
+    "status": 200,
+    "digest": "sha256:75de48f507ff913f69fa75a49da59f83db0ece385f649eefa7bcde930a9b573e",
+    "bytes": 9997,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:d884d6f49732553e9690257554497e612cdcc1a6d83562fe08d582dec39e34e9",
+    "status": 200,
+    "digest": "sha256:d884d6f49732553e9690257554497e612cdcc1a6d83562fe08d582dec39e34e9",
+    "bytes": 129,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:b36c1b75fdb7939cb2a580ab05adfa65c8b118425f42cd8811cf632f37bb8616",
+    "status": 200,
+    "digest": "sha256:b36c1b75fdb7939cb2a580ab05adfa65c8b118425f42cd8811cf632f37bb8616",
+    "bytes": 169,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:f070a657786685e37135e54207238cd1580e6869c6f5e8e6da85b2c9871ab31e",
+    "status": 200,
+    "digest": "sha256:f070a657786685e37135e54207238cd1580e6869c6f5e8e6da85b2c9871ab31e",
+    "bytes": 6111,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:7f3590dcd8434508e0c0bd953c80ed459f14f3a9005a3ac945bdb855abe58389",
+    "status": 200,
+    "digest": "sha256:7f3590dcd8434508e0c0bd953c80ed459f14f3a9005a3ac945bdb855abe58389",
+    "bytes": 184,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:8a27a973db280f5c4149afb89b0e6515b213243df4cc91edffc31c331badab10",
+    "status": 200,
+    "digest": "sha256:8a27a973db280f5c4149afb89b0e6515b213243df4cc91edffc31c331badab10",
+    "bytes": 72148322,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:2945d5379c269ebb9cfba50deff122025fb0ba4007616f3254f5f858c96f03ed",
+    "status": 200,
+    "digest": "sha256:2945d5379c269ebb9cfba50deff122025fb0ba4007616f3254f5f858c96f03ed",
+    "bytes": 807,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/postgis/postgis/blobs/sha256:b9f42609d79fec6b4680d7ed719959900b8956731c13ceb4af19401383239ee2",
+    "status": 200,
+    "digest": "sha256:b9f42609d79fec6b4680d7ed719959900b8956731c13ceb4af19401383239ee2",
+    "bytes": 593,
+    "sha256_verified": true
+  }
+]

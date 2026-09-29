@@ -1,0 +1,58 @@
+[
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/manifests/3.12.4-slim-bookworm",
+    "status": 200,
+    "digest": "sha256:a3e58f9399353be051735f09be0316bfdeab571a5c6a24fd78b92df85bcb2d85",
+    "bytes": 9124,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/manifests/sha256:a074fac67aa01841fee592d00bae14d25dcaf98ef6e12a683ecceb7e0147e2d1",
+    "status": 200,
+    "digest": "sha256:a074fac67aa01841fee592d00bae14d25dcaf98ef6e12a683ecceb7e0147e2d1",
+    "bytes": 1943,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/blobs/sha256:c127439b2798d6872c53642bd6577046a30e818576250c329e55b124948dadf2",
+    "status": 200,
+    "digest": "sha256:c127439b2798d6872c53642bd6577046a30e818576250c329e55b124948dadf2",
+    "bytes": 6692,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/blobs/sha256:efc2b5ad9eec05befa54239d53feeae3569ccbef689aa5e5dbfc25da6c4df559",
+    "status": 200,
+    "digest": "sha256:efc2b5ad9eec05befa54239d53feeae3569ccbef689aa5e5dbfc25da6c4df559",
+    "bytes": 29126287,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/blobs/sha256:a21a42cb9734eb8bf959604f0175a3fb0ea93caea931d758b8b86b1acf2c6421",
+    "status": 200,
+    "digest": "sha256:a21a42cb9734eb8bf959604f0175a3fb0ea93caea931d758b8b86b1acf2c6421",
+    "bytes": 3509904,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/blobs/sha256:16661da94c6b59ad94d3beb260dc1a6510d6e92d524ab4894e25bb64596895a5",
+    "status": 200,
+    "digest": "sha256:16661da94c6b59ad94d3beb260dc1a6510d6e92d524ab4894e25bb64596895a5",
+    "bytes": 12005473,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/blobs/sha256:067dca495e7c95f1760cd6f1dfd09507f08d62418c9bdc96f63cc5f55c54d11a",
+    "status": 200,
+    "digest": "sha256:067dca495e7c95f1760cd6f1dfd09507f08d62418c9bdc96f63cc5f55c54d11a",
+    "bytes": 239,
+    "sha256_verified": true
+  },
+  {
+    "url": "https://registry.hub.docker.com/v2/library/python/blobs/sha256:3f5faab3df7809e6204d76de2ac979d120d0b82e1625e8f5b47fb80e7d670a37",
+    "status": 200,
+    "digest": "sha256:3f5faab3df7809e6204d76de2ac979d120d0b82e1625e8f5b47fb80e7d670a37",
+    "bytes": 4235307,
+    "sha256_verified": true
+  }
+]

@@ -1,0 +1,1 @@
+{"worker": "preflight_only", "status": "ready", "checks": {"database": "ok", "migration": "current", "postgis": "ok"}}

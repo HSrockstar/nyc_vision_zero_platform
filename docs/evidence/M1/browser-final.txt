@@ -1,0 +1,23 @@
+Browser tab: 1, Title: "Vision Zero · 开发环境", URL: "http://127.0.0.1:5173/".
+1 AXWebArea Vision Zero · 开发环境, URL: 127.0.0.1:5173/
+	2 container
+		3 text VISION ZERO · M1
+		4 heading 纽约交通碰撞风险识别 与高危交叉口治理管理系统, Value: 1
+			5 text 纽约交通碰撞风险识别
+			6 text 与高危交叉口治理管理系统
+		7 text 开发环境已建立。当前页面用于确认前端、后端与数据库连接，事故业务和治理功能将在后续阶段加入。
+		8 container 环境状态
+			9 heading 环境状态, Value: 2, ID: health-heading
+				10 text 环境状态
+			11 button 重新检查
+			12 definition list
+				13 container 后端进程
+					14 text 后端进程
+				21 text 已启动
+				16 container 数据库与迁移
+					17 text 数据库与迁移
+				22 text 已就绪
+			23 text 数据库连接、迁移版本和 PostGIS 检查通过。
+		20 text 数据库运行在 Docker；Python 后端和前端在 Windows 开发。
+
+The focused UI element is 1 AXWebArea Vision Zero · 开发环境, URL: 127.0.0.1:5173/

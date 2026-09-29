@@ -1,0 +1,9 @@
+{
+  "parent_sample_count": 10,
+  "child_rows": 20,
+  "possibly_truncated": false,
+  "parents_with_child": 10,
+  "child_keys_missing": 0,
+  "child_keys_distinct": 20,
+  "date_mismatches": 0
+}

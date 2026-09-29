@@ -1,0 +1,25 @@
+s......                                                                  [100%]
+============================== warnings summary ===============================
+..\.venv\Lib\site-packages\fastapi\testclient.py:1
+  E:\数据库课设\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+6 passed, 1 skipped, 1 warning in 2.42s
+
+> vision-zero-frontend@0.1.0 check
+> vue-tsc --noEmit
+
+
+> vision-zero-frontend@0.1.0 build
+> vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 12 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.41 kB │ gzip:  0.30 kB
+dist/assets/index-C_RqMmor.css   1.20 kB │ gzip:  0.64 kB
+dist/assets/index-DiiJsmZ9.js   65.06 kB │ gzip: 26.21 kB
+✓ built in 1.25s

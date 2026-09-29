@@ -1,0 +1,23 @@
+{
+  "versions": {
+    "fastapi": "0.141.1",
+    "SQLAlchemy": "2.0.54",
+    "psycopg": "3.3.6",
+    "psycopg-binary": "3.3.6",
+    "alembic": "1.20.0",
+    "GeoAlchemy2": "0.20.0",
+    "uvicorn": "0.54.0",
+    "pytest": "9.1.1",
+    "httpx": "0.28.1",
+    "PyJWT": "2.10.1",
+    "pwdlib": "0.3.0",
+    "pydantic-settings": "2.13.1",
+    "python-multipart": "0.0.22"
+  },
+  "fastapi_testclient": "passed",
+  "argon2_roundtrip": "passed",
+  "jwt_roundtrip": "passed",
+  "postgresql_sql_compilation": "passed",
+  "psycopg_implementation": "binary",
+  "database_connection": "not_executed"
+}

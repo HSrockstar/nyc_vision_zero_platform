@@ -1,0 +1,11 @@
+{
+  "ServerVersion": "29.7.2",
+  "OSType": "linux",
+  "Architecture": "x86_64",
+  "NCPU": 16,
+  "MemTotal": 7898066944,
+  "proxy_hosts": {
+    "HTTPProxy": null,
+    "HTTPSProxy": null
+  }
+}

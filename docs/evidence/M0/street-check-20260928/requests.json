@@ -1,0 +1,36 @@
+[
+  {
+    "label": "street-presence",
+    "url": "https://data.cityofnewyork.us/resource/h9gi-nx95.json?%24select=count%28%2A%29+as+rows%2Ccount%28on_street_name%29+as+on_present%2Ccount%28off_street_name%29+as+off_present%2Ccount%28cross_street_name%29+as+cross_present&%24where=crash_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+crash_date+%3C+%272026-01-01T00%3A00%3A00%27",
+    "started_at": "2026-09-28T09:58:30.601785+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "ETag": "W/\"Zm94dHJvdC4xNTY3NV80MzNfODA5MTFPM21VZVpwbFV5MHdVdUdfeW5WYXRUY3dQdWM---gzioaC2M7m5ttw0yV4nBrvn4znWhB9w--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"rows\",\"on_present\",\"off_present\",\"cross_present\"]",
+      "X-SODA2-Types": "[\"number\",\"number\",\"number\",\"number\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:05:52 GMT"
+    },
+    "finished_at": "2026-09-28T09:58:35.057069+00:00",
+    "body_sha256": "a27f5cab5f7095d6504a88c49fbaa49827142187e4d58ff55a464aa6a794bacf",
+    "body_file": "street-presence.response.txt",
+    "body_bytes": 86
+  },
+  {
+    "label": "street-example",
+    "url": "https://data.cityofnewyork.us/resource/h9gi-nx95.json?%24select=collision_id%2Con_street_name%2Coff_street_name%2Ccross_street_name&%24where=off_street_name+IS+NOT+NULL&%24limit=5",
+    "started_at": "2026-09-28T09:58:35.058173+00:00",
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "ETag": "W/\"Zm94dHJvdC4xNTY3NV80MzNfODA5MTFYTXZNcTl0UE5xdV92N0pPSTZiZFhOTGpqMlk---gzire5MUS8Hmyea3poLndiuRhLJmXMw--gzip--gzip\"",
+      "X-SODA2-Fields": "[\"collision_id\",\"on_street_name\",\"off_street_name\",\"cross_street_name\"]",
+      "X-SODA2-Types": "[\"number\",\"text\",\"text\",\"text\"]",
+      "Last-Modified": "Mon, 15 Jun 2026 23:05:52 GMT"
+    },
+    "finished_at": "2026-09-28T09:58:36.263854+00:00",
+    "body_sha256": "cdb86c436e02eca03d2e74aad9ae2f92aa989e861177d620003cc6b51abca87b",
+    "body_file": "street-example.response.txt",
+    "body_bytes": 480
+  }
+]

@@ -1,0 +1,22 @@
+[project]
+name = "vision-zero-backend"
+version = "0.1.0"
+description = "Vision Zero 数据库课程系统的基础后端"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi==0.141.1",
+  "uvicorn==0.54.0",
+  "SQLAlchemy==2.0.54",
+  "psycopg[binary]==3.3.6",
+  "alembic==1.20.0",
+  "GeoAlchemy2==0.20.0",
+  "pydantic-settings==2.13.1",
+  "python-dotenv==1.2.3",
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1", "httpx==0.28.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

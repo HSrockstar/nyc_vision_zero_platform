@@ -1,0 +1,15 @@
+{
+  "original_files_unchanged": {
+    "2452273-胡懿晨-选题-面向 Vision Zero 的纽约交通碰撞风险画像与高危交叉口管理系统设计.docx": true,
+    "2452273-胡懿晨.pdf": true,
+    "PROJECT_PLAN.md": true,
+    "报告大纲设计.txt": true,
+    "数据库系统原理课程设计指南-2026年秋_删除1_20_21_22页 (1).pdf": true
+  },
+  "broken_local_links": [],
+  "http_bodies_hashes_valid": true,
+  "http_response_files_checked": 36,
+  "json_parse": "passed",
+  "git_initialized": false,
+  "final_docs_verified": true
+}

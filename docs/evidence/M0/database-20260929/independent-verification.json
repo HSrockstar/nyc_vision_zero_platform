@@ -1,0 +1,49 @@
+{
+  "source": "independent test_verifier agent database_readonly_verify; transcribed command results",
+  "scope": "read-only SQL, inspect and evidence/code review; no temporary-table test replay",
+  "checks": [
+    {
+      "command": "docker inspect vision-zero-m0-postgis --format safe image/state/label/binding/mount fields",
+      "exit_code": 0,
+      "result": "running; correct manifest ID; label m0-verification; 127.0.0.1:55432; own named data volume"
+    },
+    {
+      "command": "docker exec vision-zero-m0-postgis psql -U postgres -d vision_zero_m0 -X -v ON_ERROR_STOP=1 -At -c \"SELECT name || '=' || setting FROM pg_settings WHERE name='server_version'; SELECT extname || '=' || extversion FROM pg_extension ORDER BY extname;\"",
+      "exit_code": 0,
+      "result": "PostgreSQL17.11; three PostGIS extensions3.6.4"
+    },
+    {
+      "query": "pg_class/pg_namespace/pg_depend extension ownership audit",
+      "exit_code": 0,
+      "non_extension_user_relations": 0,
+      "extension_relations": {
+        "public/postgis": 3,
+        "tiger/postgis_tiger_geocoder": 34,
+        "topology/postgis_topology": 2
+      }
+    },
+    {
+      "query": "WITH pts AS (SELECT ST_SetSRID(ST_MakePoint(-73.9857,40.7484),4326) AS a, ST_SetSRID(ST_MakePoint(-73.9847,40.7484),4326) AS b) SELECT ST_SRID(a), ST_X(a), ST_Y(a), round(ST_Distance(a::geography,b::geography)::numeric,3), ST_DWithin(a::geography,b::geography,100), ST_DWithin(a::geography,b::geography,80) FROM pts;",
+      "exit_code": 0,
+      "result": "4326|-73.9857|40.7484|84.454|t|f"
+    }
+  ],
+  "evidence_review": {
+    "windows_checks_passed": 11,
+    "linux_checks_passed": 11,
+    "independently_replayed_11_dynamic_checks": false,
+    "reason": "agent restricted to read-only queries, no CREATE TEMP TABLE"
+  },
+  "diagnostic_failures": [
+    {
+      "exit_code": 1,
+      "summary": "diagnostic query concatenated internal char with text without explicit cast"
+    },
+    {
+      "exit_code": 1,
+      "summary": "diagnostic CTE referenced by subsequent independent SQL statement"
+    }
+  ],
+  "diagnostic_failures_resolved": true,
+  "shell_wrapper_note": "agent commands emitted non-fatal Invoke-Expression profile error; actual command exit codes reported separately"
+}

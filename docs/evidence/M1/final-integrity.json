@@ -1,0 +1,24 @@
+{
+  "original_files_checked": 132,
+  "changed_existing_files": [
+    ".gitignore",
+    "PROJECT_PLAN.md",
+    "README.md",
+    "docs/environment.md",
+    "docs/decisions/0001-implementation-baseline.md",
+    "docs/milestones/tasks.md"
+  ],
+  "missing_existing_files": [],
+  "m0_validation_references_evidence_unchanged": true,
+  "backend_locks_byte_identical": true,
+  "frontend_dependency_graph_and_integrity_unchanged": true,
+  "preexisting_containers_checked": 16,
+  "preexisting_container_ids_and_states_unchanged": true,
+  "only_added_container": "vision-zero-dev-db",
+  "public_files_scanned_for_real_password": 196,
+  "credential_leaks_found": 0,
+  "broken_document_links": [],
+  "trailing_whitespace": [],
+  "git_status_exit": 128,
+  "git_repository_initialized": false
+}

@@ -1,0 +1,20 @@
+:root { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; color: #182c3d; background: #f3f6f8; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 72px 28px; }
+.eyebrow { color: #426776; font-size: 13px; font-weight: 700; letter-spacing: .14em; }
+h1 { font-size: clamp(25px, 4vw, 38px); line-height: 1.5; margin: 20px 0; }
+.intro { max-width: 720px; line-height: 1.85; color: #526777; }
+section { margin-top: 36px; padding: 28px; background: white; border: 1px solid #d7e1e7; border-radius: 12px; }
+.section-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+h2 { font-size: 20px; margin: 0; }
+button { padding: 10px 18px; border: 0; border-radius: 6px; background: #155c70; color: white; font: inherit; cursor: pointer; }
+button:disabled { opacity: .65; cursor: wait; }
+button:focus-visible { outline: 3px solid #e4ae52; outline-offset: 3px; }
+dl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 28px 0; }
+dt { color: #627684; font-size: 14px; }
+dd { margin: 10px 0 0; font-size: 22px; color: #8a4c18; }
+dd.good { color: #167054; }
+.detail { margin: 0; color: #526777; line-height: 1.6; }
+.footnote { font-size: 13px; color: #627684; margin-top: 24px; }
+@media (max-width: 560px) { main { padding: 36px 18px; } section { padding: 20px; } dl { grid-template-columns: 1fr; } }

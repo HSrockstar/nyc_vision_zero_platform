@@ -1,0 +1,7 @@
+端口 8000 已占用；不会停止已有服务或自动换端口。
+At E:\数据库课设\scripts\common.ps1:49 char:9
++         throw "端口 $Port 已占用；不会停止已有服务或自动换端口。"
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (端口 8000 已占用；不会停止已有服务或自动换端口。:String) [], RuntimeException
+    + FullyQualifiedErrorId : 端口 8000 已占用；不会停止已有服务或自动换端口。
+ 

@@ -1,0 +1,13 @@
+{
+  "batch_id": "3",
+  "raw_rows": 547631,
+  "formal_parents_matched": 500,
+  "formal_sources_matched": {
+    "CRASHES": 500,
+    "PERSON": 1725,
+    "VEHICLES": 1007
+  },
+  "seconds": 2.901,
+  "read_only": true,
+  "scope": "M2本批父键查询回归；不等于M7全系统性能验收"
+}

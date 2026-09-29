@@ -75,7 +75,7 @@ def model_database():
                 "roles": [list(row) for row in connection.execute("SELECT rolname, rolsuper, rolcreatedb, rolcreaterole, rolbypassrls FROM pg_roles WHERE rolname = ANY(%s) ORDER BY rolname", ([Settings().database_name + '_' + kind for kind in ('app', 'migrator', 'worker')],))],
                 "retained_for_review": True,
             }
-        output = PROJECT_ROOT / ".m1-work/model/schema-evidence.json"
+        output = PROJECT_ROOT / ".m2-work/schema-evidence.json"
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return values

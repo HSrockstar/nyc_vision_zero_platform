@@ -1,0 +1,17 @@
+{
+  "batch_id": "3",
+  "cli_replay_exit": 0,
+  "before": {
+    "status": "VALIDATING",
+    "attempt_no": 4,
+    "retry_events": 2
+  },
+  "after": {
+    "status": "VALIDATING",
+    "attempt_no": 4,
+    "retry_events": 2
+  },
+  "duplicate_retry_audit": false,
+  "rescheduled": false,
+  "request_id_redacted": true
+}

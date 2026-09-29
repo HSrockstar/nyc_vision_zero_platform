@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { api, clearSession, hasSession, login, type User } from '../api/auth'
+import { api, clearSession, hasSession, login, sessionUser, type User } from '../api/auth'
 
-const current = ref<User | null>(null)
+const current = sessionUser
 const users = ref<User[]>([])
 const username = ref('')
 const password = ref('')

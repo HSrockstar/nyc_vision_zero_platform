@@ -89,6 +89,9 @@ class ImportBatch(Base):
     request_id = Column(UUID(as_uuid=True), nullable=False, unique=True)
     request_hash = Column(String(64), nullable=False)
     manifest_hash = Column(String(64), nullable=False)
+    publish_request_id = Column(UUID(as_uuid=True), unique=True)
+    publish_request_hash = Column(String(64))
+    publish_requested_by = reference("app_user.user_id", nullable=True)
     cleaning_version = Column(String(40), nullable=False)
     input_manifest = json_object()
     requested_start = Column(Date)
@@ -108,6 +111,7 @@ class ImportBatch(Base):
     attempt_no = Column(Integer, nullable=False, server_default=text("0"))
     error_summary = Column(Text)
     __table_args__ = (
+        Index("ix_import_lease", "status", "lease_expires_at"),
         enum_check("status", "UPLOADED VALIDATING READY PUBLISHING SUCCEEDED FAILED CANCELLED", "ck_import_status"),
         CheckConstraint("rows_read >= 0 AND rows_accepted >= 0 AND rows_rejected >= 0 AND rows_skipped >= 0 AND attempt_no >= 0", name="ck_import_counts"),
         CheckConstraint("(requested_start IS NULL AND requested_end IS NULL) OR (requested_start IS NOT NULL AND requested_end IS NOT NULL AND requested_start < requested_end)", name="ck_import_period"),
@@ -115,6 +119,8 @@ class ImportBatch(Base):
         CheckConstraint("status <> 'SUCCEEDED' OR (published_revision IS NOT NULL AND published_revision > 0 AND finished_at IS NOT NULL)", name="ck_import_published"),
         hash_check("request_hash", "ck_import_request_hash"),
         hash_check("manifest_hash", "ck_import_manifest_hash"),
+        hash_check("publish_request_hash", "ck_import_publish_hash"),
+        CheckConstraint("(publish_request_id IS NULL AND publish_request_hash IS NULL AND publish_requested_by IS NULL) OR (publish_request_id IS NOT NULL AND publish_request_hash IS NOT NULL AND publish_requested_by IS NOT NULL)", name="ck_import_publish_request"),
         CheckConstraint("jsonb_typeof(input_manifest) = 'object'", name="ck_import_manifest_object"),
     )
 
@@ -458,6 +464,7 @@ class DataIssue(Base):
     resolved_at = Column(DateTime(timezone=True))
     created_at = timestamp()
     __table_args__ = (
+        UniqueConstraint("batch_id", "raw_record_id", "issue_code", "field_name", name="uq_issue_diagnostic", postgresql_nulls_not_distinct=True),
         Index("ix_issue_batch_status", "batch_id", "status"),
         enum_check("severity", "INFO WARNING ERROR", "ck_issue_severity"),
         enum_check("status", "OPEN ACKNOWLEDGED RESOLVED", "ck_issue_status"),

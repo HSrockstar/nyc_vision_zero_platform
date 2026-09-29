@@ -4,6 +4,11 @@ import argparse
 from getpass import getpass
 import os
 import secrets
+from contextlib import ExitStack
+from datetime import date
+from pathlib import Path
+from uuid import UUID, uuid4
+import json
 
 from sqlalchemy import select, text
 from sqlalchemy.orm import Session
@@ -13,6 +18,9 @@ from app.config import PROJECT_ROOT, Settings
 from app.db.connection import database_engine
 from app.db.provision import provision, workspace_path
 from app.models import AppUser, AuditLog
+from app.importing.storage import save_files
+from app.importing.service import batch_data, create_batch, request_action
+from app.models import ImportBatch
 
 
 def init_admin(username, display_name, *, generate=False):
@@ -51,13 +59,49 @@ def main():
     admin.add_argument("--username", default="admin")
     admin.add_argument("--display-name", default="系统管理员")
     admin.add_argument("--generate", action="store_true")
+    upload = commands.add_parser("import-csv")
+    upload.add_argument("--directory", required=True)
+    upload.add_argument("--username", default="admin")
+    upload.add_argument("--start", type=date.fromisoformat, required=True)
+    upload.add_argument("--end", type=date.fromisoformat, required=True)
+    upload.add_argument("--request-id", type=UUID, default=None)
+    upload.add_argument("--header-mode", choices=("api", "display", "auto"), default="auto")
+    publish = commands.add_parser("publish-import")
+    publish.add_argument("batch_id", type=int)
+    publish.add_argument("--username", default="admin")
+    publish.add_argument("--request-id", type=UUID, default=None)
+    retry = commands.add_parser("retry-import")
+    retry.add_argument("batch_id", type=int)
+    retry.add_argument("--username", default="admin")
+    retry.add_argument("--request-id", type=UUID, default=None)
     args = parser.parse_args()
     try:
         if args.command == "provision-roles":
             provision()
             print("本机迁移、应用、worker角色已配置；随机凭据仅保存到本地忽略文件。")
-        else:
+        elif args.command == "init-admin":
             init_admin(args.username, args.display_name, generate=args.generate)
+        else:
+            engine = database_engine(Settings())
+            try:
+                with Session(engine, expire_on_commit=False) as session, session.begin():
+                    session.execute(text("SELECT pg_advisory_xact_lock(:key)"), {"key": ACCOUNT_LOCK})
+                    actor = session.scalar(select(AppUser).where(AppUser.username == args.username, AppUser.is_active, AppUser.role_id == 1))
+                    if actor is None: raise ValueError("本机维护需启用的管理员")
+                    if args.command == "import-csv":
+                        directory = workspace_path(Path(args.directory))
+                        directory.relative_to(PROJECT_ROOT / "data/raw")
+                        with ExitStack() as stack:
+                            streams = [(kind, stack.enter_context(workspace_path(directory / (kind + ".csv")).open("rb")), kind + ".csv") for kind in ("CRASHES", "PERSON", "VEHICLES")]
+                            batch = create_batch(session, actor, args.request_id or uuid4(), args.start, args.end, save_files(streams, args.header_mode))
+                    else:
+                        batch = session.scalar(select(ImportBatch).where(ImportBatch.batch_id == args.batch_id).with_for_update())
+                        if batch is None: raise ValueError("批次不存在")
+                        batch = request_action(session, actor, batch, args.request_id or uuid4(), "IMPORT_RETRY" if args.command == "retry-import" else "IMPORT_PUBLISH")
+                    result = batch_data(batch)
+                print(json.dumps(result, ensure_ascii=False))
+            finally:
+                engine.dispose()
     except Exception:
         # 驱动/配置异常可能包含DSN或密码，维护入口不打印异常正文。
         print("操作未完成；请核对专用数据库状态、已有角色归属及本地配置。")

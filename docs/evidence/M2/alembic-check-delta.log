@@ -1,0 +1,4 @@
+Command: python -X utf8 -m alembic -c alembic.ini check (backend cwd; fixture test env; output redacted)
+Target: isolated test database selected by config filename only; no config contents printed
+No new upgrade operations detected.
+Exit code: 0

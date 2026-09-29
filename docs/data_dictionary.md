@@ -1,6 +1,6 @@
-# M1物理数据字典
+# M1—M2物理数据字典
 
-版本：M1 / 0002_business_model，2026-09-29。23表逐列按实际元数据生成，DDL冻结在迁移SQL中；真实数据库Alembic check通过。字段映射见[field_mapping](field_mapping.md)，关系见[关系模型](diagrams/relational.md)。
+版本：M2 / 0004_import_role_guard，2026-09-29。保持M1的23表，0003新增发布请求和诊断去重，0004强化状态授权；DDL冻结在各版本迁移SQL中。字段映射见[field_mapping](field_mapping.md)，关系见[关系模型](diagrams/relational.md)。
 
 内部主键BIGINT Identity；官方collision/person/vehicle源键不自动生成。所有外键ON DELETE RESTRICT；NULL表示缺失，不能补0。API中的BIGINT标识使用字符串。JSONB保存输入、证据、审计及快照，关联键保持独立列。
 ## borough：行政区字典
@@ -138,7 +138,10 @@
 |---|---|---|---|---|---|
 | `batch_id` | `BIGINT` | 否 | PK;  | `Identity` | 所属导入批次 |
 | `request_id` | `UUID` | 否 | — | `—` | 调用方UUID幂等键 |
-| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | 操作者/操作/目标/payload的SHA-256；实际重放处理留后续业务API |
+| `publish_request_id` | `UUID` | 是 | UNIQUE | `—` | 当前发布操作UUID；重试历史保留在manifest |
+| `publish_request_hash` | `VARCHAR(64)` | 是 | — | `—` | 发布操作者、操作及目标摘要 |
+| `publish_requested_by` | `BIGINT` | 是 | FK→app_user.user_id | `—` | 发布请求人；worker发布前复核当前ADMIN/启用状态 |
+| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | 上传操作者、日期范围、清洗版本、实际三文件哈希与表头模式的SHA-256；同请求同内容重放返回既有批次 |
 | `manifest_hash` | `VARCHAR(64)` | 否 | — | `—` | 输入清单SHA-256 |
 | `cleaning_version` | `VARCHAR(40)` | 否 | — | `—` | 清洗规则版本 |
 | `input_manifest` | `JSONB` | 否 | — | `'{}'::jsonb` | 输入文件、版本及处理快照清单 |
@@ -170,6 +173,8 @@
 - CHECK `ck_import_published`：`status <> 'SUCCEEDED' OR (published_revision IS NOT NULL AND published_revision > 0 AND finished_at IS NOT NULL)`。
 - CHECK `ck_import_request_hash`：`request_hash ~ '^[0-9a-f]{64}$'`。
 - CHECK `ck_import_status`：`status IN ('UPLOADED', 'VALIDATING', 'READY', 'PUBLISHING', 'SUCCEEDED', 'FAILED', 'CANCELLED')`。
+- CHECK `ck_import_publish_hash`：发布摘要为64位小写十六进制或NULL；`ck_import_publish_request`：发布请求三个字段同时为空或同时有值。
+- 索引 `ix_import_lease`：`status, lease_expires_at`。触发器保护输入、范围和终态；app只登记READY发布或FAILED重试，worker不能自行授权。
 
 ## intersection：标准路口
 
@@ -351,6 +356,7 @@
 - CHECK `ck_issue_severity`：`severity IN ('INFO', 'WARNING', 'ERROR')`。
 - CHECK `ck_issue_status`：`status IN ('OPEN', 'ACKNOWLEDGED', 'RESOLVED')`。
 - 索引 `ix_issue_batch_status`（btree）：`data_issue.batch_id, data_issue.status`。
+- UNIQUE `uq_issue_diagnostic`：`batch_id,raw_record_id,issue_code,field_name`，NULLS NOT DISTINCT；重试不重复问题或覆盖人工处理。
 
 ## risk_profile：路口画像
 

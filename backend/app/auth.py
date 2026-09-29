@@ -107,14 +107,24 @@ class PasswordChange(Input):
     new_password: SecretStr = Field(min_length=12, max_length=128)
 
 
-def database_session():
+def database_session(request: Request):
     try:
         engine = database_engine(Settings())
     except ValueError:
         fail(503, "CONFIGURATION_INVALID", "服务配置尚未就绪。")
     try:
-        with Session(engine, expire_on_commit=False) as session, session.begin():
-            yield session
+        with Session(engine, expire_on_commit=False) as session:
+            try:
+                with session.begin():
+                    if request.method in ("GET", "HEAD"):
+                        # 同次读取的总数、行和revision来自同一个已提交快照。
+                        session.execute(text("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY"))
+                    yield session
+            except Exception:
+                from app.importing.storage import discard_files
+                for key in session.info.get("uncommitted_import_files", []):
+                    discard_files(key)
+                raise
     finally:
         engine.dispose()
 

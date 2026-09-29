@@ -1,6 +1,7 @@
 # M0 及后续开发的本地环境和生成文件
 .m0-work/
 .m1-work/
+.m2-work/
 .pytest_cache/
 __pycache__/
 *.pyc

@@ -1,13 +1,13 @@
-# M1数据库与认证权限
+# M1—M2数据库、认证与导入权限
 
-本阶段为本机开发，数据库与后端只监听loopback；Vite同源代理访问后端，没有跨域白名单或认证cookie。远程部署HTTPS/CORS及后续上传边界另行验收。
+本阶段为本机开发，数据库与后端只监听loopback；Vite同源代理访问后端，没有跨域白名单或认证cookie。M2上传边界已实现并验证；远程部署HTTPS/CORS及跨进程资源限制另行验收。
 
 | 数据库账号 | 所有权与允许能力 | 拒绝的能力 |
 |---|---|---|
 | 本机postgres维护账号 | 校验专用容器后初始化PostGIS、配置专用角色 | 不由Web/worker使用；不操作其他数据库 |
 | vision_zero_dev_migrator | 拥有public业务对象、执行Alembic及首次管理员初始化 | 无集群管理员、创建数据库/角色、复制、绕过RLS或其他角色成员权 |
-| vision_zero_dev_app | 读取业务关系；INSERT/UPDATE app_user；INSERT audit_log；仅相应两个序列USAGE | 不能建表/扩展、修改事故事实/规则/工单/历史、删除用户/审计 |
-| vision_zero_dev_worker | public USAGE、alembic_version SELECT、PostGIS就绪检查 | 本阶段不读人员/原始行/账户密码，不写任何业务表 |
+| vision_zero_dev_app | 读取业务关系；维护账户；建立导入批次、限列登记发布/重试、处理问题和字典显示；追加安全审计及必要序列USAGE | 不能建表/扩展、写事故事实/规则/工单/历史、删除用户/审计；不能推进校验/成功状态 |
+| vision_zero_dev_worker | 读取本批原始行及必要正式关系；暂存/校验/原子写事故、人员、车辆、伤亡/原因与字典；更新批次/修订；追加诊断/审计；账户仅user_id/role_id/is_active | 不读账户密码、完整账户或审计details，不建表/扩展，不写账号/工单/风险/历史；不能自行授权发布，不修改raw payload或旧location |
 
 随机验证库使用相同命名后缀但独立角色及随机密码。业务用户ADMIN/MANAGER/VIEWER是app_user+role中的身份，后端逐请求判断，与数据库运行账号权限不同。运行凭据不发给前端。
 
@@ -26,3 +26,11 @@ provision-roles使用随机凭据、角色归属注释和最小权限属性，�
 错误不返回数据库异常、DSN、密码或验证input；SQLAlchemy隐藏参数。审计仅保存操作者、请求ID及安全的变更摘要，不保存密码、密码哈希、JWT或完整DSN。开发库不执行业务downgrade；随机验证库可回退再升级，测试库与相关角色保留供复核。
 
 方法依据：[PostgreSQL 17权限](https://www.postgresql.org/docs/17/ddl-priv.html)、[函数安全边界](https://www.postgresql.org/docs/17/sql-createfunction.html)、[FastAPI密码/JWT](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/)。具体兼容性以本项目固定版本测试证据为准。
+
+M2导入控制仅ADMIN，MANAGER只读批次摘要和本人审计，VIEWER不能访问导入/问题/raw。人员投影在后端按角色执行，不能仅隐藏前端列。Web上传只接受三个CSV文件，固定保存名及本机批准数据库随机目录；逐级拒绝重解析点。ASGI在multipart解析前校验JWT、当前账户状态/认证版本及ADMIN角色，并限制实际字节和两并发；写路由仍在账户锁下重新授权。请求体读取空闲上限30秒、总上限300秒，超时408；文件保存另核总大小、字段/行数与4GiB累计配额。失败暂存和同请求重复副本安全清理；HTTP数据库提交失败清理未登记目录；已登记原文件保留供追溯，不提供无审计的Web删除接口。
+
+GET/HEAD在首条SQL前设置REPEATABLE READ READ ONLY，列表、总数和修订号来自同一事务快照。游标签名绑定筛选、分页大小和修订号，数据改变后要求重新查询。
+
+worker使用120秒租约，每个暂存/校验块提交前复核token及clock_timestamp；过期作业记录FAILED，管理员记录重试后重新校验。发布事务按ACCOUNT_LOCK→dataset_state→batch顺序锁定，再复核当前发布人仍启用且为ADMIN。正式事实、原因替换、修订和SUCCEEDED在同一事务提交；错误全部回滚，另事务记录失败。来源键变化时写新raw/新location并更新事实来源指针，旧输入不改；相同输入不更新事实或revision。
+
+本机CLI视为受信维护入口：要求本仓库data/raw路径及当前启用ADMIN，登记上传、发布或失败重试，不绕过worker正式事务；重试仍需重新校验和再次授权发布。此系统仍是单后端开发模式；跨节点配额/认证限流及长期输入保留清理在部署前另设计。官方年度源在线更新，下载使用前后计数/稳定键核对，不宣称跨三源原子快照。

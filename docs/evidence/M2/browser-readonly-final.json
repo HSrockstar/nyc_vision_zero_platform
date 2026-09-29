@@ -1,0 +1,412 @@
+{
+  "generatedAt": "2026-09-29T16:21:51.986Z",
+  "target": "http://127.0.0.1:5173/",
+  "backendHealthRoute": "http://127.0.0.1:8000/health/live and /health/ready (page-observed readiness section)",
+  "browser": {
+    "engine": "Chromium",
+    "headless": true,
+    "launchedBy": "frontend/node_modules/@playwright/test 1.63.0 with installed Google Chrome executable"
+  },
+  "dataBoundary": "只读取页面中当前可见的数据；仅执行管理员登录与全会话注销；不上传、发布、更新问题或账户；无请求/响应正文、token、密码、年龄、性别或原始业务标识写入报告。",
+  "screenshotPolicy": "全年发布后的当前视口全屏截图；统一隐藏账号管理区、全部实际事故卡片、事故详情标识/地点/伤亡、人员车辆详情表及问题明细，只展示控件与聚合计数。",
+  "scenarios": [
+    {
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1000
+      },
+      "role": "ADMIN",
+      "steps": [
+        "打开 http://127.0.0.1:5173/，读取页面展示的服务与迁移状态。",
+        "使用本机临时管理员凭据通过可见登录表单登录；页面同时显示 ADMIN 账户状态与事故、批次面板。",
+        "查看事故列表与可见总数；默认列表显示首批记录及“加载更多事故”。",
+        "点击“加载更多事故”，浏览器以游标请求后续列表页。",
+        "使用标签“开始日期（包含）”“结束日期（不包含）”筛选 2025-01-01 至 2025-01-02，并检查结果日期与浏览器请求参数。",
+        "打开事故详情并验证事故详情、人员分页计数和车辆分页计数接口；只读取计数字段，不读取或写出人员年龄、性别及事故/车辆标识。",
+        "越界区域标识 9999 收到参数校验 422 并显示错误；清除该筛选后用无记录日期区间验证 200 空结果状态。",
+        "检查当前视口无页面级横向溢出，并以可访问名称定位日期、街道控件和语义标题。",
+        "从可见批次卡片中选择 SUCCEEDED 状态（界面文案“已发布”）批次，检查详情及质量问题列表，只记录数量/严重度汇总，不读取问题代码或原始字段值。",
+        "点击“退出全部会话”，验证浏览器会话注销成功且事故、批次与所选详情面板从页面移除。"
+      ],
+      "checks": {
+        "healthVisible": true,
+        "healthReady": true,
+        "loginStatus": 200,
+        "sharedSessionShowsAdminAndBusinessPanels": true,
+        "initialCollisionSummary": "共 85546 起",
+        "initialCollisionCards": 25,
+        "initialCollisionHasMore": true,
+        "collisionPageStatus": 200,
+        "collisionCardsAfterMore": 50,
+        "dateFilterStatus": 200,
+        "dateFilterFirstVisibleDate": "2025-01-01",
+        "dateFilterSummary": "共 188 起",
+        "collisionDetailAndCounts": {
+          "detailStatus": 200,
+          "personsStatus": 200,
+          "vehiclesStatus": 200,
+          "personCount": 1,
+          "vehicleCount": 1,
+          "personHeading": "人员明细 ",
+          "vehicleHeading": "车辆明细 "
+        },
+        "detailCountsScreenshots": true,
+        "invalidBoroughFilterStatus": 422,
+        "invalidBoroughFilterRejectedInUi": true,
+        "emptyResultStatus": 200,
+        "emptyResultVisible": true,
+        "emptyResultSummary": "共 0 起",
+        "viewportLayout": {
+          "viewportWidth": 1440,
+          "documentWidth": 1440,
+          "horizontalOverflow": false,
+          "filterGridWidth": 1094
+        },
+        "labelAndHeadingSemantics": {
+          "startDateLabel": true,
+          "streetLabel": true,
+          "collisionHeading": true
+        },
+        "publishedBatchDetailsAndIssues": {
+          "status": "已发布",
+          "detailStatus": 200,
+          "issuesStatus": 200,
+          "issueTotal": 3250,
+          "issueCardsShown": 20,
+          "severityCounts": {
+            "warning": 0,
+            "error": 0,
+            "info": 20
+          },
+          "issuePaginationVisible": true,
+          "detailStatusLine": "状态：已发布 · 请求日期：2025-01-01 至 2025-02-01（结束日期不包含）"
+        },
+        "publishedBatchesChecked": 1,
+        "logoutStatus": 200,
+        "logoutClearsBusinessPanels": true,
+        "loginFormVisibleAfterLogout": true
+      },
+      "issues": [],
+      "result": "PASS"
+    },
+    {
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "role": "ADMIN",
+      "steps": [
+        "打开 http://127.0.0.1:5173/，读取页面展示的服务与迁移状态。",
+        "使用本机临时管理员凭据通过可见登录表单登录；页面同时显示 ADMIN 账户状态与事故、批次面板。",
+        "查看事故列表与可见总数；默认列表显示首批记录及“加载更多事故”。",
+        "点击“加载更多事故”，浏览器以游标请求后续列表页。",
+        "使用标签“开始日期（包含）”“结束日期（不包含）”筛选 2025-01-01 至 2025-01-02，并检查结果日期与浏览器请求参数。",
+        "打开事故详情并验证事故详情、人员分页计数和车辆分页计数接口；只读取计数字段，不读取或写出人员年龄、性别及事故/车辆标识。",
+        "越界区域标识 9999 收到参数校验 422 并显示错误；清除该筛选后用无记录日期区间验证 200 空结果状态。",
+        "检查当前视口无页面级横向溢出，并以可访问名称定位日期、街道控件和语义标题。",
+        "从可见批次卡片中选择 SUCCEEDED 状态（界面文案“已发布”）批次，检查详情及质量问题列表，只记录数量/严重度汇总，不读取问题代码或原始字段值。",
+        "点击“退出全部会话”，验证浏览器会话注销成功且事故、批次与所选详情面板从页面移除。"
+      ],
+      "checks": {
+        "healthVisible": true,
+        "healthReady": true,
+        "loginStatus": 200,
+        "sharedSessionShowsAdminAndBusinessPanels": true,
+        "initialCollisionSummary": "共 85546 起",
+        "initialCollisionCards": 25,
+        "initialCollisionHasMore": true,
+        "collisionPageStatus": 200,
+        "collisionCardsAfterMore": 50,
+        "dateFilterStatus": 200,
+        "dateFilterFirstVisibleDate": "2025-01-01",
+        "dateFilterSummary": "共 188 起",
+        "collisionDetailAndCounts": {
+          "detailStatus": 200,
+          "personsStatus": 200,
+          "vehiclesStatus": 200,
+          "personCount": 1,
+          "vehicleCount": 1,
+          "personHeading": "人员明细 ",
+          "vehicleHeading": "车辆明细 "
+        },
+        "detailCountsScreenshots": true,
+        "invalidBoroughFilterStatus": 422,
+        "invalidBoroughFilterRejectedInUi": true,
+        "emptyResultStatus": 200,
+        "emptyResultVisible": true,
+        "emptyResultSummary": "共 0 起",
+        "viewportLayout": {
+          "viewportWidth": 390,
+          "documentWidth": 390,
+          "horizontalOverflow": false,
+          "filterGridWidth": 320
+        },
+        "labelAndHeadingSemantics": {
+          "startDateLabel": true,
+          "streetLabel": true,
+          "collisionHeading": true
+        },
+        "publishedBatchDetailsAndIssues": {
+          "status": "已发布",
+          "detailStatus": 200,
+          "issuesStatus": 200,
+          "issueTotal": 3250,
+          "issueCardsShown": 20,
+          "severityCounts": {
+            "warning": 0,
+            "error": 0,
+            "info": 20
+          },
+          "issuePaginationVisible": true,
+          "detailStatusLine": "状态：已发布 · 请求日期：2025-01-01 至 2025-02-01（结束日期不包含）"
+        },
+        "publishedBatchesChecked": 1,
+        "logoutStatus": 200,
+        "logoutClearsBusinessPanels": true,
+        "loginFormVisibleAfterLogout": true
+      },
+      "issues": [],
+      "result": "PASS"
+    }
+  ],
+  "network": {
+    "requests": [
+      {
+        "viewport": "desktop",
+        "method": "POST",
+        "route": "/api/v1/auth/login",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/dictionaries/vehicle-types",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/dictionaries/factors",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/users?page_size=100",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/imports?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions?page_size=25&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions?page_size=25&cursor=[REDACTED]&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2025-01-01&end=2025-01-02&page_size=25&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions/[REDACTED]/persons?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions/[REDACTED]/vehicles?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions/[REDACTED]",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2025-01-01&end=2025-01-02&borough_id=9999&page_size=25&include_total=true",
+        "status": 422
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2000-01-01&end=2001-01-01&page_size=25&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/imports/[REDACTED]",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/imports/[REDACTED]/issues?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "desktop",
+        "method": "POST",
+        "route": "/api/v1/auth/logout",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "POST",
+        "route": "/api/v1/auth/login",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/dictionaries/vehicle-types",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/dictionaries/factors",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/imports?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/users?page_size=100",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions?page_size=25&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions?page_size=25&cursor=[REDACTED]&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2025-01-01&end=2025-01-02&page_size=25&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions/[REDACTED]/persons?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions/[REDACTED]/vehicles?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions/[REDACTED]",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2025-01-01&end=2025-01-02&borough_id=9999&page_size=25&include_total=true",
+        "status": 422
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2000-01-01&end=2001-01-01&page_size=25&include_total=true",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/imports/[REDACTED]",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/imports/[REDACTED]/issues?page=1&page_size=20",
+        "status": 200
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "POST",
+        "route": "/api/v1/auth/logout",
+        "status": 200
+      }
+    ],
+    "expectedInputRejections": [
+      {
+        "viewport": "desktop",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2025-01-01&end=2025-01-02&borough_id=9999&page_size=25&include_total=true",
+        "status": 422
+      },
+      {
+        "viewport": "mobile-390",
+        "method": "GET",
+        "route": "/api/v1/collisions?start=2025-01-01&end=2025-01-02&borough_id=9999&page_size=25&include_total=true",
+        "status": 422
+      }
+    ],
+    "failuresOrHttpErrors": []
+  },
+  "consoleErrors": [],
+  "expectedValidationConsoleMessages": [
+    {
+      "viewport": "desktop",
+      "message": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+    },
+    {
+      "viewport": "mobile-390",
+      "message": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "docs/evidence/M2/browser-desktop-filters.png",
+    "docs/evidence/M2/browser-desktop-person-count.png",
+    "docs/evidence/M2/browser-desktop-vehicle-count.png",
+    "docs/evidence/M2/browser-desktop-empty.png",
+    "docs/evidence/M2/browser-desktop-issues.png",
+    "docs/evidence/M2/browser-desktop-batch-status.png",
+    "docs/evidence/M2/browser-mobile-390-filters.png",
+    "docs/evidence/M2/browser-mobile-390-person-count.png",
+    "docs/evidence/M2/browser-mobile-390-vehicle-count.png",
+    "docs/evidence/M2/browser-mobile-390-empty.png",
+    "docs/evidence/M2/browser-mobile-390-issues.png",
+    "docs/evidence/M2/browser-mobile-390-batch-status.png"
+  ],
+  "conclusion": "PASS"
+}

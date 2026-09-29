@@ -1,0 +1,13 @@
+
+> vision-zero-frontend@0.1.0 build
+> vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 22 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.67 kB │ gzip:  0.47 kB
+dist/assets/index-DYXDkyOl.css    4.80 kB │ gzip:  1.56 kB
+dist/assets/index-DMGUoKe1.js   104.36 kB │ gzip: 38.17 kB
+✓ built in 1.39s

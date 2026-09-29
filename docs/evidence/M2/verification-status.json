@@ -1,0 +1,70 @@
+{
+  "recorded_at": "2026-09-29T16:22:46.277597+00:00",
+  "status": "passed",
+  "baseline_commit": "8cf81c9",
+  "completed_evidence": {
+    "full_suite_before_latest_parent_query_delta": 104,
+    "read_snapshot_and_auth_supplement": 20,
+    "upload_supplement": 3,
+    "latest_pure_tests": 14,
+    "latest_collected_m2_tests": 24,
+    "frontend_typecheck_and_build": true,
+    "migration_lifecycle_revision": "0004_import_role_guard",
+    "first500_repeat_publication_revision": "1",
+    "latest_m2_postgresql_suite": 24,
+    "latest_m1_role_subset": 3,
+    "retry_cli_replay": true,
+    "annual_publication": {
+      "batch_id": "3",
+      "status": "SUCCEEDED",
+      "revision": "2",
+      "collision": 85546,
+      "person": 292070,
+      "vehicle": 170015
+    },
+    "retry_cli_isolated_smoke": true,
+    "latest_alembic_check": "no new upgrade operations",
+    "readonly_browser_viewports": [
+      "1440x1000",
+      "390x844"
+    ],
+    "browser_duplicate_import": {
+      "batch_id": "36",
+      "status": "SUCCEEDED",
+      "updated": 0,
+      "inserted": 0,
+      "revision": "2",
+      "no_change": true,
+      "unchanged": 3232
+    },
+    "final_formal_counts": {
+      "collision": 85546,
+      "person": 292070,
+      "vehicle": 170015
+    },
+    "final_documentation_and_evidence_review": true
+  },
+  "latest_delta": {
+    "parent_key_query": "bounded UNION aggregation",
+    "sql_whitespace_trim": "29 characters matching Python str.strip",
+    "synthetic_parent_key_cases": [
+      "api",
+      "display"
+    ],
+    "compile_check": true,
+    "postgresql_regression_run": true
+  },
+  "pending": [],
+  "blocker": null,
+  "data_boundary": "public manifest and aggregate counts only; credentials, CSV and actual raw rows retained locally in Git-ignored paths",
+  "git": "M2 changes not committed or pushed",
+  "quality_limits": {
+    "unknown_persons_killed_collisions": 3,
+    "missing_coordinates": 2842,
+    "no_person_details": 378,
+    "no_vehicle_details": 14,
+    "unknown_borough": 17031,
+    "missing_values_preserved_as_null": true
+  },
+  "acceptance_scope": "本机开发环境；2025全年官方三源，M3—M8尚未实施"
+}

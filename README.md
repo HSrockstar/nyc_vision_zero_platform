@@ -1,6 +1,6 @@
 # 面向 Vision Zero 的纽约交通碰撞风险识别与高危交叉口治理管理系统
 
-个人数据库课程设计。M0、M1已完成：23表、约束/索引/3个业务视图、数据库角色分离、认证和账户管理，以及模型文档。M2真实数据导入尚未开始。实施依据为[PROJECT_PLAN 1.4](PROJECT_PLAN.md)，验收见[M1模型记录](docs/milestones/M1-model.md)。
+个人数据库课程设计。M0、M1、M2已完成，2025全年数据发布与网页重复导入验收通过。23表模型、角色分离、认证、三源CSV清洗/原子发布、事故筛选和明细页面已有实库证据。实施依据为[PROJECT_PLAN 1.5](PROJECT_PLAN.md)，当前验收见[M2记录](docs/milestones/M2.md)，下一阶段为M3地图与交叉口档案，历史见[M1模型记录](docs/milestones/M1-model.md)。
 
 ## Windows启动
 
@@ -19,24 +19,32 @@
 
 bootstrap生成本机维护凭据，ProvisionRoles生成独立迁移/app/worker账号和JWT密钥，Migrate创建23表。已有配置/角色均校验归属；不重置未知同名角色。InitAdmin交互读取密码且不回显；已有可用管理员时拒绝初始化。本机此次已初始化admin，随机初始密码在被Git忽略的`.m1-work/model/initial-admin.txt`，登录后请修改密码。不要直接复制`.env.example`。
 
-已初始化后日常启动只需DatabaseStart，并在两个终端分别执行：
+已初始化后先执行DatabaseStart和Migrate，再在三个终端分别执行：
 
 ```powershell
 # 终端1
 & .\scripts\dev.ps1 -Action Backend
 # 终端2
 & .\scripts\dev.ps1 -Action Frontend
+# 终端3：持续领取上传校验和已授权发布作业
+& .\scripts\dev.ps1 -Action Worker
 ```
 
 打开[系统页面](http://127.0.0.1:5173)。后端`127.0.0.1:8000`，开发库`127.0.0.1:55433/vision_zero_dev`，均仅本机监听。登录状态仅保留当前页面内存；刷新需重登。退出、改密、换角色或停用使该账户旧令牌失效，退出作用于全部现有会话。只有ADMIN可维护账户。
 
-前后端在各自终端Ctrl+C停止；数据库用DatabaseStop停止并保留数据。端口占用会拒绝启动，自定义后端端口须对应设置前端VISION_ZERO_API_TARGET。冲突的继承环境变量会被拒绝。终端策略阻止脚本时可用`powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\dev.ps1 -Action Backend`，仅影响该进程。
+前后端和worker在各自终端Ctrl+C停止；数据库用DatabaseStop停止并保留数据。端口占用会拒绝启动，自定义后端端口须对应设置前端VISION_ZERO_API_TARGET。冲突的继承环境变量会被拒绝。终端策略阻止脚本时可用`powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\dev.ps1 -Action Backend`，仅影响该进程。
+
+ADMIN登录后可上传事故、人员、车辆三个CSV，填写左闭右开的日期范围；worker完成校验后批次显示“可发布”，管理员确认后才正式入库。完全重复输入不增加事实或修订号。MANAGER可查看批次摘要，VIEWER只查询事故事实；缺失明细和坐标均保留缺失状态。
+
+官方CSV下载与受控CLI操作见[M2执行与恢复](docs/milestones/M2.md)。上传总CSV上限256MiB，不接收服务器路径或远程URL；当前仅支持单后端/worker开发方式。
 
 ## 验证与设计入口
 
 ```powershell
 & .\scripts\dev.ps1 -Action Check         # 普通测试、类型检查、构建
-& .\scripts\dev.ps1 -Action Worker        # worker角色连接预检后退出
+Push-Location backend
+& ..\.venv\Scripts\python.exe -X utf8 -m app.worker --preflight  # 只预检连接
+Pop-Location
 $env:VISION_ZERO_RUN_DB_TESTS='1'
 & .\.venv\Scripts\python.exe -X utf8 -m pytest backend\tests -q
 Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
@@ -46,6 +54,7 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 
 | 文件 | 内容 |
 |---|---|
+| [M2导入与查询记录](docs/milestones/M2.md) / [ADR 0004](docs/decisions/0004-m2-import-query.md) | 官方输入、批次发布、质量统计和独立验收 |
 | [M1模型执行记录](docs/milestones/M1-model.md) | 本轮命令、失败修正、独立审计/测试与证据 |
 | [数据字典](docs/data_dictionary.md) | 23表逐列类型、空值、主外键、CHECK/UNIQUE/索引 |
 | [概念ER](docs/diagrams/conceptual.md) / [关系模型](docs/diagrams/relational.md) | 业务对象及物理联系 |
@@ -57,6 +66,6 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 
 ## 当前边界
 
-开发库有固定三角色、五行政区、初始评分规则、数据修订单例和首次管理员；事故事实、风险结果及工单为空。测试账户和业务夹具只存在独立验证库。worker尚无导入或计算作业，应用数据库账号不直接写事故/工单。完整状态动作及函数在M5落实。
+开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆，revision=2。完整年度三源CSV共547,631行；首批重复发布与网页重复导入均通过，后者3,232行全部跳过、事实与revision不变，见[M2记录](docs/milestones/M2.md)。风险结果和工单为空，测试账户和合成夹具只存在独立验证库。worker执行导入校验/发布，应用数据库账号不直接写事故事实；下一步按M3落实地图、候选交叉口与归属，风险与工单在M4—M5推进。
 
-本地Git由用户初始化，当前main保留原始快照；本轮修改未提交或推送。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、node_modules、dist和大文件留在本机；公开证据不含密码/JWT/DSN。M1为本机开发验收，远程部署、真实数据、性能及备份恢复在后续阶段验证。既有Starlette TestClient/httpx弃用提示保留。
+本地Git由用户管理，main基线为完整M1提交`8cf81c9`；M2修改未提交或推送。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行。M2为本机开发验收，远程部署、全系统性能及备份恢复留后续阶段。既有Starlette TestClient/httpx弃用提示保留。

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { loadHealth, type HealthState } from './api/health'
+import { sessionUser } from './api/auth'
 import AccountPanel from './components/AccountPanel.vue'
+import M2Panel from './components/M2Panel.vue'
 
 const state = ref<HealthState>({ live: false, ready: false, detail: '正在检查开发环境…' })
 const checking = ref(false)
@@ -17,9 +19,9 @@ onMounted(refresh)
 
 <template>
   <main>
-    <p class="eyebrow">VISION ZERO · M1</p>
+    <p class="eyebrow">VISION ZERO · M2</p>
     <h1>纽约交通碰撞风险识别<br />与高危交叉口治理管理系统</h1>
-    <p class="intro">当前提供环境检查、登录和账户管理。事故数据导入、查询及治理功能将在后续阶段加入。</p>
+    <p class="intro">登录后可查询事故及其人员、车辆明细；管理员可导入数据、查看质量问题并确认发布。</p>
     <section aria-labelledby="health-heading">
       <div class="section-title">
         <h2 id="health-heading">环境状态</h2>
@@ -32,6 +34,7 @@ onMounted(refresh)
       <p class="detail" aria-live="polite">{{ state.detail }}</p>
     </section>
     <AccountPanel />
+    <M2Panel v-if="sessionUser" />
     <p class="footnote">数据库运行在 Docker；Python 后端和前端在 Windows 开发。</p>
   </main>
 </template>

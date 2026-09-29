@@ -1,4 +1,4 @@
-# M1关系模型与规范化依据
+# M1—M2关系模型与规范化依据
 
 本文件解释23表的候选键与函数依赖；字段/约束完整列表见 [数据字典](data_dictionary.md)，联系见 [概念模型](diagrams/conceptual.md) 和 [关系模型](diagrams/relational.md)。每行的候选键分别确定该表其余属性；可空字段不会被当作唯一身份。
 
@@ -7,7 +7,7 @@
 | borough | borough_id；borough_name | 标准行政区决定显示名和启用状态，地点只保存外键 |
 | role | role_id；role_code | 固定三角色，角色名称从用户表分离 |
 | app_user | user_id；lower(username) | 登录名按大小写不敏感唯一；角色名称不复制，密码仅哈希 |
-| import_batch | batch_id；request_id | 批次决定manifest、清洗版本及计数；manifest_hash不唯一，失败/重试应保留 |
+| import_batch | batch_id；request_id | 批次决定manifest、清洗版本、计数及当前发布请求；publish_request_id可空但非空时唯一，不能当作覆盖所有行的候选键；manifest_hash不唯一，失败/重试应保留 |
 | raw_record | raw_record_id；(batch_id,source_kind,row_no) | 同来源键允许多条原始行；payload是不可变输入证据，验证状态可维护 |
 | location | location_id；location_key | 地点属性与摘要输入属于观察地点；事故日期不属于地点键；坐标只保留geom |
 | intersection | intersection_id；intersection_code | 标准交叉口与观察地点分开，替代关系不改旧身份 |
@@ -24,7 +24,7 @@
 | risk_profile | profile_id；(run_id,intersection_id) | 同批次路口决定指标；分数与等级经统一视图计算 |
 | governance_task | task_id；task_code；request_id | 工单通过profile_id取得交叉口，不存冗余intersection_id；评价范围是当时冻结依据 |
 | task_history | history_id；request_id；(task_id,sequence_no) | 不可变事件记录；序号与工单版本对齐由M5动作事务落实 |
-| data_issue | issue_id | 问题决定严重性/处理状态；raw_record与批次一致由触发器检查，批次级问题允许空引用 |
+| data_issue | issue_id | 问题决定严重性/处理状态；raw_record与批次一致由触发器检查；M2按(batch_id,raw_record_id,issue_code,field_name)且NULLS NOT DISTINCT去重，批次级问题允许空引用 |
 | audit_log | audit_id | 请求可触发多个审计事件，request_id不唯一；只追加 |
 | dataset_state | state_id=1 | 单例revision用于过期标记，不等于任意历史版本可查询 |
 

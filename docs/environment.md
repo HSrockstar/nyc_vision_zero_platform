@@ -125,3 +125,11 @@ M1 复用验证输入建立 `backend/` 和 `frontend/`，移植经验证的精�
 脚本拒绝冲突的继承环境变量、他属资源、错误挂载和配置；Python连接与根目录`.env`批准目标比对，随机测试库须显式启用。迁移用事务内`search_path=public`防止官方镜像tiger/topology扩展表被自动差异误判，alembic check已通过。M0库和卷保留。
 
 M1新增迁移/app/worker角色分离、认证及账户页面，模型与权限在真实PG下验证，见[M1模型记录](milestones/M1-model.md)。本轮评估后保留M0固定Python3.12.4与依赖组合以完成可重放验收；补丁升级须独立更新锁并回归，不声称旧补丁完成安全更新。正式数据、完整业务浏览器流程及部署仍留后续阶段。已知TestClient httpx和glob弃用提示保留，没有关闭检查。启动见[README](../README.md)，实际命令/失败/证据见[M1记录](milestones/M1.md)。
+
+## 7. M2运行方式与验收
+
+M2继续复用上述数据库镜像、Python/Node及哈希锁，没有升级运行时。迁移在0002基础上前向执行0003_import_pipeline及0004_import_role_guard，仍23张业务表；开发库禁止downgrade，随机验证库可base回退再重升。[生命周期证据](evidence/M2/migration-lifecycle.json)。
+
+worker现在持续领取CSV校验与已授权发布作业；`--once`只处理一项，`--preflight`仅预检。后端、前端、worker在三个Windows终端运行，数据库保留既有开发卷。[启动步骤](../README.md)。真实CSV保留在Git忽略的data/raw，公开验收只包含输入元数据、哈希和聚合结果。
+
+独立实库全量104项通过，前端类型检查/构建通过；读取一致快照与上传前鉴权另有补测，最新父键查询修改后24项M2实库回归及3项管理员边界通过。[全量测试](evidence/M2/pytest-full.log)、[最新回归](evidence/M2/pytest-delta-postgres.log)、[类型检查](evidence/M2/frontend-check.log)、[构建](evidence/M2/frontend-build.log)。2025全年数据已发布，桌面/窄屏和网页重复导入通过。M0/M1章节中的“未运行业务浏览器/worker仅预检”属于当时范围，M2实际数据及验收见[M2记录](milestones/M2.md)。

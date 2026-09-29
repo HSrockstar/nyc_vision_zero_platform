@@ -1,4 +1,4 @@
-# M1认证与账户API
+# M1认证与M2数据API
 
 前缀 `/api/v1`，JSON请求。成功返回 `{data,meta:{request_id}}`，错误返回 `{error:{code,message},meta:{request_id}}`；`X-Request-ID`支持UUID并在响应头返回。ID全部字符串；版本、数量和expires_in为数字。认证数据响应 `Cache-Control: no-store`。
 
@@ -16,4 +16,24 @@
 
 账户PATCH显式null、空修改、额外字段和非法ID返回422。停用或换角色导致认证版本增加；只有显示名变更不强制登出，但总version增加。最后管理员返回USER_LAST_ADMIN（409）；在办执行人返回USER_HAS_ACTIVE_TASKS（409）；VIEWER/MANAGER访问管理接口403。数据库约束冲突固定DATA_CONFLICT，不暴露驱动详情。
 
-事故事实查询、导入、路口、风险、工单动作均是M2—M5接口，此阶段不存在。M1提供它们的表、约束、视图和幂等内容契约；不能通过用户API或任意SQL端点写入这些关系。
+M2已实现以下数据接口。地图、路口、风险计算及工单动作仍按M3—M5推进。
+
+| 方法 / 路径 | 输入与行为 | 权限 |
+|---|---|---|
+| GET /collisions | start/end左闭右开，默认2025全年；borough_id/street/vehicle_type_id/factor_id联合筛选；page_size默认20最大100；签名cursor；include_total默认false | 登录用户 |
+| GET /collisions/{id} | 八项伤亡、地点、原因槽位与来源批次；缺失为null，ID字符串 | 登录用户 |
+| GET /collisions/{id}/persons、/vehicles | page默认1；page_size默认20最大100；items/total | 登录用户；VIEWER人员仅记录ID、事故ID、类别、伤情，无年龄/性别/来源代码 |
+| POST /imports | multipart：request_id、requested_start/end、header_mode=auto/api/display、crashes/persons/vehicles三个CSV；202返回UPLOADED | ADMIN |
+| GET /imports、/imports/{id} | 列表page/page_size；计数/状态/修订；ADMIN另有文件摘要、校验和发布manifest | ADMIN、MANAGER；后者无文件、raw或问题详情 |
+| POST /imports/{id}/publish | JSON request_id；READY进入PUBLISHING，由worker事务发布；202 | ADMIN |
+| POST /imports/{id}/retry | JSON request_id；FAILED重新校验，上限10次作业尝试；不自动发布 | ADMIN |
+| GET /imports/{id}/issues | 分页items/total；安全描述、来源、逻辑CSV行号，不返回payload | ADMIN |
+| PATCH /data-issues/{id} | status=ACKNOWLEDGED/RESOLVED，resolution_note非空最大2000；不修改事实或隔离结果 | ADMIN |
+| GET /raw-records/{id} | 原始CSV字段和值、批次及校验结果；页面不自动展示全文 | ADMIN |
+| GET /dictionaries/{kind} | kind=vehicle-types/factors；items中的id/canonical_name/display_name/is_active | 登录用户 |
+| PATCH /dictionaries/{kind}/{id} | 只允许display_name、is_active；规范值不可改 | ADMIN |
+| GET /audit-logs | page/page_size，安全变更摘要 | ADMIN全范围、MANAGER本人、VIEWER拒绝 |
+
+数据读取响应另有meta.data_revision。GET/HEAD使用只读一致事务快照，列表、总数和修订号保持一致。游标绑定筛选条件、分页大小与revision；条件或修订改变返回409 CURSOR_INVALID。原因和车型筛选用EXISTS，避免人员/车辆/原因连接放大事故总数；人员明细不替代Crashes伤亡汇总。
+
+同一导入request_id绑定操作者、日期范围、版本、实际三文件SHA-256及表头模式；同内容重放返回既有批次，内容不同409。发布/重试请求号绑定操作、操作者和目标并保留历史。上传不接受服务器路径或URL，总CSV256MiB；multipart解析前先校验当前ADMIN身份，再限制实际请求字节（另留1MiB表单开销）和两并发；请求体读取空闲30秒、总300秒。每库原始副本4GiB配额，单CSV最多300万行/字段1MiB。未认证/无权限401/403，大小/并发超限413/429，读取超时408，CSV契约错误422；输入错误不回显源值或路径。

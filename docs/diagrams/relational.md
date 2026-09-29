@@ -1,4 +1,4 @@
-# M1关系模型
+# M1—M2关系模型
 
 23张基础关系，仅显示主键和外键。完整字段、类型与约束见[数据字典](../data_dictionary.md)。事故与伤亡行的一对一由延迟触发器补强。人员与车辆仅按事故关联，不建立臆测的直接关系。
 
@@ -34,6 +34,7 @@ erDiagram
     import_batch {
         BIGINT batch_id PK
         BIGINT created_by FK
+        BIGINT publish_requested_by FK
     }
     intersection {
         BIGINT intersection_id PK
@@ -109,6 +110,7 @@ erDiagram
     borough |o--o{ location : "borough_id"
     app_user |o--o{ audit_log : "actor_id"
     app_user ||--o{ import_batch : "created_by"
+    app_user |o--o{ import_batch : "publish_requested_by"
     borough |o--o{ intersection : "borough_id"
     intersection |o--o{ intersection : "supersedes_id"
     app_user |o--o{ intersection : "confirmed_by"

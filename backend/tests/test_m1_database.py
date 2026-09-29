@@ -5,6 +5,7 @@ import psycopg
 import pytest
 
 from app.config import Settings
+from app.health import expected_revision
 from conftest import connect_as, seed_user
 
 pytestmark = pytest.mark.skipif(os.getenv("VISION_ZERO_RUN_DB_TESTS") != "1", reason="需显式启用真实PG验证")
@@ -144,12 +145,14 @@ def test_runtime_roles_cannot_administer(db_env, kind, statement):
 
 
 def test_worker_cannot_read_passwords_or_write_accounts(db_env):
-    for statement in ("SELECT password_hash FROM app_user", "UPDATE app_user SET is_active=false", "SELECT payload FROM raw_record", "SELECT person_age FROM person"):
+    for statement in ("SELECT password_hash FROM app_user", "UPDATE app_user SET is_active=false", "UPDATE raw_record SET payload='{}'", "UPDATE data_issue SET status='RESOLVED'", "UPDATE vehicle_type SET canonical_name='FORBIDDEN'"):
         with pytest.raises(psycopg.errors.InsufficientPrivilege):
             with connect_as("worker") as connection:
                 connection.execute(statement)
     with connect_as("worker") as connection:
-        assert connection.execute("SELECT version_num FROM alembic_version").fetchone()[0] == "0002_business_model"
+        assert connection.execute("SELECT version_num FROM alembic_version").fetchone()[0] == expected_revision()
+        connection.execute("SELECT payload FROM raw_record LIMIT 1")
+        connection.execute("SELECT person_age FROM person LIMIT 1")
         assert not connection.execute("SELECT has_schema_privilege(current_user,'public','CREATE')").fetchone()[0]
         assert not connection.execute("SELECT has_database_privilege(current_user,current_database(),'CREATE')").fetchone()[0]
 

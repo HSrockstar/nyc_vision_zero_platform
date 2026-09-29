@@ -1,0 +1,34 @@
+Command: E:\数据库课设\.venv\Scripts\python.exe -X utf8 -m pytest backend\tests\test_m2_imports.py --collect-only -q -p no:cacheprovider
+tests/test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[1.0]
+tests/test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[1e3]
+tests/test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[-1]
+tests/test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[0]
+tests/test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[\uff11\uff12]
+tests/test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[9223372036854775808]
+tests/test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[]
+tests/test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[NaN]
+tests/test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[Infinity]
+tests/test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[-1]
+tests/test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[1.1]
+tests/test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[2147483648]
+tests/test_m2_imports.py::test_fixed_header_modes_and_missing_cause_columns
+tests/test_m2_imports.py::test_null_zero_coordinates_and_display_streets
+tests/test_m2_imports.py::test_pipeline_roles_repeat_content_revision_and_trace
+tests/test_m2_imports.py::test_child_only_import_matches_existing_parent_with_trimmed_identifier[api]
+tests/test_m2_imports.py::test_child_only_import_matches_existing_parent_with_trimmed_identifier[display]
+tests/test_m2_imports.py::test_conflicting_keys_block_and_retry_preserves_resolution
+tests/test_m2_imports.py::test_publish_authorization_rechecked_and_atomic_rollback
+tests/test_m2_imports.py::test_expired_token_is_fenced_and_worker_recovers_failed
+tests/test_m2_imports.py::test_upload_bounds_bad_headers_and_unauthorized_access
+tests/test_m2_imports.py::test_runtime_cannot_skip_states_or_mutate_saved_input
+tests/test_m2_imports.py::test_invalid_upload_cleanup_and_chunked_body_limit
+tests/test_m2_imports.py::test_malformed_csv_is_failed_and_leaves_no_facts
+
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  E:\数据库课设\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+24 tests collected in 0.38s
+Exit code: 0

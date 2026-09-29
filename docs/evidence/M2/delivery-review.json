@@ -1,0 +1,12 @@
+{
+  "public_files_scanned": 307,
+  "secret_matches": 0,
+  "changed_file_jwt_matches": 0,
+  "local_markdown_links_checked": 201,
+  "broken_links": 0,
+  "git_diff_check": "passed",
+  "m1_migrations_preserved": true,
+  "head": "8cf81c9",
+  "staged_files": 0,
+  "commit_or_push_performed": false
+}

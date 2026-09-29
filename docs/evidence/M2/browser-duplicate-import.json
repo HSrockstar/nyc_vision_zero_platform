@@ -1,0 +1,47 @@
+{
+  "scope": "2025全年发布后，通过可见网页重复导入既有first500官方CSV",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "stages": [
+    {
+      "phase": "upload",
+      "collision_total": 85546,
+      "data_revision": "2",
+      "status": "UPLOADED",
+      "http_status": 202,
+      "logout_status": 200,
+      "console_and_page_errors": 0
+    },
+    {
+      "phase": "publish",
+      "collision_total": 85546,
+      "data_revision": "2",
+      "validated_status": "READY",
+      "rows_skipped": 3232,
+      "status": "PUBLISHING",
+      "http_status": 202,
+      "logout_status": 200,
+      "console_and_page_errors": 0
+    },
+    {
+      "phase": "verify",
+      "collision_total": 85546,
+      "data_revision": "2",
+      "status": "SUCCEEDED",
+      "publication": {
+        "updated": 0,
+        "inserted": 0,
+        "revision": "2",
+        "no_change": true,
+        "unchanged": 3232
+      },
+      "logout_status": 200,
+      "console_and_page_errors": 0
+    }
+  ],
+  "conclusion": "PASS",
+  "dataBoundary": "仅记录状态、计数与版本；无密码、token、原始行或人员属性",
+  "batch_id": "36"
+}

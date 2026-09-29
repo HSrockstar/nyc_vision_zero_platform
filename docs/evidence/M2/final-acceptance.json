@@ -1,0 +1,839 @@
+{
+  "scope": "[2025-01-01,2026-01-01)",
+  "source": "纽约官方三源，实际CSV",
+  "database": "vision_zero_dev",
+  "counts": {
+    "collision": 85546,
+    "person": 292070,
+    "vehicle": 170015,
+    "casualty_stat": 85546,
+    "location": 53667,
+    "collision_factor": 158517,
+    "raw_record": 557327,
+    "data_issue": 12829
+  },
+  "revision": "2",
+  "coverage": {
+    "collision_count": 85546,
+    "no_person_details": 378,
+    "no_vehicle_details": 14,
+    "missing_coordinates": 2842,
+    "incomplete_required_casualties": 3,
+    "persons_injured": 49634,
+    "persons_killed": 229,
+    "first_date": "2025-01-01",
+    "last_date": "2025-12-31"
+  },
+  "issues": [
+    {
+      "issue_code": "AGE_INVALID",
+      "severity": "WARNING",
+      "count": 147
+    },
+    {
+      "issue_code": "CASUALTY_MISSING",
+      "severity": "WARNING",
+      "count": 3
+    },
+    {
+      "issue_code": "COORDINATES_INVALID",
+      "severity": "WARNING",
+      "count": 1944
+    },
+    {
+      "issue_code": "COORDINATES_MISSING",
+      "severity": "WARNING",
+      "count": 949
+    },
+    {
+      "issue_code": "SOURCE_UNCHANGED",
+      "severity": "INFO",
+      "count": 9696
+    },
+    {
+      "issue_code": "VEHICLE_YEAR_INVALID",
+      "severity": "WARNING",
+      "count": 90
+    }
+  ],
+  "issues_by_batch": [
+    {
+      "batch_id": 1,
+      "issue_code": "COORDINATES_INVALID",
+      "severity": "WARNING",
+      "count": 10
+    },
+    {
+      "batch_id": 1,
+      "issue_code": "COORDINATES_MISSING",
+      "severity": "WARNING",
+      "count": 7
+    },
+    {
+      "batch_id": 1,
+      "issue_code": "VEHICLE_YEAR_INVALID",
+      "severity": "WARNING",
+      "count": 1
+    },
+    {
+      "batch_id": 2,
+      "issue_code": "COORDINATES_INVALID",
+      "severity": "WARNING",
+      "count": 10
+    },
+    {
+      "batch_id": 2,
+      "issue_code": "COORDINATES_MISSING",
+      "severity": "WARNING",
+      "count": 7
+    },
+    {
+      "batch_id": 2,
+      "issue_code": "SOURCE_UNCHANGED",
+      "severity": "INFO",
+      "count": 3232
+    },
+    {
+      "batch_id": 2,
+      "issue_code": "VEHICLE_YEAR_INVALID",
+      "severity": "WARNING",
+      "count": 1
+    },
+    {
+      "batch_id": 3,
+      "issue_code": "AGE_INVALID",
+      "severity": "WARNING",
+      "count": 147
+    },
+    {
+      "batch_id": 3,
+      "issue_code": "CASUALTY_MISSING",
+      "severity": "WARNING",
+      "count": 3
+    },
+    {
+      "batch_id": 3,
+      "issue_code": "COORDINATES_INVALID",
+      "severity": "WARNING",
+      "count": 1914
+    },
+    {
+      "batch_id": 3,
+      "issue_code": "COORDINATES_MISSING",
+      "severity": "WARNING",
+      "count": 928
+    },
+    {
+      "batch_id": 3,
+      "issue_code": "SOURCE_UNCHANGED",
+      "severity": "INFO",
+      "count": 3232
+    },
+    {
+      "batch_id": 3,
+      "issue_code": "VEHICLE_YEAR_INVALID",
+      "severity": "WARNING",
+      "count": 87
+    },
+    {
+      "batch_id": 36,
+      "issue_code": "COORDINATES_INVALID",
+      "severity": "WARNING",
+      "count": 10
+    },
+    {
+      "batch_id": 36,
+      "issue_code": "COORDINATES_MISSING",
+      "severity": "WARNING",
+      "count": 7
+    },
+    {
+      "batch_id": 36,
+      "issue_code": "SOURCE_UNCHANGED",
+      "severity": "INFO",
+      "count": 3232
+    },
+    {
+      "batch_id": 36,
+      "issue_code": "VEHICLE_YEAR_INVALID",
+      "severity": "WARNING",
+      "count": 1
+    }
+  ],
+  "enum_counts": {
+    "person_type": 4,
+    "person_injury": 3,
+    "vehicle_type": 408,
+    "contributing_factor": 55
+  },
+  "batches": [
+    {
+      "status": "SUCCEEDED",
+      "cleaning_version": "nyc-clean-v1",
+      "rows_read": 3232,
+      "rows_accepted": 3232,
+      "rows_rejected": 0,
+      "rows_skipped": 0,
+      "error_summary": null,
+      "batch_id": "1",
+      "published_revision": "1",
+      "requested_start": "2025-01-01",
+      "requested_end": "2025-02-01",
+      "created_at": "2026-09-29T12:59:19.398374+00:00",
+      "attempt_no": 2,
+      "input_manifest": {
+        "files": [
+          {
+            "bytes": 104735,
+            "sha256": "561da0c8fa29d4b136f73ac5b2261bbc10cf07bc2fa90881bbc03dc806e86e34",
+            "headers": [
+              "crash_date",
+              "crash_time",
+              "borough",
+              "zip_code",
+              "latitude",
+              "longitude",
+              "location",
+              "on_street_name",
+              "off_street_name",
+              "cross_street_name",
+              "number_of_persons_injured",
+              "number_of_persons_killed",
+              "number_of_pedestrians_injured",
+              "number_of_pedestrians_killed",
+              "number_of_cyclist_injured",
+              "number_of_cyclist_killed",
+              "number_of_motorist_injured",
+              "number_of_motorist_killed",
+              "contributing_factor_vehicle_1",
+              "contributing_factor_vehicle_2",
+              "contributing_factor_vehicle_3",
+              "contributing_factor_vehicle_4",
+              "contributing_factor_vehicle_5",
+              "collision_id",
+              "vehicle_type_code1",
+              "vehicle_type_code2",
+              "vehicle_type_code_3",
+              "vehicle_type_code_4",
+              "vehicle_type_code_5"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "h9gi-nx95",
+            "header_mode": "api",
+            "source_kind": "CRASHES",
+            "original_name": "CRASHES.csv",
+            "row_count": 500
+          },
+          {
+            "bytes": 329794,
+            "sha256": "b2499e1178892a2b567c5fb90ceb0b6538e1c37a79fd7113797ac66465e42277",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "person_id",
+              "person_type",
+              "person_injury",
+              "vehicle_id",
+              "person_age",
+              "ejection",
+              "emotional_status",
+              "bodily_injury",
+              "position_in_vehicle",
+              "safety_equipment",
+              "ped_location",
+              "ped_action",
+              "complaint",
+              "ped_role",
+              "contributing_factor_1",
+              "contributing_factor_2",
+              "person_sex"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "f55k-p6yu",
+            "header_mode": "api",
+            "source_kind": "PERSON",
+            "original_name": "PERSON.csv",
+            "row_count": 1725
+          },
+          {
+            "bytes": 246806,
+            "sha256": "9c4748c37f637ba1bcb0243877c7c5cfa6071def38d509cf9cb6adb2e050335b",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "vehicle_id",
+              "state_registration",
+              "vehicle_type",
+              "vehicle_make",
+              "vehicle_model",
+              "vehicle_year",
+              "travel_direction",
+              "vehicle_occupants",
+              "driver_sex",
+              "driver_license_status",
+              "driver_license_jurisdiction",
+              "pre_crash",
+              "point_of_impact",
+              "vehicle_damage",
+              "vehicle_damage_1",
+              "vehicle_damage_2",
+              "vehicle_damage_3",
+              "public_property_damage",
+              "public_property_damage_type",
+              "contributing_factor_1",
+              "contributing_factor_2"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "bm4k-52h4",
+            "header_mode": "api",
+            "source_kind": "VEHICLES",
+            "original_name": "VEHICLES.csv",
+            "row_count": 1007
+          }
+        ],
+        "validation": {
+          "planned": {
+            "updated": 0,
+            "inserted": 3232,
+            "unchanged": 0
+          },
+          "coverage": {
+            "method": "按父事故编号验证；缺失明细不伪造",
+            "selected_range": [
+              "2025-01-01",
+              "2025-02-01"
+            ]
+          },
+          "data_revision": "0",
+          "source_counts": {
+            "PERSON": {
+              "accepted": 1725
+            },
+            "CRASHES": {
+              "accepted": 500
+            },
+            "VEHICLES": {
+              "accepted": 1007
+            }
+          },
+          "blocking_issue_count": 0
+        },
+        "publication": {
+          "updated": 0,
+          "inserted": 3232,
+          "revision": "1",
+          "no_change": false,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "status": "SUCCEEDED",
+      "cleaning_version": "nyc-clean-v1",
+      "rows_read": 3232,
+      "rows_accepted": 0,
+      "rows_rejected": 0,
+      "rows_skipped": 3232,
+      "error_summary": null,
+      "batch_id": "2",
+      "published_revision": "1",
+      "requested_start": "2025-01-01",
+      "requested_end": "2025-02-01",
+      "created_at": "2026-09-29T13:01:48.361925+00:00",
+      "attempt_no": 2,
+      "input_manifest": {
+        "files": [
+          {
+            "bytes": 104735,
+            "sha256": "561da0c8fa29d4b136f73ac5b2261bbc10cf07bc2fa90881bbc03dc806e86e34",
+            "headers": [
+              "crash_date",
+              "crash_time",
+              "borough",
+              "zip_code",
+              "latitude",
+              "longitude",
+              "location",
+              "on_street_name",
+              "off_street_name",
+              "cross_street_name",
+              "number_of_persons_injured",
+              "number_of_persons_killed",
+              "number_of_pedestrians_injured",
+              "number_of_pedestrians_killed",
+              "number_of_cyclist_injured",
+              "number_of_cyclist_killed",
+              "number_of_motorist_injured",
+              "number_of_motorist_killed",
+              "contributing_factor_vehicle_1",
+              "contributing_factor_vehicle_2",
+              "contributing_factor_vehicle_3",
+              "contributing_factor_vehicle_4",
+              "contributing_factor_vehicle_5",
+              "collision_id",
+              "vehicle_type_code1",
+              "vehicle_type_code2",
+              "vehicle_type_code_3",
+              "vehicle_type_code_4",
+              "vehicle_type_code_5"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "h9gi-nx95",
+            "header_mode": "api",
+            "source_kind": "CRASHES",
+            "original_name": "CRASHES.csv",
+            "row_count": 500
+          },
+          {
+            "bytes": 329794,
+            "sha256": "b2499e1178892a2b567c5fb90ceb0b6538e1c37a79fd7113797ac66465e42277",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "person_id",
+              "person_type",
+              "person_injury",
+              "vehicle_id",
+              "person_age",
+              "ejection",
+              "emotional_status",
+              "bodily_injury",
+              "position_in_vehicle",
+              "safety_equipment",
+              "ped_location",
+              "ped_action",
+              "complaint",
+              "ped_role",
+              "contributing_factor_1",
+              "contributing_factor_2",
+              "person_sex"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "f55k-p6yu",
+            "header_mode": "api",
+            "source_kind": "PERSON",
+            "original_name": "PERSON.csv",
+            "row_count": 1725
+          },
+          {
+            "bytes": 246806,
+            "sha256": "9c4748c37f637ba1bcb0243877c7c5cfa6071def38d509cf9cb6adb2e050335b",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "vehicle_id",
+              "state_registration",
+              "vehicle_type",
+              "vehicle_make",
+              "vehicle_model",
+              "vehicle_year",
+              "travel_direction",
+              "vehicle_occupants",
+              "driver_sex",
+              "driver_license_status",
+              "driver_license_jurisdiction",
+              "pre_crash",
+              "point_of_impact",
+              "vehicle_damage",
+              "vehicle_damage_1",
+              "vehicle_damage_2",
+              "vehicle_damage_3",
+              "public_property_damage",
+              "public_property_damage_type",
+              "contributing_factor_1",
+              "contributing_factor_2"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "bm4k-52h4",
+            "header_mode": "api",
+            "source_kind": "VEHICLES",
+            "original_name": "VEHICLES.csv",
+            "row_count": 1007
+          }
+        ],
+        "validation": {
+          "planned": {
+            "updated": 0,
+            "inserted": 0,
+            "unchanged": 3232
+          },
+          "coverage": {
+            "method": "按父事故编号验证；缺失明细不伪造",
+            "selected_range": [
+              "2025-01-01",
+              "2025-02-01"
+            ]
+          },
+          "data_revision": "1",
+          "source_counts": {
+            "PERSON": {
+              "skipped": 1725
+            },
+            "CRASHES": {
+              "skipped": 500
+            },
+            "VEHICLES": {
+              "skipped": 1007
+            }
+          },
+          "blocking_issue_count": 0
+        },
+        "publication": {
+          "updated": 0,
+          "inserted": 0,
+          "revision": "1",
+          "no_change": true,
+          "unchanged": 3232
+        }
+      }
+    },
+    {
+      "status": "SUCCEEDED",
+      "cleaning_version": "nyc-clean-v1",
+      "rows_read": 547631,
+      "rows_accepted": 544399,
+      "rows_rejected": 0,
+      "rows_skipped": 3232,
+      "error_summary": null,
+      "batch_id": "3",
+      "published_revision": "2",
+      "requested_start": "2025-01-01",
+      "requested_end": "2026-01-01",
+      "created_at": "2026-09-29T13:10:18.520090+00:00",
+      "attempt_no": 5,
+      "input_manifest": {
+        "files": [
+          {
+            "bytes": 17721684,
+            "sha256": "a0b8f6d4f8c8559bf00242353810dcf3fd877c505979a8752b9898dfd3469aa6",
+            "headers": [
+              "crash_date",
+              "crash_time",
+              "borough",
+              "zip_code",
+              "latitude",
+              "longitude",
+              "location",
+              "on_street_name",
+              "off_street_name",
+              "cross_street_name",
+              "number_of_persons_injured",
+              "number_of_persons_killed",
+              "number_of_pedestrians_injured",
+              "number_of_pedestrians_killed",
+              "number_of_cyclist_injured",
+              "number_of_cyclist_killed",
+              "number_of_motorist_injured",
+              "number_of_motorist_killed",
+              "contributing_factor_vehicle_1",
+              "contributing_factor_vehicle_2",
+              "contributing_factor_vehicle_3",
+              "contributing_factor_vehicle_4",
+              "contributing_factor_vehicle_5",
+              "collision_id",
+              "vehicle_type_code1",
+              "vehicle_type_code2",
+              "vehicle_type_code_3",
+              "vehicle_type_code_4",
+              "vehicle_type_code_5"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "h9gi-nx95",
+            "header_mode": "api",
+            "source_kind": "CRASHES",
+            "original_name": "CRASHES.csv",
+            "row_count": 85546
+          },
+          {
+            "bytes": 55243435,
+            "sha256": "8c8c8b6525252b8ffdf58a576d1580c5d67b593624be1217b1c200b56b2094d4",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "person_id",
+              "person_type",
+              "person_injury",
+              "vehicle_id",
+              "person_age",
+              "ejection",
+              "emotional_status",
+              "bodily_injury",
+              "position_in_vehicle",
+              "safety_equipment",
+              "ped_location",
+              "ped_action",
+              "complaint",
+              "ped_role",
+              "contributing_factor_1",
+              "contributing_factor_2",
+              "person_sex"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "f55k-p6yu",
+            "header_mode": "api",
+            "source_kind": "PERSON",
+            "original_name": "PERSON.csv",
+            "row_count": 292070
+          },
+          {
+            "bytes": 41704254,
+            "sha256": "b31eb07f4eedc411ebde9f781a68be008152a5e15e2d5ea7aa5fd76f00a8dea7",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "vehicle_id",
+              "state_registration",
+              "vehicle_type",
+              "vehicle_make",
+              "vehicle_model",
+              "vehicle_year",
+              "travel_direction",
+              "vehicle_occupants",
+              "driver_sex",
+              "driver_license_status",
+              "driver_license_jurisdiction",
+              "pre_crash",
+              "point_of_impact",
+              "vehicle_damage",
+              "vehicle_damage_1",
+              "vehicle_damage_2",
+              "vehicle_damage_3",
+              "public_property_damage",
+              "public_property_damage_type",
+              "contributing_factor_1",
+              "contributing_factor_2"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "bm4k-52h4",
+            "header_mode": "api",
+            "source_kind": "VEHICLES",
+            "original_name": "VEHICLES.csv",
+            "row_count": 170015
+          }
+        ],
+        "validation": {
+          "planned": {
+            "updated": 0,
+            "inserted": 544399,
+            "unchanged": 3232
+          },
+          "coverage": {
+            "method": "按父事故编号验证；缺失明细不伪造",
+            "selected_range": [
+              "2025-01-01",
+              "2026-01-01"
+            ]
+          },
+          "data_revision": "1",
+          "source_counts": {
+            "PERSON": {
+              "skipped": 1725,
+              "accepted": 290345
+            },
+            "CRASHES": {
+              "skipped": 500,
+              "accepted": 85046
+            },
+            "VEHICLES": {
+              "skipped": 1007,
+              "accepted": 169008
+            }
+          },
+          "blocking_issue_count": 0
+        },
+        "publication": {
+          "updated": 0,
+          "inserted": 544399,
+          "revision": "2",
+          "no_change": false,
+          "unchanged": 3232
+        }
+      }
+    },
+    {
+      "status": "SUCCEEDED",
+      "cleaning_version": "nyc-clean-v1",
+      "rows_read": 3232,
+      "rows_accepted": 0,
+      "rows_rejected": 0,
+      "rows_skipped": 3232,
+      "error_summary": null,
+      "batch_id": "36",
+      "published_revision": "2",
+      "requested_start": "2025-01-01",
+      "requested_end": "2025-02-01",
+      "created_at": "2026-09-29T16:07:42.069999+00:00",
+      "attempt_no": 2,
+      "input_manifest": {
+        "files": [
+          {
+            "bytes": 104735,
+            "sha256": "561da0c8fa29d4b136f73ac5b2261bbc10cf07bc2fa90881bbc03dc806e86e34",
+            "headers": [
+              "crash_date",
+              "crash_time",
+              "borough",
+              "zip_code",
+              "latitude",
+              "longitude",
+              "location",
+              "on_street_name",
+              "off_street_name",
+              "cross_street_name",
+              "number_of_persons_injured",
+              "number_of_persons_killed",
+              "number_of_pedestrians_injured",
+              "number_of_pedestrians_killed",
+              "number_of_cyclist_injured",
+              "number_of_cyclist_killed",
+              "number_of_motorist_injured",
+              "number_of_motorist_killed",
+              "contributing_factor_vehicle_1",
+              "contributing_factor_vehicle_2",
+              "contributing_factor_vehicle_3",
+              "contributing_factor_vehicle_4",
+              "contributing_factor_vehicle_5",
+              "collision_id",
+              "vehicle_type_code1",
+              "vehicle_type_code2",
+              "vehicle_type_code_3",
+              "vehicle_type_code_4",
+              "vehicle_type_code_5"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "h9gi-nx95",
+            "header_mode": "api",
+            "source_kind": "CRASHES",
+            "original_name": "CRASHES.csv",
+            "row_count": 500
+          },
+          {
+            "bytes": 329794,
+            "sha256": "b2499e1178892a2b567c5fb90ceb0b6538e1c37a79fd7113797ac66465e42277",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "person_id",
+              "person_type",
+              "person_injury",
+              "vehicle_id",
+              "person_age",
+              "ejection",
+              "emotional_status",
+              "bodily_injury",
+              "position_in_vehicle",
+              "safety_equipment",
+              "ped_location",
+              "ped_action",
+              "complaint",
+              "ped_role",
+              "contributing_factor_1",
+              "contributing_factor_2",
+              "person_sex"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "f55k-p6yu",
+            "header_mode": "api",
+            "source_kind": "PERSON",
+            "original_name": "PERSON.csv",
+            "row_count": 1725
+          },
+          {
+            "bytes": 246806,
+            "sha256": "9c4748c37f637ba1bcb0243877c7c5cfa6071def38d509cf9cb6adb2e050335b",
+            "headers": [
+              "unique_id",
+              "collision_id",
+              "crash_date",
+              "crash_time",
+              "vehicle_id",
+              "state_registration",
+              "vehicle_type",
+              "vehicle_make",
+              "vehicle_model",
+              "vehicle_year",
+              "travel_direction",
+              "vehicle_occupants",
+              "driver_sex",
+              "driver_license_status",
+              "driver_license_jurisdiction",
+              "pre_crash",
+              "point_of_impact",
+              "vehicle_damage",
+              "vehicle_damage_1",
+              "vehicle_damage_2",
+              "vehicle_damage_3",
+              "public_property_damage",
+              "public_property_damage_type",
+              "contributing_factor_1",
+              "contributing_factor_2"
+            ],
+            "encoding": "utf-8-sig",
+            "dataset_id": "bm4k-52h4",
+            "header_mode": "api",
+            "source_kind": "VEHICLES",
+            "original_name": "VEHICLES.csv",
+            "row_count": 1007
+          }
+        ],
+        "validation": {
+          "planned": {
+            "updated": 0,
+            "inserted": 0,
+            "unchanged": 3232
+          },
+          "coverage": {
+            "method": "按父事故编号验证；缺失明细不伪造",
+            "selected_range": [
+              "2025-01-01",
+              "2025-02-01"
+            ]
+          },
+          "data_revision": "2",
+          "source_counts": {
+            "PERSON": {
+              "skipped": 1725
+            },
+            "CRASHES": {
+              "skipped": 500
+            },
+            "VEHICLES": {
+              "skipped": 1007
+            }
+          },
+          "blocking_issue_count": 0
+        },
+        "publication": {
+          "updated": 0,
+          "inserted": 0,
+          "revision": "2",
+          "no_change": true,
+          "unchanged": 3232
+        }
+      }
+    }
+  ],
+  "storage": {
+    "collision": 17932288,
+    "person": 58327040,
+    "vehicle": 47980544,
+    "location": 37027840,
+    "raw_record": 870080512,
+    "data_issue": 3694592
+  },
+  "database_bytes": 1086183091
+}

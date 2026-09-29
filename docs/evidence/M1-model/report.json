@@ -1,0 +1,124 @@
+{
+  "task": "M1 前端浏览器验收",
+  "result": "passed",
+  "viewports": {
+    "desktop": "1366x900",
+    "narrow": "390x844"
+  },
+  "flows": {
+    "environment_ready": true,
+    "invalid_login_shows_error_and_clears_password": true,
+    "admin_login_and_single_admin_row": true,
+    "narrow_viewport_without_page_overflow": true,
+    "refresh_clears_session": true,
+    "simulated_401_clears_session": true,
+    "logout_returns_to_login": true,
+    "only_expected_api_failures": true,
+    "no_unexpected_console_page_or_api_failures": true
+  },
+  "layout": {
+    "desktop_logged_out": {
+      "viewportWidth": 1366,
+      "viewportHeight": 900,
+      "documentWidth": 1366,
+      "bodyWidth": 1366,
+      "tableWrapClientWidth": null,
+      "tableWrapScrollWidth": null
+    },
+    "desktop_admin": {
+      "viewportWidth": 1366,
+      "viewportHeight": 900,
+      "documentWidth": 1366,
+      "bodyWidth": 1366,
+      "tableWrapClientWidth": 846,
+      "tableWrapScrollWidth": 846
+    },
+    "narrow_admin": {
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "tableWrapClientWidth": 312,
+      "tableWrapScrollWidth": 413
+    }
+  },
+  "apiResponses": [
+    {
+      "method": "GET",
+      "path": "/health/live",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/health/ready",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/users",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/health/live",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/health/ready",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/users",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/users",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/logout",
+      "status": 200
+    }
+  ],
+  "consoleErrors": 0,
+  "consoleErrorMessages": [],
+  "consoleErrorLocations": [],
+  "expectedUnauthorizedConsoleErrors": 2,
+  "pageErrors": [],
+  "otherHttpFailures": [],
+  "screenshots": [
+    "01-desktop-logged-out.png",
+    "02-invalid-login-cleared.png",
+    "03-desktop-admin.png",
+    "04-narrow-admin.png",
+    "05-refresh-requires-login.png",
+    "06-unauthorized-clears-session.png",
+    "07-logout-returns-to-login.png"
+  ],
+  "adminAccountRows": 1,
+  "progress": "logout_response_received"
+}

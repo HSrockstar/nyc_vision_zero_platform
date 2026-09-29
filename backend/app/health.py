@@ -14,10 +14,10 @@ def expected_revision() -> str:
     return ScriptDirectory.from_config(config).get_current_head()
 
 
-def readiness() -> tuple[dict, int]:
+def readiness(*, worker: bool = False) -> tuple[dict, int]:
     try:
         settings = Settings()
-        engine = database_engine(settings)
+        engine = database_engine(settings, worker=worker)
     except ValueError:
         return {"status": "not_ready", "reason": "configuration_invalid"}, 503
     try:

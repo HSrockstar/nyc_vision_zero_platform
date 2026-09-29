@@ -110,7 +110,7 @@ M1 复用验证输入建立 `backend/` 和 `frontend/`，移植经验证的精�
 
 升级须单独修改版本输入、重建锁、运行受影响检查并更新 ADR。数据库补丁升级也保留迁移版本和备份/回滚步骤。M0历史数据库入口位于 validation/m0，仅服务于环境验证；当前M1入口见§6。
 
-## 6. M1最小工程：已实测
+## 6. M1工程、模型与认证：已实测
 
 本轮复用固定版本，未升级运行时或包。新`.venv`从Windows哈希锁安装40包，pip check通过；frontend严格npm ci安装170包，类型检查与页面构建通过。backend两个平台锁与M0逐字节一致，frontend包解析和integrity保留。当前Windows开发脚本已验证；未新增Linux应用启动验收。
 
@@ -118,10 +118,10 @@ M1 复用验证输入建立 `backend/` 和 `frontend/`，移植经验证的精�
 |---|---|
 | 开发数据库 | `vision-zero-dev-db` / `vision-zero-dev-postgis-data` / `vision_zero_dev`，`127.0.0.1:55433` |
 | 后端 | `127.0.0.1:8000`；`/health/live`和`/health/ready` |
-| 前端 | `127.0.0.1:5173`；同源代理健康检查 |
-| 迁移 | `0001_environment`，只确认PostGIS并记录版本，无业务表 |
+| 前端 | `127.0.0.1:5173`；同源代理健康检查及账号API |
+| 迁移 | `0001_environment`→`0002_business_model`，23表/3业务视图/角色权限/完整性触发器 |
 | worker | Windows连接预检后退出，没有业务任务 |
 
 脚本拒绝冲突的继承环境变量、他属资源、错误挂载和配置；Python连接与根目录`.env`批准目标比对，随机测试库须显式启用。迁移用事务内`search_path=public`防止官方镜像tiger/topology扩展表被自动差异误判，alembic check已通过。M0库和卷保留。
 
-当前管理账号仅用于本机环境迁移和健康检查。角色分离、鉴权、正式数据导入、Python补丁升级、完整响应式/业务浏览器验收均未完成。已知TestClient httpx和glob弃用提示保留，没有关闭检查。启动见[README](../README.md)，实际命令/失败/证据见[M1记录](milestones/M1.md)。
+M1新增迁移/app/worker角色分离、认证及账户页面，模型与权限在真实PG下验证，见[M1模型记录](milestones/M1-model.md)。本轮评估后保留M0固定Python3.12.4与依赖组合以完成可重放验收；补丁升级须独立更新锁并回归，不声称旧补丁完成安全更新。正式数据、完整业务浏览器流程及部署仍留后续阶段。已知TestClient httpx和glob弃用提示保留，没有关闭检查。启动见[README](../README.md)，实际命令/失败/证据见[M1记录](milestones/M1.md)。

@@ -17,4 +17,13 @@ dd { margin: 10px 0 0; font-size: 22px; color: #8a4c18; }
 dd.good { color: #167054; }
 .detail { margin: 0; color: #526777; line-height: 1.6; }
 .footnote { font-size: 13px; color: #627684; margin-top: 24px; }
+.account-form { display: flex; gap: 14px; align-items: end; flex-wrap: wrap; margin-top: 24px; }
+label { display: grid; gap: 7px; font-size: 14px; }
+input, select { font: inherit; padding: 9px; border: 1px solid #aebfc8; border-radius: 5px; max-width: 100%; }
+.error { color: #a42c20; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
+th, td { padding: 10px 7px; border-bottom: 1px solid #d7e1e7; text-align: left; }
+td button { padding: 7px 12px; margin: 3px; }
+td input { width: 140px; }
 @media (max-width: 560px) { main { padding: 36px 18px; } section { padding: 20px; } dl { grid-template-columns: 1fr; } }

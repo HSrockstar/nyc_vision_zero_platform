@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { loadHealth, type HealthState } from './api/health'
+import AccountPanel from './components/AccountPanel.vue'
 
 const state = ref<HealthState>({ live: false, ready: false, detail: '正在检查开发环境…' })
 const checking = ref(false)
@@ -18,7 +19,7 @@ onMounted(refresh)
   <main>
     <p class="eyebrow">VISION ZERO · M1</p>
     <h1>纽约交通碰撞风险识别<br />与高危交叉口治理管理系统</h1>
-    <p class="intro">开发环境已建立。当前页面用于确认前端、后端与数据库连接，事故业务和治理功能将在后续阶段加入。</p>
+    <p class="intro">当前提供环境检查、登录和账户管理。事故数据导入、查询及治理功能将在后续阶段加入。</p>
     <section aria-labelledby="health-heading">
       <div class="section-title">
         <h2 id="health-heading">环境状态</h2>
@@ -30,6 +31,7 @@ onMounted(refresh)
       </dl>
       <p class="detail" aria-live="polite">{{ state.detail }}</p>
     </section>
+    <AccountPanel />
     <p class="footnote">数据库运行在 Docker；Python 后端和前端在 Windows 开发。</p>
   </main>
 </template>

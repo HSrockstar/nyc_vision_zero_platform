@@ -1,0 +1,10 @@
+{
+  "business_tables": 23,
+  "business_foreign_keys": 34,
+  "business_checks": 70,
+  "custom_views": [
+    "v_collision_base",
+    "v_risk_profile",
+    "v_governance_task"
+  ]
+}

@@ -5,6 +5,7 @@ from sqlalchemy import text
 
 from app.config import Settings
 from app.db.base import Base
+from app import models  # 注册完整模型供自动差异检查使用。
 from app.db.connection import database_engine
 
 

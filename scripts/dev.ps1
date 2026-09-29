@@ -1,7 +1,7 @@
 ﻿# 开发入口前台运行后端/前端；Ctrl+C结束该终端中的进程。
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet('DatabaseStart','DatabaseStop','Status','Migrate','MigrationStatus','Backend','Frontend','Worker','Check')]
+    [ValidateSet('DatabaseStart','DatabaseStop','Status','ProvisionRoles','InitAdmin','Migrate','MigrationStatus','Backend','Frontend','Worker','Check')]
     [string]$Action,
     [ValidateRange(1024,65535)][int]$Port = 0
 )
@@ -22,7 +22,7 @@ if ($Action -in @('DatabaseStart','DatabaseStop','Status')) {
     exit 0
 }
 if (-not (Test-Path -LiteralPath $script:PythonPath)) { throw '请先运行scripts/bootstrap.ps1建立.venv。' }
-if ($Action -in @('Migrate','MigrationStatus')) {
+if ($Action -in @('ProvisionRoles','InitAdmin','Migrate','MigrationStatus')) {
     if (-not (Assert-DatabaseResources -Config $config -RequireRunning)) { throw '开发数据库尚未创建，请先运行DatabaseStart。' }
 }
 if ($Action -eq 'Frontend') {
@@ -36,6 +36,8 @@ if ($Action -eq 'Frontend') {
 Push-Location (Join-Path $script:ProjectRoot 'backend')
 try {
     switch ($Action) {
+        'ProvisionRoles' { Invoke-Checked -Tool $script:PythonPath -Arguments @('-X','utf8','-m','app.cli','provision-roles') }
+        'InitAdmin' { Invoke-Checked -Tool $script:PythonPath -Arguments @('-X','utf8','-m','app.cli','init-admin') }
         'Backend' {
             if ($Port -eq 0) { $Port = 8000 }
             Assert-PortFree -Port $Port

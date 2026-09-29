@@ -1,0 +1,43 @@
+{
+  "mapping_version": "nyc-api-v1",
+  "scope": "M1字段契约；CSV须根据实际表头单独确认，不自动套用API映射",
+  "CRASHES": {
+    "dataset_id": "h9gi-nx95",
+    "keys": {"collision_id": "collision.collision_id"},
+    "fields": {
+      "crash_date": "collision.crash_date", "crash_time": "collision.crash_time",
+      "borough": "borough.borough_name", "zip_code": "location.zip_code",
+      "on_street_name": "location.on_street_name",
+      "off_street_name": "location.cross_street_name",
+      "cross_street_name": "location.off_street_name",
+      "latitude": "location.geom.latitude", "longitude": "location.geom.longitude",
+      "number_of_persons_injured": "casualty_stat.persons_injured",
+      "number_of_persons_killed": "casualty_stat.persons_killed",
+      "number_of_pedestrians_injured": "casualty_stat.pedestrians_injured",
+      "number_of_pedestrians_killed": "casualty_stat.pedestrians_killed",
+      "number_of_cyclist_injured": "casualty_stat.cyclists_injured",
+      "number_of_cyclist_killed": "casualty_stat.cyclists_killed",
+      "number_of_motorist_injured": "casualty_stat.motorists_injured",
+      "number_of_motorist_killed": "casualty_stat.motorists_killed"
+    },
+    "factor_slots": ["contributing_factor_vehicle_1", "contributing_factor_vehicle_2", "contributing_factor_vehicle_3", "contributing_factor_vehicle_4", "contributing_factor_vehicle_5"],
+    "reported_vehicle_type_slots": ["vehicle_type_code1", "vehicle_type_code2", "vehicle_type_code_3", "vehicle_type_code_4", "vehicle_type_code_5"],
+    "slot_policy": "原因槽位进入collision_factor；事故车型槽位只保留原始输入，不冒充Vehicles独立车辆记录"
+  },
+  "PERSON": {
+    "dataset_id": "f55k-p6yu",
+    "keys": {"unique_id": "person.person_id", "collision_id": "person.collision_id"},
+    "fields": {"person_id": "person.source_person_id", "vehicle_id": "person.source_vehicle_id", "person_type": "person.person_type", "person_injury": "person.person_injury", "person_age": "person.person_age", "person_sex": "person.person_sex"},
+    "policy": "源person_id/vehicle_id保留TEXT，不建立人员车辆直接外键；重复日期、时间及其他字段保留raw_record"
+  },
+  "VEHICLES": {
+    "dataset_id": "bm4k-52h4",
+    "keys": {"unique_id": "vehicle.vehicle_id", "collision_id": "vehicle.collision_id"},
+    "fields": {"vehicle_id": "vehicle.source_vehicle_id", "vehicle_type": "vehicle_type.canonical_name", "vehicle_year": "vehicle.vehicle_year", "travel_direction": "vehicle.travel_direction", "pre_crash": "vehicle.pre_crash", "point_of_impact": "vehicle.point_of_impact", "vehicle_damage": "vehicle.vehicle_damage"},
+    "policy": "vehicle_year原始类型为TEXT，M2严格解析后转SMALLINT；额外损坏字段及其他值保留raw_record"
+  },
+  "quality_rules": {"person_age": {"min": 0, "max": 120}, "vehicle_year": {"min": 1886, "max": 2100}, "note": "课程质量检查范围，不代表官方枚举或现实有效值保证；异常在M2保留原值、置NULL并记录问题"},
+  "missing_policy": "未知保存NULL，真实0保留0；缺坐标仍保留事故；6个必需评分伤亡字段有任一缺失则UNKNOWN",
+  "time_policy": "事故DATE/TIME使用纽约报告当地时间，系统TIMESTAMPTZ使用UTC",
+  "unmapped_policy": "完整源行保存在不可变raw_record.payload，并保留原文件；未映射字段不静默丢弃"
+}

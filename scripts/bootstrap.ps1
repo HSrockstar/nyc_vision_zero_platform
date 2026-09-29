@@ -42,4 +42,4 @@ Invoke-Checked -Tool $script:PythonPath -Arguments @('-X','utf8','-m','pip','che
 Push-Location (Join-Path $script:ProjectRoot 'frontend')
 try { Invoke-Checked -Tool 'npm.cmd' -Arguments @('ci','--engine-strict','--no-audit','--no-fund') }
 finally { Pop-Location }
-Write-Host '初始化完成；下一步运行scripts/dev.ps1 -Action DatabaseStart。'
+Write-Host '初始化完成；下一步依次运行DatabaseStart、ProvisionRoles、Migrate、InitAdmin。'

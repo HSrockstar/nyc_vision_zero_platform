@@ -1,0 +1,26 @@
+{
+  "database": "vision_zero_dev",
+  "revision": "0002_business_model",
+  "postgresql": "17.11",
+  "postgis": "3.6.4",
+  "row_counts": {
+    "role": 3,
+    "borough": 5,
+    "risk_rule": 1,
+    "dataset_state": 1,
+    "app_user": 1,
+    "collision": 0,
+    "person": 0,
+    "vehicle": 0,
+    "risk_run": 0,
+    "governance_task": 0
+  },
+  "roles": [
+    "ADMIN",
+    "MANAGER",
+    "VIEWER"
+  ],
+  "user_names": [
+    "admin"
+  ]
+}

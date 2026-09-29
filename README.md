@@ -1,23 +1,25 @@
 # 面向 Vision Zero 的纽约交通碰撞风险识别与高危交叉口治理管理系统
 
-个人数据库课程设计。M0已完成；M1本轮指定的最小工程、环境迁移和Windows启动入口已完成，完整M1仍进行中。当前提供开发环境状态页与健康检查，业务表、认证、正式数据导入尚未实现。实施依据为[PROJECT_PLAN 1.3](PROJECT_PLAN.md)。
+个人数据库课程设计。M0、M1已完成：23表、约束/索引/3个业务视图、数据库角色分离、认证和账户管理，以及模型文档。M2真实数据导入尚未开始。实施依据为[PROJECT_PLAN 1.4](PROJECT_PLAN.md)，验收见[M1模型记录](docs/milestones/M1-model.md)。
 
 ## Windows启动
 
-需要Docker Desktop已启动、Python3.12.4（`py -3.12`）、Node24.14.1/npm11.11.0，以及[M0镜像锁](validation/m0/database-image.lock.json)对应的已导入官方PostGIS镜像。脚本不会自动拉取其他镜像；换电脑的离线镜像准备见[M0数据库记录](docs/milestones/M0-database.md)。默认Python3.9不用于本项目。
+需要已启动的Docker Desktop、Python3.12.4（`py -3.12`）、Node24.14.1/npm11.11.0，以及[M0镜像锁](validation/m0/database-image.lock.json)对应的已导入PostGIS镜像。脚本不自动换镜像；离线准备见[M0数据库记录](docs/milestones/M0-database.md)。
 
-在项目根目录PowerShell执行：
+首次在仓库根目录PowerShell执行：
 
 ```powershell
-& .\scriptsootstrap.ps1
+& .\scripts\bootstrap.ps1
 & .\scripts\dev.ps1 -Action DatabaseStart
+& .\scripts\dev.ps1 -Action ProvisionRoles
 & .\scripts\dev.ps1 -Action Migrate
 & .\scripts\dev.ps1 -Action MigrationStatus
+& .\scripts\dev.ps1 -Action InitAdmin
 ```
 
-bootstrap安装隔离依赖并生成被忽略的`.env`随机凭据，存在时校验且不覆盖。不要直接复制`.env.example`使用。若终端策略阻止本地脚本，可用`powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scriptsootstrap.ps1`；Bypass仅对该进程生效，不修改全局策略。dev入口同样可用`-File`运行。
+bootstrap生成本机维护凭据，ProvisionRoles生成独立迁移/app/worker账号和JWT密钥，Migrate创建23表。已有配置/角色均校验归属；不重置未知同名角色。InitAdmin交互读取密码且不回显；已有可用管理员时拒绝初始化。本机此次已初始化admin，随机初始密码在被Git忽略的`.m1-work/model/initial-admin.txt`，登录后请修改密码。不要直接复制`.env.example`。
 
-分别打开两个PowerShell终端，在项目目录启动后端和前端：
+已初始化后日常启动只需DatabaseStart，并在两个终端分别执行：
 
 ```powershell
 # 终端1
@@ -26,38 +28,35 @@ bootstrap安装隔离依赖并生成被忽略的`.env`随机凭据，存在时�
 & .\scripts\dev.ps1 -Action Frontend
 ```
 
-打开[开发环境页](http://127.0.0.1:5173)。后端为`127.0.0.1:8000`，开发库为`127.0.0.1:55433/vision_zero_dev`；全部绑定本机。页面“已就绪”来自真实数据库、迁移版本和PostGIS检查。数据库不可用时ready返回503，live仍可返回200。
+打开[系统页面](http://127.0.0.1:5173)。后端`127.0.0.1:8000`，开发库`127.0.0.1:55433/vision_zero_dev`，均仅本机监听。登录状态仅保留当前页面内存；刷新需重登。退出、改密、换角色或停用使该账户旧令牌失效，退出作用于全部现有会话。只有ADMIN可维护账户。
 
-其他入口：
+前后端在各自终端Ctrl+C停止；数据库用DatabaseStop停止并保留数据。端口占用会拒绝启动，自定义后端端口须对应设置前端VISION_ZERO_API_TARGET。冲突的继承环境变量会被拒绝。终端策略阻止脚本时可用`powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\dev.ps1 -Action Backend`，仅影响该进程。
+
+## 验证与设计入口
 
 ```powershell
-& .\scripts\dev.ps1 -Action Worker       # 仅连接预检，然后退出
-& .\scripts\dev.ps1 -Action Check        # 基础pytest、Vue类型检查、构建
-& .\scripts\dev.ps1 -Action Status
-& .\scripts\dev.ps1 -Action DatabaseStop # 保留容器、数据卷和数据
+& .\scripts\dev.ps1 -Action Check         # 普通测试、类型检查、构建
+& .\scripts\dev.ps1 -Action Worker        # worker角色连接预检后退出
+$env:VISION_ZERO_RUN_DB_TESTS='1'
+& .\.venv\Scripts\python.exe -X utf8 -m pytest backend\tests -q
+Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 ```
 
-前后端在各自终端按Ctrl+C停止。端口已占用时脚本拒绝启动；自定义后端端口需同时设置前端`VISION_ZERO_API_TARGET`（本机HTTP）。与`.env`冲突的继承配置会被拒绝，应只在当前终端清除对应变量后重试。
+真实PG套件创建随机验证库与独立随机账号，仅这些验证库允许downgrade；开发库禁止业务降级。验证库保留供复核，不在测试中删库或删卷。普通Check会跳过实库用例，不能据此宣称数据库验收通过。
 
-## 工程与验证
-
-| 路径 | 作用 |
+| 文件 | 内容 |
 |---|---|
-| [backend](backend/pyproject.toml) | FastAPI、配置、Alembic、worker预检和测试 |
-| [frontend](frontend/package.json) | Vue环境状态页，复用M0精确依赖锁 |
-| [compose.yaml](compose.yaml) / [scripts](scripts/dev.ps1) | 专用开发数据库及Windows启动入口 |
-| [M1执行记录](docs/milestones/M1.md) / [ADR 0002](docs/decisions/0002-minimal-foundation.md) | 实际命令、验证结果、失败修正和范围 |
-| [任务清单](docs/milestones/tasks.md) | 完整M1剩余任务与M2—M8边界 |
-| [环境说明](docs/environment.md) / [数据探测](docs/data_probe.md) | 锁定版本、真实数据样本与离线CSV方案 |
-| [课程要求S1](docs/references/course_requirements.md) / [前期资料S2](docs/references/prior_work_summary.md) | 归并后的项目约束、保留设计和原文件索引 |
-| [M0记录](docs/milestones/M0.md) / [数据库补验](docs/milestones/M0-database.md) | 保留的历史命令、镜像和平台SQL证据 |
-
-本机已验证后端10项测试（含真实PG迁移生命周期）、Windows脚本11项模拟边界、前端类型/构建和桌面页面。普通Check跳过真实数据库集成测试；显式运行方式见M1记录。测试仅在新建随机验证库回退，不回退开发库；验证库保留。
+| [M1模型执行记录](docs/milestones/M1-model.md) | 本轮命令、失败修正、独立审计/测试与证据 |
+| [数据字典](docs/data_dictionary.md) | 23表逐列类型、空值、主外键、CHECK/UNIQUE/索引 |
+| [概念ER](docs/diagrams/conceptual.md) / [关系模型](docs/diagrams/relational.md) | 业务对象及物理联系 |
+| [字段映射](docs/field_mapping.md) / [JSON契约](configs/field_mapping_v1.json) | 源键、街道语义、缺失及CSV边界 |
+| [规范化](docs/normalization.md) / [数据库和认证权限](docs/security.md) | 函数依赖、受控冗余和角色最小权限 |
+| [API契约](docs/api_contract.md) / [ADR 0003](docs/decisions/0003-m1-model-auth.md) | 登录和用户管理、业务契约定案 |
+| [任务清单](docs/milestones/tasks.md) | 当前完成情况及M2—M8验收边界 |
+| [历史M1基础入口](docs/milestones/M1.md) / [M0](docs/milestones/M0.md) | 保留前次范围和原始证据 |
 
 ## 当前边界
 
-开发库管理账号暂用于环境迁移和只读预检。完整M1继续完成字段契约、23表、迁移/应用/worker数据库角色分离、认证权限、E-R及数据字典；当前页面没有业务功能。worker没有导入/风险队列，计划中的业务CLI尚不存在。
+开发库有固定三角色、五行政区、初始评分规则、数据修订单例和首次管理员；事故事实、风险结果及工单为空。测试账户和业务夹具只存在独立验证库。worker尚无导入或计算作业，应用数据库账号不直接写事故/工单。完整状态动作及函数在M5落实。
 
-M0容器与卷独立保留，端口55432；启停仍使用`validation/m0/database.ps1`。本轮没有删除数据、修改其他项目、初始化Git或推送。目录仍无`.git`，当前用文件SHA-256核对改动。四份原课程资料此前按授权归并、校验备份并删除；不再视为缺失文件。
-
-`.env`、`.venv`、`.m0-work`、`.m1-work`、node_modules、dist、原始大文件和备份保持本地。公开碰撞事实与课程模拟治理记录须分别标识；未来提交前检查证据内容和凭据。已知TestClient/httpx及glob弃用提示、原生Docker Registry EOF仍有记录。
+本地Git由用户初始化，当前main保留原始快照；本轮修改未提交或推送。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、node_modules、dist和大文件留在本机；公开证据不含密码/JWT/DSN。M1为本机开发验收，远程部署、真实数据、性能及备份恢复在后续阶段验证。既有Starlette TestClient/httpx弃用提示保留。

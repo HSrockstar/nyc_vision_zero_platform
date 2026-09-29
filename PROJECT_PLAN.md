@@ -2,11 +2,11 @@
 
 ## 项目设计与 Codex 实施计划
 
-- 文档版本：1.3
+- 文档版本：1.4
 - 编制日期：2026-09-28
-- 更新日期：2026-09-29（M1 最小工程、环境迁移与 Windows 启动入口完成）
+- 更新日期：2026-09-29（完整M1模型、数据库权限与认证验收完成）
 - 用途：本学期数据库课程设计的开发依据、任务拆分依据和验收清单。
-- 当前状态：M0 已完成；M1 进行中，本轮指定的最小工程、环境迁移入口、Windows 启动方式已完成。23张业务表、认证和数据库角色尚未实现；M2—M8 未开始。完成范围见 §0.4。
+- 当前状态：M0、完整M1已完成；23表、索引/基础视图、角色分离、认证和模型文档有本机实库验收证据。M2—M8未开始；下一步为真实数据导入与事故查询。完成范围见§0.4。
 - 实现形式：个人完成的 B/S 数据库应用系统。开发辅助工具的使用方式以教师要求为准，最终代码、设计和答辩内容应由项目作者理解和审核。
 - 阅读入口：本计划、[课程要求摘要S1](docs/references/course_requirements.md)、[前期资料保留摘要S2](docs/references/prior_work_summary.md)。四份原资料已按用户要求归并为Markdown，删除前均有校验压缩备份，后续不再把原文件缺席视为资料缺失。
 
@@ -66,10 +66,10 @@
 | 数据探测 | 三源元数据、限定 JSON/CSV、2025 年计数和10起父事故关联取得；未下载完整年度 CSV、未正式导入。[数据报告](docs/data_probe.md) |
 | 数据库 | Docker 内 PG17.11/PostGIS3.6.4，官方镜像摘要已锁；Windows/Linux各11项真实SQL及持久卷复启通过。[补验记录](docs/milestones/M0-database.md) |
 | 依赖 | Python3.12.4、Node24.14.1/npm11.11.0；Windows40包/Linux38包分别锁定，前端严格安装、类型检查和构建通过。[环境说明](docs/environment.md) |
-| 工程与Git | backend/frontend最小工程、Alembic环境迁移、数据库Compose和Windows入口已建立；仅健康检查API与环境页面，没有业务表或认证。目录仍无.git，未初始化或推送 |
+| 工程与Git | backend/frontend、23表迁移、角色分离、认证与账户页面完成。用户已初始化本地Git，main保留初始快照；本轮修改尚未提交或推送。[M1模型记录](docs/milestones/M1-model.md) |
 | 当前开发方式 | 数据库Docker，后端/前端Windows前台启动；worker仅连接预检。开发库127.0.0.1:55433独立于M0库55432。[M1记录](docs/milestones/M1.md) |
 
-本轮按用户指定范围先完成M1基础入口，决定见[ADR 0002](docs/decisions/0002-minimal-foundation.md)。M1后续先落实源字段字典及权限契约，再完成23表迁移、数据库角色和认证。UNKNOWN画像建单、在办任务角色变更和幂等摘要的待决项见 [ADR](docs/decisions/0001-implementation-baseline.md)，具体范围见 [任务清单](docs/milestones/tasks.md)。完整导入、路口归属、风险及工单动作分别留给M2—M5。
+历史基础入口保留于[ADR 0002](docs/decisions/0002-minimal-foundation.md)。完整M1按用户授权落实数据库模型优先顺序：街道映射、UNKNOWN调查草稿、在办执行人账户变更和request_hash契约见[ADR 0003](docs/decisions/0003-m1-model-auth.md)；23表迁移、数据库权限与认证有独立实库复验。字段完整口径见[数据字典](docs/data_dictionary.md)，规范化及受控冗余见[3NF说明](docs/normalization.md)，当前范围见[任务清单](docs/milestones/tasks.md)。完整导入、路口归属、风险计算与工单动作仍分别在M2—M5。
 
 ## 1. 课程要求与项目交付映射
 
@@ -311,7 +311,7 @@ P0 不提供公开注册。由管理员创建账户。角色枚举固定，不�
 
 Person 与 Vehicle 的直接关联属于可选扩展。必须先验证连接字段、事故一致性、重复和缺失情况，再决定使用何种键。P0 通过事故页面分别显示人员和车辆，避免错误配对。[本期实施决定]
 
-M0元数据及样本发现Crashes API字段名与显示语义存在冲突：`off_street_name`显示为横街，`cross_street_name`显示为街道外地址。M1字段字典显式映射前者到逻辑横街、后者到逻辑地址，保留原字段及映射版本；CSV按实际表头独立核验。不得直接按API变量名字进行交叉口配对。[docs/data_probe.md，§5；ADR待决事项]
+M0元数据及样本发现Crashes API字段名与显示语义存在冲突：`off_street_name`显示为横街，`cross_street_name`显示为街道外地址。M1已完成的字段字典显式映射前者到逻辑横街、后者到逻辑地址，保留原字段及映射版本；CSV按实际表头独立核验。不得直接按API变量名字进行交叉口配对。[docs/data_probe.md，§5；ADR 0003]
 
 官方字段说明中的 `person_type` 并不等于可以直接细分驾驶员和乘客。P0 先按原字段支持的类别统计。只有核实其他角色字段后才增加更细分类，不能从年龄或车辆类型猜测人员角色。[W1]
 
@@ -416,6 +416,7 @@ is_active         BOOLEAN NOT NULL DEFAULT TRUE
 ```text
 location_id       BIGINT PRIMARY KEY
 location_key      TEXT NOT NULL UNIQUE
+key_input         JSONB NOT NULL DEFAULT '{}' -- 稳定键输入及版本
 borough_id        SMALLINT NULL REFERENCES borough
 zip_code          VARCHAR(20) NULL
 on_street_name    TEXT NULL
@@ -605,6 +606,7 @@ UNIQUE (rule_code, version_no)
 ```text
 run_id            BIGINT PRIMARY KEY
 request_id        UUID NOT NULL UNIQUE
+request_hash      VARCHAR(64) NOT NULL    -- request-v1 SHA-256
 rule_id           BIGINT NOT NULL REFERENCES risk_rule
 period_start      DATE NOT NULL
 period_end        DATE NOT NULL
@@ -672,7 +674,7 @@ updated_at        TIMESTAMPTZ NOT NULL
 version           INTEGER NOT NULL DEFAULT 1
 ```
 
-建立 `lower(username)` 唯一索引。密码只保存现代密码哈希。修改密码、禁用用户或执行全会话退出时增加 `auth_version`。仍有 OPEN、IN_PROGRESS 或 PENDING_REVIEW 任务的执行人默认不得停用。先按允许的业务动作处理任务。P0 只允许 OPEN 任务重新分配，其他任务先完成或由有权限者取消后另建任务。不删除历史关联。
+建立 `lower(username)` 唯一索引。密码只保存现代密码哈希。修改密码、禁用/启用用户、变更角色或执行全会话退出时增加 `auth_version`。仍有OPEN、IN_PROGRESS或PENDING_REVIEW任务的执行人不得停用或变更任何角色。先按允许的业务动作处理任务。P0 只允许 OPEN 任务重新分配，其他任务先完成或由有权限者取消后另建任务。不删除历史关联。
 
 ### 7.18 治理任务 `governance_task`
 
@@ -680,6 +682,7 @@ version           INTEGER NOT NULL DEFAULT 1
 task_id           BIGINT PRIMARY KEY
 task_code         VARCHAR(40) NOT NULL UNIQUE
 request_id        UUID NOT NULL UNIQUE
+request_hash      VARCHAR(64) NOT NULL    -- request-v1 SHA-256
 profile_id        BIGINT NOT NULL REFERENCES risk_profile
 title             VARCHAR(160) NOT NULL
 description       TEXT NOT NULL
@@ -713,6 +716,7 @@ history_id        BIGINT PRIMARY KEY
 task_id           BIGINT NOT NULL REFERENCES governance_task
 sequence_no       INTEGER NOT NULL
 request_id        UUID NOT NULL UNIQUE
+request_hash      VARCHAR(64) NOT NULL    -- request-v1 SHA-256
 event_type        VARCHAR(30) NOT NULL
 from_status       VARCHAR(30) NULL
 to_status         VARCHAR(30) NOT NULL
@@ -732,6 +736,7 @@ P0 将执行记录和状态历史合并在本表，避免两套记录相互不�
 ```text
 batch_id          BIGINT PRIMARY KEY
 request_id        UUID NOT NULL UNIQUE
+request_hash      VARCHAR(64) NOT NULL    -- request-v1 SHA-256
 manifest_hash     TEXT NOT NULL
 cleaning_version  VARCHAR(40) NOT NULL
 input_manifest    JSONB NOT NULL
@@ -1069,7 +1074,7 @@ P0 不允许完成后重开，不允许用通用 PATCH 任意设置 `status`，�
 
 ### 12.2 任务建立条件
 
-P0 从具体画像建立任务，保持建立依据可追溯。UNKNOWN 画像不直接发布治理任务，应先解决缺失或进行明确的人工调查。LOW 或 MEDIUM 画像建立任务需要说明理由，系统不自动禁止人工调查。
+P0 从具体画像建立任务，保持建立依据可追溯。UNKNOWN画像仅允许FIELD_SURVEY调查DRAFT，不得发布或改建其他措施；补齐数据后基于新画像另建任务。LOW 或 MEDIUM 画像建立任务需要说明理由，系统不自动禁止人工调查。
 
 创建时冻结 `profile_id`、评价范围和是否模拟。发布后不允许替换依据画像。后续风险有新版本时，只在页面展示新结果，不篡改旧任务的建立依据。
 
@@ -1560,7 +1565,7 @@ python benchmarks/run_benchmarks.py --config <benchmark_config>
 
 ### 19.3 M1 数据库结构、基础后端和认证
 
-**状态：进行中，基础入口已完成。** 本轮仅建立最小backend/frontend、Alembic环境迁移、Docker开发库、Windows启动脚本和健康检查；真实空库升级、重复升级、回退再升级、外部schema保护及页面连接已验收，见[M1记录](docs/milestones/M1.md)。完整阶段仍需街道映射、UNKNOWN建单、账户变更、幂等摘要契约，以及23表、数据库角色、认证和模型文档。worker当前只有预检，没有业务队列。
+**状态：完成。** 23表、索引/3基础视图、跨表完整性约束、迁移/app/worker角色、认证和账户管理、ER/数据字典及规范化说明已完成。真实PostgreSQL/PostGIS空库迁移、权限拒绝、JWT失效及两连接并发边界通过独立复验，见[M1模型记录](docs/milestones/M1-model.md)。worker仅预检；业务表存在不代表M2—M5导入、计算与完整工单动作已实现。
 
 **工作内容**
 
@@ -1828,11 +1833,11 @@ W8 https://operations.osmfoundation.org/policies/tiles/
 
 ### 23.3 已验证范围与后续待办
 
-M0已验证官方元数据/限定样本/范围查询入口、年度键和10起父子关联；Python/前端依赖组合、PG17.11/PostGIS3.6.4镜像与两平台连接、约束、空间SQL通过。M1基础入口新增10项后端测试、Windows脚本11项拒绝边界、Vue类型检查/构建和本机HTTP/浏览器证据；基础迁移通过不代表业务完整性或角色权限通过。来源和版本证据见§0.4。
+M0已验证官方元数据/限定样本/范围查询入口、年度键和10起父子关联；锁定环境与两平台连接通过。M1在该基础上完成23表模型、数据库权限、认证和账户页面，独立实库套件82项全部通过，Vue类型检查/构建及页面检查有本轮证据。模型测试使用独立夹具，不能代替真实数据导入或完整工单验收。来源和版本证据见§0.4。
 
 | 阶段 | 仍需验证或落实 |
 |---|---|
-| M1 | 字段字典与权限契约、23表迁移、认证/角色/失败路径；评估Python3.12补丁升级后重验 |
+| M1（完成） | 字段契约、23表迁移、认证/角色/失败路径通过。复用M0固定版本；运行时补丁升级另行重锁和回归，不声称补丁安全更新完成 |
 | M2 | 首批500起及完整年度CSV实际下载/导入、全范围键与父子质量、必需评分字段缺失、枚举与存储容量 |
 | M3—M5 | 交叉口归属、风险快照与规则边界、工单权限及并发/幂等；现有环境smoke不代替业务验收 |
 | M7—M8 | 性能、备份新库恢复、浏览器全流程与干净环境交付 |

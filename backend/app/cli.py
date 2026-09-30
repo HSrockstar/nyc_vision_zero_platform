@@ -22,6 +22,7 @@ from app.importing.storage import save_files
 from app.importing.service import batch_data, create_batch, request_action
 from app.models import ImportBatch
 from app.spatial import generate
+from app.risks import create_run
 
 
 def init_admin(username, display_name, *, generate=False):
@@ -81,6 +82,12 @@ def main():
     candidates.add_argument("--after-location-id", type=int, default=0)
     candidates.add_argument("--max-batches", type=int, default=1)
     candidates.add_argument("--radius-m", type=int, default=50)
+    risk = commands.add_parser("request-risk-run")
+    risk.add_argument("--username", default="admin")
+    risk.add_argument("--rule-id", type=int, default=1)
+    risk.add_argument("--start", type=date.fromisoformat, required=True)
+    risk.add_argument("--end", type=date.fromisoformat, required=True)
+    risk.add_argument("--request-id", type=UUID, default=None)
     args = parser.parse_args()
     try:
         if args.command == "provision-roles":
@@ -88,6 +95,19 @@ def main():
             print("本机迁移、应用、worker角色已配置；随机凭据仅保存到本地忽略文件。")
         elif args.command == "init-admin":
             init_admin(args.username, args.display_name, generate=args.generate)
+        elif args.command == "request-risk-run":
+            engine = database_engine(Settings())
+            try:
+                with Session(engine) as session, session.begin():
+                    actor = session.scalar(select(AppUser).where(AppUser.username == args.username,
+                        AppUser.is_active, AppUser.role_id.in_((1, 2))))
+                    if actor is None:
+                        raise ValueError("风险计算需要启用的管理账户")
+                    run = create_run(session, actor, args.request_id or uuid4(), args.rule_id, args.start, args.end)
+                    result = {"run_id": str(run.run_id), "status": run.status}
+                print(json.dumps(result, ensure_ascii=False))
+            finally:
+                engine.dispose()
         elif args.command == "generate-intersection-candidates":
             if not 0 <= args.after_location_id <= 9223372036854775807 or not 1 <= args.max_batches <= 100 or not 20 <= args.radius_m <= 80:
                 raise ValueError("候选生成范围无效")

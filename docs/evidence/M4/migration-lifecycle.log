@@ -1,0 +1,5 @@
+No new upgrade operations detected.
+No new upgrade operations detected.
+{"database": "vision_zero_m1_test_08db855564d3", "run_db_tests": "1", "sequence": ["0006_risk_worker", "0005_intersection_workflow", "0006_risk_worker"], "guard_presence": [true, false, true], "alembic_check_before_and_after": "passed", "retained_for_review": true}
+EXIT_CODE=0
+DURATION_SECONDS=11.638

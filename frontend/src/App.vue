@@ -4,6 +4,7 @@ import { loadHealth, type HealthState } from './api/health'
 import { sessionUser } from './api/auth'
 import AccountPanel from './components/AccountPanel.vue'
 import M2Panel from './components/M2Panel.vue'
+import RiskPanel from './components/RiskPanel.vue'
 
 const state = ref<HealthState>({ live: false, ready: false, detail: '正在检查开发环境…' })
 const checking = ref(false)
@@ -19,7 +20,7 @@ onMounted(refresh)
 
 <template>
   <main>
-    <p class="eyebrow">VISION ZERO · M3</p>
+    <p class="eyebrow">VISION ZERO · M4</p>
     <h1>纽约交通碰撞风险识别<br />与高危交叉口治理管理系统</h1>
     <p class="intro">登录后可查询事故、地图观察点与交叉口；治理人员可复核候选和地点归属，管理员可管理数据导入。</p>
     <section aria-labelledby="health-heading">
@@ -35,6 +36,7 @@ onMounted(refresh)
     </section>
     <AccountPanel />
     <M2Panel v-if="sessionUser" />
+    <RiskPanel v-if="sessionUser" :key="sessionUser.user_id" />
     <p class="footnote">数据库运行在 Docker；Python 后端和前端在 Windows 开发。</p>
   </main>
 </template>

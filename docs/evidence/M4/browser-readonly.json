@@ -1,0 +1,293 @@
+{
+  "target": "http://127.0.0.1:5173/",
+  "dataBoundary": "只读取本机已存在的 2025 年风险批次；不记录明细响应、请求头、JWT、密码或个人行。",
+  "checks": [
+    {
+      "name": "管理员登录",
+      "passed": true,
+      "evidence": {
+        "status": 200,
+        "role": "ADMIN"
+      }
+    },
+    {
+      "name": "明确选择批次 1 与真实覆盖摘要",
+      "passed": true,
+      "evidence": {
+        "profiles95": true,
+        "included349": true,
+        "coverage041": true,
+        "selectedRun1": true
+      }
+    },
+    {
+      "name": "首屏分页为 20 条",
+      "passed": true,
+      "evidence": {
+        "visibleRows": 20,
+        "total": 95
+      }
+    },
+    {
+      "name": "分页可进入第二页",
+      "passed": true,
+      "evidence": {
+        "page": 2,
+        "visibleRows": 20,
+        "total": 95
+      }
+    },
+    {
+      "name": "HIGH 等级筛选",
+      "passed": true,
+      "evidence": {
+        "total": 14,
+        "visibleRows": 14
+      }
+    },
+    {
+      "name": "MEDIUM 等级筛选",
+      "passed": true,
+      "evidence": {
+        "total": 44,
+        "visibleRows": 20
+      }
+    },
+    {
+      "name": "LOW 等级筛选",
+      "passed": true,
+      "evidence": {
+        "total": 37,
+        "visibleRows": 20
+      }
+    },
+    {
+      "name": "UNKNOWN 为空且明确不代表低风险",
+      "passed": true,
+      "evidence": {
+        "total": 0,
+        "visibleRows": 0,
+        "noticeVisible": true
+      }
+    },
+    {
+      "name": "真实分项详情 API 与四项贡献可见",
+      "passed": true,
+      "evidence": {
+        "status": 200,
+        "fourContributionsVisible": true
+      }
+    },
+    {
+      "name": "切换 2026 周期显示无批次",
+      "passed": true,
+      "evidence": {
+        "start": "2026-01-01",
+        "endExclusive": "2027-01-01",
+        "emptyState": true
+      }
+    },
+    {
+      "name": "恢复 2025 周期后批次 1 与画像恢复",
+      "passed": true,
+      "evidence": {
+        "start": "2025-01-01",
+        "endExclusive": "2026-01-01",
+        "total": 95
+      }
+    },
+    {
+      "name": "画像请求 503 时清空旧表并显示错误",
+      "passed": true,
+      "evidence": {
+        "status": 503,
+        "visibleRows": 0,
+        "alertVisible": true
+      }
+    },
+    {
+      "name": "移除故障后真实画像可恢复",
+      "passed": true,
+      "evidence": {
+        "visibleRows": 20,
+        "total": 95
+      }
+    },
+    {
+      "name": "桌面 1440×900 无页面横向溢出",
+      "passed": true,
+      "evidence": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "clientWidth": 1440,
+          "scrollWidth": 1440
+        },
+        "body": {
+          "clientWidth": 1440,
+          "scrollWidth": 1440
+        },
+        "riskTable": {
+          "clientWidth": 1094,
+          "scrollWidth": 1094,
+          "horizontalScroll": false,
+          "tableMinWidth": 780,
+          "headersNoWrap": true
+        }
+      }
+    },
+    {
+      "name": "窄屏 390×844 无页面横向溢出",
+      "passed": true,
+      "evidence": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "clientWidth": 390,
+          "scrollWidth": 390
+        },
+        "body": {
+          "clientWidth": 390,
+          "scrollWidth": 390
+        },
+        "riskTable": {
+          "clientWidth": 320,
+          "scrollWidth": 780,
+          "horizontalScroll": true,
+          "tableMinWidth": 780,
+          "headersNoWrap": true
+        }
+      }
+    },
+    {
+      "name": "窄屏风险表格仅在容器内滚动且表头可读",
+      "passed": true,
+      "evidence": {
+        "clientWidth": 320,
+        "scrollWidth": 780,
+        "horizontalScroll": true,
+        "tableMinWidth": 780,
+        "headersNoWrap": true
+      }
+    },
+    {
+      "name": "窄屏可实际横滚到最右侧列",
+      "passed": true,
+      "evidence": {
+        "scrollLeft": 460,
+        "maxScroll": 460,
+        "lastHeaderVisible": true
+      }
+    },
+    {
+      "name": "未发送业务写请求（登录除外）",
+      "passed": true,
+      "evidence": {
+        "nonGetRequests": [
+          "POST /auth/login"
+        ]
+      }
+    },
+    {
+      "name": "无意外业务 API HTTP 错误",
+      "passed": true,
+      "evidence": {
+        "errors": []
+      }
+    },
+    {
+      "name": "无业务 API 网络失败",
+      "passed": true,
+      "evidence": {
+        "failures": []
+      }
+    },
+    {
+      "name": "无前端运行时异常",
+      "passed": true,
+      "evidence": {
+        "count": 0
+      }
+    },
+    {
+      "name": "无非预期 console 错误",
+      "passed": true,
+      "evidence": {
+        "errors": []
+      }
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440
+      },
+      "body": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440
+      },
+      "riskTable": {
+        "clientWidth": 1094,
+        "scrollWidth": 1094,
+        "horizontalScroll": false,
+        "tableMinWidth": 780,
+        "headersNoWrap": true
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "clientWidth": 390,
+        "scrollWidth": 390
+      },
+      "body": {
+        "clientWidth": 390,
+        "scrollWidth": 390
+      },
+      "riskTable": {
+        "clientWidth": 320,
+        "scrollWidth": 780,
+        "horizontalScroll": true,
+        "tableMinWidth": 780,
+        "headersNoWrap": true
+      }
+    }
+  },
+  "osmTiles": {
+    "interceptionInstalled": true,
+    "intercepted": 15,
+    "blockedFailures": 15,
+    "consoleErrors": 15
+  },
+  "faultInjection": {
+    "enabled": true,
+    "injected503": 1,
+    "consoleErrors": 1
+  },
+  "exitCode": 0,
+  "browser": {
+    "name": "system Chrome",
+    "headless": true,
+    "isolatedProcess": true
+  },
+  "unexpected_errors": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "otherResourceErrors": 0,
+    "api_http": 0,
+    "api_network": 0
+  },
+  "command": "node .m4-work/browser/m4_browser_acceptance.cjs"
+}

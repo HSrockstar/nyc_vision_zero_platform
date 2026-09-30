@@ -1,0 +1,6 @@
+
+> vision-zero-frontend@0.1.0 check
+> vue-tsc --noEmit
+
+EXIT_CODE=0
+DURATION_SECONDS=7.131

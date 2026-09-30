@@ -1,0 +1,19 @@
+
+> vision-zero-frontend@0.1.0 build
+> vite build --outDir ..\.m4-work\verification\m4_full_validation_20260930\frontend-build-output
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 35 modules transformed.
+
+(!) outDir E:\数据库课设\.m4-work\verification\m4_full_validation_20260930\frontend-build-output is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+rendering chunks...
+computing gzip size...
+../.m4-work/verification/m4_full_validation_20260930/frontend-build-output/index.html                   0.67 kB │ gzip:  0.47 kB
+../.m4-work/verification/m4_full_validation_20260930/frontend-build-output/assets/index-BokvmIyf.css   21.62 kB │ gzip:  8.15 kB
+../.m4-work/verification/m4_full_validation_20260930/frontend-build-output/assets/index-DPOSeWx-.js   280.93 kB │ gzip: 91.11 kB
+✓ built in 2.40s
+EXIT_CODE=0
+DURATION_SECONDS=5.284

@@ -1,4 +1,4 @@
-# M1认证、M2数据与M3空间API
+# M1认证、M2数据、M3空间与M4风险API
 
 前缀 `/api/v1`，JSON请求。成功返回 `{data,meta:{request_id}}`，错误返回 `{error:{code,message},meta:{request_id}}`；`X-Request-ID`支持UUID并在响应头返回。ID全部字符串；版本、数量和expires_in为数字。认证数据响应 `Cache-Control: no-store`。
 
@@ -16,7 +16,7 @@
 
 账户PATCH显式null、空修改、额外字段和非法ID返回422。停用或换角色导致认证版本增加；只有显示名变更不强制登出，但总version增加。最后管理员返回USER_LAST_ADMIN（409）；在办执行人返回USER_HAS_ACTIVE_TASKS（409）；VIEWER/MANAGER访问管理接口403。数据库约束冲突固定DATA_CONFLICT，不暴露驱动详情。
 
-M2已实现以下数据接口。M3地图和路口接口见下表；风险计算及工单动作仍按M4—M5推进。
+M2已实现以下数据接口。M3地图和路口、M4风险接口见下表；工单动作留M5。
 
 | 方法 / 路径 | 输入与行为 | 权限 |
 |---|---|---|
@@ -52,3 +52,16 @@ M2已实现以下数据接口。M3地图和路口接口见下表；风险计算�
 | PATCH /location-assignments/{location_id} | `version,status,intersection_id,reason`；状态为`MANUAL_CONFIRMED/REJECTED/UNMATCHED`，确认时目标必须是启用的已确认交叉口；版本冲突409 | ADMIN、MANAGER |
 
 路口与地点ID以十进制字符串返回，输入不能通过JavaScript浮点数舍入。每个地点至多一个当前归属；事故通过地点继承归属。候选不计入已确认事故数。人工改派必须记录原因与审计，自动重跑不会覆盖人工结果。M3算法及部署范围见[ADR 0005](decisions/0005-m3-spatial.md)。
+
+## M4风险接口
+
+| 方法 / 路径 | 输入与行为 | 权限 |
+|---|---|---|
+| GET /risk-rules | 返回已发布/退休版本、权重、阈值、依据；不返回草稿 | 登录用户 |
+| POST /risk-runs | request_id UUID、rule_id字符串、period_start/end日期；202排队；同请求同内容返回原任务，不同内容409 | ADMIN/MANAGER；发布前再次核验 |
+| GET /risk-runs | start/end精确周期、rule_id、status可选；page/page_size默认20，最大100 | 登录用户 |
+| GET /risk-runs/{run_id} | 状态、输入revision、coverage_summary、input_manifest、固定错误摘要及is_stale；不返回租约令牌 | 登录用户 |
+| GET /risk-profiles | 必需run_id；risk_level、intersection_id可选；sort=score/collision_count降序，NULL末尾；page/page_size默认20最大100 | 登录用户；仅成功批次 |
+| GET /risk-profiles/{profile_id} | 成功画像、四项已知值贡献、规则、批次来源及过期标记 | 登录用户 |
+
+不存在的批次404；未成功批次画像列表为空且带run_status，详情404。成功但没有事故的周期不生成画像，coverage_ratio为null；不能解释为低风险。编号与修订号用字符串，Decimal分数/贡献/规则值用精确十进制字符串；未知分数为null。退休规则仅可查历史，新请求422。文件只通过受控本机入口保留，不提供Web路径读写。详见[ADR 0006](decisions/0006-m4-risks.md)。

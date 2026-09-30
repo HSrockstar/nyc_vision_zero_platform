@@ -2,11 +2,11 @@
 
 ## 项目设计与 Codex 实施计划
 
-- 文档版本：1.5
+- 文档版本：1.6
 - 编制日期：2026-09-28
-- 更新日期：2026-09-30（M3地图、候选与人工归属工作流实施）
+- 更新日期：2026-09-30（已确认95个路口，M4风险批次与画像实施）
 - 用途：本学期数据库课程设计的开发依据、任务拆分依据和验收清单。
-- 当前状态：M0、完整M1、M2已完成；M3地图、候选与人工归属工作流已实现，实库全量回归与首批100个真实候选结构核查通过，真实道路身份尚待人工确认。下一阶段为M4风险规则与画像。完成范围见§0.4及[M3记录](docs/milestones/M3.md)。
+- 当前状态：M0—M4本机实现与验收已完成，首批95个路口道路身份已确认，2025年度95条画像已生成；121项独立实库回归、迁移往返、前端检查/构建及桌面/窄屏验收通过。下一阶段为M5治理业务。完成范围见§0.4及[M4记录](docs/milestones/M4.md)。
 - 实现形式：个人完成的 B/S 数据库应用系统。开发辅助工具的使用方式以教师要求为准，最终代码、设计和答辩内容应由项目作者理解和审核。
 - 阅读入口：本计划、[课程要求摘要S1](docs/references/course_requirements.md)、[前期资料保留摘要S2](docs/references/prior_work_summary.md)。四份原资料已按用户要求归并为Markdown，删除前均有校验压缩备份，后续不再把原文件缺席视为资料缺失。
 
@@ -66,10 +66,11 @@
 | 数据探测 | M0探测保留；M2已下载并发布首批500起及2025年度三源CSV（总547,631行），正式事故85,546起；重复发布、网页重复导入、年度质量与容量核验通过。[M2记录](docs/milestones/M2.md) |
 | 数据库 | Docker 内 PG17.11/PostGIS3.6.4，官方镜像摘要已锁；Windows/Linux各11项真实SQL及持久卷复启通过。[补验记录](docs/milestones/M0-database.md) |
 | 依赖 | Python3.12.4、Node24.14.1/npm11.11.0；Windows40包/Linux38包分别锁定，前端严格安装、类型检查和构建通过。[环境说明](docs/environment.md) |
-| 工程与Git | backend/frontend、23表、认证、M2导入/查询及M3空间归属工作流已实现；开发库迁移0005_intersection_workflow。main HEAD为已提交M2的7134be2；M3修改未提交或推送。[M3记录](docs/milestones/M3.md) |
+| 工程与Git | backend/frontend、23表、认证、M2导入/查询、M3空间归属及M4风险计算/快照已实现；开发库迁移0006_risk_worker。main HEAD为已提交M3的44bf96d；M4修改未提交或推送。[M4记录](docs/milestones/M4.md) |
+| 当前风险输入与结果 | 95个已确认、1个已拒绝、4个待定；revision98，2025全年349/85,546起事故纳入，95条画像（高14/中44/低37）。快照重聚合及3个手算核对通过。[聚合证据](docs/evidence/M4/local-acceptance.json) |
 | 当前开发方式 | 数据库Docker，后端/前端/导入worker在Windows分别前台启动。开发库127.0.0.1:55433独立于M0库55432。[启动入口](README.md) |
 
-历史基础入口保留于[ADR 0002](docs/decisions/0002-minimal-foundation.md)。完整M1按用户授权落实数据库模型优先顺序：街道映射、UNKNOWN调查草稿、在办执行人账户变更和request_hash契约见[ADR 0003](docs/decisions/0003-m1-model-auth.md)；23表迁移、数据库权限与认证有独立实库复验。字段完整口径见[数据字典](docs/data_dictionary.md)，规范化及受控冗余见[3NF说明](docs/normalization.md)，当前范围见[任务清单](docs/milestones/tasks.md)。M2导入/查询见[ADR 0004](docs/decisions/0004-m2-import-query.md)和[M2记录](docs/milestones/M2.md)；M3空间工作流见[ADR 0005](docs/decisions/0005-m3-spatial.md)和[M3记录](docs/milestones/M3.md)；风险计算与工单动作分别在M4—M5。
+历史基础入口保留于[ADR 0002](docs/decisions/0002-minimal-foundation.md)。完整M1按用户授权落实数据库模型优先顺序：街道映射、UNKNOWN调查草稿、在办执行人账户变更和request_hash契约见[ADR 0003](docs/decisions/0003-m1-model-auth.md)；23表迁移、数据库权限与认证有独立实库复验。字段完整口径见[数据字典](docs/data_dictionary.md)，规范化及受控冗余见[3NF说明](docs/normalization.md)，当前范围见[任务清单](docs/milestones/tasks.md)。M2导入/查询见[ADR 0004](docs/decisions/0004-m2-import-query.md)和[M2记录](docs/milestones/M2.md)；M3空间工作流见[ADR 0005](docs/decisions/0005-m3-spatial.md)和[M3记录](docs/milestones/M3.md)；M4风险计算/快照见[ADR 0006](docs/decisions/0006-m4-risks.md)和[M4记录](docs/milestones/M4.md)，工单动作留M5。
 
 ## 1. 课程要求与项目交付映射
 
@@ -156,7 +157,7 @@ M0精确版本、镜像锁和平台哈希锁已经记录在 `validation/m0/` 与
 
 开发环境包含 `db`、`backend`、`worker`、`frontend` 四个进程或服务：db在Docker中，后端与worker共用Windows项目venv、分别启动，前端用Windows npm启动Vite。后端连接本机数据库端口，前端只访问后端API。M0验证库为127.0.0.1:55432；M1配置明确区分开发、测试及演示数据库和凭据，不能混用测试与演示数据。
 
-交付时可由Web服务提供前端静态文件并反向代理 `/api`，Compose统一部署属于交付配置，不要求日常开发把前后端也容器化。当前数据库容器已停止，镜像/卷保留；实际启停入口见README。
+交付时可由Web服务提供前端静态文件并反向代理 `/api`，Compose统一部署属于交付配置，不要求日常开发把前后端也容器化。数据库镜像/卷保留；实际启停入口见README。
 
 后台作业状态保存在数据库。worker 重启后应识别未完成作业。不要只用进程内变量表示导入进度，也不要把不可丢失的长任务仅放入 HTTP 请求的后台回调。
 
@@ -1611,6 +1612,8 @@ python benchmarks/run_benchmarks.py --config <benchmark_config>
 
 ### 19.6 M4 风险规则、运行批次和画像
 
+**状态：本机验收完成。** 95个已确认路口在2025周期生成95条画像，输入revision98；121项独立实库回归、迁移回退重升、前端及桌面/窄屏检查通过。范围、快照及验证见[M4记录](docs/milestones/M4.md)和[ADR 0006](docs/decisions/0006-m4-risks.md)。
+
 **工作内容**
 
 初始化原报告规则，实现后台批量计算、统一 SQL 视图、覆盖摘要、快照标识、过期提醒和历史结果查询。
@@ -1843,7 +1846,9 @@ M2完成104项完整实库回归、读取一致性/上传前鉴权补测和前�
 |---|---|
 | M1（完成） | 字段契约、23表迁移、认证/角色/失败路径通过。复用M0固定版本；运行时补丁升级另行重锁和回归，不声称补丁安全更新完成 |
 | M2（完成） | 首批、全年正式发布、质量/容量核验与网页重复导入通过；3起死亡计数未知、2,842起缺坐标等质量限制保留，见M2记录 |
-| M3—M5 | 交叉口归属、风险快照与规则边界、工单权限及并发/幂等；现有环境smoke不代替业务验收 |
+| M3（完成） | 95个路口道路身份已核对，另1拒绝、4待定；复杂路口/历史路网限制见M3记录 |
+| M4（完成） | 后台作业、覆盖、统一评分视图、快照和历史页面；121项独立实库回归及浏览器验证通过，首批覆盖0.41% |
+| M5 | 工单权限、状态、并发/幂等及完整模拟业务流程 |
 | M7—M8 | 性能、备份新库恢复、浏览器全流程与干净环境交付 |
 
 原生Docker Registry端点EOF仍存在；本机已通过官方替代端点、TLS及SHA校验取得镜像和离线归档。保留错误，不把它扩大为“数据库不可用”，也不声称所有网络入口已经修复。

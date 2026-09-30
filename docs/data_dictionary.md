@@ -1,6 +1,6 @@
-# M1—M2物理数据字典
+# M1—M4物理数据字典
 
-版本：M2 / 0004_import_role_guard，2026-09-29。保持M1的23表，0003新增发布请求和诊断去重，0004强化状态授权；DDL冻结在各版本迁移SQL中。字段映射见[field_mapping](field_mapping.md)，关系见[关系模型](diagrams/relational.md)。
+版本：M4 / 0006_risk_worker，2026-09-30。保持M1的23表，0003新增发布请求和诊断去重，0004强化状态授权，0005强化交叉口工作流及空间索引，0006落实风险作业授权/触发器，无新增列；DDL冻结在各版本迁移SQL中。字段映射见[field_mapping](field_mapping.md)，关系见[关系模型](diagrams/relational.md)，运行快照见[ADR 0006](decisions/0006-m4-risks.md)。
 
 内部主键BIGINT Identity；官方collision/person/vehicle源键不自动生成。所有外键ON DELETE RESTRICT；NULL表示缺失，不能补0。API中的BIGINT标识使用字符串。JSONB保存输入、证据、审计及快照，关联键保持独立列。
 ## borough：行政区字典

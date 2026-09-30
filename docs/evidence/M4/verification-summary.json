@@ -1,0 +1,58 @@
+{
+  "scope": "M4本机验收；M5未推进",
+  "pytest": {
+    "passed": 121,
+    "skipped": 0,
+    "warnings": 1,
+    "exit_code": 0,
+    "seconds": 279.19,
+    "m4_collected_cases": 11
+  },
+  "migration": {
+    "sequence": [
+      "0006_risk_worker",
+      "0005_intersection_workflow",
+      "0006_risk_worker"
+    ],
+    "alembic_check_before_and_after": "passed",
+    "exit_code": 0
+  },
+  "frontend": {
+    "independent_check_exit": 0,
+    "independent_build_exit": 0,
+    "final_css_check_exit": 0,
+    "final_css_build_exit": 0,
+    "modules": 35
+  },
+  "browser": {
+    "passed_checks": 22,
+    "exit_code": 0,
+    "unexpected_errors": {
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "otherResourceErrors": 0,
+      "api_http": 0,
+      "api_network": 0
+    }
+  },
+  "diff_check": {
+    "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --check",
+    "exit_code": 0
+  },
+  "fact_revision_unchanged": true,
+  "git": {
+    "head": "44bf96d",
+    "committed_this_task": false,
+    "pushed": false
+  },
+  "evidence_sha256": {
+    "browser-readonly.json": "3add7777230737c476760f26e90aaf4de6242015b22f8c94cfd509ec7cd1cace",
+    "frontend-build.log": "4147fdc791966070ba7b28bcf0975ffee7dc4143c9d55ddbf651d9650e8dc803",
+    "frontend-check.log": "7b56925d477edd2054f448ba0a85df0d67dc7baffdb10ed64db1b49a3571782a",
+    "local-acceptance.json": "0f3e1048d673e2032ff2b4c66bc3f9ce19d3bcb6b99af64a7cbbb71f7d024004",
+    "migration-lifecycle.log": "0f783f646db549f869082640d475342cc02be8296ba7c33a067e5bf5b5c3fd05",
+    "pytest-full.log": "eb28066b449e926ce7be38afef5593cfd037d91e02fd1f2f6ca2c00813d6f1a2",
+    "risk-desktop.png": "84bcf0b1e4ab38feb9f39b6d5becc3a8606fb904414e9f1fcfdf526c2a5d27d3",
+    "risk-mobile.png": "d9b94fbfeca8dc198a35ac66b4a5f35a446d0989a653ba41f4596fd876f1e794"
+  }
+}

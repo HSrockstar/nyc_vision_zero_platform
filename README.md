@@ -1,6 +1,6 @@
 # 面向 Vision Zero 的纽约交通碰撞风险识别与高危交叉口治理管理系统
 
-个人数据库课程设计。M0—M2已完成，M3地图、候选交叉口和人工归属工作流已落地并通过实库自动化验收。2025全年数据发布与网页重复导入验收通过；23表模型、角色分离、认证、三源CSV清洗/原子发布和事故查询已有实库证据。实施依据为[PROJECT_PLAN](PROJECT_PLAN.md)，M3实现与待人工核查边界见[M3记录](docs/milestones/M3.md)，历史见[M2记录](docs/milestones/M2.md)和[M1模型记录](docs/milestones/M1-model.md)。
+个人数据库课程设计。M0—M3已完成；首批95个路口已核对道路身份，M4风险计算、快照和页面已实现，2025年度95条真实画像已生成。2025全年数据发布与网页重复导入验收通过；23表模型、角色分离、认证、三源CSV清洗/原子发布和事故查询已有实库证据。实施依据为[PROJECT_PLAN](PROJECT_PLAN.md)，本轮见[M4记录](docs/milestones/M4.md)，道路身份及剩余候选边界见[M3记录](docs/milestones/M3.md)，历史见[M2记录](docs/milestones/M2.md)和[M1模型记录](docs/milestones/M1-model.md)。
 
 ## Windows启动
 
@@ -26,7 +26,7 @@ bootstrap生成本机维护凭据，ProvisionRoles生成独立迁移/app/worker�
 & .\scripts\dev.ps1 -Action Backend
 # 终端2
 & .\scripts\dev.ps1 -Action Frontend
-# 终端3：持续领取上传校验和已授权发布作业
+# 终端3：持续领取导入和风险计算作业
 & .\scripts\dev.ps1 -Action Worker
 ```
 
@@ -38,7 +38,7 @@ ADMIN登录后可上传事故、人员、车辆三个CSV，填写左闭右开的
 
 官方CSV下载与受控CLI操作见[M2执行与恢复](docs/milestones/M2.md)。上传总CSV上限256MiB，不接收服务器路径或远程URL；当前仅支持单后端/worker开发方式。
 
-M3在页面下方增加地图、附近事故查询、交叉口档案与分页复核。ADMIN/MANAGER可按行政区每批最多100个地点生成候选，并按版本填写依据确认/拒绝，或对地点人工改派。VIEWER可查看地图和归属状态，不能提交复核。2025年度库目前仅生成MANHATTAN首批100个系统候选，**尚未确认任何真实候选**；需人工核对实际道路身份后再决定归属。需要批量推进时，可在`backend`目录使用受控命令：
+M3在页面下方增加地图、附近事故查询、交叉口档案与分页复核。ADMIN/MANAGER可按行政区每批最多100个地点生成候选，并按版本填写依据确认/拒绝，或对地点人工改派。VIEWER可查看地图和归属状态，不能提交复核。2025年度库已核对MANHATTAN首批100个候选，**95个已确认、1个已拒绝、4个待定**，覆盖349起事故。复杂路口道路身份、历史路网版本及剩余待定边界见M3记录。需要批量推进时，可在`backend`目录使用受控命令：
 
 ```powershell
 ..\.venv\Scripts\python.exe -X utf8 -m app.cli generate-intersection-candidates --borough-id 3 --username admin --max-batches 1 --radius-m 50
@@ -46,6 +46,19 @@ M3在页面下方增加地图、附近事故查询、交叉口档案与分页复
 
 候选生成有审计但不将候选计为正式事故归属；实际确认、拒绝或改派会增加分析数据revision。地图底图依赖网络，业务点查询可独立使用。
 上面的命令从该行政区开头复查一批；要继续后续批次，使用上次输出的`last_location_id`作为`--after-location-id`，并保持同一半径。每批结果可重复运行，人工结果不会被覆盖。
+
+## M4风险画像
+
+登录后进入“风险画像与历史批次”，选择周期、规则和成功批次；ADMIN/MANAGER可排队计算，VIEWER只读。页面展示覆盖、分数、等级、分项、分页及过期提醒。2025全年run 1已完成：95条画像，高14、中44、低37；仅349/85,546起事故纳入，覆盖0.41%，不能解释为全市排名。缺失评分伤亡字段时显示UNKNOWN和已知值合计，无画像不等于低风险。
+
+从`backend`目录可用受控CLI计算其他周期：
+
+```powershell
+..\.venv\Scripts\python.exe -X utf8 -m app.cli request-risk-run --username admin --start 2025-01-01 --end 2026-01-01
+..\.venv\Scripts\python.exe -X utf8 -m app.worker --kind risks --once
+```
+
+没有指定request-id时每次建立新的计算批次；重试同一请求需保留UUID。默认worker同时处理导入/风险。结果与映射/评分输入快照绑定，文件保存在被忽略的`.m4-work/snapshots`，数据库和文件应一起备份；成功批次只读。规则/公式与计算方法见[ADR 0006](docs/decisions/0006-m4-risks.md)。
 
 ## 验证与设计入口
 
@@ -65,6 +78,7 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 |---|---|
 | [M2导入与查询记录](docs/milestones/M2.md) / [ADR 0004](docs/decisions/0004-m2-import-query.md) | 官方输入、批次发布、质量统计和独立验收 |
 | [M3空间归属记录](docs/milestones/M3.md) / [ADR 0005](docs/decisions/0005-m3-spatial.md) | 地图、米制查询、候选、人工确认与归属 |
+| [M4风险记录](docs/milestones/M4.md) / [ADR 0006](docs/decisions/0006-m4-risks.md) | 风险作业、统一视图、覆盖与历史快照 |
 | [M1模型执行记录](docs/milestones/M1-model.md) | 本轮命令、失败修正、独立审计/测试与证据 |
 | [数据字典](docs/data_dictionary.md) | 23表逐列类型、空值、主外键、CHECK/UNIQUE/索引 |
 | [概念ER](docs/diagrams/conceptual.md) / [关系模型](docs/diagrams/relational.md) | 业务对象及物理联系 |
@@ -76,6 +90,6 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 
 ## 当前边界
 
-开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆，revision=2。完整年度三源CSV共547,631行；首批重复发布与网页重复导入均通过，后者3,232行全部跳过、事实与revision不变，见[M2记录](docs/milestones/M2.md)。M3迁移已前向升级到0005，并生成100个待人工核查候选及100条待确认地点归属；正式归属0，因此revision保持2。风险结果和工单为空，测试账户和合成夹具只存在独立验证库。worker执行导入校验/发布，应用数据库账号不直接写事故事实；风险与工单在M4—M5推进。
+开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆。完整年度三源CSV共547,631行；M2重复发布与网页重复导入均无事实增量。M3道路复核后revision=98、95个已确认、1个已拒绝、4个待定，95条正式归属覆盖349起事故。M4前向升级0006并生成run 1的95条画像，计算不改变事实或revision。工单仍为空，测试账户和合成夹具只存在独立验证库。worker执行导入/风险作业，app账号不直接写事故事实或风险画像；工单动作留M5。
 
-本地Git由用户管理，main当前HEAD为已提交M2的`7134be2`；本轮M3修改尚未提交或推送。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、`.m3-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行。M3为本机开发验收，远程部署、全系统性能及备份恢复留后续阶段。既有Starlette TestClient/httpx弃用提示保留。
+本地Git由用户管理，main当前HEAD为已提交M3的`44bf96d`；本轮M4修改未提交或推送，原M3道路复核记录修改保留。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、`.m3-work`、`.m4-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行。本项目为本机开发验收，远程部署、全系统性能及备份恢复留后续阶段。既有Starlette TestClient/httpx弃用提示保留。

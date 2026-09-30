@@ -1,0 +1,59 @@
+{
+  "review_date": "2026-09-30",
+  "scope": "开发库中首批 100 个 Manhattan 推导候选",
+  "reference": {
+    "publisher": "NYC Department of City Planning",
+    "dataset": "LION",
+    "version": "26b",
+    "download_url": "https://data.cityofnewyork.us/download/2v4z-66xt/application/zip",
+    "sha256": "14a2514303f0c53419cdc370bfd851db41dec038450b88b19d0897a35dad0660",
+    "layers": ["node", "node_stname", "lion"],
+    "coordinate_reference": "EPSG:2263; US survey foot converted to meters"
+  },
+  "method": {
+    "name_check": "候选两街与同一 LION NodeID 的 node_stname 对照；仅作明确缩写转换",
+    "direct_confirmation": "77 条：最近同名节点距候选中心小于 1 米，且两街均有 FeatureTyp=0、RW_TYPE=1、SegmentTyp=U、NodeLevel=M 的同节点端点",
+    "roadbed_confirmation": "14 条：分隔道路的 generic 中心附近有两街同节点实体路面端点，FeatureTyp=0、RW_TYPE=1、SegmentTyp=R/U、NodeLevel=M，实体节点距中心 5.178 至 33.242 米",
+    "complex_confirmation": "4 条：Park Ave/E 34 St、12 Ave/W 26 St、12 Ave/W 44 St、1 Ave/E 42 St 由同节点实体路面端点和独立纽约市交通文件交叉核对；只确认道路身份，保留层级/转向差异",
+    "virtual_node_caveat": "VIntersect 未标记 VirtualIntersection 是必要的排除检查，不单独证明实体连通",
+    "review_scope": "确认道路身份，不证明事故发生的车道、转向或每一种交通方式均可通行"
+  },
+  "outcome": {
+    "confirmed_intersections": 95,
+    "rejected_intersections": 1,
+    "pending_intersections": 4,
+    "auto_matched_locations": 95,
+    "rejected_location_assignments": 1,
+    "formally_attributed_collisions": 349,
+    "dataset_revision": 98,
+    "confirmation_audits": 95,
+    "rejection_audits": 1,
+    "ambiguous_assignment_changes": 0
+  },
+  "rejected": [
+    {
+      "intersection_id": 48,
+      "streets": "ASSER LEVY PL / E 23 ST",
+      "reason": "2025 年事故记录使用旧街名；LION 26b 在 100 米内无两街共同节点，纽约市政府 2022 年说明原 Asser Levy Place 街道空间已成为游乐场。拒绝交叉口归属，不否定事故本身。",
+      "source": "https://www.nyc.gov/mayors-office/news/2022/07/mayor-adams-first-section-east-side-coastal-resiliency-project-completed-asser-levy"
+    }
+  ],
+  "pending": [
+    {"intersection_id": 36, "reason": "FDR Drive 主线、服务路和入口路段共存，需区分事故所指道路"},
+    {"intersection_id": 62, "reason": "Attorney St 在该节点是 FeatureTyp=W、RW_TYPE=6 的步道，不按机动车交叉口直接确认"},
+    {"intersection_id": 80, "reason": "Vanderbilt Ave 在该节点是 FeatureTyp=W，需确认行人空间与事故道路语义"},
+    {"intersection_id": 89, "reason": "FDR Drive 主线和出口路段共存，需区分事故所指道路"}
+  ],
+  "confirmed_with_location_caveat": [
+    {"intersection_id": 19, "reason": "Park Ave/E 34 St 的道路对由官方交通文件确认；邻近隧道与地面路面并存", "source": "https://www.nyc.gov/assets/queenscb12/downloads/pdf/2026/NYSDOT-Adv-6826-614262.pdf"},
+    {"intersection_id": 31, "reason": "12 Ave/W 26 St 的道路对由官方交通研究确认；12 Ave 路段分类为 RW_TYPE=2", "source": "https://www.nyc.gov/assets/planning/download/pdf/applicants/env-review/starrett-lehigh/04-feis.pdf"},
+    {"intersection_id": 79, "reason": "12 Ave/W 44 St 有同层实体路面节点；12 Ave 路段分类为 RW_TYPE=2", "source": "https://www.nyc.gov/html/dot/html/ferrybus/charterbus.shtml"},
+    {"intersection_id": 97, "reason": "1 Ave/E 42 St 的道路对由官方交通研究确认；候选中心最近 LION 节点包含 FDR 出口和轨道要素，地面实体路面节点在约 14 米处，本次未确认精确车道或垂直层归属", "source": "https://www.nyc.gov/assets/planning/download/pdf/applicants/env-review/gem/appendf_feis.pdf"}
+  ],
+  "unchanged_fact_counts": {
+    "collision": 85546,
+    "person": 292070,
+    "vehicle": 170015,
+    "location": 53667
+  }
+}

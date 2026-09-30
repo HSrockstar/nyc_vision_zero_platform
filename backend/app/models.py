@@ -188,6 +188,7 @@ class Intersection(Base):
     version = version()
     __table_args__ = (
         Index("ix_intersection_center", "center_geom", postgresql_using="gist"),
+        Index("ix_intersection_geography", text("(center_geom::geography)"), postgresql_using="gist"),
         enum_check("status", "CANDIDATE CONFIRMED REJECTED", "ck_intersection_status"),
         enum_check("source_method", "DERIVED MANUAL EXTERNAL", "ck_intersection_source"),
         CheckConstraint("version > 0 AND btrim(street_a) <> '' AND btrim(street_b) <> ''", name="ck_intersection_fields"),

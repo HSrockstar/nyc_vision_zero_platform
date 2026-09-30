@@ -207,6 +207,8 @@
 - CHECK `ck_intersection_status`：`status IN ('CANDIDATE', 'CONFIRMED', 'REJECTED')`。
 - CHECK `ck_intersection_supersedes`：`supersedes_id IS NULL OR supersedes_id <> intersection_id`。
 - 索引 `ix_intersection_center`（gist）：`intersection.center_geom`。
+- M3索引 `ix_intersection_geography`（gist）：`intersection.center_geom::geography`，支持米制半径查询。
+- M3触发器 `trg_intersection_state`：应用账号仅可新建系统推导候选；候选确认/拒绝必须单步增加版本。
 
 ## risk_rule：版本规则
 
@@ -257,6 +259,7 @@
 - CHECK `ck_assignment_target`：`match_status NOT IN ('AUTO_MATCHED', 'MANUAL_CONFIRMED') OR intersection_id IS NOT NULL`。
 - CHECK `ck_assignment_version`：`version > 0`。
 - 索引 `ix_assignment_intersection`（btree）：`location_assignment.intersection_id, location_assignment.location_id`。
+- M3触发器 `trg_assignment_guard`：正式归属目标须启用且已确认；自动生成不得覆盖人工结果；应用账号更新必须单步增加版本。`evidence`保存算法版本、半径、锚点、候选ID或人工理由。
 
 ## raw_record：原始行
 

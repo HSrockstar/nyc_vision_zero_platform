@@ -1,4 +1,4 @@
-# M1认证与M2数据API
+# M1认证、M2数据与M3空间API
 
 前缀 `/api/v1`，JSON请求。成功返回 `{data,meta:{request_id}}`，错误返回 `{error:{code,message},meta:{request_id}}`；`X-Request-ID`支持UUID并在响应头返回。ID全部字符串；版本、数量和expires_in为数字。认证数据响应 `Cache-Control: no-store`。
 
@@ -16,7 +16,7 @@
 
 账户PATCH显式null、空修改、额外字段和非法ID返回422。停用或换角色导致认证版本增加；只有显示名变更不强制登出，但总version增加。最后管理员返回USER_LAST_ADMIN（409）；在办执行人返回USER_HAS_ACTIVE_TASKS（409）；VIEWER/MANAGER访问管理接口403。数据库约束冲突固定DATA_CONFLICT，不暴露驱动详情。
 
-M2已实现以下数据接口。地图、路口、风险计算及工单动作仍按M3—M5推进。
+M2已实现以下数据接口。M3地图和路口接口见下表；风险计算及工单动作仍按M4—M5推进。
 
 | 方法 / 路径 | 输入与行为 | 权限 |
 |---|---|---|
@@ -37,3 +37,18 @@ M2已实现以下数据接口。地图、路口、风险计算及工单动作仍
 数据读取响应另有meta.data_revision。GET/HEAD使用只读一致事务快照，列表、总数和修订号保持一致。游标绑定筛选条件、分页大小与revision；条件或修订改变返回409 CURSOR_INVALID。原因和车型筛选用EXISTS，避免人员/车辆/原因连接放大事故总数；人员明细不替代Crashes伤亡汇总。
 
 同一导入request_id绑定操作者、日期范围、版本、实际三文件SHA-256及表头模式；同内容重放返回既有批次，内容不同409。发布/重试请求号绑定操作、操作者和目标并保留历史。上传不接受服务器路径或URL，总CSV256MiB；multipart解析前先校验当前ADMIN身份，再限制实际请求字节（另留1MiB表单开销）和两并发；请求体读取空闲30秒、总300秒。每库原始副本4GiB配额，单CSV最多300万行/字段1MiB。未认证/无权限401/403，大小/并发超限413/429，读取超时408，CSV契约错误422；输入错误不回显源值或路径。
+
+## M3空间与人工归属
+
+| 方法 / 路径 | 输入与结果 | 权限 |
+|---|---|---|
+| GET /map/collisions | `start,end`左闭右开；`west,south,east,north`必填且递增；`limit`默认500、最大2000。返回地图点、`returned/truncated`和整个日期期的`total/geocoded/missing_coordinates/confirmed_assigned/unmatched` | 登录用户 |
+| GET /map/nearby | `longitude,latitude,radius_m,limit`；半径1—1000米、返回最多200条并标记截断；geography米制距离 | 登录用户 |
+| GET /intersections | `status`可选，范围可选但需四边界齐全；`page/page_size`，最大200条；候选和已确认对象分状态 | 登录用户 |
+| GET /intersections/{id} | 状态、中心、最多20条关联地点及关联总数；复核说明只向管理角色返回 | 登录用户 |
+| GET /location-assignments/{location_id} | 地点街道、坐标、当前归属/状态/版本；完整证据和复核时间只向管理角色返回 | 登录用户 |
+| POST /intersection-candidates/generate | `borough_id`=1—5，`after_location_id`默认0，`max_locations`最多100，`radius_m`为20—80米；返回批次统计、下一游标及算法版本 | ADMIN、MANAGER |
+| POST /intersections/{id}/confirm、/reject | `version,note`，仅候选可处理；版本或状态冲突409；同步处理受影响生成归属并增加数据修订 | ADMIN、MANAGER |
+| PATCH /location-assignments/{location_id} | `version,status,intersection_id,reason`；状态为`MANUAL_CONFIRMED/REJECTED/UNMATCHED`，确认时目标必须是启用的已确认交叉口；版本冲突409 | ADMIN、MANAGER |
+
+路口与地点ID以十进制字符串返回，输入不能通过JavaScript浮点数舍入。每个地点至多一个当前归属；事故通过地点继承归属。候选不计入已确认事故数。人工改派必须记录原因与审计，自动重跑不会覆盖人工结果。M3算法及部署范围见[ADR 0005](decisions/0005-m3-spatial.md)。

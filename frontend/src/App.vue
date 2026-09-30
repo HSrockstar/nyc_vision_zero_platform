@@ -19,9 +19,9 @@ onMounted(refresh)
 
 <template>
   <main>
-    <p class="eyebrow">VISION ZERO · M2</p>
+    <p class="eyebrow">VISION ZERO · M3</p>
     <h1>纽约交通碰撞风险识别<br />与高危交叉口治理管理系统</h1>
-    <p class="intro">登录后可查询事故及其人员、车辆明细；管理员可导入数据、查看质量问题并确认发布。</p>
+    <p class="intro">登录后可查询事故、地图观察点与交叉口；治理人员可复核候选和地点归属，管理员可管理数据导入。</p>
     <section aria-labelledby="health-heading">
       <div class="section-title">
         <h2 id="health-heading">环境状态</h2>

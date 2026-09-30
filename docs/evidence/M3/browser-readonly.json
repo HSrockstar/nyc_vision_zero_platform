@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-30",
+  "mode": "local Chrome / Playwright, read-only M3 acceptance",
+  "desktop": {
+    "viewport": "1440x900",
+    "map_canvas": "1094x480",
+    "map_visible": true,
+    "horizontal_overflow": false,
+    "period_total": 85546,
+    "geocoded": 82704,
+    "missing_coordinates": 2842,
+    "point_limit_truncated": true,
+    "nearby_status": 200
+  },
+  "narrow": {
+    "viewport": "390x844",
+    "map_canvas": "320x480",
+    "map_visible": true,
+    "horizontal_overflow": false,
+    "map_refresh_status": 200,
+    "period_total": 85546,
+    "geocoded": 82704,
+    "missing_coordinates": 2842,
+    "point_limit_truncated": true,
+    "nearby_status": 200
+  },
+  "admin_workflow_readonly": {
+    "login_status": 200,
+    "candidate_total": 100,
+    "page_size": 50,
+    "page_1_and_2_status": 200,
+    "candidate_detail_status": 200,
+    "generation_controls_visible": true,
+    "review_controls_visible": true,
+    "write_actions_submitted": 0
+  },
+  "errors": {
+    "business_api_failures": 0,
+    "non_tile_request_failures": 0,
+    "page_exceptions": 0,
+    "non_tile_console_errors": 0
+  },
+  "osm_tile_requests_aborted": 30,
+  "note": "自动化不抓取OSM瓦片，相关15条拦截控制台错误不属于业务失败；未保存或公开真实事故行、街道记录、账号或令牌。"
+}

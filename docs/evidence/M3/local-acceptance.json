@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-30",
+  "environment": "本机专用 vision_zero_dev，PG17/PostGIS，Windows",
+  "migration": {
+    "before": "0004_import_role_guard",
+    "after": "0005_intersection_workflow",
+    "random_database_upgrade_downgrade_upgrade": "PASS",
+    "alembic_check": "No new upgrade operations detected"
+  },
+  "pre_m3_fact_counts": {
+    "collision": 85546,
+    "person": 292070,
+    "vehicle": 170015,
+    "location": 53667,
+    "revision": 2
+  },
+  "post_migration_fact_counts_unchanged": true,
+  "candidate_generation": {
+    "borough": "MANHATTAN",
+    "batch_count": 1,
+    "processed_locations": 100,
+    "created_candidates": 100,
+    "candidate_assignments": 100,
+    "formal_assignments": 0,
+    "generation_audits": 1,
+    "revision_after": 2,
+    "has_more": true
+  },
+  "representative_review": {
+    "sample_size": 3,
+    "structural_checks_passed": 3,
+    "street_pair_borough_anchor_radius_evidence_checked": true,
+    "road_identity_human_verified": false,
+    "real_candidates_confirmed": 0
+  },
+  "spatial_explain": {
+    "query": "location.geom::geography ST_DWithin 50 meters",
+    "node": "Index Scan",
+    "index": "ix_location_geography"
+  },
+  "runtime_grants": {
+    "app_intersection_insert": true,
+    "app_assignment_insert": true,
+    "app_revision_update": true,
+    "app_collision_insert": false,
+    "worker_intersection_insert": false,
+    "worker_assignment_insert": false,
+    "m3_guard_triggers": 3
+  },
+  "automated_checks": {
+    "backend_real_postgres": "110 passed, 1 existing warning in 166.49s",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "browser": "PASS: desktop 1440x900 and narrow 390x844 read-only"
+  }
+}

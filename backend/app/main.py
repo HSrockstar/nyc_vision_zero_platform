@@ -8,11 +8,13 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from app.health import readiness
 from app.auth import router
 from app.data_api import router as data_router
+from app.spatial_api import router as spatial_router
 from app.upload_limit import UploadLimit
 
 app = FastAPI(title="Vision Zero 数据导入与查询", version="0.2.0")
 app.include_router(router)
 app.include_router(data_router)
+app.include_router(spatial_router)
 app.add_middleware(UploadLimit)
 
 

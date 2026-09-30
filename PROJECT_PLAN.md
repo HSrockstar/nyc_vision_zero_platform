@@ -4,9 +4,9 @@
 
 - 文档版本：1.5
 - 编制日期：2026-09-28
-- 更新日期：2026-09-30（M2真实年度发布与网页验收完成）
+- 更新日期：2026-09-30（M3地图、候选与人工归属工作流实施）
 - 用途：本学期数据库课程设计的开发依据、任务拆分依据和验收清单。
-- 当前状态：M0、完整M1、M2已完成；三源导入、清洗发布、查询和最小页面通过实测，2025全年数据发布、重复输入不增量与浏览器验收完成。下一阶段为M3地图与交叉口档案，M3—M8未开始。完成范围见§0.4。
+- 当前状态：M0、完整M1、M2已完成；M3地图、候选与人工归属工作流已实现，实库全量回归与首批100个真实候选结构核查通过，真实道路身份尚待人工确认。下一阶段为M4风险规则与画像。完成范围见§0.4及[M3记录](docs/milestones/M3.md)。
 - 实现形式：个人完成的 B/S 数据库应用系统。开发辅助工具的使用方式以教师要求为准，最终代码、设计和答辩内容应由项目作者理解和审核。
 - 阅读入口：本计划、[课程要求摘要S1](docs/references/course_requirements.md)、[前期资料保留摘要S2](docs/references/prior_work_summary.md)。四份原资料已按用户要求归并为Markdown，删除前均有校验压缩备份，后续不再把原文件缺席视为资料缺失。
 
@@ -66,10 +66,10 @@
 | 数据探测 | M0探测保留；M2已下载并发布首批500起及2025年度三源CSV（总547,631行），正式事故85,546起；重复发布、网页重复导入、年度质量与容量核验通过。[M2记录](docs/milestones/M2.md) |
 | 数据库 | Docker 内 PG17.11/PostGIS3.6.4，官方镜像摘要已锁；Windows/Linux各11项真实SQL及持久卷复启通过。[补验记录](docs/milestones/M0-database.md) |
 | 依赖 | Python3.12.4、Node24.14.1/npm11.11.0；Windows40包/Linux38包分别锁定，前端严格安装、类型检查和构建通过。[环境说明](docs/environment.md) |
-| 工程与Git | backend/frontend、23表迁移、认证及M2导入/查询完成；当前迁移0004_import_role_guard。用户已提交完整M1，main基线8cf81c9；M2修改未提交或推送。[M2记录](docs/milestones/M2.md) |
+| 工程与Git | backend/frontend、23表、认证、M2导入/查询及M3空间归属工作流已实现；开发库迁移0005_intersection_workflow。main HEAD为已提交M2的7134be2；M3修改未提交或推送。[M3记录](docs/milestones/M3.md) |
 | 当前开发方式 | 数据库Docker，后端/前端/导入worker在Windows分别前台启动。开发库127.0.0.1:55433独立于M0库55432。[启动入口](README.md) |
 
-历史基础入口保留于[ADR 0002](docs/decisions/0002-minimal-foundation.md)。完整M1按用户授权落实数据库模型优先顺序：街道映射、UNKNOWN调查草稿、在办执行人账户变更和request_hash契约见[ADR 0003](docs/decisions/0003-m1-model-auth.md)；23表迁移、数据库权限与认证有独立实库复验。字段完整口径见[数据字典](docs/data_dictionary.md)，规范化及受控冗余见[3NF说明](docs/normalization.md)，当前范围见[任务清单](docs/milestones/tasks.md)。M2导入/查询实现及验收见[ADR 0004](docs/decisions/0004-m2-import-query.md)和[M2记录](docs/milestones/M2.md)；路口归属、风险计算与工单动作分别在M3—M5。
+历史基础入口保留于[ADR 0002](docs/decisions/0002-minimal-foundation.md)。完整M1按用户授权落实数据库模型优先顺序：街道映射、UNKNOWN调查草稿、在办执行人账户变更和request_hash契约见[ADR 0003](docs/decisions/0003-m1-model-auth.md)；23表迁移、数据库权限与认证有独立实库复验。字段完整口径见[数据字典](docs/data_dictionary.md)，规范化及受控冗余见[3NF说明](docs/normalization.md)，当前范围见[任务清单](docs/milestones/tasks.md)。M2导入/查询见[ADR 0004](docs/decisions/0004-m2-import-query.md)和[M2记录](docs/milestones/M2.md)；M3空间工作流见[ADR 0005](docs/decisions/0005-m3-spatial.md)和[M3记录](docs/milestones/M3.md)；风险计算与工单动作分别在M4—M5。
 
 ## 1. 课程要求与项目交付映射
 

@@ -21,6 +21,7 @@ from app.models import AppUser, AuditLog
 from app.importing.storage import save_files
 from app.importing.service import batch_data, create_batch, request_action
 from app.models import ImportBatch
+from app.spatial import generate
 
 
 def init_admin(username, display_name, *, generate=False):
@@ -74,6 +75,12 @@ def main():
     retry.add_argument("batch_id", type=int)
     retry.add_argument("--username", default="admin")
     retry.add_argument("--request-id", type=UUID, default=None)
+    candidates = commands.add_parser("generate-intersection-candidates")
+    candidates.add_argument("--borough-id", type=int, choices=range(1, 6), required=True)
+    candidates.add_argument("--username", default="admin")
+    candidates.add_argument("--after-location-id", type=int, default=0)
+    candidates.add_argument("--max-batches", type=int, default=1)
+    candidates.add_argument("--radius-m", type=int, default=50)
     args = parser.parse_args()
     try:
         if args.command == "provision-roles":
@@ -81,6 +88,31 @@ def main():
             print("本机迁移、应用、worker角色已配置；随机凭据仅保存到本地忽略文件。")
         elif args.command == "init-admin":
             init_admin(args.username, args.display_name, generate=args.generate)
+        elif args.command == "generate-intersection-candidates":
+            if not 0 <= args.after_location_id <= 9223372036854775807 or not 1 <= args.max_batches <= 100 or not 20 <= args.radius_m <= 80:
+                raise ValueError("候选生成范围无效")
+            engine = database_engine(Settings())
+            try:
+                cursor = args.after_location_id
+                results = []
+                for _ in range(args.max_batches):
+                    with Session(engine) as session, session.begin():
+                        session.execute(text("SELECT pg_advisory_xact_lock(:key)"), {"key": ACCOUNT_LOCK})
+                        actor = session.scalar(select(AppUser).where(AppUser.username == args.username,
+                            AppUser.is_active, AppUser.role_id.in_((1, 2))))
+                        if actor is None: raise ValueError("本机维护需启用的管理人员")
+                        result = generate(session, actor.user_id, uuid4(), borough_id=args.borough_id,
+                                          after_location_id=cursor, max_locations=100, radius_m=args.radius_m)
+                    results.append(result)
+                    cursor = int(result["last_location_id"])
+                    if not result["has_more"]: break
+                print(json.dumps({"borough_id": args.borough_id, "batches": len(results),
+                    "processed": sum(item["processed"] for item in results),
+                    "created_candidates": sum(item["created_candidates"] for item in results),
+                    "auto_matched": sum(item["auto_matched"] for item in results),
+                    "last_location_id": str(cursor), "has_more": results[-1]["has_more"]}, ensure_ascii=False))
+            finally:
+                engine.dispose()
         else:
             engine = database_engine(Settings())
             try:

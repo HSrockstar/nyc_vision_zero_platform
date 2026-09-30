@@ -2,6 +2,7 @@
 .m0-work/
 .m1-work/
 .m2-work/
+.m3-work/
 .pytest_cache/
 __pycache__/
 *.pyc

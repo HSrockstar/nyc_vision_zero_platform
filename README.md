@@ -1,6 +1,6 @@
 # 面向 Vision Zero 的纽约交通碰撞风险识别与高危交叉口治理管理系统
 
-个人数据库课程设计。M0、M1、M2已完成，2025全年数据发布与网页重复导入验收通过。23表模型、角色分离、认证、三源CSV清洗/原子发布、事故筛选和明细页面已有实库证据。实施依据为[PROJECT_PLAN 1.5](PROJECT_PLAN.md)，当前验收见[M2记录](docs/milestones/M2.md)，下一阶段为M3地图与交叉口档案，历史见[M1模型记录](docs/milestones/M1-model.md)。
+个人数据库课程设计。M0—M2已完成，M3地图、候选交叉口和人工归属工作流已落地并通过实库自动化验收。2025全年数据发布与网页重复导入验收通过；23表模型、角色分离、认证、三源CSV清洗/原子发布和事故查询已有实库证据。实施依据为[PROJECT_PLAN](PROJECT_PLAN.md)，M3实现与待人工核查边界见[M3记录](docs/milestones/M3.md)，历史见[M2记录](docs/milestones/M2.md)和[M1模型记录](docs/milestones/M1-model.md)。
 
 ## Windows启动
 
@@ -38,6 +38,15 @@ ADMIN登录后可上传事故、人员、车辆三个CSV，填写左闭右开的
 
 官方CSV下载与受控CLI操作见[M2执行与恢复](docs/milestones/M2.md)。上传总CSV上限256MiB，不接收服务器路径或远程URL；当前仅支持单后端/worker开发方式。
 
+M3在页面下方增加地图、附近事故查询、交叉口档案与分页复核。ADMIN/MANAGER可按行政区每批最多100个地点生成候选，并按版本填写依据确认/拒绝，或对地点人工改派。VIEWER可查看地图和归属状态，不能提交复核。2025年度库目前仅生成MANHATTAN首批100个系统候选，**尚未确认任何真实候选**；需人工核对实际道路身份后再决定归属。需要批量推进时，可在`backend`目录使用受控命令：
+
+```powershell
+..\.venv\Scripts\python.exe -X utf8 -m app.cli generate-intersection-candidates --borough-id 3 --username admin --max-batches 1 --radius-m 50
+```
+
+候选生成有审计但不将候选计为正式事故归属；实际确认、拒绝或改派会增加分析数据revision。地图底图依赖网络，业务点查询可独立使用。
+上面的命令从该行政区开头复查一批；要继续后续批次，使用上次输出的`last_location_id`作为`--after-location-id`，并保持同一半径。每批结果可重复运行，人工结果不会被覆盖。
+
 ## 验证与设计入口
 
 ```powershell
@@ -55,6 +64,7 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 | 文件 | 内容 |
 |---|---|
 | [M2导入与查询记录](docs/milestones/M2.md) / [ADR 0004](docs/decisions/0004-m2-import-query.md) | 官方输入、批次发布、质量统计和独立验收 |
+| [M3空间归属记录](docs/milestones/M3.md) / [ADR 0005](docs/decisions/0005-m3-spatial.md) | 地图、米制查询、候选、人工确认与归属 |
 | [M1模型执行记录](docs/milestones/M1-model.md) | 本轮命令、失败修正、独立审计/测试与证据 |
 | [数据字典](docs/data_dictionary.md) | 23表逐列类型、空值、主外键、CHECK/UNIQUE/索引 |
 | [概念ER](docs/diagrams/conceptual.md) / [关系模型](docs/diagrams/relational.md) | 业务对象及物理联系 |
@@ -66,6 +76,6 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 
 ## 当前边界
 
-开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆，revision=2。完整年度三源CSV共547,631行；首批重复发布与网页重复导入均通过，后者3,232行全部跳过、事实与revision不变，见[M2记录](docs/milestones/M2.md)。风险结果和工单为空，测试账户和合成夹具只存在独立验证库。worker执行导入校验/发布，应用数据库账号不直接写事故事实；下一步按M3落实地图、候选交叉口与归属，风险与工单在M4—M5推进。
+开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆，revision=2。完整年度三源CSV共547,631行；首批重复发布与网页重复导入均通过，后者3,232行全部跳过、事实与revision不变，见[M2记录](docs/milestones/M2.md)。M3迁移已前向升级到0005，并生成100个待人工核查候选及100条待确认地点归属；正式归属0，因此revision保持2。风险结果和工单为空，测试账户和合成夹具只存在独立验证库。worker执行导入校验/发布，应用数据库账号不直接写事故事实；风险与工单在M4—M5推进。
 
-本地Git由用户管理，main基线为完整M1提交`8cf81c9`；M2修改未提交或推送。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行。M2为本机开发验收，远程部署、全系统性能及备份恢复留后续阶段。既有Starlette TestClient/httpx弃用提示保留。
+本地Git由用户管理，main当前HEAD为已提交M2的`7134be2`；本轮M3修改尚未提交或推送。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、`.m3-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行。M3为本机开发验收，远程部署、全系统性能及备份恢复留后续阶段。既有Starlette TestClient/httpx弃用提示保留。

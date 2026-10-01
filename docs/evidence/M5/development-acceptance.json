@@ -1,0 +1,83 @@
+{
+  "port": 15433,
+  "database": "vision_zero_dev",
+  "migration": "0007_governance",
+  "revision": 98,
+  "migration_before": "0006_risk_worker",
+  "counts_before": {
+    "collision": 85546,
+    "person": 292070,
+    "vehicle": 170015,
+    "location": 53667,
+    "risk_profile": 95,
+    "governance_task": 0,
+    "task_history": 0
+  },
+  "counts_after": {
+    "collision": 85546,
+    "person": 292070,
+    "vehicle": 170015,
+    "location": 53667,
+    "risk_profile": 95,
+    "governance_task": 0,
+    "task_history": 0
+  },
+  "facts_revision_profiles_unchanged": true,
+  "synthetic_tasks_created_in_development": false,
+  "functions": [
+    {
+      "name": "vz_governance_change",
+      "security_definer": true,
+      "owner": "vision_zero_dev_migrator",
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "app_execute": true,
+      "worker_execute": false,
+      "public_execute": false
+    },
+    {
+      "name": "vz_governance_create",
+      "security_definer": true,
+      "owner": "vision_zero_dev_migrator",
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "app_execute": true,
+      "worker_execute": false,
+      "public_execute": false
+    }
+  ],
+  "direct_task_history_dml": {
+    "app": {
+      "governance_task": {
+        "INSERT": false,
+        "UPDATE": false,
+        "DELETE": false,
+        "TRUNCATE": false
+      },
+      "task_history": {
+        "INSERT": false,
+        "UPDATE": false,
+        "DELETE": false,
+        "TRUNCATE": false
+      }
+    },
+    "worker": {
+      "governance_task": {
+        "INSERT": false,
+        "UPDATE": false,
+        "DELETE": false,
+        "TRUNCATE": false
+      },
+      "task_history": {
+        "INSERT": false,
+        "UPDATE": false,
+        "DELETE": false,
+        "TRUNCATE": false
+      }
+    }
+  },
+  "retained_volume": "vision-zero-dev-postgis-data",
+  "exit_code": 0
+}

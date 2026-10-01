@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-30",
+  "scope": "M5 API、事务服务、0007迁移及定向实库回归断言；只读静态复核",
+  "blocking_findings_remaining": 0,
+  "resolved_finding": {
+    "trigger": "ADMIN编辑他人草稿后，创建者软删除，原ADMIN降为MANAGER并重新登录，重放旧编辑请求",
+    "before": "普通GET返回404，但旧EDIT重放返回200并泄露删除内容",
+    "after": "创建/变更响应统一经过get_task当前对象可见性检查，重放返回404且不增加版本或历史",
+    "regression": "test_replay_by_downgraded_admin_cannot_read_deleted_foreign_draft；先红exit1，最终9项定向及130项独立实库回归含该用例通过"
+  },
+  "transaction_identity_check": {
+    "authentication_before_actor_read": "非只读HTTP请求先取得76301002账户事务锁，再读取AppUser及认证版本",
+    "held_through_write_and_projection": true,
+    "account_change_uses_same_lock": true,
+    "additional_race_finding": false
+  },
+  "static_checks": [
+    "VIEWER治理读写拒绝，软删除详情/历史及重放仅创建者或当前ADMIN可见",
+    "状态/对象身份、UNKNOWN限制、执行人自审拒绝及SQL NULL分支",
+    "账户锁先于任务行锁，更新/版本/追加历史同事务，历史失败回滚",
+    "request-v1绑定主体/操作/目标/版本/内容，重放无重复写入",
+    "SECURITY DEFINER固定search_path及全限定对象，撤销PUBLIC/worker执行及运行角色直接DML/序列权限"
+  ],
+  "trust_boundary": "数据库app为受信后端运行身份，actor/hash由经JWT认证的服务传入；共享连接不映射为每个业务用户",
+  "runtime_evidence": ["pytest-full.log", "migration-lifecycle.json"],
+  "limitations": "静态复核本身不执行DB测试；真实运行依据另列的独立回归和迁移证据"
+}

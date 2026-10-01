@@ -15,11 +15,11 @@ if (-not (Test-Path -LiteralPath $envPath)) {
     $rng = [System.Security.Cryptography.RandomNumberGenerator]::Create()
     try { $rng.GetBytes($bytes) } finally { $rng.Dispose() }
     $password = [BitConverter]::ToString($bytes).Replace('-','').ToLowerInvariant()
-    $dsn = "postgresql+psycopg://postgres:${password}@127.0.0.1:55433/vision_zero_dev"
+    $dsn = "postgresql+psycopg://postgres:${password}@127.0.0.1:15433/vision_zero_dev"
     $lines = @(
         'VISION_ZERO_WORKSPACE_ID=' + (Get-WorkspaceId)
         'VISION_ZERO_DB_IMAGE=' + $script:Lock.local_image_id
-        'VISION_ZERO_DB_PORT=55433'
+        'VISION_ZERO_DB_PORT=15433'
         'VISION_ZERO_DATABASE_NAME=vision_zero_dev'
         'POSTGRES_PASSWORD=' + $password
         'VISION_ZERO_DATABASE_URL=' + $dsn

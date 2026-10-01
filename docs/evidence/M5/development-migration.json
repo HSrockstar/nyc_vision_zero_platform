@@ -1,0 +1,29 @@
+{
+  "execution_date": "2026-09-30",
+  "database": "vision_zero_dev",
+  "port": 15433,
+  "migration_before": "0006_risk_worker",
+  "migration_after": "0007_governance",
+  "commands": [
+    {
+      "command": "scripts/dev.ps1 -Action Migrate",
+      "exit_code": 0,
+      "stdout": "",
+      "note": "升级命令未产生stdout，Tee-Object未创建日志文件；本文件为真实命令与退出结果的结构化记录，不伪造stdout日志。"
+    },
+    {
+      "command": "scripts/dev.ps1 -Action MigrationStatus",
+      "exit_code": 0,
+      "stdout": "0007_governance (head)"
+    },
+    {
+      "command": "backend目录 ..\\.venv\\Scripts\\python.exe -X utf8 -m alembic -c alembic.ini check",
+      "exit_code": 0,
+      "stdout": "No new upgrade operations detected.",
+      "log_file": "development-schema-check.log"
+    }
+  ],
+  "counts_verified_separately": "development-acceptance.json",
+  "development_downgrade_performed": false,
+  "exit_code": 0
+}

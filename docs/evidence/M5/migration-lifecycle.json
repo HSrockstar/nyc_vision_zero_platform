@@ -1,0 +1,323 @@
+{
+  "scope": "独立随机验证库；不连接或写入 vision_zero_dev",
+  "database": "vision_zero_m1_test_5aa127cb61ba",
+  "prior_attempts": [
+    {
+      "command": "& .\\.venv\\Scripts\\python.exe -X utf8 .m5-work\\run_migration_lifecycle.py",
+      "database": "vision_zero_m1_test_361495790aa6",
+      "exit_code": 1,
+      "completed_commands": [
+        {
+          "command": "alembic.command.upgrade(config, '0007_governance')",
+          "exit_code": 0
+        }
+      ],
+      "failure": {
+        "type": "InsufficientPrivilege",
+        "sqlstate": "42501",
+        "classification": "verification-script privilege assumption",
+        "cause": "The verifier called to_regclass('extension_fixture.reference') as the migrator role, which has no USAGE on that separately-owned fixture schema. The check is changed to read pg_class and pg_namespace catalogs; no product grant is needed."
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": "alembic.command.upgrade(config, '0007_governance')",
+      "exit_code": 0
+    },
+    {
+      "command": "alembic.command.downgrade(config, '0006_risk_worker')",
+      "exit_code": 0
+    },
+    {
+      "command": "alembic.command.upgrade(config, '0007_governance')",
+      "exit_code": 0
+    },
+    {
+      "command": "alembic.command.check(config)",
+      "exit_code": 0
+    }
+  ],
+  "checks": {
+    "upgrade_0007": {
+      "revision": "0007_governance",
+      "business_table_count": 23,
+      "expected_business_table_count": 23,
+      "postgresql_version": "17.11",
+      "postgis_extension_version": "3.6.4",
+      "postgis_library_version": "3.6.4",
+      "extension_fixture_schema_preserved": true,
+      "extension_fixture_reference_preserved": true
+    },
+    "m5_functions": {
+      "vz_governance_change": {
+        "present": true,
+        "security_definer": true,
+        "owner_is_migrator": true,
+        "fixed_search_path_pg_catalog_public": true,
+        "has_function_privilege_app_execute": true,
+        "has_function_privilege_worker_execute": false,
+        "public_acl_execute": false
+      },
+      "vz_governance_create": {
+        "present": true,
+        "security_definer": true,
+        "owner_is_migrator": true,
+        "fixed_search_path_pg_catalog_public": true,
+        "has_function_privilege_app_execute": true,
+        "has_function_privilege_worker_execute": false,
+        "public_acl_execute": false
+      }
+    },
+    "m5_direct_dml_and_sequence_privileges": {
+      "tables": {
+        "app.governance_task": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "app.task_history": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "worker.governance_task": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "worker.task_history": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        }
+      },
+      "sequences": {
+        "app.governance_task_task_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "worker.governance_task_task_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "app.task_history_history_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "worker.task_history_history_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        }
+      },
+      "all_app_worker_table_dml_denied": true,
+      "all_app_worker_sequence_privileges_denied": true
+    },
+    "actual_app_function_calls": {
+      "vz_governance_create": {
+        "passed": true,
+        "sqlstate": "P0001",
+        "outcome": "reached_function_body_and_rejected_invalid_input"
+      },
+      "vz_governance_change": {
+        "passed": true,
+        "sqlstate": "P0001",
+        "outcome": "reached_function_body_and_rejected_invalid_input"
+      }
+    },
+    "actual_worker_function_calls": {
+      "vz_governance_create": {
+        "passed": true,
+        "sqlstate": "42501",
+        "outcome": "call_rejected_by_function_execute_privilege"
+      },
+      "vz_governance_change": {
+        "passed": true,
+        "sqlstate": "42501",
+        "outcome": "call_rejected_by_function_execute_privilege"
+      }
+    },
+    "downgrade_0006": {
+      "revision": "0006_risk_worker",
+      "business_table_count": 23,
+      "expected_business_table_count": 23,
+      "postgresql_version": "17.11",
+      "postgis_extension_version": "3.6.4",
+      "postgis_library_version": "3.6.4",
+      "extension_fixture_schema_preserved": true,
+      "extension_fixture_reference_preserved": true
+    },
+    "functions_absent_at_0006": {
+      "vz_governance_create": false,
+      "vz_governance_change": false
+    },
+    "m1_unknown_guard_restored_at_0006": true,
+    "direct_dml_and_sequences_at_0006": {
+      "tables": {
+        "app.governance_task": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "app.task_history": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "worker.governance_task": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "worker.task_history": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        }
+      },
+      "sequences": {
+        "app.governance_task_task_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "worker.governance_task_task_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "app.task_history_history_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "worker.task_history_history_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        }
+      },
+      "all_app_worker_table_dml_denied": true,
+      "all_app_worker_sequence_privileges_denied": true
+    },
+    "reupgrade_0007": {
+      "revision": "0007_governance",
+      "business_table_count": 23,
+      "expected_business_table_count": 23,
+      "postgresql_version": "17.11",
+      "postgis_extension_version": "3.6.4",
+      "postgis_library_version": "3.6.4",
+      "extension_fixture_schema_preserved": true,
+      "extension_fixture_reference_preserved": true
+    },
+    "functions_after_reupgrade": {
+      "vz_governance_change": {
+        "present": true,
+        "security_definer": true,
+        "owner_is_migrator": true,
+        "fixed_search_path_pg_catalog_public": true,
+        "has_function_privilege_app_execute": true,
+        "has_function_privilege_worker_execute": false,
+        "public_acl_execute": false
+      },
+      "vz_governance_create": {
+        "present": true,
+        "security_definer": true,
+        "owner_is_migrator": true,
+        "fixed_search_path_pg_catalog_public": true,
+        "has_function_privilege_app_execute": true,
+        "has_function_privilege_worker_execute": false,
+        "public_acl_execute": false
+      }
+    },
+    "direct_dml_and_sequences_after_reupgrade": {
+      "tables": {
+        "app.governance_task": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "app.task_history": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "worker.governance_task": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        },
+        "worker.task_history": {
+          "insert": false,
+          "update": false,
+          "delete": false,
+          "truncate": false,
+          "references": false,
+          "trigger": false
+        }
+      },
+      "sequences": {
+        "app.governance_task_task_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "worker.governance_task_task_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "app.task_history_history_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        },
+        "worker.task_history_history_id_seq": {
+          "usage": false,
+          "select": false,
+          "update": false
+        }
+      },
+      "all_app_worker_table_dml_denied": true,
+      "all_app_worker_sequence_privileges_denied": true
+    }
+  },
+  "exit_code": 0
+}

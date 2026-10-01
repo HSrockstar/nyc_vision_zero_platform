@@ -1,6 +1,6 @@
-# M1—M4物理数据字典
+# M1—M5物理数据字典
 
-版本：M4 / 0006_risk_worker，2026-09-30。保持M1的23表，0003新增发布请求和诊断去重，0004强化状态授权，0005强化交叉口工作流及空间索引，0006落实风险作业授权/触发器，无新增列；DDL冻结在各版本迁移SQL中。字段映射见[field_mapping](field_mapping.md)，关系见[关系模型](diagrams/relational.md)，运行快照见[ADR 0006](decisions/0006-m4-risks.md)。
+版本：M5 / 0007_governance，2026-09-30。保持M1的23表，0003新增发布请求和诊断去重，0004强化状态授权，0005强化交叉口工作流及空间索引，0006落实风险作业授权/触发器，0007落实治理事务函数和UNKNOWN取消边界，无新增表或列；DDL冻结在各版本迁移SQL中。字段映射见[field_mapping](field_mapping.md)，关系见[关系模型](diagrams/relational.md)，运行快照见[ADR 0006](decisions/0006-m4-risks.md)。
 
 内部主键BIGINT Identity；官方collision/person/vehicle源键不自动生成。所有外键ON DELETE RESTRICT；NULL表示缺失，不能补0。API中的BIGINT标识使用字符串。JSONB保存输入、证据、审计及快照，关联键保持独立列。
 ## borough：行政区字典
@@ -291,7 +291,7 @@
 |---|---|---|---|---|---|
 | `run_id` | `BIGINT` | 否 | PK;  | `Identity` | 计算批次标识 |
 | `request_id` | `UUID` | 否 | — | `—` | 调用方UUID幂等键 |
-| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | 操作者/操作/目标/payload的SHA-256；实际重放处理留后续业务API |
+| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | request-v1操作者/操作/目标/payload的SHA-256；同UUID同内容重放复用既有运行，不重新排队 |
 | `rule_id` | `BIGINT` | 否 | FK→risk_rule.rule_id | `—` | 规则版本内部标识 |
 | `period_start` | `DATE` | 否 | — | `—` | 周期闭区间起点 |
 | `period_end` | `DATE` | 否 | — | `—` | 周期开区间终点 |
@@ -425,7 +425,7 @@
 | `task_id` | `BIGINT` | 否 | PK;  | `Identity` | 模拟工单内部标识 |
 | `task_code` | `VARCHAR(40)` | 否 | — | `—` | 唯一模拟工单编号 |
 | `request_id` | `UUID` | 否 | — | `—` | 调用方UUID幂等键 |
-| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | 操作者/操作/目标/payload的SHA-256；实际重放处理留后续业务API |
+| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | request-v1操作者/操作/目标/payload的SHA-256（变更含expected_version）；同UUID同摘要重放返回当前授权投影，不增历史或版本 |
 | `profile_id` | `BIGINT` | 否 | FK→risk_profile.profile_id | `—` | 建立依据的风险画像标识 |
 | `title` | `VARCHAR(160)` | 否 | — | `—` | 工单标题 |
 | `description` | `TEXT` | 否 | — | `—` | 业务说明 |
@@ -511,7 +511,7 @@
 | `task_id` | `BIGINT` | 否 | FK→governance_task.task_id | `—` | 模拟工单内部标识 |
 | `sequence_no` | `INTEGER` | 否 | — | `—` | 同工单事件顺序号 |
 | `request_id` | `UUID` | 否 | — | `—` | 调用方UUID幂等键 |
-| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | 操作者/操作/目标/payload的SHA-256；实际重放处理留后续业务API |
+| `request_hash` | `VARCHAR(64)` | 否 | — | `—` | request-v1操作者/操作/目标/payload的SHA-256（变更含expected_version）；同UUID同摘要重放返回当前授权投影，不增历史或版本 |
 | `event_type` | `VARCHAR(30)` | 否 | — | `—` | 工单事件枚举 |
 | `from_status` | `VARCHAR(30)` | 是 | — | `—` | 事件前状态 |
 | `to_status` | `VARCHAR(30)` | 否 | — | `—` | 事件后状态 |
@@ -538,6 +538,8 @@
 | v_risk_profile | 仅成功批次；统一计算score/等级/is_stale，缺失则NULL/UNKNOWN |
 | v_governance_task | 展示依据画像、路口及用户，隐藏已软删DRAFT |
 
-触发器保护只追加历史/审计，原始行、已引用地点、已发布规则、成功运行/画像；延迟检查每事故唯一伤亡行；校验原始来源类型/接受状态和问题批次；保护最后管理员、在办执行人；UNKNOWN仅FIELD_SURVEY的DRAFT。完整工单动作与对象权限函数留M5。
+触发器保护只追加历史/审计，原始行、已引用地点、已发布规则、成功运行/画像；延迟检查每事故唯一伤亡行；校验原始来源类型/接受状态和问题批次；保护最后管理员、在办执行人；UNKNOWN仅FIELD_SURVEY的DRAFT或CANCELLED；0007允许取消调查草稿但仍禁止发布。M5受控函数vz_governance_create/vz_governance_change落实对象身份、状态、版本和幂等，写入任务与追加历史同事务；详情/历史及重放的软删除可见性由服务层统一检查。
 
 权限见[security](security.md)，函数依赖和快照边界见[normalization](normalization.md)。
+
+M5不改变23表结构。`governance_task`创建从成功风险批次和当前启用CONFIRMED路口冻结profile_id、assessment_scope、is_simulated=true，编号为服务端生成的GOV-日期-任务ID。任务更新version单步递增，同事务history.sequence_no取新version；创建为version/sequence_no=1。所有写入request_id在task_history中全局唯一，request_hash绑定规范化内容；历史仅追加、不更新或删除。数据库角色权限和可信后端边界见[权限说明](security.md)，状态与动作见[治理状态图](diagrams/governance-state.md)。

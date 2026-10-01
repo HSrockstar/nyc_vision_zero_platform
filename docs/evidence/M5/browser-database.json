@@ -1,0 +1,16 @@
+{
+  "database": "vision_zero_m1_test_ffb0aa9c223a",
+  "synthetic_only": true,
+  "role_counts": {
+    "ADMIN": 1,
+    "MANAGER": 2,
+    "VIEWER": 1
+  },
+  "profile_levels": [
+    "low",
+    "medium",
+    "unknown",
+    "high"
+  ],
+  "retained_for_review": true
+}

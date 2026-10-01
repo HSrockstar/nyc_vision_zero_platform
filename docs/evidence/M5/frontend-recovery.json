@@ -1,0 +1,14 @@
+{
+  "locked_dependencies_restored_offline": true,
+  "package_json_and_lock_unchanged": true,
+  "type_check_exit_code": 0,
+  "build_exit_code": 0,
+  "compiled_artifacts_identical_to_pre_cleanup_sha256": true,
+  "artifacts": {
+    "index.html": "a9553ef816bcf60e0a84cbede905e819ec3b4908320dd3611faf1c7aa403e017",
+    "assets/index-CC-6nYQX.js": "d69164407468c0181e95ac3c322b74cefc0dd67b5acf3765aa271d116ed2f3ed",
+    "assets/index-t_RRJuJ0.css": "baf615bc23f94f82e64cebbc4dfb8bd16d44c45981867010bd6dd158a5f92346"
+  },
+  "cleanup_issue": "归档临时worktree时共享node_modules受到影响，按原package-lock离线npm ci恢复；源码、锁与数据库不变。",
+  "exit_code": 0
+}

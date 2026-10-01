@@ -116,7 +116,7 @@ M1 复用验证输入建立 `backend/` 和 `frontend/`，移植经验证的精�
 
 | 入口 | 地址或作用 |
 |---|---|
-| 开发数据库 | `vision-zero-dev-db` / `vision-zero-dev-postgis-data` / `vision_zero_dev`，`127.0.0.1:55433` |
+| 开发数据库 | `vision-zero-dev-db` / `vision-zero-dev-postgis-data` / `vision_zero_dev`，`127.0.0.1:15433` |
 | 后端 | `127.0.0.1:8000`；`/health/live`和`/health/ready` |
 | 前端 | `127.0.0.1:5173`；同源代理健康检查及账号API |
 | 迁移 | `0001_environment`→`0002_business_model`，23表/3业务视图/角色权限/完整性触发器 |

@@ -11,6 +11,7 @@ const busy = ref(false), message = ref(''), error = ref('')
 const rule = computed(() => rules.value.find(item => item.rule_id === ruleId.value))
 const run = computed(() => runs.value.find(item => item.run_id === selected.value))
 const canCreate = computed(() => ['ADMIN', 'MANAGER'].includes(sessionUser.value?.role ?? ''))
+const emit = defineEmits<{ governance: [profile: RiskProfile] }>()
 const pendingRequest = ref<{ key: string; id: string } | null>(null)
 const labels = { LOW: '低', MEDIUM: '中', HIGH: '高', UNKNOWN: '未知' }
 const statuses = { QUEUED: '排队中', RUNNING: '计算中', SUCCEEDED: '已完成', FAILED: '失败' }
@@ -83,7 +84,7 @@ onMounted(() => act(async () => {
           <label>排序<select v-model="sort" :disabled="busy" @change="page = 1; act(loadProfiles)"><option value="score">分数降序</option><option value="collision_count">事故数降序</option></select></label>
           <label>路口编号<input v-model="intersection" placeholder="可选" :disabled="busy" /></label><button :disabled="busy" @click="page = 1; act(loadProfiles)">筛选</button>
         </div>
-        <div class="risk-table"><table><thead><tr><th>交叉口</th><th>事故</th><th>受伤</th><th>死亡</th><th>行人/骑行伤亡</th><th>分数</th><th>等级</th><th>详情</th></tr></thead><tbody><tr v-for="item in rows" :key="item.profile_id"><td>{{ item.street_a }} / {{ item.street_b }}<br />#{{ item.intersection_id }}</td><td>{{ item.collision_count }}</td><td>{{ item.injured_count }}</td><td>{{ item.killed_count }}</td><td>{{ item.vulnerable_road_user_count }}</td><td>{{ item.score ?? '不可评分' }}</td><td>{{ labels[item.risk_level] }}</td><td><button :disabled="busy" @click="act(async () => { detail = await getProfile(item.profile_id) })">查看分项</button></td></tr></tbody></table></div>
+        <div class="risk-table"><table><thead><tr><th>交叉口</th><th>事故</th><th>受伤</th><th>死亡</th><th>行人/骑行伤亡</th><th>分数</th><th>等级</th><th>详情</th></tr></thead><tbody><tr v-for="item in rows" :key="item.profile_id"><td>{{ item.street_a }} / {{ item.street_b }}<br />#{{ item.intersection_id }}</td><td>{{ item.collision_count }}</td><td>{{ item.injured_count }}</td><td>{{ item.killed_count }}</td><td>{{ item.vulnerable_road_user_count }}</td><td>{{ item.score ?? '不可评分' }}</td><td>{{ labels[item.risk_level] }}</td><td><button :disabled="busy" @click="act(async () => { detail = await getProfile(item.profile_id) })">查看分项</button><button v-if="canCreate" :disabled="busy" @click="emit('governance', item)">建立治理草稿</button></td></tr></tbody></table></div>
         <p v-if="!rows.length">该筛选条件下未生成画像；未生成结果不代表低风险。</p>
         <div class="risk-controls"><button :disabled="busy || page <= 1" @click="page--; act(loadProfiles)">上一页</button><span>第 {{ page }} 页 / 共 {{ total }} 条</span><button :disabled="busy || page * 20 >= total" @click="page++; act(loadProfiles)">下一页</button></div>
         <p v-if="run.input_manifest.snapshot" class="risk-hash">快照 SHA-256：{{ run.input_manifest.snapshot.sha256 }}</p>

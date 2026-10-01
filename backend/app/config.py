@@ -51,7 +51,7 @@ class Settings(BaseSettings):
     jwt_secret: SecretStr = SecretStr("")
     jwt_minutes: int = 15
     database_name: str = "vision_zero_dev"
-    db_port: int = 55433
+    db_port: int = 15433
     run_db_tests: bool = False
     test_config_file: str = ""
 

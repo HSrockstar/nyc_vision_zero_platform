@@ -13,7 +13,7 @@ services:
       POSTGRES_DB: "${VISION_ZERO_DATABASE_NAME:?缺少数据库名称}"
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?缺少本地随机凭据}"
     ports:
-      - "127.0.0.1:${VISION_ZERO_DB_PORT:-55433}:5432"
+      - "127.0.0.1:${VISION_ZERO_DB_PORT:-15433}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:

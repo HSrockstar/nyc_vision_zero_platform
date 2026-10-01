@@ -1,0 +1,780 @@
+{
+  "target": "http://127.0.0.1:5175",
+  "route": "/",
+  "browser": {
+    "name": "system Chrome",
+    "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "headless": true,
+    "isolatedContext": true
+  },
+  "dataBoundary": "仅操作隔离随机PostgreSQL测试库中的合成账号、画像和治理任务；不记录密码、JWT、DSN、请求头或登录响应正文。",
+  "startedAt": "2026-09-30T08:51:44.461Z",
+  "runtime": {
+    "node": "v24.14.1",
+    "playwright": "workspace dependency"
+  },
+  "roles": [
+    "MANAGER"
+  ],
+  "checks": [
+    {
+      "name": "首页路由与单页表单可观察",
+      "passed": true,
+      "evidence": {
+        "route": "/",
+        "iframeCount": 0
+      }
+    },
+    {
+      "name": "UI真实登录：MANAGER",
+      "passed": true,
+      "evidence": {
+        "httpStatus": 200,
+        "roleVisible": true
+      }
+    },
+    {
+      "name": "API辅助建立21条合成分页草稿",
+      "passed": true,
+      "evidence": {
+        "created": 21,
+        "allHttp201": true
+      }
+    },
+    {
+      "name": "风险面板选中合成HIGH批次",
+      "passed": true,
+      "evidence": {
+        "expectedProfile": true,
+        "matchingRows": 1
+      }
+    },
+    {
+      "name": "UI草稿绑定选定画像",
+      "passed": true,
+      "evidence": {
+        "level": "HIGH",
+        "profileMatched": true
+      }
+    },
+    {
+      "name": "当前任务快照与追加历史一致：草稿 v1",
+      "passed": true,
+      "evidence": {
+        "statusMatched": true,
+        "snapshotVersion": 1,
+        "historySequenceCount": 1,
+        "lastEventMatched": true
+      }
+    },
+    {
+      "name": "UI创建课程模拟草稿",
+      "passed": true,
+      "evidence": {
+        "status": "DRAFT",
+        "version": 1,
+        "simulated": true
+      }
+    },
+    {
+      "name": "当前任务快照与追加历史一致：草稿 v2",
+      "passed": true,
+      "evidence": {
+        "statusMatched": true,
+        "snapshotVersion": 2,
+        "historySequenceCount": 2,
+        "lastEventMatched": true
+      }
+    },
+    {
+      "name": "UI操作：删除草稿",
+      "passed": true,
+      "evidence": {
+        "httpStatus": 200,
+        "status": "DRAFT",
+        "version": 2
+      }
+    },
+    {
+      "name": "UI软删除保留历史",
+      "passed": true,
+      "evidence": {
+        "tombstoneVisible": true,
+        "historyRows": 2
+      }
+    },
+    {
+      "name": "当前任务快照与追加历史一致：草稿 v1",
+      "passed": true,
+      "evidence": {
+        "statusMatched": true,
+        "snapshotVersion": 1,
+        "historySequenceCount": 1,
+        "lastEventMatched": true
+      }
+    },
+    {
+      "name": "UI创建课程模拟草稿",
+      "passed": true,
+      "evidence": {
+        "status": "DRAFT",
+        "version": 1,
+        "simulated": true
+      }
+    },
+    {
+      "name": "当前任务快照与追加历史一致：待执行 v2",
+      "passed": true,
+      "evidence": {
+        "statusMatched": true,
+        "snapshotVersion": 2,
+        "historySequenceCount": 2,
+        "lastEventMatched": true
+      }
+    },
+    {
+      "name": "UI操作：发布任务",
+      "passed": true,
+      "evidence": {
+        "httpStatus": 200,
+        "status": "OPEN",
+        "version": 2
+      }
+    },
+    {
+      "name": "当前任务快照与追加历史一致：已取消 v3",
+      "passed": true,
+      "evidence": {
+        "statusMatched": true,
+        "snapshotVersion": 3,
+        "historySequenceCount": 3,
+        "lastEventMatched": true
+      }
+    },
+    {
+      "name": "UI操作：取消任务",
+      "passed": true,
+      "evidence": {
+        "httpStatus": 200,
+        "status": "CANCELLED",
+        "version": 3
+      }
+    },
+    {
+      "name": "UI取消任务并保留终态",
+      "passed": true,
+      "evidence": {
+        "status": "CANCELLED"
+      }
+    },
+    {
+      "name": "当前任务快照与追加历史一致：草稿 v1",
+      "passed": true,
+      "evidence": {
+        "statusMatched": true,
+        "snapshotVersion": 1,
+        "historySequenceCount": 1,
+        "lastEventMatched": true
+      }
+    },
+    {
+      "name": "UI创建课程模拟草稿",
+      "passed": true,
+      "evidence": {
+        "status": "DRAFT",
+        "version": 1,
+        "simulated": true
+      }
+    },
+    {
+      "name": "外部API真实更新任务版本",
+      "passed": true,
+      "evidence": {
+        "httpStatus": 200,
+        "versionAdvanced": true
+      }
+    }
+  ],
+  "network": {
+    "api": {
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/dictionaries/vehicle-types",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/dictionaries/factors",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/collisions",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/map/collisions",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/intersections",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/imports",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-rules",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-runs",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/assignees",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-profiles",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-profiles",
+          "source": "browser"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "source": "browser"
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "source": "browser"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "source": "browser"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "source": "browser"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "source": "browser"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "source": "browser"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "source": "browser"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "source": "browser"
+        }
+      ],
+      "responses": [
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/dictionaries/vehicle-types",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/dictionaries/factors",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/imports",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/intersections",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/collisions",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/map/collisions",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-rules",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-runs",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/assignees",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-profiles",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/risk-profiles",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "status": 200
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/governance-tasks",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks/:task_id/history",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/governance-tasks?page=1&page_size=20",
+          "status": 200
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/v1/governance-tasks/:task_id",
+          "status": 409,
+          "classification": "expected_stale_version_conflict"
+        }
+      ],
+      "unexpectedHttpErrors": [],
+      "requestFailures": []
+    },
+    "apiHelpers": [
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "pagination_seed",
+        "method": "POST",
+        "path": "/api/v1/governance-tasks",
+        "status": 201,
+        "classification": "expected"
+      },
+      {
+        "purpose": "external_version_update",
+        "method": "PATCH",
+        "path": "/api/v1/governance-tasks/:task_id",
+        "status": 200,
+        "classification": "expected"
+      }
+    ],
+    "otherResourceErrors": []
+  },
+  "expectedBlocked": {
+    "osmTiles": {
+      "interceptionInstalled": true,
+      "intercepted": 15,
+      "blockedFailures": 15,
+      "consoleErrors": 15
+    }
+  },
+  "faultInjection": {
+    "list503": 0,
+    "detail503": 0,
+    "expectedConsoleErrors": 0,
+    "recoveredList": false,
+    "recoveredDetail": false
+  },
+  "consoleErrors": [
+    {
+      "message": "Failed to load resource",
+      "source": "/api/v1/governance-tasks/:task_id"
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [],
+  "viewports": {},
+  "iframeCount": 0,
+  "fatal": {
+    "name": "TimeoutError",
+    "message": "locator.waitFor: Timeout 10000ms exceeded."
+  },
+  "runner": {
+    "command": "node .m5-work/browser/m5_browser_acceptance.cjs <private-config-path>",
+    "exitCode": 1
+  },
+  "finishedAt": "2026-09-30T08:52:06.381Z"
+}

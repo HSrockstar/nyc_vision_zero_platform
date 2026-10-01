@@ -1,6 +1,6 @@
 # 面向 Vision Zero 的纽约交通碰撞风险识别与高危交叉口治理管理系统
 
-个人数据库课程设计。M0—M3已完成；首批95个路口已核对道路身份，M4风险计算、快照和页面已实现，2025年度95条真实画像已生成。2025全年数据发布与网页重复导入验收通过；23表模型、角色分离、认证、三源CSV清洗/原子发布和事故查询已有实库证据。实施依据为[PROJECT_PLAN](PROJECT_PLAN.md)，本轮见[M4记录](docs/milestones/M4.md)，道路身份及剩余候选边界见[M3记录](docs/milestones/M3.md)，历史见[M2记录](docs/milestones/M2.md)和[M1模型记录](docs/milestones/M1-model.md)。
+个人数据库课程设计。M0—M5本机实现与验收已完成；首批95个路口已核对道路身份，2025年度95条真实画像已生成，模拟治理任务支持多人执行与复核全过程。2025全年数据发布与网页重复导入验收通过；23表模型、角色分离、认证、三源CSV清洗/原子发布和事故查询已有实库证据。实施依据为[PROJECT_PLAN](PROJECT_PLAN.md)，本轮见[M5记录](docs/milestones/M5.md)，风险依据见[M4记录](docs/milestones/M4.md)，道路身份及剩余候选边界见[M3记录](docs/milestones/M3.md)，历史见[M2记录](docs/milestones/M2.md)和[M1模型记录](docs/milestones/M1-model.md)。
 
 ## Windows启动
 
@@ -30,7 +30,7 @@ bootstrap生成本机维护凭据，ProvisionRoles生成独立迁移/app/worker�
 & .\scripts\dev.ps1 -Action Worker
 ```
 
-打开[系统页面](http://127.0.0.1:5173)。后端`127.0.0.1:8000`，开发库`127.0.0.1:55433/vision_zero_dev`，均仅本机监听。登录状态仅保留当前页面内存；刷新需重登。退出、改密、换角色或停用使该账户旧令牌失效，退出作用于全部现有会话。只有ADMIN可维护账户。
+打开[系统页面](http://127.0.0.1:5173)。后端`127.0.0.1:8000`，开发库`127.0.0.1:15433/vision_zero_dev`，均仅本机监听。登录状态仅保留当前页面内存；刷新需重登。退出、改密、换角色或停用使该账户旧令牌失效，退出作用于全部现有会话。只有ADMIN可维护账户。
 
 前后端和worker在各自终端Ctrl+C停止；数据库用DatabaseStop停止并保留数据。端口占用会拒绝启动，自定义后端端口须对应设置前端VISION_ZERO_API_TARGET。冲突的继承环境变量会被拒绝。终端策略阻止脚本时可用`powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\dev.ps1 -Action Backend`，仅影响该进程。
 
@@ -60,6 +60,14 @@ M3在页面下方增加地图、附近事故查询、交叉口档案与分页复
 
 没有指定request-id时每次建立新的计算批次；重试同一请求需保留UUID。默认worker同时处理导入/风险。结果与映射/评分输入快照绑定，文件保存在被忽略的`.m4-work/snapshots`，数据库和文件应一起备份；成功批次只读。规则/公式与计算方法见[ADR 0006](docs/decisions/0006-m4-risks.md)。
 
+## M5模拟治理任务
+
+ADMIN/MANAGER在风险画像行选择“建立治理草稿”，填写措施、说明、评价半径和必要理由。发布时指定当前启用的管理人员，由执行人开始、追加记录和提交，再由创建者或其他有权管理员退回或通过；执行人不能复核自己的任务。支持待执行重分配、非终态取消、草稿软删除、我的执行待办和只追加历史。
+
+LOW/MEDIUM建立必须填写理由；UNKNOWN只能调查草稿、不能发布。画像与评价范围建立后冻结，所有记录明确标为课程模拟。VIEWER不显示或访问治理业务。写失败或版本冲突后主动重新加载详情，系统不会自动覆盖其他人的修改。工单和历史的写入由数据库受控函数同事务完成；完整状态、权限与幂等契约见[ADR 0007](docs/decisions/0007-m5-governance.md)。
+
+本机开发库固定使用15433；由Windows保留区间导致的原端口修复、原卷保留及配置备份见[端口记录](docs/milestones/M5-port.md)。历史验收记录中的旧端口保持其当时事实。
+
 ## 验证与设计入口
 
 ```powershell
@@ -79,6 +87,7 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 | [M2导入与查询记录](docs/milestones/M2.md) / [ADR 0004](docs/decisions/0004-m2-import-query.md) | 官方输入、批次发布、质量统计和独立验收 |
 | [M3空间归属记录](docs/milestones/M3.md) / [ADR 0005](docs/decisions/0005-m3-spatial.md) | 地图、米制查询、候选、人工确认与归属 |
 | [M4风险记录](docs/milestones/M4.md) / [ADR 0006](docs/decisions/0006-m4-risks.md) | 风险作业、统一视图、覆盖与历史快照 |
+| [M5治理记录](docs/milestones/M5.md) / [ADR 0007](docs/decisions/0007-m5-governance.md) | 模拟治理、对象身份、原子历史及独立验收 |
 | [M1模型执行记录](docs/milestones/M1-model.md) | 本轮命令、失败修正、独立审计/测试与证据 |
 | [数据字典](docs/data_dictionary.md) | 23表逐列类型、空值、主外键、CHECK/UNIQUE/索引 |
 | [概念ER](docs/diagrams/conceptual.md) / [关系模型](docs/diagrams/relational.md) | 业务对象及物理联系 |
@@ -90,6 +99,6 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 
 ## 当前边界
 
-开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆。完整年度三源CSV共547,631行；M2重复发布与网页重复导入均无事实增量。M3道路复核后revision=98、95个已确认、1个已拒绝、4个待定，95条正式归属覆盖349起事故。M4前向升级0006并生成run 1的95条画像，计算不改变事实或revision。工单仍为空，测试账户和合成夹具只存在独立验证库。worker执行导入/风险作业，app账号不直接写事故事实或风险画像；工单动作留M5。
+开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆。完整年度三源CSV共547,631行；M2重复发布与网页重复导入均无事实增量。M3道路复核后revision=98、95个已确认、1个已拒绝、4个待定，95条正式归属覆盖349起事故。M4前向升级0006并生成run 1的95条画像，计算不改变事实或revision。工单仍为空，测试账户和合成夹具只存在独立验证库。worker执行导入/风险作业，app账号不直接写事故事实或风险画像；M5已前向升级0007并完成独立随机库验收，开发库工单/历史仍为0。
 
-本地Git由用户管理，main当前HEAD为已提交M3的`44bf96d`；本轮M4修改未提交或推送，原M3道路复核记录修改保留。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、`.m3-work`、`.m4-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行。本项目为本机开发验收，远程部署、全系统性能及备份恢复留后续阶段。既有Starlette TestClient/httpx弃用提示保留。
+本地Git由用户管理，main当前HEAD为已提交M4的`b3e1095`；本轮M5修改未提交或推送。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、`.m3-work`、`.m4-work`、`.m5-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行。本项目为本机开发验收，远程部署、全系统性能及备份恢复留后续阶段。既有Starlette TestClient/httpx弃用提示保留。

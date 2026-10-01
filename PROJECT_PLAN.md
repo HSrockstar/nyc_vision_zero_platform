@@ -2,11 +2,11 @@
 
 ## 项目设计与 Codex 实施计划
 
-- 文档版本：1.6
+- 文档版本：1.7
 - 编制日期：2026-09-28
-- 更新日期：2026-09-30（已确认95个路口，M4风险批次与画像实施）
+- 更新日期：2026-10-01（M5模拟治理事务、页面与本机验收完成；固定开发端口15433）
 - 用途：本学期数据库课程设计的开发依据、任务拆分依据和验收清单。
-- 当前状态：M0—M4本机实现与验收已完成，首批95个路口道路身份已确认，2025年度95条画像已生成；121项独立实库回归、迁移往返、前端检查/构建及桌面/窄屏验收通过。下一阶段为M5治理业务。完成范围见§0.4及[M4记录](docs/milestones/M4.md)。
+- 当前状态：M0—M5本机实现与验收已完成，首批95个路口和2025年度95条画像保留；M5治理全过程、130项独立实库回归、0007迁移往返、前端检查/构建及桌面/窄屏验收通过。下一阶段为M6统计整合。完成范围见§0.4及[M5记录](docs/milestones/M5.md)。
 - 实现形式：个人完成的 B/S 数据库应用系统。开发辅助工具的使用方式以教师要求为准，最终代码、设计和答辩内容应由项目作者理解和审核。
 - 阅读入口：本计划、[课程要求摘要S1](docs/references/course_requirements.md)、[前期资料保留摘要S2](docs/references/prior_work_summary.md)。四份原资料已按用户要求归并为Markdown，删除前均有校验压缩备份，后续不再把原文件缺席视为资料缺失。
 
@@ -66,11 +66,11 @@
 | 数据探测 | M0探测保留；M2已下载并发布首批500起及2025年度三源CSV（总547,631行），正式事故85,546起；重复发布、网页重复导入、年度质量与容量核验通过。[M2记录](docs/milestones/M2.md) |
 | 数据库 | Docker 内 PG17.11/PostGIS3.6.4，官方镜像摘要已锁；Windows/Linux各11项真实SQL及持久卷复启通过。[补验记录](docs/milestones/M0-database.md) |
 | 依赖 | Python3.12.4、Node24.14.1/npm11.11.0；Windows40包/Linux38包分别锁定，前端严格安装、类型检查和构建通过。[环境说明](docs/environment.md) |
-| 工程与Git | backend/frontend、23表、认证、M2导入/查询、M3空间归属及M4风险计算/快照已实现；开发库迁移0006_risk_worker。main HEAD为已提交M3的44bf96d；M4修改未提交或推送。[M4记录](docs/milestones/M4.md) |
+| 工程与Git | backend/frontend、23表、认证、M2导入/查询、M3空间归属、M4风险及M5模拟治理已实现；开发库迁移0007_governance。main HEAD为已提交M4的b3e1095；M5未提交或推送。[M5记录](docs/milestones/M5.md) |
 | 当前风险输入与结果 | 95个已确认、1个已拒绝、4个待定；revision98，2025全年349/85,546起事故纳入，95条画像（高14/中44/低37）。快照重聚合及3个手算核对通过。[聚合证据](docs/evidence/M4/local-acceptance.json) |
-| 当前开发方式 | 数据库Docker，后端/前端/导入worker在Windows分别前台启动。开发库127.0.0.1:55433独立于M0库55432。[启动入口](README.md) |
+| 当前开发方式 | 数据库Docker，后端/前端/导入worker在Windows分别前台启动。开发库127.0.0.1:15433独立于M0库55432。[启动入口](README.md) |
 
-历史基础入口保留于[ADR 0002](docs/decisions/0002-minimal-foundation.md)。完整M1按用户授权落实数据库模型优先顺序：街道映射、UNKNOWN调查草稿、在办执行人账户变更和request_hash契约见[ADR 0003](docs/decisions/0003-m1-model-auth.md)；23表迁移、数据库权限与认证有独立实库复验。字段完整口径见[数据字典](docs/data_dictionary.md)，规范化及受控冗余见[3NF说明](docs/normalization.md)，当前范围见[任务清单](docs/milestones/tasks.md)。M2导入/查询见[ADR 0004](docs/decisions/0004-m2-import-query.md)和[M2记录](docs/milestones/M2.md)；M3空间工作流见[ADR 0005](docs/decisions/0005-m3-spatial.md)和[M3记录](docs/milestones/M3.md)；M4风险计算/快照见[ADR 0006](docs/decisions/0006-m4-risks.md)和[M4记录](docs/milestones/M4.md)，工单动作留M5。
+历史基础入口保留于[ADR 0002](docs/decisions/0002-minimal-foundation.md)。完整M1按用户授权落实数据库模型优先顺序：街道映射、UNKNOWN调查草稿、在办执行人账户变更和request_hash契约见[ADR 0003](docs/decisions/0003-m1-model-auth.md)；23表迁移、数据库权限与认证有独立实库复验。字段完整口径见[数据字典](docs/data_dictionary.md)，规范化及受控冗余见[3NF说明](docs/normalization.md)，当前范围见[任务清单](docs/milestones/tasks.md)。M2导入/查询见[ADR 0004](docs/decisions/0004-m2-import-query.md)和[M2记录](docs/milestones/M2.md)；M3空间工作流见[ADR 0005](docs/decisions/0005-m3-spatial.md)和[M3记录](docs/milestones/M3.md)；M4风险计算/快照见[ADR 0006](docs/decisions/0006-m4-risks.md)和[M4记录](docs/milestones/M4.md)，M5治理函数、页面和独立验收见[ADR 0007](docs/decisions/0007-m5-governance.md)与[M5记录](docs/milestones/M5.md)。
 
 ## 1. 课程要求与项目交付映射
 
@@ -1628,6 +1628,8 @@ python benchmarks/run_benchmarks.py --config <benchmark_config>
 
 ### 19.7 M5 治理业务与事务
 
+**状态：本机验收完成。** 治理全过程、对象权限、版本/幂等、只追加历史及失败回滚已实现；130项独立实库回归、0007随机库迁移往返、桌面/窄屏浏览器验收通过。开发库仅前向升级，事实/revision及95条画像不变，工单/历史仍为空。见[M5记录](docs/milestones/M5.md)及[ADR 0007](docs/decisions/0007-m5-governance.md)。
+
 **工作内容**
 
 实现从画像建立草稿、发布分配、执行记录、提交复核、退回通过、取消、草稿删除及不可变历史。完成数据库函数和对象权限。
@@ -1848,7 +1850,7 @@ M2完成104项完整实库回归、读取一致性/上传前鉴权补测和前�
 | M2（完成） | 首批、全年正式发布、质量/容量核验与网页重复导入通过；3起死亡计数未知、2,842起缺坐标等质量限制保留，见M2记录 |
 | M3（完成） | 95个路口道路身份已核对，另1拒绝、4待定；复杂路口/历史路网限制见M3记录 |
 | M4（完成） | 后台作业、覆盖、统一评分视图、快照和历史页面；121项独立实库回归及浏览器验证通过，首批覆盖0.41% |
-| M5 | 工单权限、状态、并发/幂等及完整模拟业务流程 |
+| M5（完成） | 工单权限、状态、并发/幂等及完整模拟业务流程；130项独立实库回归、0007往返及浏览器验收通过 |
 | M7—M8 | 性能、备份新库恢复、浏览器全流程与干净环境交付 |
 
 原生Docker Registry端点EOF仍存在；本机已通过官方替代端点、TLS及SHA校验取得镜像和离线归档。保留错误，不把它扩大为“数据库不可用”，也不声称所有网络入口已经修复。

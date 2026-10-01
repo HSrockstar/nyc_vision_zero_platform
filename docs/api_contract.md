@@ -1,4 +1,4 @@
-# M1认证、M2数据、M3空间与M4风险API
+# M1认证、M2数据、M3空间、M4风险与M5治理API
 
 前缀 `/api/v1`，JSON请求。成功返回 `{data,meta:{request_id}}`，错误返回 `{error:{code,message},meta:{request_id}}`；`X-Request-ID`支持UUID并在响应头返回。ID全部字符串；版本、数量和expires_in为数字。认证数据响应 `Cache-Control: no-store`。
 
@@ -16,7 +16,7 @@
 
 账户PATCH显式null、空修改、额外字段和非法ID返回422。停用或换角色导致认证版本增加；只有显示名变更不强制登出，但总version增加。最后管理员返回USER_LAST_ADMIN（409）；在办执行人返回USER_HAS_ACTIVE_TASKS（409）；VIEWER/MANAGER访问管理接口403。数据库约束冲突固定DATA_CONFLICT，不暴露驱动详情。
 
-M2已实现以下数据接口。M3地图和路口、M4风险接口见下表；工单动作留M5。
+M2已实现以下数据接口。M3地图和路口、M4风险及M5治理动作见后续接口表。
 
 | 方法 / 路径 | 输入与行为 | 权限 |
 |---|---|---|
@@ -65,3 +65,30 @@ M2已实现以下数据接口。M3地图和路口、M4风险接口见下表；�
 | GET /risk-profiles/{profile_id} | 成功画像、四项已知值贡献、规则、批次来源及过期标记 | 登录用户 |
 
 不存在的批次404；未成功批次画像列表为空且带run_status，详情404。成功但没有事故的周期不生成画像，coverage_ratio为null；不能解释为低风险。编号与修订号用字符串，Decimal分数/贡献/规则值用精确十进制字符串；未知分数为null。退休规则仅可查历史，新请求422。文件只通过受控本机入口保留，不提供Web路径读写。详见[ADR 0006](decisions/0006-m4-risks.md)。
+
+## M5课程模拟治理任务
+
+以下接口均要求当前启用的ADMIN/MANAGER；VIEWER读取和写入均403。路径前缀仍为`/api/v1`。
+
+| 方法 / 路径 | 输入 | 结果与对象权限 |
+|---|---|---|
+| GET /governance-tasks | status、my_todo=false、page=1、page_size=20（1—100） | 排除软删除，返回items/total/page/page_size；我的待办限本人执行的OPEN/IN_PROGRESS/PENDING_REVIEW |
+| GET /governance-tasks/assignees | search显示名（最多80字符）、page、page_size=100 | 当前启用ADMIN/MANAGER的ID、显示名、角色 |
+| POST /governance-tasks | request_id、profile_id、title、description、measure_type、priority；due_date/effective_on可空，radius_m默认50（1—1000）、rationale可空 | 201，来自成功批次及当前启用CONFIRMED路口；LOW/MEDIUM必须给建立理由；UNKNOWN仅FIELD_SURVEY草稿 |
+| GET /governance-tasks/{task_id} | — | 完整任务及allowed_actions；软删除仅创建者/当前ADMIN可见，其他404 |
+| GET /governance-tasks/{task_id}/history | — | items按sequence_no排列，软删除可见性与详情相同 |
+| PATCH /governance-tasks/{task_id} | 公共写入字段及至少一个可改字段：title/description/measure_type/priority/due_date/effective_on | 创建者/ADMIN，仅DRAFT；日期显式null表示清空，省略不变；不能更换profile或范围 |
+| DELETE /governance-tasks/{task_id} | 公共写入字段，放JSON请求体 | 创建者/ADMIN，仅DRAFT软删除，保留历史 |
+| POST /governance-tasks/{task_id}/publish | 公共写入字段及assignee_id | 创建者/ADMIN，DRAFT→OPEN；UNKNOWN拒绝发布 |
+| POST /governance-tasks/{task_id}/assign | 公共写入字段及assignee_id | 创建者/ADMIN，仅OPEN重分配，执行人必须启用且为ADMIN/MANAGER |
+| POST /governance-tasks/{task_id}/start | 公共写入字段 | 当前执行人，OPEN→IN_PROGRESS |
+| POST /governance-tasks/{task_id}/progress | 公共写入字段 | 当前执行人，IN_PROGRESS追加记录 |
+| POST /governance-tasks/{task_id}/submit | 公共写入字段 | 当前执行人，IN_PROGRESS→PENDING_REVIEW |
+| POST /governance-tasks/{task_id}/review | 公共写入字段及decision=APPROVE/REJECT | 创建者/ADMIN但不得是当前执行人；通过→COMPLETED，退回→IN_PROGRESS |
+| POST /governance-tasks/{task_id}/cancel | 公共写入字段 | 创建者/ADMIN，任意非终态→CANCELLED；UNKNOWN调查草稿允许取消 |
+
+公共写入字段为`request_id`（UUID）、`expected_version`（正整数）、`note`（去空白后非空，最多10000字符）；创建只需request_id，不使用expected_version/note。title最多160字符，description最多10000，rationale最多2000。措施为MARKING_MAINTENANCE/SIGNAL_REVIEW/PEDESTRIAN_FACILITY_REVIEW/FIELD_SURVEY/OTHER，优先级为LOW/MEDIUM/HIGH/URGENT。
+
+返回ID为字符串、version为整数，包含创建者与执行人显示名、原画像等级、`assessment_scope`冻结快照、`is_simulated=true`、deleted_at及当前身份可用动作。范围保存路口中心、米制半径和建立理由。历史包含event_type、from_status/to_status、actor_id/actor_name、note及changed_fields；sequence_no与该次任务version相同。
+
+request-v1摘要绑定当前操作者、操作、目标、expected_version与规范化payload。同UUID同内容重放不增加版本或历史，返回任务当前投影（仍校验当前角色和软删除可见性）；同UUID不同内容409。新请求的旧版本409，失效状态409，对象身份无权限403，非法字段422。终态与软删除任务不允许新写；历史API为只读。客户端写失败应重新加载详情，不自动覆盖或盲目生成新的UUID重试。

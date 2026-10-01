@@ -1,0 +1,19 @@
+{
+  "port": 15433,
+  "database": "vision_zero_dev",
+  "migration": "0006_risk_worker",
+  "revision": 98,
+  "counts": {
+    "collision": 85546,
+    "person": 292070,
+    "vehicle": 170015,
+    "risk_profile": 95,
+    "governance_task": 0,
+    "task_history": 0
+  },
+  "risk_run_1": [
+    "SUCCEEDED"
+  ],
+  "retained_volume": "vision-zero-dev-postgis-data",
+  "old_port_backup": ".m1-work/model/m5-port-55433-backup"
+}

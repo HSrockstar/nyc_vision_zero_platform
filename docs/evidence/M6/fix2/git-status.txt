@@ -1,0 +1,20 @@
+ M .gitignore
+ M PROJECT_PLAN.md
+ M README.md
+ M backend/app/data_api.py
+ M backend/app/main.py
+ M docs/api_contract.md
+ M docs/milestones/tasks.md
+ M frontend/src/App.vue
+ M frontend/src/api/auth.ts
+ M frontend/src/style.css
+?? backend/app/export_api.py
+?? backend/app/statistics.py
+?? backend/app/statistics_api.py
+?? backend/tests/test_m6_statistics.py
+?? docs/decisions/0008-m6-statistics-export.md
+?? docs/evidence/M6/
+?? docs/milestones/M6-demo.md
+?? docs/milestones/M6.md
+?? frontend/src/api/m6.ts
+?? frontend/src/components/StatisticsPanel.vue

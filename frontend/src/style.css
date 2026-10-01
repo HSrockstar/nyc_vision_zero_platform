@@ -75,6 +75,39 @@ td input { width: 140px; }
   .casualty-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
   .detail-columns { grid-template-columns: 1fr; }
 }
+/* M6统计图表与打印 */
+.chart-box { height: 300px; width: 100%; margin: 14px 0; }
+.chart-tall { height: 360px; }
+.stat-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.print-header { display: none; }
+.print-unavailable { display: none; }
+@media (max-width: 800px) { .stat-columns { grid-template-columns: 1fr; } }
+
+@media print {
+  body { background: white; }
+  main { max-width: none; padding: 0; }
+  main > * { display: none !important; }
+  main > .statistics-panel { display: block !important; border: 0; padding: 0; margin: 0; }
+  .statistics-panel .no-print { display: none !important; }
+  .statistics-panel { font-size: 12px; }
+  .print-header { display: block !important; margin-bottom: 10px; }
+  .print-header h2 { font-size: 18px; margin: 0 0 6px; }
+  .print-header p { margin: 0; line-height: 1.7; color: #304857; }
+  .statistics-panel h2 { font-size: 18px; }
+  .statistics-panel h3 { margin-top: 14px; }
+  .print-block { break-inside: avoid; page-break-inside: avoid; }
+  .chart-box { break-inside: avoid; page-break-inside: avoid; }
+  .table-wrap { overflow-x: visible; }
+  table { font-size: 11px; }
+  .facts-grid dd { font-size: 13px; }
+  /* 未形成单一版本有效报表时：隐藏全部报表内容（含标题摘要），仅输出不可打印说明。 */
+  .statistics-panel.report-invalid .print-header { display: none !important; }
+  .statistics-panel.report-invalid .report-body { display: none !important; }
+  .statistics-panel.report-invalid .print-unavailable { display: block !important; }
+  .print-unavailable h2 { font-size: 18px; margin: 0 0 6px; }
+  .print-unavailable p { margin: 0; line-height: 1.7; color: #304857; }
+}
+
 @media (max-width: 560px) {
   main { padding: 34px 16px; }
   section { padding: 18px; }

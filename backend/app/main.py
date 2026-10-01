@@ -11,6 +11,8 @@ from app.data_api import router as data_router
 from app.spatial_api import router as spatial_router
 from app.risk_api import router as risk_router
 from app.governance_api import router as governance_router
+from app.statistics_api import router as statistics_router
+from app.export_api import router as export_router
 from app.upload_limit import UploadLimit
 
 app = FastAPI(title="Vision Zero 数据导入与查询", version="0.2.0")
@@ -19,6 +21,8 @@ app.include_router(data_router)
 app.include_router(spatial_router)
 app.include_router(risk_router)
 app.include_router(governance_router)
+app.include_router(statistics_router)
+app.include_router(export_router)
 app.add_middleware(UploadLimit)
 
 

@@ -1,0 +1,13 @@
+﻿# Vision Zero 课程项目 · 事故列表导出
+# 生成时间（UTC）: 2026-10-01T10:01:33+00:00
+# 数据版本 revision: 0
+"# 统计区间: [2025-01-01, 2025-02-01) ，结束日期为排他上界（不含当天）"
+# 行政区筛选: 全部；街道筛选: 无；车型筛选: 全部；原因筛选: 全部
+# 车型/原因筛选用于选出涉及的事故；车辆与人员明细统计这些事故内的全部记录。
+# 伤亡为Crashes汇总口径（casualty_stat）；人员明细不完整不代表没有伤亡。
+# NULL导出为空字段，表示数值缺失，不是0。
+# 数据行数: 3（不含#说明行）；排序: crash_date、collision_id 升序
+collision_id,crash_date,crash_time,borough_name,on_street_name,cross_street_name,off_street_name,latitude,longitude,persons_injured,persons_killed,pedestrians_injured,pedestrians_killed,cyclists_injured,cyclists_killed,motorists_injured,motorists_killed
+910000,2025-01-05,08:30:00,BRONX,M6 BROWSER MAIN ST,,,40.72,-73.99,2,0,,,,,,
+910001,2025-01-06,00:15:00,BRONX,M6 BROWSER MAIN ST,,,40.72,-73.99,2,1,,,,,,
+910002,2025-01-07,,,M6 BROWSER UNKNOWN ST,,,,,,,,,,,,

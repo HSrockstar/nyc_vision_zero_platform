@@ -1,4 +1,4 @@
-# M1认证、M2数据、M3空间、M4风险与M5治理API
+# M1认证、M2数据、M3空间、M4风险、M5治理与M6统计API
 
 前缀 `/api/v1`，JSON请求。成功返回 `{data,meta:{request_id}}`，错误返回 `{error:{code,message},meta:{request_id}}`；`X-Request-ID`支持UUID并在响应头返回。ID全部字符串；版本、数量和expires_in为数字。认证数据响应 `Cache-Control: no-store`。
 
@@ -92,3 +92,24 @@ M2已实现以下数据接口。M3地图和路口、M4风险及M5治理动作见
 返回ID为字符串、version为整数，包含创建者与执行人显示名、原画像等级、`assessment_scope`冻结快照、`is_simulated=true`、deleted_at及当前身份可用动作。范围保存路口中心、米制半径和建立理由。历史包含event_type、from_status/to_status、actor_id/actor_name、note及changed_fields；sequence_no与该次任务version相同。
 
 request-v1摘要绑定当前操作者、操作、目标、expected_version与规范化payload。同UUID同内容重放不增加版本或历史，返回任务当前投影（仍校验当前角色和软删除可见性）；同UUID不同内容409。新请求的旧版本409，失效状态409，对象身份无权限403，非法字段422。终态与软删除任务不允许新写；历史API为只读。客户端写失败应重新加载详情，不自动覆盖或盲目生成新的UUID重试。
+
+## M6统计、导出与打印
+
+所有事故统计接口共享同一筛选：`start/end`左闭右开（start≥end返回422 INVALID_RANGE）、`borough_id=1—5`、`street`（M2同规则转义；去首尾空白后为空视为无条件，街道字段全NULL的事故不被排除）、`vehicle_type_id`、`factor_id`。车型/原因筛选用EXISTS选出涉及的事故；车辆与人员记录数统计选中事故内的全部明细。伤亡为casualty_stat汇总口径：全部未知时合计返回NULL，缺失以独立计数返回；不同事故数与记录数分列。响应含`filters`摘要（street为自由文本，只返回street_filter布尔，不回显原文；未使用车型/原因筛选时口径文字为"符合当前筛选条件的事故及其全部明细"）。GET运行在REPEATABLE READ READ ONLY快照中，`meta.data_revision`与聚合同快照。
+
+| 方法 / 路径 | 输入与结果 | 权限 |
+|---|---|---|
+| GET /statistics/overview | 不同事故数、已知受伤/死亡合计与缺失事故数、人员/车辆明细记录数、有坐标/缺坐标、正式归属已确认交叉口事故数及覆盖率（分母0为null，Decimal字符串） | 登录用户 |
+| GET /statistics/boroughs | 分组事故数、伤亡合计与缺失；未知行政区单独成组（borough_id=null），不因字典INNER JOIN丢失 | 登录用户 |
+| GET /statistics/trends | `granularity=month`（默认）或`hours`。month按月分组（含injured_missing_count/killed_missing_count伤亡缺失事故数），空月份计数为null并标注coverage（WITH_DATA/NO_RECORDS_COVERAGE_UNCONFIRMED/OUTSIDE_DECLARED_RANGES），不补零；月份跨度与统计CSV月度节共用120个月上限，超出422。hours返回0—23各小时计数与unknown_time_collision_count，缺失时间不并入0点 | 登录用户 |
+| GET /statistics/factors | 按(collision_id, factor_id)去重的各原因不同事故数，降序；no_factor_collision_count单列无原因记录事故；组间可重叠 | 登录用户 |
+| GET /statistics/vehicle-types | 各车型车辆记录数与不同事故数双计数；未知车型组保留（vehicle_type_id=null） | 登录用户 |
+| GET /statistics/persons | 按person_type×person_injury的明细记录数；缺失保留未知；不与Crashes汇总对齐 | ADMIN/MANAGER；VIEWER 403 |
+| GET /statistics/governance | 课程模拟工单统计：排除软删除；status/assignee_id/created_from/created_to（UTC创建日期，左闭右开）筛选；by_status/by_assignee（未分配单列）/measure_type/priority/handling；总数不连接历史记录；与事故筛选无关 | ADMIN/MANAGER；VIEWER 403 |
+
+| 方法 / 路径 | 输入与结果 | 权限 |
+|---|---|---|
+| GET /exports/collisions.csv | 同/collisions筛选（无分页）；排序crash_date、collision_id升序；数据行上限5000，超限400 EXPORT_ROW_LIMIT要求缩小范围；UTF-8 BOM+CRLF；`#`说明行（不计入数据行）含生成时间、revision、排他区间、筛选与口径说明；NULL为空字段；文本列公式起始字符（=+-@，含前导空白/控制字符绕过）前置单引号防护 | 登录用户 |
+| GET /exports/statistics.csv | 统一统计报表：单快照一次生成总览/行政区/月度（含缺失列）/小时/原因/车型/人员各节，含同样说明行；聚合结果不设事故CSV的5000行数据上限（说明行声明）；月度节与月度趋势共用120个月上限，超出422；权限同人员统计 | ADMIN/MANAGER；VIEWER 403 |
+
+前端统计页面区分"正在编辑的表单"与"已应用筛选"：下载与打印绑定最近一次成功且revision一致的条件；日期无效提示且保留已展示报表；加载中/失败/revision不一致时输出停用；导出文件说明行的revision与页面版本不同时前端提示重新查询。打印含可打印标题与已应用条件摘要（`.print-header`）。修正轮细节见[ADR 0008](decisions/0008-m6-statistics-export.md)。

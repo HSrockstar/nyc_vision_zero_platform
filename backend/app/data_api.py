@@ -10,7 +10,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, File, Form, Query, Request, UploadFile
 from pydantic import Field
-from sqlalchemy import exists, func, select, tuple_
+from sqlalchemy import func, select, tuple_
 from sqlalchemy.orm import Session
 
 from app.auth import Input, administrator, current_user, database_session, fail, response
@@ -47,6 +47,12 @@ def collision_statement():
     return select(*columns).join(Location, Collision.location_id == Location.location_id).outerjoin(Borough).join(CasualtyStat)
 
 
+def apply_shared_filters(statement, borough_id, street, vehicle_type_id, factor_id):
+    """委托给M6共享口径，保证列表、统计、导出使用同一套筛选实现。"""
+    from app.statistics import apply_collision_filters
+    return apply_collision_filters(statement, borough_id, street, vehicle_type_id, factor_id)
+
+
 def collision_data(row):
     value = dict(row._mapping)
     value["collision_id"] = str(value["collision_id"])
@@ -81,16 +87,7 @@ def collisions(request: Request, start: date = date(2025, 1, 1), end: date = dat
                include_total: bool = False, user=USER, session: Session = DB):
     if start >= end: fail(422, "INVALID_RANGE", "结束日期必须晚于开始日期；结束日期不包含在范围内。")
     statement = collision_statement().where(Collision.crash_date >= start, Collision.crash_date < end)
-    if borough_id: statement = statement.where(Location.borough_id == borough_id)
-    if street:
-        term = street.strip().replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
-        statement = statement.where(Location.on_street_name.ilike("%" + term + "%", escape="\\") |
-                                    Location.cross_street_name.ilike("%" + term + "%", escape="\\") |
-                                    Location.off_street_name.ilike("%" + term + "%", escape="\\"))
-    if vehicle_type_id:
-        statement = statement.where(exists(select(1).where(Vehicle.collision_id == Collision.collision_id, Vehicle.vehicle_type_id == vehicle_type_id)))
-    if factor_id:
-        statement = statement.where(exists(select(1).where(CollisionFactor.collision_id == Collision.collision_id, CollisionFactor.factor_id == factor_id)))
+    statement = apply_shared_filters(statement, borough_id, street, vehicle_type_id, factor_id)
     revision = str(session.scalar(select(DatasetState.revision).where(DatasetState.state_id == 1)))
     filters = digest([str(start), str(end), borough_id, street, vehicle_type_id, factor_id, page_size])
     total = session.scalar(select(func.count()).select_from(statement.subquery())) if include_total else None

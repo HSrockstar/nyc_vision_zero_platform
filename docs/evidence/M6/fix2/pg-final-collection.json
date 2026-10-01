@@ -1,0 +1,25 @@
+{
+  "total": 146,
+  "m6_tests": [
+    "tests/test_m6_statistics.py::test_manual_fixture_overview_and_groups",
+    "tests/test_m6_statistics.py::test_filters_do_not_amplify_and_unknown_scope",
+    "tests/test_m6_statistics.py::test_trends_months_hours_and_coverage",
+    "tests/test_m6_statistics.py::test_street_wildcard_escaping",
+    "tests/test_m6_statistics.py::test_invalid_ranges_and_empty_scope",
+    "tests/test_m6_statistics.py::test_revision_snapshot_and_read_only",
+    "tests/test_m6_statistics.py::test_permissions",
+    "tests/test_m6_statistics.py::test_collision_csv_content_and_escaping",
+    "tests/test_m6_statistics.py::test_csv_row_limit_and_consistency",
+    "tests/test_m6_statistics.py::test_statistics_csv_report",
+    "tests/test_m6_statistics.py::test_governance_statistics",
+    "tests/test_m6_statistics.py::test_month_span_sequence_and_boundaries",
+    "tests/test_m6_statistics.py::test_date_boundaries_and_future_limit",
+    "tests/test_m6_statistics.py::test_month_limit_consistency",
+    "tests/test_m6_statistics.py::test_blank_street_filter",
+    "tests/test_m6_statistics.py::test_borough_ids_match_database"
+  ],
+  "historical_evidence_redirected": [
+    ".m2-work/schema-evidence.json",
+    ".m2-work/migration-lifecycle.json"
+  ]
+}

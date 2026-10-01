@@ -1,0 +1,63 @@
+{
+  "database": "vision_zero_m1_test_9b7ee57ffc9c",
+  "postgresql": "17.11",
+  "postgis": "3.6.4",
+  "tables": [
+    "app_user",
+    "audit_log",
+    "borough",
+    "casualty_stat",
+    "collision",
+    "collision_factor",
+    "contributing_factor",
+    "data_issue",
+    "dataset_state",
+    "governance_task",
+    "import_batch",
+    "intersection",
+    "location",
+    "location_assignment",
+    "person",
+    "raw_record",
+    "risk_profile",
+    "risk_rule",
+    "risk_run",
+    "role",
+    "task_history",
+    "vehicle",
+    "vehicle_type"
+  ],
+  "views": [
+    "geography_columns",
+    "geometry_columns",
+    "v_collision_base",
+    "v_governance_task",
+    "v_risk_profile"
+  ],
+  "foreign_keys": 35,
+  "checks": 73,
+  "roles": [
+    [
+      "vision_zero_m1_test_9b7ee57ffc9c_app",
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      "vision_zero_m1_test_9b7ee57ffc9c_migrator",
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      "vision_zero_m1_test_9b7ee57ffc9c_worker",
+      false,
+      false,
+      false,
+      false
+    ]
+  ],
+  "retained_for_review": true
+}

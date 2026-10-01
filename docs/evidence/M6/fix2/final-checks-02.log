@@ -1,0 +1,63 @@
+{
+  "development_unchanged": true,
+  "historical_files_checked": 27,
+  "historical_files_unchanged": true,
+  "historical_changes": [],
+  "preexisting_tracked_diff_unchanged": true,
+  "preexisting_status_preserved": true,
+  "git_status_exit_code": 0,
+  "git_diff_check_default_exit_code": 2,
+  "git_diff_check_allow_crlf_exit_code": 0,
+  "task_file_whitespace_checks": [
+    {
+      "file": "E:\\数据库课设\\frontend\\src\\components\\StatisticsPanel.vue",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    },
+    {
+      "file": "E:\\数据库课设\\docs\\milestones\\M6.md",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    },
+    {
+      "file": "E:\\数据库课设\\docs\\milestones\\M6-demo.md",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    },
+    {
+      "file": "E:\\数据库课设\\docs\\evidence\\M6\\fix2\\check_final.py",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    },
+    {
+      "file": "E:\\数据库课设\\docs\\evidence\\M6\\fix2\\read_development.py",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    },
+    {
+      "file": "E:\\数据库课设\\docs\\evidence\\M6\\fix2\\run_pg_regression.py",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    },
+    {
+      "file": "E:\\数据库课设\\docs\\evidence\\M6\\fix2\\m6_browser_acceptance_fix1_corrected.cjs",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    },
+    {
+      "file": "E:\\数据库课设\\docs\\evidence\\M6\\fix2\\m6_browser_acceptance_fix2.cjs",
+      "exit_code": 1,
+      "output": "",
+      "whitespace_ok": true
+    }
+  ],
+  "note": "默认diff --check对既有CRLF增量报尾空白；仅本次命令允许CRLF后核查，不修改全局Git配置，不清理用户原有修改。",
+  "commit_or_push_executed": false
+}

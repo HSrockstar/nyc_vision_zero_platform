@@ -1,0 +1,343 @@
+{
+  "target": "http://127.0.0.1:5176",
+  "round": "fix1",
+  "startedAt": "2026-10-01T09:20:08.209Z",
+  "browser": {
+    "name": "system Chrome",
+    "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "headless": true,
+    "isolatedContext": true
+  },
+  "dataBoundary": "仅操作隔离随机PostgreSQL测试库中的合成事故、账户与治理任务；不记录密码、JWT、DSN、请求头或登录响应正文。",
+  "fixesCovered": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07"
+  ],
+  "downloadVerification": "该headless Chrome对blob程序化下载不触发download事件（CDP Browser.setDownloadBehavior+downloadProgress实验确认无事件无落盘）；下载验证采用页面hook记录a.download文件名与click动作，并以网络捕获的响应体（浏览器实际接收并交给保存流程的字节）解析内容。",
+  "checks": [
+    {
+      "name": "F04默认区间为[2025-01-01, 2026-01-01)且总览10起",
+      "passed": true,
+      "evidence": {
+        "note": "统计区间 [2025-01-01, 2026-01-01)（结束日期为排他上界，不含当天）； 数据版本 revision 0。 符合当前筛选条件的事故及其全部明细（车辆与人员记录数）。 行政区：全部；街道条件：无。"
+      }
+    },
+    {
+      "name": "F01行政区1=BRONX",
+      "passed": true,
+      "evidence": {
+        "requested": "borough_id=1",
+        "groups": [
+          "BRONX"
+        ],
+        "count": 2
+      }
+    },
+    {
+      "name": "F01行政区2=BROOKLYN",
+      "passed": true,
+      "evidence": {
+        "requested": "borough_id=2",
+        "groups": [
+          "BROOKLYN"
+        ],
+        "count": 7
+      }
+    },
+    {
+      "name": "F01行政区3=MANHATTAN",
+      "passed": true,
+      "evidence": {
+        "requested": "borough_id=3",
+        "groups": [
+          "MANHATTAN"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "name": "F01行政区4=QUEENS",
+      "passed": true,
+      "evidence": {
+        "requested": "borough_id=4",
+        "groups": [
+          "QUEENS"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "name": "F01行政区5=STATEN ISLAND",
+      "passed": true,
+      "evidence": {
+        "requested": "borough_id=5",
+        "groups": [
+          "STATEN ISLAND"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "name": "F07纯空白街道返回3起且摘要显示无街道条件",
+      "passed": true,
+      "evidence": {
+        "count": "3",
+        "streetFilterFalse": true
+      }
+    },
+    {
+      "name": "F07空字符串街道同集合",
+      "passed": true,
+      "evidence": {
+        "count": "3",
+        "streetFilterFalse": true
+      }
+    },
+    {
+      "name": "F07字面街道匹配仍有效",
+      "passed": true,
+      "evidence": {
+        "count": 1
+      }
+    },
+    {
+      "name": "F02编辑未应用时摘要仍显示已应用条件（表单与报表分离）",
+      "passed": true,
+      "evidence": {
+        "note": " 符合当前筛选条件的事故及其全部明细（车辆与人员记录数）。 行政区：全部；街道条件：M6 BROWSER STATEN。"
+      }
+    },
+    {
+      "name": "F02浏览器blur后编辑值被应用进摘要（change先于click的标准链）",
+      "passed": true,
+      "evidence": {
+        "note": "件的事故及其全部明细（车辆与人员记录数）。 行政区：全部；街道条件：M6 BROWSER MAIN UNAPPLIED。"
+      }
+    },
+    {
+      "name": "F02下载动作发生且文件名正确",
+      "passed": true,
+      "evidence": {
+        "filename": "vision-zero-collisions.csv"
+      }
+    },
+    {
+      "name": "F02下载参数与已应用筛选一致（不读表单半途状态）",
+      "passed": true,
+      "evidence": {
+        "street": "M6 BROWSER MAIN UNAPPLIED"
+      }
+    },
+    {
+      "name": "F02下载内容与该条件一致（0行数据+BOM+说明行）",
+      "passed": true,
+      "evidence": {
+        "dataRows": 0
+      }
+    },
+    {
+      "name": "F02无效日期提示且旧报表保留、打印绑定已应用条件",
+      "passed": true,
+      "evidence": {
+        "stillShown": "1",
+        "printEnabled": true
+      }
+    },
+    {
+      "name": "F02倒置日期提示",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "F02失败清空旧结果且打印/导出停用",
+      "passed": true,
+      "evidence": {
+        "failPrintDisabled": true
+      }
+    },
+    {
+      "name": "F02失败恢复后可重新查询",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "F02 revision不一致警告且输出停用",
+      "passed": true,
+      "evidence": {
+        "stalePrintDisabled": true,
+        "staleCsvDisabled": true
+      }
+    },
+    {
+      "name": "F02重新查询后输出恢复",
+      "passed": true,
+      "evidence": {
+        "recoveredEnabled": true,
+        "alerts": [],
+        "detail": " 统计区间 [2024-12-01, 2025-01-01)（结束日期为排他上界，不含当天）； 数据版本 revision 0。 符合当前筛选条件的事故及其全部明细（车辆与人员记录数）。 行政区：全部；街道条件：M6 BROWSER STA"
+      }
+    },
+    {
+      "name": "F02导出文件revision不同时提示并要求刷新",
+      "passed": true,
+      "evidence": {
+        "revisionLine": "999"
+      }
+    },
+    {
+      "name": "F02快速连续查询后旧响应被丢弃（BROOKLYN十二月0起）",
+      "passed": true,
+      "evidence": {
+        "raceCount": "0"
+      }
+    },
+    {
+      "name": "F03打印标题与已应用条件摘要可见",
+      "passed": true,
+      "evidence": {
+        "sample": "统计报表 统计区间 [2025-01-01, 2026-01-01)（结束日期为排他上界，不含当天）；数据版本 revision 0。 行政区：全部；街道条件：M6 BROWSER MAIN； 车型：全部；原因：全部。 符合当前筛选条件的事故及其全部明细（车辆与人员记录数）。 伤亡为Crashes汇总口径（casualty_stat），人员明细不完整不代表没有伤亡；月度空月份不补零；原因/车型组别之间存在重叠，各组计数之和可能大于事故总"
+      }
+    },
+    {
+      "name": "F03打印时按钮隐藏且图表保留",
+      "passed": true,
+      "evidence": {
+        "visible": true,
+        "text": "统计报表 统计区间 [2025-01-01, 2026-01-01)（结束日期为排他上界，不含当天）；数据版本 revision 0。 行政区：全部；街道条件：M6 BROWSER MAIN； 车型：全部；原因：全部。 符合当前筛选条件的事故及其全部明细（车辆与人员记录数）。 伤亡为Crashes汇总口径（casualty_stat），人员明细不完整不代表没有伤亡；月度空月份不补零；原因/车型组别之间存在重叠，各组计数之和可能大于事故总数。 模拟治理工单统计独立于事故日期范围，属课程模拟业务。 ",
+        "buttonsHidden": true,
+        "canvases": 4
+      }
+    },
+    {
+      "name": "打印返回屏幕后图表尺寸恢复",
+      "passed": true,
+      "evidence": {
+        "canvasWidths": [
+          1094,
+          1094,
+          1094,
+          1094
+        ]
+      }
+    },
+    {
+      "name": "F02统计报表CSV文件名正确",
+      "passed": true,
+      "evidence": {
+        "filename": "vision-zero-statistics.csv"
+      }
+    },
+    {
+      "name": "统计报表CSV分节齐全且无5000行上限声明",
+      "passed": true,
+      "evidence": {
+        "sections": [
+          "# [总览] 单位：事故数/记录数/人数",
+          "# [行政区] 单位：事故数/人数；未知行政区单独成组",
+          "# [月度趋势] 单位：事故数/人数；空月份计数为空，coverage说明覆盖证据；缺失列为伤亡值缺失的事故数",
+          "# [小时分布] 单位：事故数；缺失时间单列，不并入0点",
+          "# [原因分析] 单位：不同事故数；组别可重叠",
+          "# [车辆类型] 单位：车辆记录数 / 不同事故数；未知车型单独成组",
+          "# [人员类别与伤亡状态] 单位：人员明细记录数；不与Crashes伤亡汇总对齐"
+        ]
+      }
+    },
+    {
+      "name": "同上下文切换VIEWER后敏感统计与按钮清除",
+      "passed": true,
+      "evidence": {
+        "headings": [
+          "当前范围总览",
+          "行政区分布",
+          "月度趋势",
+          "事故小时分布",
+          "事故原因分析（前10项）",
+          "车辆类型分析"
+        ],
+        "buttons": [
+          "查询统计",
+          "下载事故CSV",
+          "打印报表"
+        ]
+      }
+    },
+    {
+      "name": "VIEWER直接请求受限接口均403",
+      "passed": true,
+      "evidence": {
+        "/api/v1/statistics/persons?start=2025-01-01&end=2026-01-01": 403,
+        "/api/v1/statistics/governance": 403,
+        "/api/v1/exports/statistics.csv": 403
+      }
+    },
+    {
+      "name": "窄屏无页面横向溢出且截图展示统计面板",
+      "passed": true,
+      "evidence": {
+        "page": 0,
+        "scrollableTables": 0
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "network": {
+    "unexpectedFailures": [],
+    "exportUrls": []
+  },
+  "expectedResourceErrors": {
+    "count": 37,
+    "note": "故障注入与OSM瓦片拦截产生的net::ERR_FAILED资源错误单独计数。"
+  },
+  "downloads": [
+    {
+      "file": "fix1-collisions-unapplied-then-applied.csv",
+      "rows": 0
+    },
+    {
+      "file": "fix1-statistics.csv",
+      "sections": 7
+    }
+  ],
+  "tiles": {
+    "intercepted": 36
+  },
+  "screenshots": [
+    "m6-fix1-print-a4.png",
+    "m6-fix1-print.pdf",
+    "m6-fix1-desktop-1440x900.png",
+    "m6-fix1-mobile-390x844.png"
+  ],
+  "csv": {
+    "revisionMismatchPrompted": true,
+    "statisticsSections": [
+      "# [总览] 单位：事故数/记录数/人数",
+      "# [行政区] 单位：事故数/人数；未知行政区单独成组",
+      "# [月度趋势] 单位：事故数/人数；空月份计数为空，coverage说明覆盖证据；缺失列为伤亡值缺失的事故数",
+      "# [小时分布] 单位：事故数；缺失时间单列，不并入0点",
+      "# [原因分析] 单位：不同事故数；组别可重叠",
+      "# [车辆类型] 单位：车辆记录数 / 不同事故数；未知车型单独成组",
+      "# [人员类别与伤亡状态] 单位：人员明细记录数；不与Crashes伤亡汇总对齐"
+    ]
+  },
+  "fatal": null,
+  "runner": {
+    "command": "node .m6-work/browser/m6_browser_acceptance_fix1.cjs <private-config>",
+    "exitCode": 0
+  },
+  "finishedAt": "2026-10-01T09:20:43.454Z",
+  "summary": {
+    "total": 30,
+    "passed": 30,
+    "failed": 0,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "expectedResourceErrors": 37,
+    "unexpectedApiFailures": 0
+  }
+}

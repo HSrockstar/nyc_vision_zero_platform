@@ -1,0 +1,912 @@
+{
+  "target": "http://127.0.0.1:5176",
+  "startedAt": "2026-10-01T07:59:24.793Z",
+  "browser": {
+    "name": "system Chrome",
+    "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "headless": true,
+    "isolatedContext": true
+  },
+  "dataBoundary": "仅操作隔离随机PostgreSQL测试库中的合成事故、账户与治理任务；不记录密码、JWT、DSN、请求头或登录响应正文。",
+  "synthetic": "hand-computed January fixture",
+  "checks": [
+    {
+      "name": "统计面板已渲染",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "默认全年总览=10起事故",
+      "passed": true,
+      "evidence": {
+        "expected": 10
+      }
+    },
+    {
+      "name": "显示统计区间与revision",
+      "passed": true,
+      "evidence": {
+        "note": "统计区间 [2025-01-01, 2026-01-02)（结束日期为排他上界，不含当天）； 数据版本 revision 0。 涉及所选车型的全部事故；统计这些事故内的全部车辆与人员明细。"
+      }
+    },
+    {
+      "name": "四张ECharts图表已渲染",
+      "passed": true,
+      "evidence": [
+        {
+          "w": 1094,
+          "h": 300
+        },
+        {
+          "w": 1094,
+          "h": 300
+        },
+        {
+          "w": 1094,
+          "h": 300
+        },
+        {
+          "w": 1094,
+          "h": 360
+        }
+      ]
+    },
+    {
+      "name": "行政区表含BRONX与未知行政区组",
+      "passed": true,
+      "evidence": {
+        "rows": 3
+      }
+    },
+    {
+      "name": "月度表2025-01=3、2025-02=7",
+      "passed": true,
+      "evidence": {
+        "january": [
+          "2025-01",
+          "3",
+          "4",
+          "1",
+          "有记录"
+        ],
+        "february": [
+          "2025-02",
+          "7",
+          "0",
+          "0",
+          "有记录"
+        ]
+      }
+    },
+    {
+      "name": "月度覆盖说明展示且不补零（默认范围13个月）",
+      "passed": true,
+      "evidence": {
+        "months": 13
+      }
+    },
+    {
+      "name": "手算总览：3起/受伤4/死亡1",
+      "passed": true,
+      "evidence": [
+        "3",
+        "4",
+        "1"
+      ]
+    },
+    {
+      "name": "受伤/死亡缺失事故数在标签中展示",
+      "passed": true,
+      "evidence": [
+        "已知受伤合计（缺失 1 起事故）",
+        "已知死亡合计（缺失 1 起事故）"
+      ]
+    },
+    {
+      "name": "手算明细：人员4/车辆5/有坐标2缺1",
+      "passed": true,
+      "evidence": [
+        "4",
+        "5",
+        "2 / 1"
+      ]
+    },
+    {
+      "name": "归属0起且覆盖率0.000000",
+      "passed": true,
+      "evidence": [
+        "0",
+        "0.000000"
+      ]
+    },
+    {
+      "name": "原因TopN标识",
+      "passed": true,
+      "evidence": {
+        "title": "事故原因分析（前10项）"
+      }
+    },
+    {
+      "name": "原因A=2起且无原因事故=1",
+      "passed": true,
+      "evidence": {
+        "factorA": [
+          "M6 BROWSER FACTOR A",
+          "2"
+        ],
+        "noFactor": [
+          "无原因记录的事故",
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "车型A记录3/事故2且未知组保留",
+      "passed": true,
+      "evidence": {
+        "typeARow": [
+          "M6 BROWSER TYPE A",
+          "3",
+          "2"
+        ],
+        "unknownRow": [
+          "未知车型",
+          "1",
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "人员明细口径表含4组",
+      "passed": true,
+      "evidence": {
+        "rows": [
+          [
+            "未知类别",
+            "未知状态",
+            "1"
+          ],
+          [
+            "driver",
+            "Injured",
+            "1"
+          ],
+          [
+            "driver",
+            "Killed",
+            "1"
+          ],
+          [
+            "passenger",
+            "Uninjured",
+            "1"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "治理统计显示总数3、未分配单列与处理情况",
+      "passed": true,
+      "evidence": {
+        "sample": "模拟治理工单统计（课程模拟业务）课程模拟业务统计：仅统计未软删除工单；已完成依据任务状态COMPLETED，不依据生效日期或历史条数；未分配执行人单列；总数不通过历史记录重复累计。 日期筛选使用工单创建时间（UTC日期，左闭右开），与事故发生日期无关。当前未软删除工单总数：3。状态工单数已完成（COMPLETED）1草稿（DRAFT）1待执行（OPEN）1执行人工单数M6合成验收账户 · manager1M6合成验收账户 · assignee1未分配（未分配）1 处理情况：已"
+      }
+    },
+    {
+      "name": "事故CSV已请求",
+      "passed": true,
+      "evidence": {
+        "bytes": 814
+      }
+    },
+    {
+      "name": "事故CSV: BOM+说明行+3数据行",
+      "passed": true,
+      "evidence": {
+        "dataRows": 3,
+        "comments": 8
+      }
+    },
+    {
+      "name": "事故CSV含排他区间与revision说明",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "事故CSV按日期升序且含3起1月事故",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "事故CSV中NULL导出为空字段",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "统计报表CSV分节齐全且含人员节",
+      "passed": true,
+      "evidence": {
+        "sections": [
+          "# [总览] 单位：事故数/记录数/人数",
+          "# [行政区] 单位：事故数/人数；未知行政区单独成组",
+          "# [月度趋势] 单位：事故数/人数；空月份计数为空，coverage说明覆盖证据",
+          "# [小时分布] 单位：事故数；缺失时间单列，不并入0点",
+          "# [原因分析] 单位：不同事故数；组别可重叠",
+          "# [车辆类型] 单位：车辆记录数 / 不同事故数；未知车型单独成组",
+          "# [人员类别与伤亡状态] 单位：人员明细记录数；不与Crashes伤亡汇总对齐"
+        ]
+      }
+    },
+    {
+      "name": "统计报表CSV总览=3起",
+      "passed": true,
+      "evidence": {
+        "overviewRow": [
+          "不同事故数",
+          "3"
+        ]
+      }
+    },
+    {
+      "name": "快速切换筛选后旧响应被丢弃（显示布朗克斯0起）",
+      "passed": true,
+      "evidence": {
+        "raceCount": "0"
+      }
+    },
+    {
+      "name": "故障时显示错误且旧结果被清空",
+      "passed": true,
+      "evidence": {
+        "errorText": "Failed to fetch"
+      }
+    },
+    {
+      "name": "故障解除后统计恢复",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "打印媒体下仅统计面板可见",
+      "passed": true,
+      "evidence": {
+        "children": [
+          {
+            "tag": "P",
+            "cls": "eyebrow",
+            "display": "none"
+          },
+          {
+            "tag": "H1",
+            "cls": "",
+            "display": "none"
+          },
+          {
+            "tag": "P",
+            "cls": "intro",
+            "display": "none"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "",
+            "display": "none"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "",
+            "display": "none"
+          },
+          {
+            "tag": "DIV",
+            "cls": "workspace-panels",
+            "display": "none"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "",
+            "display": "none"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "",
+            "display": "none"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "statistics-panel",
+            "display": "block"
+          },
+          {
+            "tag": "P",
+            "cls": "footnote",
+            "display": "none"
+          }
+        ]
+      }
+    },
+    {
+      "name": "打印媒体下图表仍渲染（canvas非空）",
+      "passed": true,
+      "evidence": {
+        "canvases": 4
+      }
+    },
+    {
+      "name": "打印返回屏幕后图表恢复容器宽度",
+      "passed": true,
+      "evidence": {
+        "canvasWidths": [
+          1094,
+          1094,
+          1094,
+          1094
+        ]
+      }
+    },
+    {
+      "name": "桌面无页面横向溢出",
+      "passed": true,
+      "evidence": {
+        "overflowPx": 0,
+        "wide": []
+      }
+    },
+    {
+      "name": "窄屏VIEWER总览可读",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "VIEWER不可见统计报表CSV/人员/治理",
+      "passed": true,
+      "evidence": {
+        "names": [
+          "查询统计",
+          "下载事故CSV",
+          "打印报表"
+        ],
+        "headings": [
+          "当前范围总览",
+          "行政区分布",
+          "月度趋势",
+          "事故小时分布",
+          "事故原因分析（前10项）",
+          "车辆类型分析"
+        ]
+      }
+    },
+    {
+      "name": "窄屏无页面横向溢出（表格容器内滚动）",
+      "passed": true,
+      "evidence": {
+        "page": 0,
+        "tables": 0
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "network": {
+    "api": [],
+    "unexpectedFailures": [],
+    "responses": [
+      {
+        "path": "/api/v1/auth/login",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/dictionaries/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/dictionaries/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/map/collisions",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/imports",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/intersections",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/collisions",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/risk-rules",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/dictionaries/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/dictionaries/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/governance-tasks",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/users",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/risk-runs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/governance-tasks/assignees",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/risk-profiles",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exports/collisions.csv",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exports/statistics.csv",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/boroughs",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/overview",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/factors",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/trends",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/vehicle-types",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/persons",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/statistics/governance",
+        "status": 200
+      }
+    ]
+  },
+  "expectedResourceErrors": {
+    "count": 22,
+    "note": "故障注入与OSM瓦片拦截产生的net::ERR_FAILED资源错误单独计数，不计入JS错误。"
+  },
+  "tiles": {
+    "intercepted": 21
+  },
+  "csv": {
+    "collisions": {
+      "bom": true,
+      "commentLines": [
+        "# 生成时间（UTC）: 2026-10-01T07:59:30+00:00",
+        "# 数据版本 revision: 0",
+        "# 统计区间: [2025-01-01, 2025-02-01) ，结束日期为排他上界（不含当天）",
+        "# 行政区筛选: 全部；街道筛选: 无；车型筛选: 全部；原因筛选: 全部",
+        "# 车型/原因筛选用于选出涉及的事故；车辆与人员明细统计这些事故内的全部记录。",
+        "# 伤亡为Crashes汇总口径（casualty_stat）；人员明细不完整不代表没有伤亡。",
+        "# NULL导出为空字段，表示数值缺失，不是0。",
+        "# 数据行数: 3（不含#说明行）；排序: crash_date、collision_id 升序"
+      ],
+      "dataRows": 4,
+      "header": "collision_id,crash_date,crash_time,borough_name,on_street_name,cross_street_name,off_street_name,latitude,longitude,pers"
+    },
+    "statistics": {
+      "sections": [
+        "# [总览] 单位：事故数/记录数/人数",
+        "# [行政区] 单位：事故数/人数；未知行政区单独成组",
+        "# [月度趋势] 单位：事故数/人数；空月份计数为空，coverage说明覆盖证据",
+        "# [小时分布] 单位：事故数；缺失时间单列，不并入0点",
+        "# [原因分析] 单位：不同事故数；组别可重叠",
+        "# [车辆类型] 单位：车辆记录数 / 不同事故数；未知车型单独成组",
+        "# [人员类别与伤亡状态] 单位：人员明细记录数；不与Crashes伤亡汇总对齐"
+      ],
+      "overviewRow": [
+        "不同事故数",
+        "3"
+      ]
+    }
+  },
+  "screenshots": [
+    "m6-statistics-print-a4.png",
+    "m6-statistics-print.pdf",
+    "m6-statistics-desktop-1440x900.png",
+    "m6-statistics-mobile-390x844.png"
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "fatal": null,
+  "runner": {
+    "command": "node .m6-work/browser/m6_browser_acceptance.cjs <private-config>",
+    "exitCode": 0
+  },
+  "finishedAt": "2026-10-01T07:59:50.300Z",
+  "summary": {
+    "total": 33,
+    "passed": 33,
+    "failed": 0,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "expectedResourceErrors": 22,
+    "unexpectedApiFailures": 0
+  }
+}

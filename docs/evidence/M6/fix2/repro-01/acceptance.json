@@ -1,0 +1,32 @@
+{
+  "round": "fix2",
+  "startedAt": "2026-10-01T10:01:01.422Z",
+  "browser": {
+    "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "headless": true
+  },
+  "syntheticDatabase": "vision_zero_m1_test_392aca63173b",
+  "checks": [
+    {
+      "name": "R01-no-valid-report",
+      "passed": true,
+      "evidence": {
+        "disabled": true,
+        "header": false,
+        "body": false,
+        "tables": 0,
+        "charts": 0,
+        "explanation": true,
+        "reason": "统计报表（当前不可打印）尚未形成有效报表（无已应用筛选或上次查询失败），当前不可打印；请完成一次成功查询后再打印。"
+      }
+    }
+  ],
+  "downloads": [],
+  "pageErrors": [],
+  "fatal": {
+    "name": "Error",
+    "message": "locator.waitFor: Error: strict mode violation: locator('.statistics-panel').getByText('本次查询读取到不同的数据版本') resolved to 2 elements:\n    1) <p>本次查询读取到不同的数据版本，结果未应用；为避免输出混合版本的报表，打印与导出已停用，请重新查询。</p> aka getByText('本次查询读取到不同的数据版本，结果未应用；为避免输出混合版本的报表，打印与导出已停用，请重新查询。')\n    2) <p role=\"alert\" class=\"error no-print\">本次查询读取到不同的数据版本（可能有新数据发布），结果未应用；已展示报表为上次成功查询结果，打印与…</p> aka getByText('本次查询读取到不同的数据版本（可能有新数据发布），结果未应用；已展示报表为上次成功查询结果，打印与导出已停用，请重新查询。')\n\nCall log:\n\u001b[2m  - waiting for locator('.statistics-panel').getByText('本次查询读取到不同的数据版本') to be visible\u001b[22m\n"
+  },
+  "finishedAt": "2026-10-01T10:01:08.130Z",
+  "exitCode": 1
+}

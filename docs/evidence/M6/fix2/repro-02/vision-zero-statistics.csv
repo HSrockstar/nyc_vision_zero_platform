@@ -1,0 +1,75 @@
+﻿# Vision Zero 课程项目 · 统计报表导出
+# 生成时间（UTC）: 2026-10-01T10:01:34+00:00
+# 数据版本 revision: 0
+"# 统计区间: [2025-01-01, 2025-02-01) ，结束日期为排他上界（不含当天）"
+# 行政区筛选: 全部；街道筛选: 无；车型筛选: 全部；原因筛选: 全部
+# 车型/原因筛选用于选出涉及的事故；车辆与人员明细统计这些事故内的全部记录。
+# 伤亡为Crashes汇总口径（casualty_stat）；人员明细不完整不代表没有伤亡。
+# NULL导出为空字段，表示数值缺失，不是0。
+# 本报表在同一数据库快照内一次生成；各节数据对应GET /statistics/*接口。
+# 本报表为聚合结果，不设事故CSV的5000行数据上限；事故列表导出上限仍为5000行数据。
+# 原因/车型组别之间存在重叠（同一事故可属于多个组），各组计数之和可能大于事故总数。
+# 月度空月份不补零，coverage列说明其覆盖证据状态。
+# [总览] 单位：事故数/记录数/人数
+指标,值
+不同事故数,3
+已知受伤合计,4
+受伤缺失事故数,1
+已知死亡合计,1
+死亡缺失事故数,1
+人员明细记录数,4
+车辆明细记录数,5
+有坐标事故数,2
+缺坐标事故数,1
+正式归属已确认交叉口事故数,0
+归属覆盖率,0.000000
+# [行政区] 单位：事故数/人数；未知行政区单独成组
+borough_id,borough_name,collision_count,known_injured_count,injured_missing_count,known_killed_count,killed_missing_count
+1,BRONX,2,4,0,1,0
+,未知行政区,1,,1,,1
+# [月度趋势] 单位：事故数/人数；空月份计数为空，coverage说明覆盖证据；缺失列为伤亡值缺失的事故数
+month,collision_count,known_injured_count,injured_missing_count,known_killed_count,killed_missing_count,coverage
+2025-01,3,4,1,1,1,WITH_DATA
+# [小时分布] 单位：事故数；缺失时间单列，不并入0点
+hour,collision_count
+0,1
+1,0
+2,0
+3,0
+4,0
+5,0
+6,0
+7,0
+8,1
+9,0
+10,0
+11,0
+12,0
+13,0
+14,0
+15,0
+16,0
+17,0
+18,0
+19,0
+20,0
+21,0
+22,0
+23,0
+unknown,1
+# [原因分析] 单位：不同事故数；组别可重叠
+factor_id,canonical_name,display_name,collision_count
+1,M6 BROWSER FACTOR A,,2
+2,M6 BROWSER FACTOR B,,1
+,(无原因记录的事故),,1
+# [车辆类型] 单位：车辆记录数 / 不同事故数；未知车型单独成组
+vehicle_type_id,canonical_name,display_name,vehicle_records,collision_count
+1,M6 BROWSER TYPE A,,3,2
+,,,1,1
+2,M6 BROWSER TYPE B,,1,1
+# [人员类别与伤亡状态] 单位：人员明细记录数；不与Crashes伤亡汇总对齐
+person_type,person_injury,record_count
+,,1
+driver,Injured,1
+driver,Killed,1
+passenger,Uninjured,1

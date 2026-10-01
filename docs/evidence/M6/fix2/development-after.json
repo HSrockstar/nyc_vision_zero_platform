@@ -1,0 +1,20 @@
+{
+  "alembic_version": "0007_governance",
+  "revision": 98,
+  "collision": 85546,
+  "person": 292070,
+  "vehicle": 170015,
+  "location": 53667,
+  "risk_profile": 95,
+  "governance_task": 0,
+  "task_history": 0,
+  "app_user": 1,
+  "confirmed": 95,
+  "candidate": 4,
+  "rejected": 1,
+  "risk_runs_succeeded": 1,
+  "january": 6482,
+  "first_week": 1349,
+  "year": 85546,
+  "transaction_read_only": "on"
+}

@@ -1,0 +1,16 @@
+{
+  "alembic_version": "0007_governance",
+  "revision": 98,
+  "collisions": 85546,
+  "persons": 292070,
+  "vehicles": 170015,
+  "locations": 53667,
+  "intersections_confirmed": 95,
+  "intersections_candidate": 4,
+  "intersections_rejected": 1,
+  "risk_profiles": 95,
+  "risk_runs_succeeded": 1,
+  "tasks": 0,
+  "task_history": 0,
+  "users": 1
+}

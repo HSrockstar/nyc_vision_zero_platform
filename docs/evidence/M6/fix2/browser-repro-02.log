@@ -1,0 +1,16 @@
+PASS R01-no-valid-report
+PASS R01-mixed-not-applied
+PASS R01-mixed-revisions
+PASS R01-loading
+PASS R01-failed
+PASS R02-empty-date
+PASS R02-empty-date-previous-result-labelled
+PASS R02-empty-date-recovered
+PASS R02-reversed-date
+PASS R02-reversed-date-previous-result-labelled
+PASS R02-reversed-date-recovered
+PASS R03-collisions-actual-download
+PASS R03-statistics-actual-download
+PASS R01-normal-print
+FAIL R01-chart-restored-after-print
+PASS no-page-errors

@@ -1,0 +1,9 @@
+{
+  "database": "vision_zero_m1_test_c11b2f55ff92",
+  "status": "passed",
+  "business_tables": 23,
+  "revision": "0007_governance",
+  "empty_upgrade_repeat_downgrade_reupgrade": true,
+  "external_schema_preserved": true,
+  "retained_for_review": true
+}

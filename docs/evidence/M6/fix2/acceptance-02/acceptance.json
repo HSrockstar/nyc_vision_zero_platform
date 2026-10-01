@@ -1,0 +1,245 @@
+{
+  "round": "fix2",
+  "startedAt": "2026-10-01T10:16:12.219Z",
+  "browser": {
+    "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "headless": true
+  },
+  "syntheticDatabase": "vision_zero_m1_test_392aca63173b",
+  "checks": [
+    {
+      "name": "R01-no-valid-report",
+      "passed": true,
+      "evidence": {
+        "disabled": true,
+        "header": false,
+        "body": false,
+        "tables": 0,
+        "charts": 0,
+        "explanation": true,
+        "reason": "统计报表（当前不可打印）尚未形成有效报表（无已应用筛选或上次查询失败），当前不可打印；请完成一次成功查询后再打印。"
+      }
+    },
+    {
+      "name": "R01-mixed-not-applied",
+      "passed": true,
+      "evidence": {
+        "previousReportUnchanged": true
+      }
+    },
+    {
+      "name": "R01-mixed-revisions",
+      "passed": true,
+      "evidence": {
+        "disabled": true,
+        "header": false,
+        "body": false,
+        "tables": 0,
+        "charts": 0,
+        "explanation": true,
+        "reason": "统计报表（当前不可打印）本次查询读取到不同的数据版本，结果未应用；为避免输出混合版本的报表，打印与导出已停用，请重新查询。"
+      }
+    },
+    {
+      "name": "R01-loading",
+      "passed": true,
+      "evidence": {
+        "disabled": true,
+        "header": false,
+        "body": false,
+        "tables": 0,
+        "charts": 0,
+        "explanation": true,
+        "reason": "统计报表（当前不可打印）正在查询统计，报表尚未形成，当前不可打印；请稍后重试或等待查询完成。"
+      }
+    },
+    {
+      "name": "R01-failed",
+      "passed": true,
+      "evidence": {
+        "disabled": true,
+        "header": false,
+        "body": false,
+        "tables": 0,
+        "charts": 0,
+        "explanation": true,
+        "reason": "统计报表（当前不可打印）尚未形成有效报表（无已应用筛选或上次查询失败），当前不可打印；请完成一次成功查询后再打印。"
+      }
+    },
+    {
+      "name": "R02-empty-date",
+      "passed": true,
+      "evidence": {
+        "disabled": true,
+        "header": false,
+        "body": false,
+        "tables": 0,
+        "charts": 0,
+        "explanation": true,
+        "reason": "统计报表（当前不可打印）筛选条件无效或尚未重新完成成功查询，上次成功查询结果仅供查看，不可打印；请恢复有效条件并重新查询。"
+      }
+    },
+    {
+      "name": "R02-empty-date-previous-result-labelled",
+      "passed": true,
+      "evidence": {
+        "retainedCount": "3"
+      }
+    },
+    {
+      "name": "R02-empty-date-requires-successful-query",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "R02-empty-date-recovered",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "R02-reversed-date",
+      "passed": true,
+      "evidence": {
+        "disabled": true,
+        "header": false,
+        "body": false,
+        "tables": 0,
+        "charts": 0,
+        "explanation": true,
+        "reason": "统计报表（当前不可打印）筛选条件无效或尚未重新完成成功查询，上次成功查询结果仅供查看，不可打印；请恢复有效条件并重新查询。"
+      }
+    },
+    {
+      "name": "R02-reversed-date-previous-result-labelled",
+      "passed": true,
+      "evidence": {
+        "retainedCount": "3"
+      }
+    },
+    {
+      "name": "R02-reversed-date-requires-successful-query",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "R02-reversed-date-recovered",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "name": "R03-collisions-actual-download",
+      "passed": true,
+      "evidence": {
+        "suggestedFilename": "vision-zero-collisions.csv",
+        "failure": null,
+        "bytes": 1141,
+        "sha256": "ba9279bede34bf602523eac96c5fa1fccaf0dc462cd4b2059eceb2346a9cad46",
+        "parsedRows": 4,
+        "bom": true,
+        "content": true,
+        "singleRevisionAndRange": true
+      }
+    },
+    {
+      "name": "R03-statistics-actual-download",
+      "passed": true,
+      "evidence": {
+        "suggestedFilename": "vision-zero-statistics.csv",
+        "failure": null,
+        "bytes": 2728,
+        "sha256": "7e64eb2bf5ee539369cfd80cfce85defb71190bc21cca78c73a4a170ecd3ab9d",
+        "parsedRows": 52,
+        "bom": true,
+        "content": true,
+        "singleRevisionAndRange": true
+      }
+    },
+    {
+      "name": "R01-normal-print",
+      "passed": true,
+      "evidence": {
+        "body": true,
+        "title": true,
+        "explanation": false,
+        "text": "统计报表 统计区间 [2025-01-01, 2025-02-01)（结束日期为排他上界，不含当天）；数据版本 revision 0。 行政区：全部；街道条件：无； 车型：全部；原因：全部。 符合当前筛选条件的事故及其全部明细（车辆与人员记录数）。 伤亡为Crashes汇总口径（casualty_stat），人员明细不完整不代表没有伤亡；月度空月份不补零；原因/车型组别之间存在重叠，各组计数之和可能大于事故总数。 模拟治理工单统计独立于事故日期范围，属课程模拟业务。 "
+      }
+    },
+    {
+      "name": "R01-chart-restored-after-print",
+      "passed": true,
+      "evidence": {
+        "before": [
+          {
+            "width": 1094,
+            "height": 300
+          },
+          {
+            "width": 1094,
+            "height": 300
+          },
+          {
+            "width": 1094,
+            "height": 300
+          },
+          {
+            "width": 1094,
+            "height": 360
+          }
+        ],
+        "after": [
+          {
+            "width": 1094,
+            "height": 300
+          },
+          {
+            "width": 1094,
+            "height": 300
+          },
+          {
+            "width": 1094,
+            "height": 300
+          },
+          {
+            "width": 1094,
+            "height": 360
+          }
+        ],
+        "events": {
+          "before": 2,
+          "after": 1
+        }
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true,
+      "evidence": []
+    }
+  ],
+  "downloads": [
+    {
+      "suggestedFilename": "vision-zero-collisions.csv",
+      "failure": null,
+      "bytes": 1141,
+      "sha256": "ba9279bede34bf602523eac96c5fa1fccaf0dc462cd4b2059eceb2346a9cad46",
+      "parsedRows": 4,
+      "bom": true,
+      "content": true,
+      "singleRevisionAndRange": true
+    },
+    {
+      "suggestedFilename": "vision-zero-statistics.csv",
+      "failure": null,
+      "bytes": 2728,
+      "sha256": "7e64eb2bf5ee539369cfd80cfce85defb71190bc21cca78c73a4a170ecd3ab9d",
+      "parsedRows": 52,
+      "bom": true,
+      "content": true,
+      "singleRevisionAndRange": true
+    }
+  ],
+  "pageErrors": [],
+  "fatal": null,
+  "finishedAt": "2026-10-01T10:16:31.187Z",
+  "exitCode": 0
+}

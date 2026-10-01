@@ -6,6 +6,7 @@ import AccountPanel from './components/AccountPanel.vue'
 import M2Panel from './components/M2Panel.vue'
 import RiskPanel from './components/RiskPanel.vue'
 import GovernancePanel from './components/GovernancePanel.vue'
+import StatisticsPanel from './components/StatisticsPanel.vue'
 import type { RiskProfile } from './api/m4'
 
 const state = ref<HealthState>({ live: false, ready: false, detail: '正在检查开发环境…' })
@@ -46,6 +47,7 @@ onMounted(refresh)
     <M2Panel v-if="sessionUser" />
     <RiskPanel v-if="sessionUser" :key="sessionUser.user_id" @governance="selectGovernance" />
     <GovernancePanel v-if="sessionUser && sessionUser.role !== 'VIEWER'" :key="sessionUser.user_id" :profile="governanceProfile" />
+    <StatisticsPanel v-if="sessionUser" :key="sessionUser.user_id" />
     <p class="footnote">数据库运行在 Docker；Python 后端和前端在 Windows 开发。</p>
   </main>
 </template>

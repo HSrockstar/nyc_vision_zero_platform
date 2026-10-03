@@ -1,0 +1,40 @@
+{
+  "result": "failed",
+  "started_at": "2026-10-03T02:08:31.848Z",
+  "checks": [],
+  "screenshots": [],
+  "api_requests": [],
+  "api_failures": [],
+  "blocked_mutations": [],
+  "expected_tile_aborts": 0,
+  "expected_auth_console_errors": [],
+  "expected_invalid_login_responses": [],
+  "console_errors": [],
+  "page_errors": [],
+  "request_failures": [],
+  "script_errors": [],
+  "governance_create": null,
+  "environment": {
+    "synthetic_only": true,
+    "host": "127.0.0.1",
+    "port": "5176"
+  },
+  "product_or_browser_failures": [
+    {
+      "message": "page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5176/#/collisions\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5176/#/collisions\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at main (E:\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:362:14)\n    at async E:\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:652:5"
+    }
+  ],
+  "finished_at": "2026-10-03T02:08:35.778Z",
+  "summary": {
+    "passed": 0,
+    "failed": 0,
+    "screenshots": 0,
+    "api_failures": 0,
+    "blocked_mutations": 0,
+    "page_errors": 0,
+    "console_errors": 0,
+    "script_errors": 0,
+    "acceptance_assertion_failures": 0,
+    "governance_create_attempts": 0
+  }
+}

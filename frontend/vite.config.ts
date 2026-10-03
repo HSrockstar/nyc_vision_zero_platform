@@ -9,6 +9,8 @@ if (parsed.protocol !== 'http:' || !['127.0.0.1', 'localhost'].includes(parsed.h
 
 export default defineConfig({
   plugins: [vue()],
+  // 业务页按路由懒加载；预编译其依赖，避免首次导航触发开发服务整页刷新。
+  optimizeDeps: { include: ['vue-router', 'element-plus', 'echarts/core', 'echarts/charts', 'echarts/components', 'echarts/renderers', 'leaflet'] },
   server: {
     host: '127.0.0.1',
     port: 5173,

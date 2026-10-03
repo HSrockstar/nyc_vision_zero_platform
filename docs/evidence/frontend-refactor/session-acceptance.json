@@ -1,0 +1,26 @@
+{
+  "synthetic_only": true,
+  "checks": [
+    {
+      "name": "logout-clears-shell-and-returns-login",
+      "passed": true
+    },
+    {
+      "name": "revoked-token-receives-real-401",
+      "passed": true
+    },
+    {
+      "name": "401-clears-shell-and-preserves-target",
+      "passed": true
+    },
+    {
+      "name": "fresh-login-restores-authorized-route",
+      "passed": true
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

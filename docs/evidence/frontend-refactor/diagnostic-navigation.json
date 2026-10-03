@@ -1,0 +1,41 @@
+[
+  {
+    "delay": 0,
+    "hash": "#/",
+    "scroll": 390,
+    "overflow": []
+  },
+  {
+    "delay": 100,
+    "hash": "#/",
+    "scroll": 390,
+    "overflow": []
+  },
+  {
+    "delay": 400,
+    "hash": "#/",
+    "scroll": 390,
+    "overflow": []
+  },
+  {
+    "delay": 1000,
+    "hash": "#/",
+    "scroll": 390,
+    "overflow": []
+  },
+  {
+    "target": "/governance",
+    "hash": "#/forbidden",
+    "h1": "无访问权限"
+  },
+  {
+    "target": "/users",
+    "hash": "#/forbidden",
+    "h1": "无访问权限"
+  },
+  {
+    "target": "/imports",
+    "hash": "#/forbidden",
+    "h1": "无访问权限"
+  }
+]

@@ -1,53 +1,84 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import { loadHealth, type HealthState } from './api/health'
-import { sessionUser } from './api/auth'
-import AccountPanel from './components/AccountPanel.vue'
-import M2Panel from './components/M2Panel.vue'
-import RiskPanel from './components/RiskPanel.vue'
-import GovernancePanel from './components/GovernancePanel.vue'
-import StatisticsPanel from './components/StatisticsPanel.vue'
-import type { RiskProfile } from './api/m4'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { api, clearSession, sessionUser } from './api/auth'
+import { navigation, roleLabels } from './navigation'
+import { resetWorkspace } from './workspace'
+import AppIcon from './components/AppIcon.vue'
+import HealthStatus from './components/HealthStatus.vue'
 
-const state = ref<HealthState>({ live: false, ready: false, detail: '正在检查开发环境…' })
-const checking = ref(false)
-const governanceProfile = ref<RiskProfile | null>(null)
-watch(() => sessionUser.value?.user_id, () => { governanceProfile.value = null })
-function selectGovernance(profile: RiskProfile) {
-  governanceProfile.value = profile
-  requestAnimationFrame(() => document.getElementById('governance')?.scrollIntoView({ behavior: 'smooth' }))
+const route = useRoute(), router = useRouter()
+const collapsed = ref(false), mobileOpen = ref(false), signingOut = ref(false), sessionError = ref('')
+const sidebar = ref<HTMLElement | null>(null), menuButton = ref<HTMLButtonElement | null>(null)
+async function openNavigation() {
+  mobileOpen.value = true
+  await nextTick()
+  sidebar.value?.querySelector<HTMLElement>('a,button')?.focus()
 }
-
-async function refresh() {
-  checking.value = true
-  try { state.value = await loadHealth() }
-  finally { checking.value = false }
+async function closeNavigation() {
+  mobileOpen.value = false
+  await nextTick()
+  if (narrow.value) menuButton.value?.focus()
 }
-
-onMounted(refresh)
+function navigationKeydown(event: KeyboardEvent) {
+  if (!narrow.value || !mobileOpen.value || event.key !== 'Tab') return
+  const items = Array.from(sidebar.value?.querySelectorAll<HTMLElement>('a,button') ?? []).filter(item => item.getClientRects().length > 0)
+  const first = items[0], last = items[items.length - 1]
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
+}
+function focusContent() { document.getElementById('workspace-content')?.focus() }
+const media = window.matchMedia('(max-width: 900px)')
+const narrow = ref(media.matches)
+function mediaChange() { narrow.value = media.matches; mobileOpen.value = false }
+media.addEventListener('change', mediaChange)
+onBeforeUnmount(() => media.removeEventListener('change', mediaChange))
+const menu = computed(() => navigation.filter(item => !item.roles || (sessionUser.value && item.roles.includes(sessionUser.value.role))))
+const groups = computed(() => [...new Set(menu.value.map(item => item.group))])
+const identityKey = computed(() => `${sessionUser.value?.user_id ?? ''}:${sessionUser.value?.role ?? ''}`)
+watch(identityKey, () => {
+  resetWorkspace(); mobileOpen.value = false; sessionError.value = ''
+  if (!sessionUser.value && !route.meta.public) void router.replace({ path: '/login', query: { redirect: route.fullPath } })
+  else if (route.meta.roles && sessionUser.value && !route.meta.roles.includes(sessionUser.value.role)) void router.replace('/forbidden')
+})
+watch(() => route.path, () => { mobileOpen.value = false; sessionError.value = '' })
+async function signOut() {
+  signingOut.value = true; sessionError.value = ''
+  try { await api('/auth/logout', 'POST'); clearSession() }
+  catch (error) { sessionError.value = error instanceof Error ? error.message : '退出未完成，请重试。' }
+  finally { signingOut.value = false }
+}
 </script>
 
 <template>
-  <main>
-    <p class="eyebrow">VISION ZERO · M5</p>
-    <h1>纽约交通碰撞风险识别<br />与高危交叉口治理管理系统</h1>
-    <p class="intro">登录后可查询事故、地图观察点、交叉口与风险画像；治理人员可复核地点归属、建立模拟治理任务并记录执行和复核过程，管理员可管理数据导入与账户。</p>
-    <section aria-labelledby="health-heading">
-      <div class="section-title">
-        <h2 id="health-heading">环境状态</h2>
-        <button :disabled="checking" @click="refresh">{{ checking ? '检查中…' : '重新检查' }}</button>
-      </div>
-      <dl>
-        <div><dt>后端进程</dt><dd :class="{ good: state.live }">{{ checking ? '检查中' : state.live ? '已启动' : '不可访问' }}</dd></div>
-        <div><dt>数据库与迁移</dt><dd :class="{ good: state.ready }">{{ checking ? '检查中' : state.ready ? '已就绪' : '未就绪' }}</dd></div>
-      </dl>
-      <p class="detail" aria-live="polite">{{ state.detail }}</p>
-    </section>
-    <AccountPanel />
-    <M2Panel v-if="sessionUser" />
-    <RiskPanel v-if="sessionUser" :key="sessionUser.user_id" @governance="selectGovernance" />
-    <GovernancePanel v-if="sessionUser && sessionUser.role !== 'VIEWER'" :key="sessionUser.user_id" :profile="governanceProfile" />
-    <StatisticsPanel v-if="sessionUser" :key="sessionUser.user_id" />
-    <p class="footnote">数据库运行在 Docker；Python 后端和前端在 Windows 开发。</p>
-  </main>
+  <RouterView v-if="route.meta.public" />
+  <div v-else-if="sessionUser" :class="['app-shell', { 'nav-collapsed': collapsed, 'mobile-nav-open': mobileOpen, 'statistics-route': route.path === '/statistics' }]" @keydown.esc="closeNavigation">
+    <a class="skip-link" href="#workspace-content" @click.prevent="focusContent">跳到主要内容</a>
+    <button v-if="mobileOpen" class="nav-backdrop" aria-label="关闭导航" tabindex="-1" @click="closeNavigation" />
+    <aside ref="sidebar" class="app-sidebar" :inert="narrow && !mobileOpen" :role="narrow && mobileOpen ? 'dialog' : undefined" :aria-modal="narrow && mobileOpen ? true : undefined" aria-label="主导航" @keydown="navigationKeydown">
+      <RouterLink to="/" class="brand" aria-label="Vision Zero 工作总览">
+        <span class="brand-symbol"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M8 7h7v8h6V7h7v22h-7v-8h-6v8H8z" fill="currentColor"/><path d="M16.5 4h3v28h-3z" fill="white" opacity=".65"/></svg></span>
+        <span class="brand-copy"><strong>Vision Zero<span class="brand-period">.</span></strong><small>城市交通安全治理</small></span>
+      </RouterLink>
+      <nav class="nav-groups">
+        <div v-for="group in groups" :key="group" class="nav-group">
+          <p class="nav-label">{{ group }}</p>
+          <RouterLink v-for="item in menu.filter(entry => entry.group === group)" :key="item.path" :to="item.path" :title="collapsed ? item.label : undefined" :class="['nav-item', { active: route.path === item.path }]" :aria-current="route.path === item.path ? 'page' : undefined"><AppIcon :name="item.icon" /><span>{{ item.label }}</span><span v-if="route.path === item.path" class="nav-active-dot" /></RouterLink>
+        </div>
+      </nav>
+      <div class="sidebar-bottom"><div class="workspace-note"><AppIcon name="shield" /><span>公开数据 · 课程模拟治理</span></div><button class="collapse-button" :aria-label="collapsed ? '展开导航' : '收起导航'" :aria-expanded="!collapsed" @click="collapsed = !collapsed"><AppIcon name="chevron" /><span>收起导航</span></button><button class="mobile-close secondary-button" @click="closeNavigation">关闭导航</button></div>
+    </aside>
+    <div class="workspace" :inert="narrow && mobileOpen">
+      <header class="app-topbar">
+        <div class="breadcrumb"><button ref="menuButton" class="icon-button mobile-menu" aria-label="打开导航" :aria-expanded="mobileOpen" @click="openNavigation"><AppIcon name="menu" /></button><span class="breadcrumb-root">工作空间</span><span class="breadcrumb-divider">/</span><span>{{ route.meta.title }}</span></div>
+        <div class="topbar-actions"><HealthStatus /><span class="topbar-divider" /><RouterLink class="profile-link" to="/account"><span class="avatar">{{ sessionUser.display_name.slice(0, 1) }}</span><span class="profile-copy"><strong>{{ sessionUser.display_name }}</strong><small>{{ roleLabels[sessionUser.role] }}</small></span></RouterLink><button class="icon-button logout-button" :disabled="signingOut" aria-label="退出全部会话" title="退出全部会话" @click="signOut"><AppIcon name="logout" /></button></div>
+      </header>
+      <main id="workspace-content" class="workspace-main" tabindex="-1">
+        <div class="page-heading"><div><p class="eyebrow">VISION ZERO / {{ route.path === '/' ? 'OVERVIEW' : 'WORKSPACE' }}</p><h1>{{ route.meta.title }}</h1><p class="page-description">{{ route.meta.description }}</p></div><span v-if="route.path === '/governance'" class="simulation-badge">课程模拟业务</span><span v-else class="page-context">纽约 · 交通碰撞数据</span></div>
+        <p v-if="sessionError" class="error" role="alert">{{ sessionError }}</p>
+        <div class="page-content"><RouterView :key="identityKey + ':' + route.path" /></div>
+        <footer class="workspace-footer"><span>Vision Zero · 让每一项治理有据可循</span><span>公开碰撞数据 / 课程设计</span></footer>
+      </main>
+    </div>
+  </div>
 </template>

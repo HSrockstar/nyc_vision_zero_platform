@@ -1,0 +1,24 @@
+{
+  "equal": true,
+  "compared_fields": [
+    "alembic_version",
+    "revision",
+    "collision",
+    "person",
+    "vehicle",
+    "location",
+    "risk_profile",
+    "governance_task",
+    "task_history",
+    "app_user",
+    "confirmed",
+    "candidate",
+    "rejected",
+    "risk_runs_succeeded",
+    "january",
+    "first_week",
+    "year",
+    "transaction_read_only"
+  ],
+  "read_only": true
+}

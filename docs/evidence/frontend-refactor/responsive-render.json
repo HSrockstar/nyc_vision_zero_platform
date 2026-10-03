@@ -1,0 +1,83 @@
+{
+  "synthetic_only": true,
+  "results": [
+    {
+      "name": "overview",
+      "url": "http://127.0.0.1:5176/#/",
+      "overflow": false
+    },
+    {
+      "name": "collisions",
+      "url": "http://127.0.0.1:5176/#/collisions",
+      "overflow": false
+    },
+    {
+      "name": "map",
+      "url": "http://127.0.0.1:5176/#/map",
+      "overflow": false
+    },
+    {
+      "name": "risks",
+      "url": "http://127.0.0.1:5176/#/risks",
+      "overflow": false
+    },
+    {
+      "name": "governance",
+      "url": "http://127.0.0.1:5176/#/governance",
+      "overflow": false
+    },
+    {
+      "name": "statistics",
+      "url": "http://127.0.0.1:5176/#/statistics",
+      "overflow": false
+    },
+    {
+      "name": "imports",
+      "url": "http://127.0.0.1:5176/#/imports",
+      "overflow": false
+    },
+    {
+      "name": "users",
+      "url": "http://127.0.0.1:5176/#/users",
+      "overflow": false
+    },
+    {
+      "name": "account",
+      "url": "http://127.0.0.1:5176/#/account",
+      "overflow": false
+    },
+    {
+      "name": "overview-mobile",
+      "overflow": false
+    },
+    {
+      "name": "collisions-mobile",
+      "overflow": false
+    },
+    {
+      "name": "map-mobile",
+      "overflow": false
+    },
+    {
+      "name": "risks-mobile",
+      "overflow": false
+    },
+    {
+      "name": "governance-mobile",
+      "overflow": false
+    },
+    {
+      "name": "statistics-mobile",
+      "overflow": false
+    },
+    {
+      "name": "imports-mobile",
+      "overflow": false
+    },
+    {
+      "name": "users-mobile",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

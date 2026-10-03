@@ -1,0 +1,1485 @@
+{
+  "result": "failed",
+  "started_at": "2026-10-02T16:55:30.892Z",
+  "checks": [
+    {
+      "name": "管理员：错误登录反馈与目标路由登录",
+      "passed": true
+    },
+    {
+      "name": "管理员：刷新后需要重新登录并返回目标页",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/collisions",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/map",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/risks",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/governance",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/statistics",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/imports",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/users",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 路由可访问：/account",
+      "passed": true
+    },
+    {
+      "name": "ADMIN：账户页与用户目录复用时重新加载并清除密码状态",
+      "passed": false,
+      "detail": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('新密码', { exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "ADMIN：事故查询游标绑定、筛选重置与合成详情分页",
+      "passed": false,
+      "detail": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: /事故详情.*910013/ }) to be visible\u001b[22m\n"
+    },
+    {
+      "name": "ADMIN：风险画像携带依据并预填治理草稿标题，且只创建一次",
+      "passed": true
+    },
+    {
+      "name": "ADMIN：地图真实渲染、缩放控件、侧栏与移动面板键盘切换",
+      "passed": false,
+      "detail": "地图缩放后没有重新请求底图瓦片"
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/",
+      "passed": false,
+      "detail": "/ 整页横向溢出：439 > 390"
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/collisions",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/map",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/risks",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/governance",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/statistics",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/imports",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/users",
+      "passed": true
+    },
+    {
+      "name": "ADMIN 390px 无整页横溢并截图：/account",
+      "passed": true
+    },
+    {
+      "name": "ADMIN：跳转链接聚焦主内容",
+      "passed": true
+    },
+    {
+      "name": "ADMIN：移动导航焦点陷阱、Escape 关闭并恢复焦点",
+      "passed": true
+    },
+    {
+      "name": "MANAGER 路由可访问：/",
+      "passed": true
+    },
+    {
+      "name": "MANAGER 路由可访问：/collisions",
+      "passed": true
+    },
+    {
+      "name": "MANAGER 路由可访问：/map",
+      "passed": true
+    },
+    {
+      "name": "MANAGER 路由可访问：/risks",
+      "passed": true
+    },
+    {
+      "name": "MANAGER 路由可访问：/governance",
+      "passed": true
+    },
+    {
+      "name": "MANAGER 路由可访问：/statistics",
+      "passed": true
+    },
+    {
+      "name": "MANAGER 路由可访问：/imports",
+      "passed": false,
+      "detail": "MANAGER 页面没有批次摘要或空态"
+    },
+    {
+      "name": "MANAGER 路由可访问：/account",
+      "passed": true
+    },
+    {
+      "name": "MANAGER：管理员专属用户目录直接访问被拒绝",
+      "passed": true
+    },
+    {
+      "name": "MANAGER：按日期与街道查合成事故并加载明细第 2 页",
+      "passed": false,
+      "detail": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.collision-table tbody tr').filter({ hasText: 'FRONTEND SYNTHETIC BROADWAY' }).first() to be visible\u001b[22m\n\u001b[2m    23 × locator resolved to hidden <tr data-v-ba36657a=\"\">…</tr>\u001b[22m\n"
+    },
+    {
+      "name": "VIEWER 路由可访问：/",
+      "passed": true
+    },
+    {
+      "name": "VIEWER 路由可访问：/collisions",
+      "passed": true
+    },
+    {
+      "name": "VIEWER 路由可访问：/map",
+      "passed": true
+    },
+    {
+      "name": "VIEWER 路由可访问：/risks",
+      "passed": true
+    },
+    {
+      "name": "VIEWER 路由可访问：/statistics",
+      "passed": true
+    },
+    {
+      "name": "VIEWER 路由可访问：/account",
+      "passed": true
+    },
+    {
+      "name": "VIEWER 直接访问拒绝：/governance",
+      "passed": true
+    },
+    {
+      "name": "VIEWER 直接访问拒绝：/users",
+      "passed": false,
+      "detail": "page.waitForFunction: Timeout 30000ms exceeded."
+    },
+    {
+      "name": "VIEWER 直接访问拒绝：/imports",
+      "passed": false,
+      "detail": "page.waitForFunction: Timeout 30000ms exceeded."
+    },
+    {
+      "name": "VIEWER：人员明细隐藏年龄与性别",
+      "passed": false,
+      "detail": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.collision-table tbody tr').filter({ hasText: 'FRONTEND SYNTHETIC BROADWAY' }).first() to be visible\u001b[22m\n\u001b[2m    23 × locator resolved to hidden <tr data-v-ba36657a=\"\">…</tr>\u001b[22m\n"
+    }
+  ],
+  "screenshots": [
+    "screenshots/admin-overview-desktop.png",
+    "screenshots/admin-collisions-desktop.png",
+    "screenshots/admin-map-desktop.png",
+    "screenshots/admin-risks-desktop.png",
+    "screenshots/admin-governance-desktop.png",
+    "screenshots/admin-statistics-desktop.png",
+    "screenshots/admin-imports-desktop.png",
+    "screenshots/admin-users-desktop.png",
+    "screenshots/admin-account-desktop.png",
+    "screenshots/admin-collisions-mobile.png",
+    "screenshots/admin-map-mobile.png",
+    "screenshots/admin-risks-mobile.png",
+    "screenshots/admin-governance-mobile.png",
+    "screenshots/admin-statistics-mobile.png",
+    "screenshots/admin-imports-mobile.png",
+    "screenshots/admin-users-mobile.png",
+    "screenshots/admin-account-mobile.png"
+  ],
+  "api_requests": [
+    {
+      "role": "admin",
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 401
+    },
+    {
+      "role": "admin",
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "admin",
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/overview",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/boroughs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/map/collisions",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/intersections",
+      "query": {
+        "page": "1",
+        "page_size": "50",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-rules",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-runs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "page": "1",
+        "rule_id": "1",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-profiles",
+      "query": {
+        "page": "1",
+        "sort": "score",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks/assignees",
+      "query": {
+        "page_size": "100",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/overview",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/boroughs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/factors",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/vehicle-types",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/persons",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/governance",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/imports",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/users",
+      "query": {
+        "page_size": "100",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": true
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "street_filter": "present",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "start": "2025-02-08",
+        "end": "2025-02-09",
+        "page_size": "25",
+        "include_total": "true",
+        "street_filter": "synthetic_detail",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions/910053",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions/910053/persons",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions/910053/vehicles",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-rules",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-runs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "page": "1",
+        "rule_id": "1",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-profiles",
+      "query": {
+        "page": "1",
+        "sort": "score",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks/assignees",
+      "query": {
+        "page_size": "100",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "POST",
+      "path": "/api/v1/governance-tasks",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 201
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks/4",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks/4/history",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/map/collisions",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/intersections",
+      "query": {
+        "page": "1",
+        "page_size": "50",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/overview",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/boroughs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/map/collisions",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/intersections",
+      "query": {
+        "page": "1",
+        "page_size": "50",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-rules",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-runs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "page": "1",
+        "rule_id": "1",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/risk-profiles",
+      "query": {
+        "page": "1",
+        "sort": "score",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks/assignees",
+      "query": {
+        "page_size": "100",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/imports",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/users",
+      "query": {
+        "page_size": "100",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/overview",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/boroughs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "manager",
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/statistics/overview",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/statistics/boroughs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/map/collisions",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/intersections",
+      "query": {
+        "page": "1",
+        "page_size": "50",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/risk-rules",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/risk-runs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "page": "1",
+        "rule_id": "1",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/imports",
+      "query": {
+        "page": "1",
+        "page_size": "20",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/governance-tasks/assignees",
+      "query": {
+        "page_size": "100",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/risk-profiles",
+      "query": {
+        "page": "1",
+        "sort": "score",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "manager",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "start": "2025-02-08",
+        "end": "2025-02-09",
+        "page_size": "25",
+        "include_total": "true",
+        "street_filter": "synthetic_detail",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/statistics/overview",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/statistics/boroughs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": null
+    },
+    {
+      "role": "viewer",
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/statistics/overview",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/statistics/boroughs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/statistics/trends",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/map/collisions",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/intersections",
+      "query": {
+        "page": "1",
+        "page_size": "50",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/risk-rules",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/risk-runs",
+      "query": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "page": "1",
+        "rule_id": "1",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/risk-profiles",
+      "query": {
+        "page": "1",
+        "sort": "score",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/vehicle-types",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/dictionaries/factors",
+      "query": {
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "page_size": "25",
+        "include_total": "true",
+        "has_cursor": false
+      },
+      "status": 200
+    },
+    {
+      "role": "viewer",
+      "method": "GET",
+      "path": "/api/v1/collisions",
+      "query": {
+        "start": "2025-02-08",
+        "end": "2025-02-09",
+        "page_size": "25",
+        "include_total": "true",
+        "street_filter": "synthetic_detail",
+        "has_cursor": false
+      },
+      "status": 200
+    }
+  ],
+  "api_failures": [],
+  "blocked_mutations": [],
+  "expected_tile_aborts": 66,
+  "console_errors": [
+    {
+      "role": "admin",
+      "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    }
+  ],
+  "page_errors": [],
+  "request_failures": [],
+  "script_errors": [],
+  "governance_create": {
+    "attempts": 1,
+    "request": {
+      "has_profile_id": true,
+      "has_title": true,
+      "has_description": true,
+      "has_radius": true,
+      "high_risk": true
+    },
+    "status": 201
+  },
+  "environment": {
+    "synthetic_only": true,
+    "host": "127.0.0.1",
+    "port": "5176"
+  },
+  "acceptance_assertion_failures": [
+    {
+      "message": "AssertionError [ERR_ASSERTION]: 存在浏览器 console error\n    at ensure (C:\\Users\\Lenovo\\.codex\\worktrees\\frontend-query-map\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:59:10)\n    at main (C:\\Users\\Lenovo\\.codex\\worktrees\\frontend-query-map\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:589:3)\n    at async C:\\Users\\Lenovo\\.codex\\worktrees\\frontend-query-map\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:596:5"
+    }
+  ],
+  "finished_at": "2026-10-02T16:57:55.366Z",
+  "summary": {
+    "passed": 37,
+    "failed": 9,
+    "screenshots": 17,
+    "api_failures": 0,
+    "blocked_mutations": 0,
+    "page_errors": 0,
+    "console_errors": 1,
+    "script_errors": 0,
+    "acceptance_assertion_failures": 1,
+    "governance_create_attempts": 1
+  }
+}

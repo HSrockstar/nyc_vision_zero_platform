@@ -1,0 +1,15 @@
+{
+  "synthetic_only": true,
+  "source_report": "initial-runs/browser-02.json",
+  "evidence": {
+    "attempts": 1,
+    "request": {
+      "has_profile_id": true,
+      "has_title": true,
+      "has_description": true,
+      "has_radius": true,
+      "high_risk": true
+    },
+    "status": 201
+  }
+}

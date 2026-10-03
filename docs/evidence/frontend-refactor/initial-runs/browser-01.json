@@ -1,0 +1,37 @@
+{
+  "result": "failed",
+  "started_at": "2026-10-02T16:52:23.599Z",
+  "checks": [],
+  "screenshots": [],
+  "api_requests": [],
+  "api_failures": [],
+  "blocked_mutations": [],
+  "expected_tile_aborts": 0,
+  "console_errors": [],
+  "page_errors": [],
+  "request_failures": [],
+  "script_errors": [],
+  "governance_create": null,
+  "environment": {
+    "synthetic_only": true,
+    "host": "127.0.0.1",
+    "port": "5176"
+  },
+  "product_or_browser_failures": [
+    {
+      "message": "AssertionError [ERR_ASSERTION]: 未登录直达事故页时没有保留目标路由\n    at ensure (C:\\Users\\Lenovo\\.codex\\worktrees\\frontend-query-map\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:59:10)\n    at main (C:\\Users\\Lenovo\\.codex\\worktrees\\frontend-query-map\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:291:3)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:472:9)\n    at async C:\\Users\\Lenovo\\.codex\\worktrees\\frontend-query-map\\数据库课设\\frontend\\tests\\refactor.acceptance.cjs:582:5"
+    }
+  ],
+  "finished_at": "2026-10-02T16:52:25.889Z",
+  "summary": {
+    "passed": 0,
+    "failed": 0,
+    "screenshots": 0,
+    "api_failures": 0,
+    "blocked_mutations": 0,
+    "page_errors": 0,
+    "console_errors": 0,
+    "script_errors": 0,
+    "governance_create_attempts": 0
+  }
+}

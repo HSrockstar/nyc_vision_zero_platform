@@ -1,0 +1,16 @@
+{
+  "checks": [
+    {
+      "name": "account-to-users-loads-directory",
+      "passed": true
+    },
+    {
+      "name": "password-cleared-on-route-leave",
+      "passed": true
+    },
+    {
+      "name": "initial-profile-prefills-title",
+      "passed": true
+    }
+  ]
+}

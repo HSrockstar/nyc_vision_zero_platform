@@ -1,0 +1,32 @@
+{
+  "review_scope": "this task nonfrontend changed/untracked files only",
+  "files_checked": 224,
+  "known_secret_hits": [],
+  "source_trailing_whitespace": [],
+  "broken_document_links": [],
+  "source_sha256": {
+    ".gitignore": "8a7b69b2af6169d8524e9f90eee1094dbdd69a8d2b7bfe0403572f77a4489b5e",
+    "PROJECT_PLAN.md": "27808558ae189e4ec78eeaba9ef8c050e0d69cf34967dc4acb6b0930514c2803",
+    "README.md": "3da92575bbebbdfd1b4a729ad983dec4be0acb3d2887cf99a552fe838badb515",
+    "backend/app/cli.py": "ba5d712013fae5ba1bba1d59b8aba324e40569199656656e9868f6ebdd18e571",
+    "backend/app/demo.py": "63f62736d1d9769d54a9979667a49dfdd8304728bb4ce4b334a5086ffa225ac3",
+    "backend/app/maintenance.py": "92661aa21a17b7b91e6676907ce8d64083ad3a1d2d607e9139fd0f5b1440b41d",
+    "backend/tests/test_m6_statistics.py": "1126f8d68004bb49e94d4c97bfee4ab8a09b9e5ecb1336a614b513567ae283d0",
+    "backend/tests/test_m7_benchmarks.py": "78e7a9d899914021a70931d18e2157103cd2aeb9de7b6c275fd8620d1dc864b9",
+    "backend/tests/test_m7_contract_edges.py": "ad60de879d131883b3cea7a0193a245b872b54d599f8748f192a90c9340bc9a7",
+    "backend/tests/test_m7_maintenance.py": "252b3d35af3e37a2af4cd2079dfbbe049f755abb0025d52df0b1306ec4627810",
+    "backend/tests/test_m7_worker_restart.py": "e0017f9d237c489d0a51b74e8ab38a8ef5d1eacfb23dc1788e9e3c66e3b8218c",
+    "backend/tests/test_m8_demo.py": "00fc8f94c1e6c581279073aff8277855e8e65c30a2161c709a55865454eb06dc",
+    "benchmarks/__init__.py": "f4e45ffc1747eba631ed3378815a7d41e28aff0cf627270ee87abcb8e19120ff",
+    "benchmarks/benchmark_core.py": "89bfe54748177abf6fa7f487491b8358641070e39d59c286cc0ce0dcca7aea7b",
+    "benchmarks/run_benchmarks.py": "5d923a691e5ea1a37136c2f333a896e945fcdde3976efbaa0b5e500508aaa38d",
+    "docs/diagrams/data-flow.md": "6bf33c666ed2028ba2bca02be4fd0dcb41d89b2c79045c02087d4215a9d456a7",
+    "docs/milestones/M7.md": "daffd697be4695f2b9016fdc41088d1d32f15163e15684876f5cff8517e4cda2",
+    "docs/milestones/M8-preparation.md": "3d7d3c4817ceef2cced41a65c7ae650b759065f6edbe71efb95acf3d0cf4a85f",
+    "docs/milestones/tasks.md": "1db8881c13f5e8d9d1b7d9a02c146568de7f200820c32be9ff27b06138ed504d",
+    "docs/testing/T01-T30.md": "3f2f30ca6472c9200b4d5b00a7d70cf590a91b3e2b73a595ddd129cd01e91a42",
+    "scripts/run_isolated.py": "35633d2fa8e220c8079e01f20c246aebbd515568b59782ea5b5d2856adf9426f",
+    "scripts/run_pg_regression.py": "ecdbb114124c6124f616d1a3bf0f6a342ab68bf70e2cb1a8f340f8f23c8e68e9"
+  },
+  "passed": true
+}

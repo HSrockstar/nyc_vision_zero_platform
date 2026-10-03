@@ -1,0 +1,245 @@
+{
+  "completed_cases": {
+    "B01": {
+      "A_over_B_query_median_ratio": 4.223143,
+      "conditions": {
+        "A": {
+          "explain_execution_ms": {
+            "median": 10.131,
+            "p95": 17.98
+          },
+          "label": "无 crash_date 前导二级索引",
+          "measurements": 20,
+          "observed_index_names": [],
+          "observed_node_types": [
+            "Limit",
+            "Seq Scan",
+            "Sort"
+          ],
+          "query_elapsed_ms": {
+            "median": 11.48885,
+            "p95": 16.2165
+          },
+          "result": {
+            "row_count": 100,
+            "sha256": "44ecfbc628f503fceabe8e38dae334c0bb7fba1c56e490a92598e09c41ee68f6"
+          }
+        },
+        "B": {
+          "explain_execution_ms": {
+            "median": 0.1255,
+            "p95": 0.209
+          },
+          "label": "crash_date、collision_id 日期复合索引",
+          "measurements": 20,
+          "observed_index_names": [
+            "ix_collision_date_id"
+          ],
+          "observed_node_types": [
+            "Index Only Scan",
+            "Limit"
+          ],
+          "query_elapsed_ms": {
+            "median": 2.72045,
+            "p95": 3.996
+          },
+          "result": {
+            "row_count": 100,
+            "sha256": "44ecfbc628f503fceabe8e38dae334c0bb7fba1c56e490a92598e09c41ee68f6"
+          }
+        }
+      },
+      "equivalent_results": true,
+      "passed": true,
+      "warmup_results_equivalent": true
+    },
+    "B02": {
+      "A_over_B_query_median_ratio": 0.931716,
+      "conditions": {
+        "A": {
+          "explain_execution_ms": {
+            "median": 0.3715,
+            "p95": 0.704
+          },
+          "label": "location_id 单列索引；共同关闭日期索引",
+          "measurements": 20,
+          "observed_index_names": [
+            "m7_bench_ix_collision_location"
+          ],
+          "observed_node_types": [
+            "Index Scan",
+            "Sort"
+          ],
+          "query_elapsed_ms": {
+            "median": 2.9145,
+            "p95": 4.5875
+          },
+          "result": {
+            "row_count": 137,
+            "sha256": "fb246cb324ab2727b8926db2a90a3465d727b5a14e84dcdd382628a3a09930f8"
+          }
+        },
+        "B": {
+          "explain_execution_ms": {
+            "median": 0.596,
+            "p95": 1.058
+          },
+          "label": "location_id、crash_date 复合索引；共同关闭日期索引",
+          "measurements": 20,
+          "observed_index_names": [
+            "ix_collision_location_date"
+          ],
+          "observed_node_types": [
+            "Bitmap Heap Scan",
+            "Bitmap Index Scan",
+            "Sort"
+          ],
+          "query_elapsed_ms": {
+            "median": 3.1281,
+            "p95": 4.451
+          },
+          "result": {
+            "row_count": 137,
+            "sha256": "fb246cb324ab2727b8926db2a90a3465d727b5a14e84dcdd382628a3a09930f8"
+          }
+        }
+      },
+      "equivalent_results": true,
+      "passed": true,
+      "warmup_results_equivalent": true
+    },
+    "B03": {
+      "A_over_B_query_median_ratio": 56.167419,
+      "conditions": {
+        "A": {
+          "explain_execution_ms": {
+            "median": 269.2495,
+            "p95": 513.288
+          },
+          "label": "无匹配 geography GiST 索引",
+          "measurements": 20,
+          "observed_index_names": [
+            "ix_collision_location_date",
+            "ix_location_geom"
+          ],
+          "observed_node_types": [
+            "Bitmap Heap Scan",
+            "Bitmap Index Scan",
+            "Gather Merge",
+            "Index Scan",
+            "Limit",
+            "Nested Loop",
+            "Sort"
+          ],
+          "query_elapsed_ms": {
+            "median": 263.81275,
+            "p95": 405.8517
+          },
+          "result": {
+            "row_count": 5,
+            "sha256": "99f1e67ef622c0dfb987961084291a0bab58fea15a90b3bb1db776dda32ca840"
+          }
+        },
+        "B": {
+          "explain_execution_ms": {
+            "median": 0.523,
+            "p95": 0.818
+          },
+          "label": "geom::geography GiST 局部索引",
+          "measurements": 20,
+          "observed_index_names": [
+            "ix_collision_location_date",
+            "ix_location_geography"
+          ],
+          "observed_node_types": [
+            "Index Scan",
+            "Limit",
+            "Nested Loop",
+            "Sort"
+          ],
+          "query_elapsed_ms": {
+            "median": 4.6969,
+            "p95": 10.5096
+          },
+          "result": {
+            "row_count": 5,
+            "sha256": "99f1e67ef622c0dfb987961084291a0bab58fea15a90b3bb1db776dda32ca840"
+          }
+        }
+      },
+      "equivalent_results": true,
+      "passed": true,
+      "warmup_results_equivalent": true
+    },
+    "B04": {
+      "A_over_B_query_median_ratio": 1.160553,
+      "conditions": {
+        "A": {
+          "explain_execution_ms": {
+            "median": 334.954,
+            "p95": 535.918
+          },
+          "label": "EXISTS",
+          "measurements": 20,
+          "observed_index_names": [
+            "ix_location_borough",
+            "ix_vehicle_type_collision"
+          ],
+          "observed_node_types": [
+            "Aggregate",
+            "Hash",
+            "Hash Join",
+            "Index Only Scan",
+            "Seq Scan",
+            "Sort"
+          ],
+          "query_elapsed_ms": {
+            "median": 264.4149,
+            "p95": 493.3855
+          },
+          "result": {
+            "row_count": 6,
+            "sha256": "5e7027540c11b8ce3ca94c825d4bf748e02426949048f64c94005dee61e4e230"
+          }
+        },
+        "B": {
+          "explain_execution_ms": {
+            "median": 335.8795,
+            "p95": 526.897
+          },
+          "label": "DISTINCT collision_id 子查询",
+          "measurements": 20,
+          "observed_index_names": [
+            "ix_location_borough",
+            "ix_vehicle_type_collision"
+          ],
+          "observed_node_types": [
+            "Aggregate",
+            "Hash",
+            "Hash Join",
+            "Index Only Scan",
+            "Seq Scan",
+            "Sort",
+            "Unique"
+          ],
+          "query_elapsed_ms": {
+            "median": 227.83525,
+            "p95": 374.5946
+          },
+          "result": {
+            "row_count": 6,
+            "sha256": "5e7027540c11b8ce3ca94c825d4bf748e02426949048f64c94005dee61e4e230"
+          }
+        }
+      },
+      "equivalent_results": true,
+      "passed": true,
+      "warmup_results_equivalent": true
+    }
+  },
+  "error_type": null,
+  "overall_pass": true,
+  "result_comparison": "ordered row count and SHA-256; only summaries are persisted",
+  "status": "complete",
+  "temporary_index_rollback_verified": true
+}

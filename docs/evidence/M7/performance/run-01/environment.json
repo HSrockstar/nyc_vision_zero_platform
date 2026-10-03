@@ -1,0 +1,57 @@
+{
+  "captured_at_utc": "2026-10-02T16:27:50.469360+00:00",
+  "code": {
+    "git_commit": "0cbdbcae9fb9e315d1eebe611203de4b73d27774",
+    "sha256_by_source_file": {
+      "backend/app/spatial_api.py": "5299fc86c19bcd4fd039361dcafd0ae34c83758391075b12849b0a9cdd9d31fa",
+      "backend/app/statistics.py": "0766b10a17b90ee8644a9e6b62def2d7e239dd2658ec0bdd5cf1c6a593058ee6",
+      "backend/migrations/sql/0002_tables.sql": "f92897fef89b0fec9d9f6a78c96b912b33a6a42051c309286b382f7a5107a640",
+      "benchmarks/benchmark_core.py": "89bfe54748177abf6fa7f487491b8358641070e39d59c286cc0ce0dcca7aea7b",
+      "benchmarks/run_benchmarks.py": "5d923a691e5ea1a37136c2f333a896e945fcdde3976efbaa0b5e500508aaa38d"
+    }
+  },
+  "database": {
+    "name": "vision_zero_m1_test_5d2091a702cd",
+    "planner_settings": {
+      "effective_cache_size": "4GB",
+      "random_page_cost": "4",
+      "seq_page_cost": "1",
+      "shared_buffers": "128MB",
+      "work_mem": "4MB"
+    },
+    "postgis_full_version": "POSTGIS=\"3.6.4 0\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.14.1-CAPI-1.20.5\" PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.8.1) LIBXML=\"2.13.9\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.2\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+    "postgres_version": "17.11",
+    "statement_timeout_ms": 60000
+  },
+  "host": {
+    "architecture": "AMD64",
+    "cpu": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "database_container_limits": {
+      "cpu_period": 0,
+      "cpu_quota": 0,
+      "memory_bytes": 1073741824,
+      "memory_swap_bytes": 2147483648,
+      "nano_cpus": 2000000000
+    },
+    "logical_cpus": 16,
+    "memory": {
+      "available_bytes_at_capture": 1160036352,
+      "total_bytes": 16312553472
+    },
+    "os": "Windows-11-10.0.26200-SP0",
+    "result_storage": {
+      "free_bytes_at_capture": 186152394752,
+      "total_bytes": 1000186310656
+    }
+  },
+  "measurement": {
+    "cache_note": "未清理数据库或操作系统缓存；结果属于交替热缓存条件，不声称冷缓存。",
+    "measured_repeats_per_condition": 20,
+    "schedule": "A/B 交替；每个条件先预热，再交替测量",
+    "warmup_repeats_per_condition": 3
+  },
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)]"
+  }
+}

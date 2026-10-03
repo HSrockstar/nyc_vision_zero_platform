@@ -1,0 +1,83 @@
+[
+  {
+    "Execution Time": 0.326,
+    "Plan": {
+      "Actual Loops": 1,
+      "Actual Rows": 137,
+      "Actual Startup Time": 0.262,
+      "Actual Total Time": 0.27,
+      "Async Capable": false,
+      "Local Dirtied Blocks": 0,
+      "Local Hit Blocks": 0,
+      "Local Read Blocks": 0,
+      "Local Written Blocks": 0,
+      "Node Type": "Sort",
+      "Parallel Aware": false,
+      "Plan Rows": 120,
+      "Plan Width": 12,
+      "Plans": [
+        {
+          "Actual Loops": 1,
+          "Actual Rows": 137,
+          "Actual Startup Time": 0.048,
+          "Actual Total Time": 0.215,
+          "Alias": "c",
+          "Async Capable": false,
+          "Filter": "((crash_date >= '2025-01-01'::date) AND (crash_date < '2026-01-01'::date))",
+          "Index Cond": "(location_id = '2211'::smallint)",
+          "Index Name": "m7_bench_ix_collision_location",
+          "Local Dirtied Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Written Blocks": 0,
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Parent Relationship": "Outer",
+          "Plan Rows": 120,
+          "Plan Width": 12,
+          "Relation Name": "collision",
+          "Rows Removed by Filter": 0,
+          "Rows Removed by Index Recheck": 0,
+          "Scan Direction": "Forward",
+          "Shared Dirtied Blocks": 0,
+          "Shared Hit Blocks": 90,
+          "Shared Read Blocks": 2,
+          "Shared Written Blocks": 0,
+          "Startup Cost": 0.29,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Total Cost": 303.19
+        }
+      ],
+      "Shared Dirtied Blocks": 0,
+      "Shared Hit Blocks": 90,
+      "Shared Read Blocks": 2,
+      "Shared Written Blocks": 0,
+      "Sort Key": [
+        "crash_date DESC",
+        "collision_id DESC"
+      ],
+      "Sort Method": "quicksort",
+      "Sort Space Type": "Memory",
+      "Sort Space Used": 29,
+      "Startup Cost": 307.34,
+      "Temp Read Blocks": 0,
+      "Temp Written Blocks": 0,
+      "Total Cost": 307.64
+    },
+    "Planning": {
+      "Local Dirtied Blocks": 0,
+      "Local Hit Blocks": 0,
+      "Local Read Blocks": 0,
+      "Local Written Blocks": 0,
+      "Shared Dirtied Blocks": 0,
+      "Shared Hit Blocks": 5,
+      "Shared Read Blocks": 1,
+      "Shared Written Blocks": 0,
+      "Temp Read Blocks": 0,
+      "Temp Written Blocks": 0
+    },
+    "Planning Time": 0.329,
+    "Triggers": []
+  }
+]

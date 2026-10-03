@@ -57,6 +57,14 @@ def main():
     parser = argparse.ArgumentParser(description="Vision Zero M1本机维护入口")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("provision-roles")
+    backup = commands.add_parser("backup-database", help="备份数据库及已登记原始文件和风险快照")
+    backup.add_argument("--output", required=True)
+    backup.add_argument("--database", default="vision_zero_dev")
+    restore = commands.add_parser("restore-database", help="只恢复到不存在的独立验证库")
+    restore.add_argument("--backup", required=True)
+    restore.add_argument("--database", required=True)
+    demo = commands.add_parser("seed-demo", help="向已验证的新恢复库写入课程模拟账户与工单")
+    demo.add_argument("--database", required=True)
     admin = commands.add_parser("init-admin")
     admin.add_argument("--username", default="admin")
     admin.add_argument("--display-name", default="系统管理员")
@@ -90,7 +98,18 @@ def main():
     risk.add_argument("--request-id", type=UUID, default=None)
     args = parser.parse_args()
     try:
-        if args.command == "provision-roles":
+        if args.command in ("backup-database", "restore-database"):
+            from app.maintenance import backup_database, restore_database
+            result = (backup_database(args.output, database=args.database) if args.command == "backup-database"
+                      else restore_database(args.backup, args.database))
+            print(json.dumps(result, ensure_ascii=False))
+        elif args.command == "seed-demo":
+            from app.demo import seed_demo
+            result = seed_demo(args.database)
+            print(json.dumps(result, ensure_ascii=False))
+            if result["status"] != "completed":
+                return 1
+        elif args.command == "provision-roles":
             provision()
             print("本机迁移、应用、worker角色已配置；随机凭据仅保存到本地忽略文件。")
         elif args.command == "init-admin":
@@ -154,9 +173,14 @@ def main():
                 print(json.dumps(result, ensure_ascii=False))
             finally:
                 engine.dispose()
-    except Exception:
+    except Exception as error:
         # 驱动/配置异常可能包含DSN或密码，维护入口不打印异常正文。
-        print("操作未完成；请核对专用数据库状态、已有角色归属及本地配置。")
+        from app.maintenance import MaintenanceError
+        from app.demo import DemoSeedError
+        if isinstance(error, (MaintenanceError, DemoSeedError)):
+            print("操作未完成：" + str(error))
+        else:
+            print("操作未完成；请核对专用数据库状态、已有角色归属及本地配置。")
         return 1
     return 0
 

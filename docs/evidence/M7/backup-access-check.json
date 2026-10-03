@@ -1,0 +1,10 @@
+{
+  "m7-20261003-final": {
+    "inheritance_disabled": true,
+    "only_current_user_and_system": true
+  },
+  "m8-demo-20261003": {
+    "inheritance_disabled": true,
+    "only_current_user_and_system": true
+  }
+}

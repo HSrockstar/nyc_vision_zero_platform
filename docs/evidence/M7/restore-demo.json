@@ -1,0 +1,194 @@
+{
+  "status": "completed",
+  "database": "vision_zero_m1_test_a920261003de",
+  "source_database": "vision_zero_m1_test_a820261003de",
+  "backup_sha256": "38a22f2948888b9cc01041fb5ef17042b1aeec958e96e0d5c8424f62766c628b",
+  "checks": {
+    "tables": true,
+    "schema": true,
+    "sequences": true,
+    "aggregates": true,
+    "external_file_references": true
+  },
+  "foreign_keys": {
+    "checked": 35,
+    "failures": []
+  },
+  "permissions": {
+    "app_can_read_collision": true,
+    "app_cannot_write_collision": true,
+    "app_cannot_write_task": true,
+    "worker_cannot_read_password": true,
+    "worker_cannot_write_task": true,
+    "roles_not_superuser": true,
+    "definer_owner_is_target": true,
+    "public_cannot_execute_custom_functions": true,
+    "runtime_cannot_execute_trigger_functions": true,
+    "all_triggers_enabled": true,
+    "app_governance_execute": true,
+    "worker_governance_execute": true
+  },
+  "runtime": {
+    "readiness": true,
+    "app_denied": true,
+    "worker_denied": true,
+    "sequences_allocate_after_max": true,
+    "sequence_probe_restored": true
+  },
+  "external_files": 13,
+  "retained_for_review": true,
+  "tables": {
+    "app_user": {
+      "rows": 5,
+      "sha256": "64bdc7198244eca7c7b076a3458b311b42c798cbb0deeee50e03be407e9ac1c9"
+    },
+    "audit_log": {
+      "rows": 149,
+      "sha256": "24218984c1c9b6902466f08798c1e914b8bfeeec5bbd9bcddbdc291867e0ec94"
+    },
+    "borough": {
+      "rows": 5,
+      "sha256": "3b5c8838234c533de4212047c2dffc5dd0cf0779501ec75871e8d432f01ec695"
+    },
+    "casualty_stat": {
+      "rows": 85546,
+      "sha256": "d603588e63824e62cbf4ae249bab769ba037a218d367621d027188a0b37ddbe7"
+    },
+    "collision": {
+      "rows": 85546,
+      "sha256": "63f220616b71d556d89e3075c8877766843d50993324bad3c018cd8ddfb55a28"
+    },
+    "collision_factor": {
+      "rows": 158517,
+      "sha256": "89b8743464605805ed05d07c406b56004f4debac6b2d4043dd9a2bab25554a29"
+    },
+    "contributing_factor": {
+      "rows": 55,
+      "sha256": "f1b0d5c597224efd664bbf2d6c1c0e61ebae52f488d1e1d3bdcd10c7c5c73414"
+    },
+    "data_issue": {
+      "rows": 12829,
+      "sha256": "2455cf2cff53d4f1139d2e5f57227618f8650d1e9907c9633c9fccb0dbe4f7b5"
+    },
+    "dataset_state": {
+      "rows": 1,
+      "sha256": "d148daa572f5ceb47ce0eec6a4132a262d2a37aaab5c05b20030289aef7db38d"
+    },
+    "governance_task": {
+      "rows": 6,
+      "sha256": "09a5375573b9851cfdc5c924dfc994cb3729d4994effebc96d160a3f70bb7a31"
+    },
+    "import_batch": {
+      "rows": 4,
+      "sha256": "a7efd998dc458e4d8d2a9a5cf820cbca918191c8e6b9a70d9b447458a9b7d68d"
+    },
+    "intersection": {
+      "rows": 100,
+      "sha256": "3a388ddb9f6d80ffb864a6b1fa52a2c320e3119b0900c218ad78ac3024baa538"
+    },
+    "location": {
+      "rows": 53667,
+      "sha256": "8f57ccd9ae7024aeafdc8256d26389d0c15b9e779b9d632193614f0af63a2836"
+    },
+    "location_assignment": {
+      "rows": 100,
+      "sha256": "ce2aa1b6880f95e8824062ce2d74ae258e63e9846d6d365ef20e62bd356f1c06"
+    },
+    "person": {
+      "rows": 292070,
+      "sha256": "4987149ded024b7e9fe3de222ffcde2a7215f23382c5936bc19363eac1f329a2"
+    },
+    "raw_record": {
+      "rows": 557327,
+      "sha256": "a4efcb4279eb91b09ad49a26625aa89efccc47ab488fe8724848ab8d837aa5af"
+    },
+    "risk_profile": {
+      "rows": 95,
+      "sha256": "e84941a02400324c9c6b4eecd9ed105574189ce5c969aa54bb5c6cf21f43d6fa"
+    },
+    "risk_rule": {
+      "rows": 1,
+      "sha256": "74cdf6ad099fe934328449808bc37e72fc464358e1b1ea2b74054ce5e9448399"
+    },
+    "risk_run": {
+      "rows": 1,
+      "sha256": "cea9680e1173c1a8bbe6c254e03c45694e1c13d814e43f8b50c6c94368b8f21d"
+    },
+    "role": {
+      "rows": 3,
+      "sha256": "3d7d951a84976a37fc239e1d8775a85fd779ed438d46fcf3e2fbf67f5b14aecc"
+    },
+    "task_history": {
+      "rows": 19,
+      "sha256": "98925453b511111b5b9adabf46eed8e75e15500844cf9d2833404820b8988809"
+    },
+    "vehicle": {
+      "rows": 170015,
+      "sha256": "f477f112efcbff7ed2db176ab73d8e65e45c98fa2849e8f71fa810c2f15ce728"
+    },
+    "vehicle_type": {
+      "rows": 408,
+      "sha256": "59d043fd9d60f73d7b364a74ee6e06486e9582d88a565c7e944ebc447ffa0a88"
+    }
+  },
+  "aggregates": {
+    "revision": 98,
+    "casualties": [
+      49634,
+      229,
+      0,
+      3
+    ],
+    "risk_levels": [
+      [
+        "HIGH",
+        14
+      ],
+      [
+        "LOW",
+        37
+      ],
+      [
+        "MEDIUM",
+        44
+      ]
+    ],
+    "tasks": [
+      [
+        "CANCELLED",
+        1
+      ],
+      [
+        "COMPLETED",
+        1
+      ],
+      [
+        "DRAFT",
+        1
+      ],
+      [
+        "IN_PROGRESS",
+        1
+      ],
+      [
+        "OPEN",
+        1
+      ],
+      [
+        "PENDING_REVIEW",
+        1
+      ]
+    ]
+  },
+  "schema_categories": {
+    "columns": 232,
+    "constraints": 152,
+    "indexes": 62,
+    "triggers": 22,
+    "views": 3,
+    "functions": 20,
+    "extensions": 5,
+    "migration": 15
+  },
+  "sequence_count": 20
+}

@@ -1,6 +1,8 @@
 # 面向 Vision Zero 的纽约交通碰撞风险识别与高危交叉口治理管理系统
 
-个人数据库课程设计。M0—M6本机实现与验收已完成；首批95个路口已核对道路身份，2025年度95条真实画像已生成，模拟治理任务支持多人执行与复核全过程；统计报表、CSV导出与打印已接入真实API。2025全年数据发布与网页重复导入验收通过；23表模型、角色分离、认证、三源CSV清洗/原子发布和事故查询已有实库证据。实施依据为[PROJECT_PLAN](PROJECT_PLAN.md)，本轮见[M6记录](docs/milestones/M6.md)，中期演示入口见[M6演示脚本](docs/milestones/M6-demo.md)，治理依据见[M5记录](docs/milestones/M5.md)，风险依据见[M4记录](docs/milestones/M4.md)，道路身份及剩余候选边界见[M3记录](docs/milestones/M3.md)，历史见[M2记录](docs/milestones/M2.md)和[M1模型记录](docs/milestones/M1-model.md)。
+个人数据库课程设计。M0—M6本机实现与验收已完成；首批95个路口已核对道路身份，2025年度95条真实画像已生成，模拟治理任务支持多人执行与复核全过程；统计报表、CSV导出与打印已接入真实API。2025全年数据发布与网页重复导入验收通过；23表模型、角色分离、认证、三源CSV清洗/原子发布和事故查询已有实库证据。实施依据为[PROJECT_PLAN](PROJECT_PLAN.md)，后续非前端工作见[M7性能与恢复](docs/milestones/M7.md)和[M8报告与隔离演示准备](docs/milestones/M8-preparation.md)，M6历史见[M6记录](docs/milestones/M6.md)，中期演示入口见[M6演示脚本](docs/milestones/M6-demo.md)，治理依据见[M5记录](docs/milestones/M5.md)，风险依据见[M4记录](docs/milestones/M4.md)，道路身份及剩余候选边界见[M3记录](docs/milestones/M3.md)，历史见[M2记录](docs/milestones/M2.md)和[M1模型记录](docs/milestones/M1-model.md)。
+
+本轮185项分段后端验证（116+69）有通过证据；B01—B04性能实验、新库恢复、非空治理历史二次恢复和独立模拟演示库已完成。前端重构后的验收由前端会话记录；最终报告和录像、干净机器交付仍待完成。维护命令与演示启动见上述M7/M8入口。
 
 ## Windows启动
 
@@ -108,4 +110,4 @@ Remove-Item Env:VISION_ZERO_RUN_DB_TESTS
 
 开发库已发布2025全年85,546起官方事故、292,070条人员和170,015条车辆。完整年度三源CSV共547,631行；M2重复发布与网页重复导入均无事实增量。M3道路复核后revision=98、95个已确认、1个已拒绝、4个待定，95条正式归属覆盖349起事故。M4前向升级0006并生成run 1的95条画像，计算不改变事实或revision。M5已前向升级0007并完成独立随机库验收；M6为纯查询统计，迁移仍为0007，实施前后事实/revision/画像/工单逐项不变（工单/历史仍为0）。测试账户和合成夹具只存在独立验证库。worker执行导入/风险作业，app账号不直接写事故事实或风险画像。
 
-本地Git由用户管理；本轮M6修改未提交或推送，历史记录中提及的旧HEAD保持其当时事实。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`、`.m1-work`、`.m2-work`、`.m3-work`、`.m4-work`、`.m5-work`、`.m6-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行，浏览器验收与截图使用独立合成验证库。本项目为本机开发验收，远程部署、全系统性能及备份恢复留M7/M8。既有Starlette TestClient/httpx弃用提示保留；前端构建包含ECharts全量引入产生的chunk体积警告，未更换依赖。
+本地Git由用户管理；本会话的M7/M8非前端修改未提交或推送，历史记录中的旧HEAD保留其当时含义。M0库/卷仍独立保留（55432）。`.env`、`.venv`、`.m0-work`至`.m8-work`、data/raw、node_modules和dist留在本机且被忽略；公开证据不含密码/JWT/DSN或真实人员行，历史浏览器验收与截图使用独立合成验证库。本项目已完成本轮SQL性能对照、权限检查和隔离备份恢复验证；远程部署、全系统吞吐测试和干净机器交付尚未验收。既有Starlette TestClient/httpx弃用提示保留，前端构建情况由前端会话记录。

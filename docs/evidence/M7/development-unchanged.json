@@ -1,0 +1,37 @@
+{
+  "database": "vision_zero_dev",
+  "checked_at_utc": "2026-10-03T03:11:13.283773+00:00",
+  "checks": {
+    "tables": true,
+    "schema": true,
+    "sequences": true,
+    "aggregates": true
+  },
+  "table_counts": {
+    "app_user": 1,
+    "audit_log": 145,
+    "borough": 5,
+    "casualty_stat": 85546,
+    "collision": 85546,
+    "collision_factor": 158517,
+    "contributing_factor": 55,
+    "data_issue": 12829,
+    "dataset_state": 1,
+    "governance_task": 0,
+    "import_batch": 4,
+    "intersection": 100,
+    "location": 53667,
+    "location_assignment": 100,
+    "person": 292070,
+    "raw_record": 557327,
+    "risk_profile": 95,
+    "risk_rule": 1,
+    "risk_run": 1,
+    "role": 3,
+    "task_history": 0,
+    "vehicle": 170015,
+    "vehicle_type": 408
+  },
+  "source_backup": ".m7-work/backups/m7-20261003-final",
+  "passed": true
+}

@@ -1,0 +1,14 @@
+{
+  "app_can_read_collision": true,
+  "app_cannot_write_collision": true,
+  "app_cannot_write_task": true,
+  "worker_cannot_read_password": true,
+  "worker_cannot_write_task": true,
+  "roles_not_superuser": true,
+  "definer_owner_is_target": true,
+  "public_cannot_execute_custom_functions": true,
+  "runtime_cannot_execute_trigger_functions": true,
+  "all_triggers_enabled": true,
+  "app_governance_execute": true,
+  "worker_governance_execute": true
+}

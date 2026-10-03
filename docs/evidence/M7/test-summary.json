@@ -1,0 +1,17 @@
+{
+  "unique_nodeids_with_pass_evidence": 185,
+  "mode": "segmented",
+  "confirmed_prefix": 116,
+  "prefix_interrupted": true,
+  "full_single_run_junit_available": false,
+  "resume_tests": 69,
+  "resume_failures": 0,
+  "resume_errors": 0,
+  "resume_skipped": 0,
+  "resume_junit_seconds": 211.853,
+  "resume_pytest_reported_seconds": 211.93,
+  "database_tests_enabled": true,
+  "known_warning": "Starlette TestClient/httpx deprecation",
+  "resume_command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/run_pg_regression.py --output .m7-work/pg-resume-06 <remaining69nodeids>",
+  "resume_exit_code": 0
+}

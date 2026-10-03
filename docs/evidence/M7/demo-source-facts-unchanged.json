@@ -1,0 +1,32 @@
+{
+  "source": "development backup",
+  "target": "seeded demo backup",
+  "allowed_changed_tables": [
+    "app_user",
+    "audit_log",
+    "governance_task",
+    "task_history"
+  ],
+  "unchanged_table_hashes": {
+    "borough": true,
+    "casualty_stat": true,
+    "collision": true,
+    "collision_factor": true,
+    "contributing_factor": true,
+    "data_issue": true,
+    "dataset_state": true,
+    "import_batch": true,
+    "intersection": true,
+    "location": true,
+    "location_assignment": true,
+    "person": true,
+    "raw_record": true,
+    "risk_profile": true,
+    "risk_rule": true,
+    "risk_run": true,
+    "role": true,
+    "vehicle": true,
+    "vehicle_type": true
+  },
+  "passed": true
+}

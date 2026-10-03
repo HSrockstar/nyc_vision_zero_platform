@@ -6,6 +6,8 @@
 .m4-work/
 .m5-work/
 .m6-work/
+.m7-work/
+.m8-work/
 .pytest_cache/
 __pycache__/
 *.pyc

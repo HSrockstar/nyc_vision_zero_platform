@@ -1,0 +1,7 @@
+{
+  "readiness": true,
+  "app_denied": true,
+  "worker_denied": true,
+  "sequences_allocate_after_max": true,
+  "sequence_probe_restored": true
+}

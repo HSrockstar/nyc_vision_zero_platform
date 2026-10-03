@@ -1,0 +1,70 @@
+{
+  "B01": {
+    "date_range": {
+      "end_exclusive": "2025-02-01",
+      "start_inclusive": "2025-01-01"
+    },
+    "matched_collision_count": 6482,
+    "page": 1,
+    "page_size": 100,
+    "parameters": [
+      "2025-01-01",
+      "2025-02-01"
+    ],
+    "query": "2025 年 1 月事故首屏，按日期、ID 倒序分页"
+  },
+  "B02": {
+    "index_conditions": {
+      "A": "location_id 单列索引",
+      "B": "(location_id, crash_date) 复合索引"
+    },
+    "location_id": "2211",
+    "matched_collision_count": 137,
+    "parameters": [
+      "2211",
+      "2025-01-01",
+      "2026-01-01"
+    ],
+    "query": "单地点的 2025 年事故列表",
+    "shared_index_control": "两种条件均临时关闭 B01 日期索引，隔离地点索引差异"
+  },
+  "B03": {
+    "center_latitude": 40.717766,
+    "center_longitude": -73.91805,
+    "center_method": "对 2025 年参与事故的不同 geocoded 地点求均值，再选距均值最近的真实地点；坐标四舍五入到 6 位小数",
+    "eligible_geocoded_location_count": 51069,
+    "matched_collision_count_within_radius": 5,
+    "parameters": [
+      "2025-01-01",
+      "2026-01-01",
+      -73.91805,
+      40.717766,
+      200,
+      -73.91805,
+      40.717766
+    ],
+    "query": "使用接口同款 ST_DWithin geography 谓词，按距离排序取前 101 条",
+    "radius_m": 200
+  },
+  "B04": {
+    "matched_collision_count": 49637,
+    "parameter_semantics": "筛中事故后，事故级 casualty_stat 每事故最多一行；比较 EXISTS 与 DISTINCT collision_id 子查询",
+    "parameters_distinct": [
+      "25",
+      "2025-01-01",
+      "2026-01-01"
+    ],
+    "parameters_exists": [
+      "2025-01-01",
+      "2026-01-01",
+      "25"
+    ],
+    "query": "按最常见车型筛选事故，按 borough 汇总事故数和事故级伤亡总数",
+    "vehicle_type_id": "25"
+  },
+  "date_range": {
+    "end_exclusive": "2026-01-01",
+    "rows_scope": "2025 年",
+    "start_inclusive": "2025-01-01"
+  }
+}

@@ -1,0 +1,1634 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.4, pytest-9.1.1, pluggy-1.6.0 -- E:\数据库课设\.venv\Scripts\python.exe
+rootdir: E:\数据库课设\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 185 items
+
+backend\tests\test_contracts.py::test_complete_model_and_source_keys PASSED [  0%]
+backend\tests\test_contracts.py::test_request_digest_stable_and_scoped PASSED [  1%]
+backend\tests\test_contracts.py::test_reject_invalid_tokens[expired] PASSED [  1%]
+backend\tests\test_contracts.py::test_reject_invalid_tokens[algorithm] PASSED [  2%]
+backend\tests\test_contracts.py::test_reject_invalid_tokens[missing] PASSED [  2%]
+backend\tests\test_contracts.py::test_reject_invalid_tokens[issuer] PASSED [  3%]
+backend\tests\test_contracts.py::test_reject_invalid_tokens[audience] PASSED [  3%]
+backend\tests\test_contracts.py::test_reject_invalid_tokens[version] PASSED [  4%]
+backend\tests\test_contracts.py::test_limiter_bounds_failures_and_resets PASSED [  4%]
+backend\tests\test_contracts.py::test_secret_writes_reject_links_without_touching_target[False] PASSED [  5%]
+backend\tests\test_contracts.py::test_secret_writes_reject_links_without_touching_target[True] PASSED [  5%]
+backend\tests\test_contracts.py::test_python_maintenance_checks_volume_owner[None] PASSED [  6%]
+backend\tests\test_contracts.py::test_python_maintenance_checks_volume_owner[scope] PASSED [  7%]
+backend\tests\test_contracts.py::test_python_maintenance_checks_volume_owner[workspace] PASSED [  7%]
+backend\tests\test_contracts.py::test_python_maintenance_checks_volume_owner[missing] PASSED [  8%]
+backend\tests\test_contracts.py::test_settings_refuses_reparse_env_before_loading PASSED [  8%]
+backend\tests\test_database_integration.py::test_empty_database_migration_lifecycle FAILED [  9%]
+backend\tests\test_foundation.py::test_rejects_targets_outside_project[sqlite:///data.db-vision_zero_dev] PASSED [  9%]
+backend\tests\test_foundation.py::test_rejects_targets_outside_project[postgresql+psycopg://postgres:secret@127.0.0.1:55433/vision_zero_m0-vision_zero_m0] PASSED [ 10%]
+backend\tests\test_foundation.py::test_rejects_targets_outside_project[postgresql+psycopg://postgres:secret@example.com:55433/vision_zero_dev-vision_zero_dev] PASSED [ 10%]
+backend\tests\test_foundation.py::test_rejects_targets_outside_project[postgresql+psycopg://postgres:secret@127.0.0.1:55433/other-vision_zero_dev] PASSED [ 11%]
+backend\tests\test_foundation.py::test_rejects_targets_outside_project[postgresql+psycopg://postgres:secret@127.0.0.1:55433/vision_zero_dev?host=example.com-vision_zero_dev] PASSED [ 11%]
+backend\tests\test_foundation.py::test_live_does_not_require_database_and_ready_hides_invalid_config PASSED [ 12%]
+backend\tests\test_foundation.py::test_process_overrides_cannot_redirect_approved_database[port] PASSED [ 12%]
+backend\tests\test_foundation.py::test_process_overrides_cannot_redirect_approved_database[database] PASSED [ 13%]
+backend\tests\test_foundation.py::test_process_overrides_cannot_redirect_approved_database[credentials] PASSED [ 14%]
+backend\tests\test_m1_auth.py::test_unauthorized_and_viewer_manager_write_rejected ERROR [ 14%]
+backend\tests\test_m1_auth.py::test_account_creation_serialization_unique_and_validation ERROR [ 15%]
+backend\tests\test_m1_auth.py::test_logout_invalidates_all_sessions ERROR [ 15%]
+backend\tests\test_m1_auth.py::test_password_change_and_audit_have_no_secrets ERROR [ 16%]
+backend\tests\test_m1_auth.py::test_changed_account_invalidates_existing_token[disable] ERROR [ 16%]
+backend\tests\test_m1_auth.py::test_changed_account_invalidates_existing_token[role] ERROR [ 17%]
+backend\tests\test_m1_auth.py::test_forged_role_claim_is_ignored ERROR   [ 17%]
+backend\tests\test_m1_auth.py::test_failed_login_rate_limit ERROR        [ 18%]
+backend\tests\test_m1_auth.py::test_initial_admin_and_last_admin_guards ERROR [ 18%]
+backend\tests\test_m1_auth.py::test_two_admins_cannot_both_disable[api] ERROR [ 19%]
+backend\tests\test_m1_auth.py::test_two_admins_cannot_both_disable[database] ERROR [ 20%]
+backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[disable-OPEN] ERROR [ 20%]
+backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[disable-IN_PROGRESS] ERROR [ 21%]
+backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[disable-PENDING_REVIEW] ERROR [ 21%]
+backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[role-OPEN] ERROR [ 22%]
+backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[role-IN_PROGRESS] ERROR [ 22%]
+backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[role-PENDING_REVIEW] ERROR [ 23%]
+backend\tests\test_m1_auth.py::test_assignment_and_role_change_cannot_race ERROR [ 23%]
+backend\tests\test_m1_auth.py::test_account_version_conflict ERROR       [ 24%]
+backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[9-LOW] ERROR [ 24%]
+backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[10-MEDIUM] ERROR [ 25%]
+backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[29-MEDIUM] ERROR [ 25%]
+backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[30-HIGH] ERROR [ 26%]
+backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[None-UNKNOWN] ERROR [ 27%]
+backend\tests\test_m1_database.py::test_risk_view_hand_calculation[2-1-0-1-10] ERROR [ 27%]
+backend\tests\test_m1_database.py::test_risk_view_hand_calculation[4-2-1-2-30] ERROR [ 28%]
+backend\tests\test_m1_database.py::test_database_rejects_invalid_input[negative] ERROR [ 28%]
+backend\tests\test_m1_database.py::test_database_rejects_invalid_input[duplicate] ERROR [ 29%]
+backend\tests\test_m1_database.py::test_database_rejects_invalid_input[period] ERROR [ 29%]
+backend\tests\test_m1_database.py::test_database_rejects_invalid_input[srid] ERROR [ 30%]
+backend\tests\test_m1_database.py::test_database_rejects_invalid_input[published_rule] ERROR [ 30%]
+backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[profile] ERROR [ 31%]
+backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[run] ERROR [ 31%]
+backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[intersection] ERROR [ 32%]
+backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[history] ERROR [ 32%]
+backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[audit] ERROR [ 33%]
+backend\tests\test_m1_database.py::test_unknown_only_investigation_draft ERROR [ 34%]
+backend\tests\test_m1_database.py::test_collision_requires_casualty_and_preserves_null ERROR [ 34%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE TABLE public.forbidden(id integer)-app] ERROR [ 35%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE TABLE public.forbidden(id integer)-worker] ERROR [ 35%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE EXTENSION hstore-app] ERROR [ 36%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE EXTENSION hstore-worker] ERROR [ 36%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE risk_rule SET weight_collision=0-app] ERROR [ 37%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE risk_rule SET weight_collision=0-worker] ERROR [ 37%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[DELETE FROM task_history-app] ERROR [ 38%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[DELETE FROM task_history-worker] ERROR [ 38%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE governance_task SET status='COMPLETED'-app] ERROR [ 39%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE governance_task SET status='COMPLETED'-worker] ERROR [ 40%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[SELECT public.vz_user_guard()-app] ERROR [ 40%]
+backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[SELECT public.vz_user_guard()-worker] ERROR [ 41%]
+backend\tests\test_m1_database.py::test_worker_cannot_read_passwords_or_write_accounts ERROR [ 41%]
+backend\tests\test_m1_database.py::test_custom_function_and_default_acl_not_public ERROR [ 42%]
+backend\tests\test_m1_database.py::test_basic_relational_constraints[foreign_key] ERROR [ 42%]
+backend\tests\test_m1_database.py::test_basic_relational_constraints[not_null] ERROR [ 43%]
+backend\tests\test_m1_database.py::test_basic_relational_constraints[username_unique] ERROR [ 43%]
+backend\tests\test_m1_database.py::test_geography_distance_is_metres ERROR [ 44%]
+backend\tests\test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[1.0] PASSED [ 44%]
+backend\tests\test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[1e3] PASSED [ 45%]
+backend\tests\test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[-1] PASSED [ 45%]
+backend\tests\test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[0] PASSED [ 46%]
+backend\tests\test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[\uff11\uff12] PASSED [ 47%]
+backend\tests\test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[9223372036854775808] PASSED [ 47%]
+backend\tests\test_m2_imports.py::test_source_identifiers_are_exact_positive_integers[] PASSED [ 48%]
+backend\tests\test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[NaN] PASSED [ 48%]
+backend\tests\test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[Infinity] PASSED [ 49%]
+backend\tests\test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[-1] PASSED [ 49%]
+backend\tests\test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[1.1] PASSED [ 50%]
+backend\tests\test_m2_imports.py::test_counts_cannot_be_invalid_or_silently_rounded[2147483648] PASSED [ 50%]
+backend\tests\test_m2_imports.py::test_fixed_header_modes_and_missing_cause_columns PASSED [ 51%]
+backend\tests\test_m2_imports.py::test_null_zero_coordinates_and_display_streets PASSED [ 51%]
+backend\tests\test_m2_imports.py::test_pipeline_roles_repeat_content_revision_and_trace ERROR [ 52%]
+backend\tests\test_m2_imports.py::test_child_only_import_matches_existing_parent_with_trimmed_identifier[api] ERROR [ 52%]
+backend\tests\test_m2_imports.py::test_child_only_import_matches_existing_parent_with_trimmed_identifier[display] ERROR [ 53%]
+backend\tests\test_m2_imports.py::test_conflicting_keys_block_and_retry_preserves_resolution ERROR [ 54%]
+backend\tests\test_m2_imports.py::test_publish_authorization_rechecked_and_atomic_rollback ERROR [ 54%]
+backend\tests\test_m2_imports.py::test_expired_token_is_fenced_and_worker_recovers_failed ERROR [ 55%]
+backend\tests\test_m2_imports.py::test_upload_bounds_bad_headers_and_unauthorized_access ERROR [ 55%]
+backend\tests\test_m2_imports.py::test_runtime_cannot_skip_states_or_mutate_saved_input ERROR [ 56%]
+backend\tests\test_m2_imports.py::test_invalid_upload_cleanup_and_chunked_body_limit ERROR [ 56%]
+backend\tests\test_m2_imports.py::test_malformed_csv_is_failed_and_leaves_no_facts ERROR [ 57%]
+backend\tests\test_m3_spatial.py::test_street_pair_is_ordered_without_fuzzy_aliases PASSED [ 57%]
+backend\tests\test_m3_spatial.py::test_candidate_anchor_confirmation_ambiguity_manual_override_and_permissions ERROR [ 58%]
+backend\tests\test_m3_spatial.py::test_map_bbox_nearby_and_missing_coordinate_coverage ERROR [ 58%]
+backend\tests\test_m3_spatial.py::test_rejected_candidate_stays_rejected_and_local_cli_is_bounded ERROR [ 59%]
+backend\tests\test_m4_risks.py::test_pipeline_hand_values_unknown_coverage_roles_and_history ERROR [ 60%]
+backend\tests\test_m4_risks.py::test_request_deduplication_and_content_conflict ERROR [ 60%]
+backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[file] ERROR [ 61%]
+backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[hash] ERROR [ 61%]
+backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[publication] ERROR [ 62%]
+backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[authority] ERROR [ 62%]
+backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[role] ERROR [ 63%]
+backend\tests\test_m4_risks.py::test_snapshot_is_consistent_when_data_changes_before_publication ERROR [ 63%]
+backend\tests\test_m4_risks.py::test_expired_lease_and_token_prevent_late_publication ERROR [ 64%]
+backend\tests\test_m4_risks.py::test_each_required_casualty_field_produces_unknown ERROR [ 64%]
+backend\tests\test_m4_risks.py::test_rule_retirement_preserves_history_and_allows_failure_recording ERROR [ 65%]
+backend\tests\test_m5_governance.py::test_creation_freezes_confirmed_profile_scope_and_simulation ERROR [ 65%]
+backend\tests\test_m5_governance.py::test_idempotency_pagination_assignee_projection_and_history ERROR [ 66%]
+backend\tests\test_m5_governance.py::test_full_workflow_permissions_todo_and_immutable_history ERROR [ 67%]
+backend\tests\test_m5_governance.py::test_draft_delete_is_logical_and_history_is_retained ERROR [ 67%]
+backend\tests\test_m5_governance.py::test_replay_by_downgraded_admin_cannot_read_deleted_foreign_draft ERROR [ 68%]
+backend\tests\test_m5_governance.py::test_two_connections_serialize_version_and_account_changes ERROR [ 68%]
+backend\tests\test_m5_governance.py::test_history_failure_rolls_back_task_and_version ERROR [ 69%]
+backend\tests\test_m5_governance.py::test_app_and_worker_cannot_directly_write_task_history ERROR [ 69%]
+backend\tests\test_m5_governance.py::test_database_functions_reject_nulls_and_bind_replays_to_actor_and_target ERROR [ 70%]
+backend\tests\test_m6_statistics.py::test_manual_fixture_overview_and_groups ERROR [ 70%]
+backend\tests\test_m6_statistics.py::test_filters_do_not_amplify_and_unknown_scope ERROR [ 71%]
+backend\tests\test_m6_statistics.py::test_trends_months_hours_and_coverage ERROR [ 71%]
+backend\tests\test_m6_statistics.py::test_street_wildcard_escaping ERROR [ 72%]
+backend\tests\test_m6_statistics.py::test_invalid_ranges_and_empty_scope ERROR [ 72%]
+backend\tests\test_m6_statistics.py::test_revision_snapshot_and_read_only ERROR [ 73%]
+backend\tests\test_m6_statistics.py::test_permissions ERROR              [ 74%]
+backend\tests\test_m6_statistics.py::test_collision_csv_content_and_escaping ERROR [ 74%]
+backend\tests\test_m6_statistics.py::test_csv_row_limit_and_consistency ERROR [ 75%]
+backend\tests\test_m6_statistics.py::test_statistics_csv_report ERROR    [ 75%]
+backend\tests\test_m6_statistics.py::test_governance_statistics ERROR    [ 76%]
+backend\tests\test_m6_statistics.py::test_month_span_sequence_and_boundaries PASSED [ 76%]
+backend\tests\test_m6_statistics.py::test_date_boundaries_and_future_limit ERROR [ 77%]
+backend\tests\test_m6_statistics.py::test_month_limit_consistency ERROR  [ 77%]
+backend\tests\test_m6_statistics.py::test_blank_street_filter ERROR      [ 78%]
+backend\tests\test_m6_statistics.py::test_borough_ids_match_database ERROR [ 78%]
+backend\tests\test_m7_benchmarks.py::test_database_name_is_a_single_random_test_database_only PASSED [ 79%]
+backend\tests\test_m7_benchmarks.py::test_cli_rejects_dev_before_creating_output_or_opening_database PASSED [ 80%]
+backend\tests\test_m7_benchmarks.py::test_output_directory_creation_never_overwrites_existing_results PASSED [ 80%]
+backend\tests\test_m7_benchmarks.py::test_result_digest_is_stable_and_contains_no_row_values PASSED [ 81%]
+backend\tests\test_m7_benchmarks.py::test_nearest_rank_p95_and_median_for_twenty_measurements PASSED [ 81%]
+backend\tests\test_m7_benchmarks.py::test_benchmark_scope_is_fixed_to_full_2025_requirement PASSED [ 82%]
+backend\tests\test_m7_benchmarks.py::test_b01_is_january_2025_first_page_with_stable_date_id_order PASSED [ 82%]
+backend\tests\test_m7_benchmarks.py::test_b03_uses_identical_geography_query_for_both_index_conditions PASSED [ 83%]
+backend\tests\test_m7_benchmarks.py::test_b04_uses_semantically_safe_collision_scope_variants PASSED [ 83%]
+backend\tests\test_m7_contract_edges.py::test_missing_parent_child_is_rejected_with_issue_and_never_published ERROR [ 84%]
+backend\tests\test_m7_contract_edges.py::test_local_date_time_ignore_session_timezone_while_timestamp_keeps_instant ERROR [ 84%]
+backend\tests\test_m7_contract_edges.py::test_swapped_latitude_longitude_are_flagged_by_nyc_prefilter PASSED [ 85%]
+backend\tests\test_m7_contract_edges.py::test_manual_location_reassignment_revises_data_and_stales_published_profiles ERROR [ 85%]
+backend\tests\test_m7_contract_edges.py::test_clearing_one_factor_slot_preserves_another ERROR [ 86%]
+backend\tests\test_m7_maintenance.py::test_restore_rejects_unapproved_target_before_io[vision_zero_dev] PASSED [ 87%]
+backend\tests\test_m7_maintenance.py::test_restore_rejects_unapproved_target_before_io[postgres] PASSED [ 87%]
+backend\tests\test_m7_maintenance.py::test_restore_rejects_unapproved_target_before_io[vision_zero_m1_test_AABBCCDDEEFF] PASSED [ 88%]
+backend\tests\test_m7_maintenance.py::test_restore_rejects_unapproved_target_before_io[vision_zero_m1_test_123456789abc;DROP DATABASE x] PASSED [ 88%]
+backend\tests\test_m7_maintenance.py::test_restore_rejects_unapproved_target_before_io[other_project] PASSED [ 89%]
+backend\tests\test_m7_maintenance.py::test_bundle_rejects_paths_outside_direct_private_directory[../escape] PASSED [ 89%]
+backend\tests\test_m7_maintenance.py::test_bundle_rejects_paths_outside_direct_private_directory[.m7-work/backups/../escape] PASSED [ 90%]
+backend\tests\test_m7_maintenance.py::test_bundle_rejects_paths_outside_direct_private_directory[data/raw/backup] PASSED [ 90%]
+backend\tests\test_m7_maintenance.py::test_bundle_rejects_paths_outside_direct_private_directory[.m7-work/backups/nested/backup] PASSED [ 91%]
+backend\tests\test_m7_maintenance.py::test_external_file_paths_are_not_manifest_controlled[../.env] PASSED [ 91%]
+backend\tests\test_m7_maintenance.py::test_external_file_paths_are_not_manifest_controlled[raw/../../.env] PASSED [ 92%]
+backend\tests\test_m7_maintenance.py::test_external_file_paths_are_not_manifest_controlled[snapshots/evil.json] PASSED [ 92%]
+backend\tests\test_m7_maintenance.py::test_external_file_paths_are_not_manifest_controlled[raw/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/other.csv] PASSED [ 93%]
+backend\tests\test_m7_maintenance.py::test_restore_detects_corrupt_dump_before_creating_database PASSED [ 94%]
+backend\tests\test_m7_maintenance.py::test_existing_target_config_is_never_reused[config] PASSED [ 94%]
+backend\tests\test_m7_maintenance.py::test_existing_target_config_is_never_reused[restore] PASSED [ 95%]
+backend\tests\test_m7_maintenance.py::test_existing_target_config_is_never_reused[demo] PASSED [ 95%]
+backend\tests\test_m7_maintenance.py::test_backup_directory_is_exclusive PASSED [ 96%]
+backend\tests\test_m7_worker_restart.py::test_real_worker_process_restart_fences_abandoned_risk_job ERROR [ 96%]
+backend\tests\test_m8_demo.py::test_development_database_is_rejected_before_loading_any_runtime PASSED [ 97%]
+backend\tests\test_m8_demo.py::test_existing_demo_directory_is_refused_before_config_or_database_access PASSED [ 97%]
+backend\tests\test_m8_demo.py::test_nonempty_restored_database_is_refused_before_seed_writes[state_change0-TARGET_ALREADY_HAS_TASKS] PASSED [ 98%]
+backend\tests\test_m8_demo.py::test_nonempty_restored_database_is_refused_before_seed_writes[state_change1-DEMO_ACCOUNTS_ALREADY_EXIST] PASSED [ 98%]
+backend\tests\test_m8_demo.py::test_seedability_requires_the_expected_restore_and_four_publishable_high_profiles PASSED [ 99%]
+backend\tests\test_m8_demo.py::test_public_summary_contains_only_aggregate_facts_and_task_ids PASSED [100%]
+
+=================================== ERRORS ====================================
+____ ERROR at setup of test_unauthorized_and_viewer_manager_write_rejected ____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_account_creation_serialization_unique_and_validation _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___________ ERROR at setup of test_logout_invalidates_all_sessions ____________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______ ERROR at setup of test_password_change_and_audit_have_no_secrets _______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_changed_account_invalidates_existing_token[disable] __
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___ ERROR at setup of test_changed_account_invalidates_existing_token[role] ___
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____________ ERROR at setup of test_forged_role_claim_is_ignored _____________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______________ ERROR at setup of test_failed_login_rate_limit ________________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_________ ERROR at setup of test_initial_admin_and_last_admin_guards __________
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_________ ERROR at setup of test_two_admins_cannot_both_disable[api] __________
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______ ERROR at setup of test_two_admins_cannot_both_disable[database] _______
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_active_assignee_changes_rejected[disable-OPEN] ____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_active_assignee_changes_rejected[disable-IN_PROGRESS] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_active_assignee_changes_rejected[disable-PENDING_REVIEW] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____ ERROR at setup of test_active_assignee_changes_rejected[role-OPEN] ______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+__ ERROR at setup of test_active_assignee_changes_rejected[role-IN_PROGRESS] __
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_active_assignee_changes_rejected[role-PENDING_REVIEW] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________ ERROR at setup of test_assignment_and_role_change_cannot_race ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______________ ERROR at setup of test_account_version_conflict _______________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______ ERROR at setup of test_risk_view_thresholds_and_missing[9-LOW] ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____ ERROR at setup of test_risk_view_thresholds_and_missing[10-MEDIUM] ______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____ ERROR at setup of test_risk_view_thresholds_and_missing[29-MEDIUM] ______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______ ERROR at setup of test_risk_view_thresholds_and_missing[30-HIGH] _______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_risk_view_thresholds_and_missing[None-UNKNOWN] ____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________ ERROR at setup of test_risk_view_hand_calculation[2-1-0-1-10] ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________ ERROR at setup of test_risk_view_hand_calculation[4-2-1-2-30] ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______ ERROR at setup of test_database_rejects_invalid_input[negative] _______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______ ERROR at setup of test_database_rejects_invalid_input[duplicate] _______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________ ERROR at setup of test_database_rejects_invalid_input[period] ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_________ ERROR at setup of test_database_rejects_invalid_input[srid] _________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_database_rejects_invalid_input[published_rule] ____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______ ERROR at setup of test_snapshot_and_history_immutable[profile] ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_________ ERROR at setup of test_snapshot_and_history_immutable[run] __________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____ ERROR at setup of test_snapshot_and_history_immutable[intersection] _____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______ ERROR at setup of test_snapshot_and_history_immutable[history] ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________ ERROR at setup of test_snapshot_and_history_immutable[audit] _________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___________ ERROR at setup of test_unknown_only_investigation_draft ___________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_collision_requires_casualty_and_preserves_null ____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[CREATE TABLE public.forbidden(id integer)-app] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[CREATE TABLE public.forbidden(id integer)-worker] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[CREATE EXTENSION hstore-app] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[CREATE EXTENSION hstore-worker] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[UPDATE risk_rule SET weight_collision=0-app] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[UPDATE risk_rule SET weight_collision=0-worker] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[DELETE FROM task_history-app] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[DELETE FROM task_history-worker] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[UPDATE governance_task SET status='COMPLETED'-app] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[UPDATE governance_task SET status='COMPLETED'-worker] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[SELECT public.vz_user_guard()-app] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_runtime_roles_cannot_administer[SELECT public.vz_user_guard()-worker] _
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_worker_cannot_read_passwords_or_write_accounts ____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______ ERROR at setup of test_custom_function_and_default_acl_not_public ______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______ ERROR at setup of test_basic_relational_constraints[foreign_key] _______
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________ ERROR at setup of test_basic_relational_constraints[not_null] ________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_basic_relational_constraints[username_unique] _____
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____________ ERROR at setup of test_geography_distance_is_metres _____________
+backend\tests\conftest.py:62: in model_database
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___ ERROR at setup of test_pipeline_roles_repeat_content_revision_and_trace ___
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_child_only_import_matches_existing_parent_with_trimmed_identifier[api] _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_child_only_import_matches_existing_parent_with_trimmed_identifier[display] _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_conflicting_keys_block_and_retry_preserves_resolution _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_publish_authorization_rechecked_and_atomic_rollback __
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+__ ERROR at setup of test_expired_token_is_fenced_and_worker_recovers_failed __
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+__ ERROR at setup of test_upload_bounds_bad_headers_and_unauthorized_access ___
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___ ERROR at setup of test_runtime_cannot_skip_states_or_mutate_saved_input ___
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_invalid_upload_cleanup_and_chunked_body_limit _____
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____ ERROR at setup of test_malformed_csv_is_failed_and_leaves_no_facts ______
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_candidate_anchor_confirmation_ambiguity_manual_override_and_permissions _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___ ERROR at setup of test_map_bbox_nearby_and_missing_coordinate_coverage ____
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_rejected_candidate_stays_rejected_and_local_cli_is_bounded _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_pipeline_hand_values_unknown_coverage_roles_and_history _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______ ERROR at setup of test_request_deduplication_and_content_conflict ______
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_failed_calculation_exposes_no_partial_results[file] __
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_failed_calculation_exposes_no_partial_results[hash] __
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_failed_calculation_exposes_no_partial_results[publication] _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_failed_calculation_exposes_no_partial_results[authority] _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_failed_calculation_exposes_no_partial_results[role] __
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_snapshot_is_consistent_when_data_changes_before_publication _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___ ERROR at setup of test_expired_lease_and_token_prevent_late_publication ___
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____ ERROR at setup of test_each_required_casualty_field_produces_unknown _____
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_rule_retirement_preserves_history_and_allows_failure_recording _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_creation_freezes_confirmed_profile_scope_and_simulation _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_idempotency_pagination_assignee_projection_and_history _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_full_workflow_permissions_todo_and_immutable_history _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___ ERROR at setup of test_draft_delete_is_logical_and_history_is_retained ____
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_replay_by_downgraded_admin_cannot_read_deleted_foreign_draft _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_two_connections_serialize_version_and_account_changes _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____ ERROR at setup of test_history_failure_rolls_back_task_and_version ______
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+__ ERROR at setup of test_app_and_worker_cannot_directly_write_task_history ___
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_database_functions_reject_nulls_and_bind_replays_to_actor_and_target _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+__________ ERROR at setup of test_manual_fixture_overview_and_groups __________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______ ERROR at setup of test_filters_do_not_amplify_and_unknown_scope _______
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___________ ERROR at setup of test_trends_months_hours_and_coverage ___________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______________ ERROR at setup of test_street_wildcard_escaping _______________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____________ ERROR at setup of test_invalid_ranges_and_empty_scope ____________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___________ ERROR at setup of test_revision_snapshot_and_read_only ____________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_____________________ ERROR at setup of test_permissions ______________________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+__________ ERROR at setup of test_collision_csv_content_and_escaping __________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+____________ ERROR at setup of test_csv_row_limit_and_consistency _____________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________________ ERROR at setup of test_statistics_csv_report _________________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+________________ ERROR at setup of test_governance_statistics _________________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+___________ ERROR at setup of test_date_boundaries_and_future_limit ___________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_______________ ERROR at setup of test_month_limit_consistency ________________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_________________ ERROR at setup of test_blank_street_filter __________________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______________ ERROR at setup of test_borough_ids_match_database ______________
+backend\tests\test_m6_statistics.py:162: in m6_env
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_missing_parent_child_is_rejected_with_issue_and_never_published _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_local_date_time_ignore_session_timezone_while_timestamp_keeps_instant _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_manual_location_reassignment_revises_data_and_stales_published_profiles _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+______ ERROR at setup of test_clearing_one_factor_slot_preserves_another ______
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+_ ERROR at setup of test_real_worker_process_restart_fences_abandoned_risk_job _
+backend\tests\conftest.py:96: in isolated_db
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+================================== FAILURES ===================================
+___________________ test_empty_database_migration_lifecycle ___________________
+backend\tests\test_database_integration.py:20: in test_empty_database_migration_lifecycle
+    values = validation_config()
+             ^^^^^^^^^^^^^^^^^^^
+backend\tests\conftest.py:28: in validation_config
+    with admin_connect(autocommit=True) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\db\provision.py:37: in admin_connect
+    return psycopg.connect(host="127.0.0.1", port=int(values["VISION_ZERO_DB_PORT"]),
+.venv\Lib\site-packages\psycopg\connection.py:126: in connect
+    raise last_ex.with_traceback(None)
+E   psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 15433 failed: FATAL:  the database system is starting up
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  E:\数据库课设\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--------- generated xml file: E:\数据库课设\.m7-work\pg-final-02\junit.xml ---------
+=========================== short test summary info ===========================
+FAILED backend\tests\test_database_integration.py::test_empty_database_migration_lifecycle
+ERROR backend\tests\test_m1_auth.py::test_unauthorized_and_viewer_manager_write_rejected
+ERROR backend\tests\test_m1_auth.py::test_account_creation_serialization_unique_and_validation
+ERROR backend\tests\test_m1_auth.py::test_logout_invalidates_all_sessions - p...
+ERROR backend\tests\test_m1_auth.py::test_password_change_and_audit_have_no_secrets
+ERROR backend\tests\test_m1_auth.py::test_changed_account_invalidates_existing_token[disable]
+ERROR backend\tests\test_m1_auth.py::test_changed_account_invalidates_existing_token[role]
+ERROR backend\tests\test_m1_auth.py::test_forged_role_claim_is_ignored - psyc...
+ERROR backend\tests\test_m1_auth.py::test_failed_login_rate_limit - psycopg.O...
+ERROR backend\tests\test_m1_auth.py::test_initial_admin_and_last_admin_guards
+ERROR backend\tests\test_m1_auth.py::test_two_admins_cannot_both_disable[api]
+ERROR backend\tests\test_m1_auth.py::test_two_admins_cannot_both_disable[database]
+ERROR backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[disable-OPEN]
+ERROR backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[disable-IN_PROGRESS]
+ERROR backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[disable-PENDING_REVIEW]
+ERROR backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[role-OPEN]
+ERROR backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[role-IN_PROGRESS]
+ERROR backend\tests\test_m1_auth.py::test_active_assignee_changes_rejected[role-PENDING_REVIEW]
+ERROR backend\tests\test_m1_auth.py::test_assignment_and_role_change_cannot_race
+ERROR backend\tests\test_m1_auth.py::test_account_version_conflict - psycopg....
+ERROR backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[9-LOW]
+ERROR backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[10-MEDIUM]
+ERROR backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[29-MEDIUM]
+ERROR backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[30-HIGH]
+ERROR backend\tests\test_m1_database.py::test_risk_view_thresholds_and_missing[None-UNKNOWN]
+ERROR backend\tests\test_m1_database.py::test_risk_view_hand_calculation[2-1-0-1-10]
+ERROR backend\tests\test_m1_database.py::test_risk_view_hand_calculation[4-2-1-2-30]
+ERROR backend\tests\test_m1_database.py::test_database_rejects_invalid_input[negative]
+ERROR backend\tests\test_m1_database.py::test_database_rejects_invalid_input[duplicate]
+ERROR backend\tests\test_m1_database.py::test_database_rejects_invalid_input[period]
+ERROR backend\tests\test_m1_database.py::test_database_rejects_invalid_input[srid]
+ERROR backend\tests\test_m1_database.py::test_database_rejects_invalid_input[published_rule]
+ERROR backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[profile]
+ERROR backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[run]
+ERROR backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[intersection]
+ERROR backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[history]
+ERROR backend\tests\test_m1_database.py::test_snapshot_and_history_immutable[audit]
+ERROR backend\tests\test_m1_database.py::test_unknown_only_investigation_draft
+ERROR backend\tests\test_m1_database.py::test_collision_requires_casualty_and_preserves_null
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE TABLE public.forbidden(id integer)-app]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE TABLE public.forbidden(id integer)-worker]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE EXTENSION hstore-app]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[CREATE EXTENSION hstore-worker]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE risk_rule SET weight_collision=0-app]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE risk_rule SET weight_collision=0-worker]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[DELETE FROM task_history-app]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[DELETE FROM task_history-worker]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE governance_task SET status='COMPLETED'-app]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[UPDATE governance_task SET status='COMPLETED'-worker]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[SELECT public.vz_user_guard()-app]
+ERROR backend\tests\test_m1_database.py::test_runtime_roles_cannot_administer[SELECT public.vz_user_guard()-worker]
+ERROR backend\tests\test_m1_database.py::test_worker_cannot_read_passwords_or_write_accounts
+ERROR backend\tests\test_m1_database.py::test_custom_function_and_default_acl_not_public
+ERROR backend\tests\test_m1_database.py::test_basic_relational_constraints[foreign_key]
+ERROR backend\tests\test_m1_database.py::test_basic_relational_constraints[not_null]
+ERROR backend\tests\test_m1_database.py::test_basic_relational_constraints[username_unique]
+ERROR backend\tests\test_m1_database.py::test_geography_distance_is_metres - ...
+ERROR backend\tests\test_m2_imports.py::test_pipeline_roles_repeat_content_revision_and_trace
+ERROR backend\tests\test_m2_imports.py::test_child_only_import_matches_existing_parent_with_trimmed_identifier[api]
+ERROR backend\tests\test_m2_imports.py::test_child_only_import_matches_existing_parent_with_trimmed_identifier[display]
+ERROR backend\tests\test_m2_imports.py::test_conflicting_keys_block_and_retry_preserves_resolution
+ERROR backend\tests\test_m2_imports.py::test_publish_authorization_rechecked_and_atomic_rollback
+ERROR backend\tests\test_m2_imports.py::test_expired_token_is_fenced_and_worker_recovers_failed
+ERROR backend\tests\test_m2_imports.py::test_upload_bounds_bad_headers_and_unauthorized_access
+ERROR backend\tests\test_m2_imports.py::test_runtime_cannot_skip_states_or_mutate_saved_input
+ERROR backend\tests\test_m2_imports.py::test_invalid_upload_cleanup_and_chunked_body_limit
+ERROR backend\tests\test_m2_imports.py::test_malformed_csv_is_failed_and_leaves_no_facts
+ERROR backend\tests\test_m3_spatial.py::test_candidate_anchor_confirmation_ambiguity_manual_override_and_permissions
+ERROR backend\tests\test_m3_spatial.py::test_map_bbox_nearby_and_missing_coordinate_coverage
+ERROR backend\tests\test_m3_spatial.py::test_rejected_candidate_stays_rejected_and_local_cli_is_bounded
+ERROR backend\tests\test_m4_risks.py::test_pipeline_hand_values_unknown_coverage_roles_and_history
+ERROR backend\tests\test_m4_risks.py::test_request_deduplication_and_content_conflict
+ERROR backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[file]
+ERROR backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[hash]
+ERROR backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[publication]
+ERROR backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[authority]
+ERROR backend\tests\test_m4_risks.py::test_failed_calculation_exposes_no_partial_results[role]
+ERROR backend\tests\test_m4_risks.py::test_snapshot_is_consistent_when_data_changes_before_publication
+ERROR backend\tests\test_m4_risks.py::test_expired_lease_and_token_prevent_late_publication
+ERROR backend\tests\test_m4_risks.py::test_each_required_casualty_field_produces_unknown
+ERROR backend\tests\test_m4_risks.py::test_rule_retirement_preserves_history_and_allows_failure_recording
+ERROR backend\tests\test_m5_governance.py::test_creation_freezes_confirmed_profile_scope_and_simulation
+ERROR backend\tests\test_m5_governance.py::test_idempotency_pagination_assignee_projection_and_history
+ERROR backend\tests\test_m5_governance.py::test_full_workflow_permissions_todo_and_immutable_history
+ERROR backend\tests\test_m5_governance.py::test_draft_delete_is_logical_and_history_is_retained
+ERROR backend\tests\test_m5_governance.py::test_replay_by_downgraded_admin_cannot_read_deleted_foreign_draft
+ERROR backend\tests\test_m5_governance.py::test_two_connections_serialize_version_and_account_changes
+ERROR backend\tests\test_m5_governance.py::test_history_failure_rolls_back_task_and_version
+ERROR backend\tests\test_m5_governance.py::test_app_and_worker_cannot_directly_write_task_history
+ERROR backend\tests\test_m5_governance.py::test_database_functions_reject_nulls_and_bind_replays_to_actor_and_target
+ERROR backend\tests\test_m6_statistics.py::test_manual_fixture_overview_and_groups
+ERROR backend\tests\test_m6_statistics.py::test_filters_do_not_amplify_and_unknown_scope
+ERROR backend\tests\test_m6_statistics.py::test_trends_months_hours_and_coverage
+ERROR backend\tests\test_m6_statistics.py::test_street_wildcard_escaping - ps...
+ERROR backend\tests\test_m6_statistics.py::test_invalid_ranges_and_empty_scope
+ERROR backend\tests\test_m6_statistics.py::test_revision_snapshot_and_read_only
+ERROR backend\tests\test_m6_statistics.py::test_permissions - psycopg.Operati...
+ERROR backend\tests\test_m6_statistics.py::test_collision_csv_content_and_escaping
+ERROR backend\tests\test_m6_statistics.py::test_csv_row_limit_and_consistency
+ERROR backend\tests\test_m6_statistics.py::test_statistics_csv_report - psyco...
+ERROR backend\tests\test_m6_statistics.py::test_governance_statistics - psyco...
+ERROR backend\tests\test_m6_statistics.py::test_date_boundaries_and_future_limit
+ERROR backend\tests\test_m6_statistics.py::test_month_limit_consistency - psy...
+ERROR backend\tests\test_m6_statistics.py::test_blank_street_filter - psycopg...
+ERROR backend\tests\test_m6_statistics.py::test_borough_ids_match_database - ...
+ERROR backend\tests\test_m7_contract_edges.py::test_missing_parent_child_is_rejected_with_issue_and_never_published
+ERROR backend\tests\test_m7_contract_edges.py::test_local_date_time_ignore_session_timezone_while_timestamp_keeps_instant
+ERROR backend\tests\test_m7_contract_edges.py::test_manual_location_reassignment_revises_data_and_stales_published_profiles
+ERROR backend\tests\test_m7_contract_edges.py::test_clearing_one_factor_slot_preserves_another
+ERROR backend\tests\test_m7_worker_restart.py::test_real_worker_process_restart_fences_abandoned_risk_job
+============ 1 failed, 75 passed, 1 warning, 109 errors in 50.82s =============

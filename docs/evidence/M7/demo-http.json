@@ -1,0 +1,25 @@
+{
+  "database": "vision_zero_m1_test_a820261003de",
+  "transport": "real HTTP / isolated uvicorn subprocess",
+  "checks": {
+    "ready": true,
+    "unauthenticated_denied": true,
+    "demo_admin_login": true,
+    "demo_manager_login": true,
+    "demo_executor_login": true,
+    "demo_viewer_login": true,
+    "six_states": true,
+    "simulated": true,
+    "viewer_collision_read": true,
+    "viewer_overview_read": true,
+    "viewer_governance_denied": true,
+    "viewer_governance_statistics_denied": true,
+    "manager_governance_statistics_read": true,
+    "executor_self_review_denied": true,
+    "viewer_write_denied": true,
+    "denied_writes_preserve_version": true,
+    "only_four_demo_accounts_active": true,
+    "probe_backend_stopped": true
+  },
+  "passed": true
+}

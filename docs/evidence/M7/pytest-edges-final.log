@@ -1,0 +1,21 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.4, pytest-9.1.1, pluggy-1.6.0 -- E:\数据库课设\.venv\Scripts\python.exe
+rootdir: E:\数据库课设\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 5 items
+
+backend\tests\test_m7_contract_edges.py::test_missing_parent_child_is_rejected_with_issue_and_never_published PASSED [ 20%]
+backend\tests\test_m7_contract_edges.py::test_local_date_time_ignore_session_timezone_while_timestamp_keeps_instant PASSED [ 40%]
+backend\tests\test_m7_contract_edges.py::test_swapped_latitude_longitude_are_flagged_by_nyc_prefilter PASSED [ 60%]
+backend\tests\test_m7_contract_edges.py::test_manual_location_reassignment_revises_data_and_stales_published_profiles PASSED [ 80%]
+backend\tests\test_m7_contract_edges.py::test_clearing_one_factor_slot_preserves_another PASSED [100%]
+
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  E:\数据库课设\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--------- generated xml file: E:\数据库课设\.m7-work\pg-edges-02\junit.xml ---------
+======================== 5 passed, 1 warning in 55.01s ========================

@@ -1,0 +1,203 @@
+{
+  "collision_integrity_constraints": [
+    {
+      "definition": "FOREIGN KEY (location_id) REFERENCES location(location_id) ON DELETE RESTRICT",
+      "name": "collision_location_id_fkey",
+      "type": "f"
+    },
+    {
+      "definition": "PRIMARY KEY (collision_id)",
+      "name": "collision_pkey",
+      "type": "p"
+    },
+    {
+      "definition": "FOREIGN KEY (source_record_id) REFERENCES raw_record(raw_record_id) ON DELETE RESTRICT",
+      "name": "collision_source_record_id_fkey",
+      "type": "f"
+    },
+    {
+      "definition": "UNIQUE (source_record_id)",
+      "name": "collision_source_record_id_key",
+      "type": "u"
+    }
+  ],
+  "counts": {
+    "casualty_stat": {
+      "all": 85546,
+      "year_2025": 85546
+    },
+    "collision": {
+      "all": 85546,
+      "year_2025": 85546,
+      "year_max": "2025-12-31",
+      "year_min": "2025-01-01"
+    },
+    "collision_factor": {
+      "all": 158517,
+      "year_2025": 158517
+    },
+    "location": {
+      "all": 53667,
+      "used_by_2025_collisions": 53667
+    },
+    "person": {
+      "all": 292070,
+      "year_2025": 292070
+    },
+    "vehicle": {
+      "all": 170015,
+      "year_2025": 170015
+    }
+  },
+  "date_range": {
+    "end_exclusive": "2026-01-01",
+    "start_inclusive": "2025-01-01"
+  },
+  "initial_indexes": {
+    "collision": [
+      {
+        "definition": "CREATE UNIQUE INDEX collision_pkey ON public.collision USING btree (collision_id)",
+        "key_columns": [
+          "collision_id"
+        ],
+        "method": "btree",
+        "name": "collision_pkey",
+        "primary": true,
+        "unique": true,
+        "valid": true
+      },
+      {
+        "definition": "CREATE UNIQUE INDEX collision_source_record_id_key ON public.collision USING btree (source_record_id)",
+        "key_columns": [
+          "source_record_id"
+        ],
+        "method": "btree",
+        "name": "collision_source_record_id_key",
+        "primary": false,
+        "unique": true,
+        "valid": true
+      },
+      {
+        "definition": "CREATE INDEX ix_collision_date_id ON public.collision USING btree (crash_date DESC, collision_id DESC)",
+        "key_columns": [
+          "crash_date",
+          "collision_id"
+        ],
+        "method": "btree",
+        "name": "ix_collision_date_id",
+        "primary": false,
+        "unique": false,
+        "valid": true
+      },
+      {
+        "definition": "CREATE INDEX ix_collision_location_date ON public.collision USING btree (location_id, crash_date)",
+        "key_columns": [
+          "location_id",
+          "crash_date"
+        ],
+        "method": "btree",
+        "name": "ix_collision_location_date",
+        "primary": false,
+        "unique": false,
+        "valid": true
+      }
+    ],
+    "location": [
+      {
+        "definition": "CREATE INDEX ix_location_borough ON public.location USING btree (borough_id, location_id)",
+        "key_columns": [
+          "borough_id",
+          "location_id"
+        ],
+        "method": "btree",
+        "name": "ix_location_borough",
+        "primary": false,
+        "unique": false,
+        "valid": true
+      },
+      {
+        "definition": "CREATE INDEX ix_location_geography ON public.location USING gist (((geom)::geography)) WHERE (geom IS NOT NULL)",
+        "key_columns": [
+          "<expression>"
+        ],
+        "method": "gist",
+        "name": "ix_location_geography",
+        "primary": false,
+        "unique": false,
+        "valid": true
+      },
+      {
+        "definition": "CREATE INDEX ix_location_geom ON public.location USING gist (geom) WHERE (geom IS NOT NULL)",
+        "key_columns": [
+          "geom"
+        ],
+        "method": "gist",
+        "name": "ix_location_geom",
+        "primary": false,
+        "unique": false,
+        "valid": true
+      },
+      {
+        "definition": "CREATE UNIQUE INDEX location_location_key_key ON public.location USING btree (location_key)",
+        "key_columns": [
+          "location_key"
+        ],
+        "method": "btree",
+        "name": "location_location_key_key",
+        "primary": false,
+        "unique": true,
+        "valid": true
+      },
+      {
+        "definition": "CREATE UNIQUE INDEX location_pkey ON public.location USING btree (location_id)",
+        "key_columns": [
+          "location_id"
+        ],
+        "method": "btree",
+        "name": "location_pkey",
+        "primary": true,
+        "unique": true,
+        "valid": true
+      }
+    ]
+  },
+  "source_file_hashes_available": true,
+  "source_files": [
+    {
+      "bytes": 104735,
+      "dataset_id": "h9gi-nx95",
+      "sha256": "561da0c8fa29d4b136f73ac5b2261bbc10cf07bc2fa90881bbc03dc806e86e34",
+      "source_kind": "CRASHES"
+    },
+    {
+      "bytes": 17721684,
+      "dataset_id": "h9gi-nx95",
+      "sha256": "a0b8f6d4f8c8559bf00242353810dcf3fd877c505979a8752b9898dfd3469aa6",
+      "source_kind": "CRASHES"
+    },
+    {
+      "bytes": 55243435,
+      "dataset_id": "f55k-p6yu",
+      "sha256": "8c8c8b6525252b8ffdf58a576d1580c5d67b593624be1217b1c200b56b2094d4",
+      "source_kind": "PERSON"
+    },
+    {
+      "bytes": 329794,
+      "dataset_id": "f55k-p6yu",
+      "sha256": "b2499e1178892a2b567c5fb90ceb0b6538e1c37a79fd7113797ac66465e42277",
+      "source_kind": "PERSON"
+    },
+    {
+      "bytes": 246806,
+      "dataset_id": "bm4k-52h4",
+      "sha256": "9c4748c37f637ba1bcb0243877c7c5cfa6071def38d509cf9cb6adb2e050335b",
+      "source_kind": "VEHICLES"
+    },
+    {
+      "bytes": 41704254,
+      "dataset_id": "bm4k-52h4",
+      "sha256": "b31eb07f4eedc411ebde9f781a68be008152a5e15e2d5ea7aa5fd76f00a8dea7",
+      "source_kind": "VEHICLES"
+    }
+  ]
+}

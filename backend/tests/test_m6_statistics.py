@@ -133,16 +133,19 @@ def seed_task_basis(connection, created_by):
     return profile_id
 
 
+GOVERNANCE_CREATED_AT = datetime(2026, 1, 15, 16, 30, tzinfo=timezone.utc)
+
+
 def seed_task(connection, created_by, profile_id, *, status, assignee_id=None, deleted=False):
     suffix = uuid4().hex[:12]
     task_id = connection.execute("""
         INSERT INTO public.governance_task
             (task_code, request_id, request_hash, profile_id, title, description, measure_type, priority,
-             status, created_by, assignee_id, deleted_at)
-        VALUES (%s, %s, %s, %s, 'M6模拟统计工单', 'M6合成工单描述', 'FIELD_SURVEY', 'MEDIUM', %s, %s, %s, %s)
+             status, created_by, assignee_id, deleted_at, created_at)
+        VALUES (%s, %s, %s, %s, 'M6模拟统计工单', 'M6合成工单描述', 'FIELD_SURVEY', 'MEDIUM', %s, %s, %s, %s, %s)
         RETURNING task_id
     """, ("GOV-M6-" + suffix, uuid4(), "0" * 64, profile_id, status, created_by, assignee_id,
-          datetime.now(timezone.utc) if deleted else None)).fetchone()[0]
+          datetime.now(timezone.utc) if deleted else None, GOVERNANCE_CREATED_AT)).fetchone()[0]
     for sequence in range(1, {"COMPLETED": 3, "OPEN": 1, "DRAFT": 1}.get(status, 1) + 1):
         connection.execute("""
             INSERT INTO public.task_history (task_id, sequence_no, request_id, request_hash, event_type,
@@ -571,13 +574,14 @@ def test_governance_statistics(m6_env):
             bad_range = client.get("/api/v1/statistics/governance", headers=admin,
                                    params={"created_from": "2026-01-02", "created_to": "2026-01-01"})
             assert bad_range.status_code == 422
-            today = date.today()
+            # UTC创建日期与主机本地日期无关；固定在上海次日的时刻，避免午夜偶发失败。
+            created_day = GOVERNANCE_CREATED_AT.date()
             dated = client.get("/api/v1/statistics/governance", headers=admin,
-                               params={"created_from": today.isoformat(),
-                                       "created_to": (today + timedelta(days=1)).isoformat()})
+                               params={"created_from": created_day.isoformat(),
+                                       "created_to": (created_day + timedelta(days=1)).isoformat()})
             assert dated.status_code == 200 and dated.json()["data"]["total_tasks"] == 3
             before_today = client.get("/api/v1/statistics/governance", headers=admin,
-                                      params={"created_to": today.isoformat()})
+                                      params={"created_to": created_day.isoformat()})
             assert before_today.status_code == 200 and before_today.json()["data"]["total_tasks"] == 0
 
 
